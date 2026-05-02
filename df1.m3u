@@ -1042,6 +1042,23 @@ http://127.0.0.1:8081/shandong1.php?id=1
 #EXTINF:-1   tvg-id="LOVE NATURE有線"   tvg-name="LOVE NATURE有線"    tvg-logo=""    group-title="4K",love nature 4K
 https://pb-ehs1glsha1juy.akamaized.net/Love_Nature_4K.m3u8
 
+ #EXTINF:-1 tvg-id="Bloomberg.HD.us2" tvg-name="Bloomberg Television 4K" tvg-logo="http://schedulesdirect-api20141201-logos.s3.dualstack.us-east-1.amazonaws.com/stationLogos/s71799_dark_360w_270h.png" group-title="4K",Bloomberg Television 4K
+https://iptv.707626.xyz/ch/08faf53432bbf172d66658f7d6bb7eed/master.m3u8
+
+#EXTINF:-1 tvg-id="USBA3800005NI" tvg-name="Clarity 4K" tvg-logo="https://i.imgur.com/M87kbVk.png" group-title="4K",Clarity 4K
+https://iptv.707626.xyz/ch/6b524eba472d8b84fc243b6510737145/master.m3u8
+
+#EXTINF:-1 tvg-id="USBB1000002TK" tvg-name="Loupe 4K" tvg-logo="https://loupeart.com/cdn/shop/files/Wordmark_gradient_Thick_420x.png?v=1667930176" group-title="4K超清",Loupe 4K
+https://iptv.707626.xyz/ch/83e28d1966f4888308e6e97b804caf1e/master.m3u8
+
+#EXTINF:-1 tvg-id="Love.Nature.ca2" tvg-name="Love Nature 4K CA" tvg-logo="https://images.sr.roku.com/idType/roku-trc/context/trc/id/479fe0d11f3f5132a3f36b617547da3b/https%3A%2F%2Fimage.roku.com%2Fbh-uploads%2Fproduction%2FinfoHUDLogo%2F1738776545554_LoveNature_logos_HUB_Centered.png" group-title="4K",Love Nature 4K CA
+https://iptv.707626.xyz/ch/a859f84951d60ea32d52e414fe95bf4e/master.m3u8
+
+#EXTINF:-1 tvg-id="New.England.Sports.Network.HD.us2" tvg-name="NESN 4K" tvg-logo="https://i.postimg.cc/CxVDbJrS/nesn.png" group-title="4K",NESN 4K
+https://iptv.707626.xyz/ch/4213d7c43e94f427ba46fe8d513eeb87/master.m3u8
+
+#EXTINF:-1 tvg-id="SkySp.F1.HD.uk" tvg-name="Sky Sports F1 4K UK" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-kingdom/hd/sky-sports-f1-uhd-uk.png?raw=true" group-title="4K",Sky Sports F1 4K UK
+https://iptv.707626.xyz/ch/d66d2b3cb0bf682e1198a3d33f9d5ef4/master.m3u8
 
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
