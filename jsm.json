@@ -2703,7 +2703,7 @@
             "name": "YouTubeLive每6小时自动抓取",
             "ua": "okhttp/3.0",
             "playerType": 2,
-            "url": "https://raw.githubusercontent.com/zzq1234567890/epg/refs/heads/main/youtubelive.m3u",
+            "url": "https://raw.githubusercontent.com/zzq12345/epgtest/refs/heads/main/youtubeworld.m3u",
             "epg": "https://epg.v1.mk/json?ch={name}&date={date}",
             "logo": "https://epg.112114.xyz/logo/{name}.png"
              },
@@ -2721,17 +2721,17 @@
             "ua": "okhttp/3.0",
             "playerType": 2,
             "url": "https://php.946985.filegear-sg.me/jackTV.m3u",
-           "epg":"https://raw.githubusercontent.com/zzq1234567890/epg/refs/heads/main/epgziyong.xml",
+           "epg":"https://raw.githubusercontent.com/zzq1234567890/epg/refs/heads/main/twepg.xml",
              
 	###"epg": "https://epg.v1.mk/json?ch={name}&date={date}",
             "logo": "https://epg.112114.xyz/logo/{name}.png"
              },
 	   {
-            "name": "df2",
+            "name": "df1",
             "ua": "okhttp/3.0",
             "playerType": 2,
-            "url": "./df2.m3u",
-            "epg": "http://zzqwe.giize.com:12228/swepg.xml.gz",
+            "url": "./df1.m3u",
+           "epg":"https://raw.githubusercontent.com/zzq1234567890/epg/refs/heads/main/twepg.xml",
             "logo": "https://epg.112114.xyz/logo/{name}.png"
            },
            {
