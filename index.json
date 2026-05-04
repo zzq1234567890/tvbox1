@@ -1,6 +1,10 @@
 {
   "urls": [
     {
+      "name":"ok大佬",
+      "url":"https://raw.githubusercontent.com/cyao2q/files/refs/heads/master/ok.json",
+    },
+    {
       "name":"pg大佬",
       "url":"https://www.252035.xyz/p/jsm.json"
     },
