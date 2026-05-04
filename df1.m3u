@@ -267,14 +267,11 @@ http://127.0.0.1:8081/nizhen24.php?id=3
 
 #EXTINF:-1   tvg-id="大愛電視臺"   tvg-name="大愛電視臺"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/daai.png"    group-title="中文新聞",大愛-2全球
 https://pull.daaiplus.com/live-DAAIPLUS/live-DAAIPLUS_HD.m3u8
-#EXTINF:-1   tvg-id="大愛二臺"   tvg-name="大愛二臺"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/daai2.png"    group-title="中文新聞",大愛-2全球
-http://127.0.0.1:8081/daai.php?id=1
-#EXTINF:-1   tvg-id="大愛電視臺"   tvg-name="大愛電視臺"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/daai.png"    group-title="中文新聞",大愛-1全球
-http://127.0.0.1:8081/daai.php?id=2
+
 #EXTINF:-1   tvg-id="大愛二臺"   tvg-name="大愛二臺"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/daai2.png"    group-title="中文新聞",大愛二臺臺灣
-http://127.0.0.1:8081/daai.php?id=3
+http://127.0.0.1:8081/youtube.php?v=oV_i3Hsl_zg
 #EXTINF:-1   tvg-id="大愛電視臺"   tvg-name="大愛電視臺"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/daai.png"    group-title="中文新聞",大愛-1臺灣
-http://127.0.0.1:8081/daai.php?id=4
+http://127.0.0.1:8081/youtube.php?v=OKvWtVoDR8I
 
 
 #EXTINF:-1   tvg-id="運通財經綜合臺"   tvg-name="運通財經綜合臺"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/EFTV.png"    group-title="中文新聞",運通財經綜合臺
