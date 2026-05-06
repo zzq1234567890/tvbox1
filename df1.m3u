@@ -1,152 +1,64 @@
 #EXTM3U url-tvg="https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz" 
-#EXTINF:-1 tvg-name="cctv1" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/d57905b93540bd15f0c48230dbbbff7ee0d645ff539e38866e2d15c8b9f7dfcd.png?imageMogr2/format/webp" group-title="央視投屏",cctv1
-http://43.156.8.127:5050/ysp?id=2024078201&pid=600001859&q=fhd
-#EXTINF:-1 tvg-name="cctv2" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/20115388de0207131af17eac86c33049b95d69eaff064e55653a1b941810a006.png?imageMogr2/format/webp" group-title="央視投屏",cctv2
-http://43.156.8.127:5050/ysp?id=2024075401&pid=600001800&q=fhd
-#EXTINF:-1 tvg-name="cctv3" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/7b7a65c712450da3deb6ca66fbacf4f9aee00d3f20bd80eafb5ada01ec63eb3a.png?imageMogr2/format/webp" group-title="央視投屏",cctv3
-http://43.156.8.127:5050/ysp?id=2024068501&pid=600001801&q=fhd
-#EXTINF:-1 tvg-name="cctv4亞洲" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/f357e58fdbcc076a3d65e1f958c942b2e14f14342c60736ceed98b092d35356a.png?imageMogr2/format/webp" group-title="央視投屏",cctv4
-http://43.156.8.127:5050/ysp?id=2029797101&pid=600001814&q=fhd
-#EXTINF:-1 tvg-name="cctv5" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/0a6a7138952675983a3d854df7688557b286d59aa06166edae51506f9204d655.png?imageMogr2/format/webp" group-title="央視投屏",cctv5
-http://43.156.8.127:5050/ysp?id=2024078401&pid=600001818&q=fhd
-#EXTINF:-1 tvg-name="cctv5+" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/649ad76a90bfef55b05db9fe52e006487280f619089099d5dc971e387fc6eff0.png?imageMogr2/format/webp" group-title="央視投屏",cctv5+
-http://43.156.8.127:5050/ysp?id=2024078001&pid=600001817&q=fhd
-#EXTINF:-1 tvg-name="cctv6" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/741515efda91f03f455df8a7da4ee11fa9329139c276435cf0a9e2af398d5bf2.png?imageMogr2/format/webp" group-title="央視投屏",cctv6
-http://43.156.8.127:5050/ysp?id=2013693901&pid=600108442&q=fhd
-#EXTINF:-1 tvg-name="cctv7" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/b29af94e295ebdf646cefb68122c429b9cd921f498ca20d2d8070252536f9ff9.png?imageMogr2/format/webp" group-title="央視投屏",cctv7
-http://43.156.8.127:5050/ysp?id=2024072001&pid=600004092&q=fhd
-#EXTINF:-1 tvg-name="cctv8" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/ad51de94426a0ba039e6dd6a8534ea98ecc813a6176bde87b4f18cc34d6d7590.png?imageMogr2/format/webp" group-title="央視投屏",cctv8
-http://43.156.8.127:5050/ysp?id=2029793001&pid=600001803&q=fhd
-#EXTINF:-1 tvg-name="cctv9" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/2ed1b4deeca179d5db806bb941790f82eb92a1b7299c1c38fe027f95a5caee5e.png?imageMogr2/format/webp" group-title="央視投屏",cctv9
-http://43.156.8.127:5050/ysp?id=2024078601&pid=600004078&q=fhd
-#EXTINF:-1 tvg-name="cctv10" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/aa6157ec65188cd41826e5a2f088c3d6d153205f5f6428258d12c59999e221aa.png?imageMogr2/format/webp" group-title="央視投屏",cctv10
-http://43.156.8.127:5050/ysp?id=2024078701&pid=600001805&q=fhd
-#EXTINF:-1 tvg-name="cctv11" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/ed12ed7c7a1034dae4350011fe039284c5d5a836506b28c9e32e3c75299625c0.png?imageMogr2/format/webp" group-title="央視投屏",cctv11
-http://43.156.8.127:5050/ysp?id=2027248701&pid=600001806&q=fhd
-#EXTINF:-1 tvg-name="cctv12" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/484083cffaa40df7e659565e8cb4d1cc740158a185512114167aa21fa0c59240.png?imageMogr2/format/webp" group-title="央視投屏",cctv12
-http://43.156.8.127:5050/ysp?id=2027248801&pid=600001807&q=fhd
-#EXTINF:-1 tvg-name="cctv13" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/266da7b43c03e2312186b4a999e0f060e8f15b10d2cc2c9aa32171819254cf1a.png?imageMogr2/format/webp" group-title="央視投屏",cctv13
-http://43.156.8.127:5050/ysp?id=2029797201&pid=600001811&q=fhd
-#EXTINF:-1 tvg-name="cctv14" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/af6b603896938dc346fbb16abfc63c12cba54b0ec9d18770a15d347d115f12d5.png?imageMogr2/format/webp" group-title="央視投屏",cctv14
-http://43.156.8.127:5050/ysp?id=2027248901&pid=600001809&q=fhd
-#EXTINF:-1 tvg-name="cctv15" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/2ceee92188ef684efe0d8b90839c4f3ad450d179dc64d59beff417059453af47.png?imageMogr2/format/webp" group-title="央視投屏",cctv15
-http://43.156.8.127:5050/ysp?id=2027249001&pid=600001815&q=fhd
-#EXTINF:-1 tvg-name="cctv16" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/53793fa7bacd3a93ff6dc5d2758418985e1f952a316c335d663b572d8bdcd74d.png?imageMogr2/format/webp" group-title="央視投屏",cctv16-HD
-http://43.156.8.127:5050/ysp?id=2027249101&pid=600098637&q=fhd
-#EXTINF:-1 tvg-name="cctv16" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/53793fa7bacd3a93ff6dc5d2758418985e1f952a316c335d663b572d8bdcd74d.png?imageMogr2/format/webp" group-title="央視投屏",cctv16(4K)
-http://43.156.8.127:5050/ysp?id=2027249301&pid=600099502&q=fhd
-#EXTINF:-1 tvg-name="cctv17" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/ddef563072f8bad2bea5b9e52674cb7b4ed50efb20c26e61994dfbdf05c1e3c0.png?imageMogr2/format/webp" group-title="央視投屏",cctv17
-http://43.156.8.127:5050/ysp?id=2027249401&pid=600001810&q=fhd
-#EXTINF:-1 tvg-name="cctv4K" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/3e9d06fd7244d950df5838750f1c6ac3456e172b51caca2c16d2282125b111e8.png?imageMogr2/format/webp" group-title="央視投屏",cctv4K
-http://43.156.8.127:5050/ysp?id=2029810301&pid=600002264&q=fhd
-#EXTINF:-1 tvg-name="cctv8K" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202503/df543dd2e337be8bf6aa06342d8d790992f7ae47b89403606253436e40409031.png?imageMogr2/format/webp" group-title="央視投屏",cctv8K
-http://43.156.8.127:5050/ysp?id=2026774101&pid=600156816&q=fhd
-#EXTINF:-1 tvg-name="cgtn" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/a72dff758ca1c17cd0ecc8cedc11b893d208f409d5e6302faa0e9d298848abc3.png?imageMogr2/format/webp" group-title="央視投屏",CGTN
-http://43.156.8.127:5050/ysp?id=2024181701&pid=600014550&q=fhd
-#EXTINF:-1 tvg-name="cgtn法語" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/a8d0046a47433d952bf6ed17062deb8bd2184ba9aec0f7781df6bf9487a3ffcf.png?imageMogr2/format/webp" group-title="央視投屏",CGTN法語頻道
-http://43.156.8.127:5050/ysp?id=2024181801&pid=600084704&q=fhd
-#EXTINF:-1 tvg-name="cgtn俄語" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/bf0a820893cbaf20dd0333e27042e1ef9c8806e5b602b6a8c95af399db0bc77a.png?imageMogr2/format/webp" group-title="央視投屏",CGTN俄語頻道
-http://43.156.8.127:5050/ysp?id=2024181901&pid=600084758&q=fhd
-#EXTINF:-1 tvg-name="cgtn阿拉伯語" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/2e44e2aa3e7a1cedf07fd0ae59fe69e86a60a2632660a006e3e9e7397b2d107e.png?imageMogr2/format/webp" group-title="央視投屏",CGTN阿拉伯語頻道
-http://43.156.8.127:5050/ysp?id=2024182001&pid=600084782&q=fhd
-#EXTINF:-1 tvg-name="cgtn西班牙語" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202309/7c337e3dbe64402ec7e4678a619a4a6d95144e42f35161181ff78e143b7cf67a.png?imageMogr2/format/webp" group-title="央視投屏",CGTN西班牙語頻道
-http://43.156.8.127:5050/ysp?id=2024182101&pid=600084744&q=fhd
-#EXTINF:-1 tvg-name="cgtn英文記錄片" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202309/74d3ac436a7e374879578de1d87a941fbf566d39d5632b027c5097891ed32bd5.png?imageMogr2/format/webp" group-title="央視投屏",CGTN外語紀錄頻道
-http://43.156.8.127:5050/ysp?id=2024182301&pid=600084781&q=fhd
-#EXTINF:-1 tvg-name="cctv風雲劇場" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/4d549e53e6d0f632d5a633d1945280797b153e588f919221a07faa869812cc89.png?imageMogr2/format/webp" group-title="央視投屏",cctv風雲劇場頻道
-http://43.156.8.127:5050/ysp?id=2025637103&pid=600099658&q=fhd
-#EXTINF:-1 tvg-name="cctv第一劇場" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/a556bd7d93ce65e18f243a8892b5604f4faa994a4897315914216a710a706208.png?imageMogr2/format/webp" group-title="央視投屏",cctv第一劇場頻道
-http://43.156.8.127:5050/ysp?id=2026874203&pid=600099655&q=fhd
-#EXTINF:-1 tvg-name="cctv懷舊劇場" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/5661bd04fecdb6e899f801147a22ab5d3a475bf2b62e30aec2c0023190ebc9b1.png?imageMogr2/format/webp" group-title="央視投屏",cctv懷舊劇場頻道
-http://43.156.8.127:5050/ysp?id=2026874303&pid=600099620&q=fhd
-#EXTINF:-1 tvg-name="cctv世界地理" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/bb3c6c9e145d698137f5bb64a582021a01b51344b929003630eb769ea65832a9.png?imageMogr2/format/webp" group-title="央視投屏",cctv世界地理頻道
-http://43.156.8.127:5050/ysp?id=2026874403&pid=600099637&q=fhd
-#EXTINF:-1 tvg-name="cctv風雲音樂" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/bbf1d024c5228b8dd128b0e3cb1717d173fab4ee84c3a4c8a57b1a215362ca3b.png?imageMogr2/format/webp" group-title="央視投屏",cctv風雲音樂頻道
-http://43.156.8.127:5050/ysp?id=2026874503&pid=600099660&q=fhd
-#EXTINF:-1 tvg-name="cctv兵器科技" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/4c6b6a6d3839889f34d33db3c2f80233b26b74d3489b393487635f8704e70796.png?imageMogr2/format/webp" group-title="央視投屏",cctv兵器科技頻道
-http://43.156.8.127:5050/ysp?id=2026874603&pid=600099649&q=fhd
-#EXTINF:-1 tvg-name="cctv風雲足球" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/cd1e2bb52b06a991de168733e5ff0f1d85adc8042d40c8f393f723543e5dd08a.png?imageMogr2/format/webp" group-title="央視投屏",cctv風雲足球頻道
-http://43.156.8.127:5050/ysp?id=2026966203&pid=600099636&q=fhd
-#EXTINF:-1 tvg-name="cctv高爾夫" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/cdd1b31ede7a5ad049ed53d9a072422f829e72dd062ed2c19e077fdd01699071.png?imageMogr2/format/webp" group-title="央視投屏",cctv高爾夫·網球頻道
-http://43.156.8.127:5050/ysp?id=2026874703&pid=600099659&q=fhd
-#EXTINF:-1 tvg-name="cctv女性時尚" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/fa28955ce8b2539d728bf4c6a13a46ff57ad76eae46627f7bcfb1ed8a613d3fc.png?imageMogr2/format/webp" group-title="央視投屏",cctv女性時尚頻道
-http://43.156.8.127:5050/ysp?id=2026874803&pid=600099650&q=fhd
-#EXTINF:-1 tvg-name="cctv文化精品" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/14ac5ce40482cacd3d4b37435222bfe86af2b452a2f04ecbfc1d13d76edd7c57.png?imageMogr2/format/webp" group-title="央視投屏",cctv央視文化精品頻道
-http://43.156.8.127:5050/ysp?id=2026874903&pid=600099653&q=fhd
-#EXTINF:-1 tvg-name="cctv檯球" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/10e14a92478011aa6c3c8562e62127f3b1908e29fcd78e4b2b24b9e6d3ec2fbc.png?imageMogr2/format/webp" group-title="央視投屏",cctv央視檯球頻道
-http://43.156.8.127:5050/ysp?id=2026875003&pid=600099652&q=fhd
-#EXTINF:-1 tvg-name="cctv電視指南" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/244d72c0eb1615ed7d51c2f5db5a67f306aa3f58c05bc2d34de3aa7e956dc8c9.png?imageMogr2/format/webp" group-title="央視投屏",cctv電視指南頻道
-http://43.156.8.127:5050/ysp?id=2026875103&pid=600099656&q=fhd
-#EXTINF:-1 tvg-name="cctv衛生健康" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/54a6863656fdfd8f803be193ddf22441c5000a108833889816fd2d8911715ce8.png?imageMogr2/format/webp" group-title="央視投屏",cctv衛生健康頻道
-http://43.156.8.127:5050/ysp?id=2025637003&pid=600099651&q=fhd
-#EXTINF:-1 tvg-name="北京衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/f4f23633c578beea49a3841d88d3490100f029ee349059fa532869db889872c5.png?imageMogr2/format/webp" group-title="央視投屏",北京衛視
-http://43.156.8.127:5050/ysp?id=2024052703&pid=600002309&q=fhd
-#EXTINF:-1 tvg-name="江蘇衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/380ad685c0c1d5b2c902246b8d2df6d3f9b45e2837abcfe493075bbded597a31.png?imageMogr2/format/webp" group-title="央視投屏",江蘇衛視
-http://43.156.8.127:5050/ysp?id=2024171103&pid=600002521&q=fhd
-#EXTINF:-1 tvg-name="東方衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/9bd372ca292a82ce3aa08772b07efc4af1f85c21d1f268ea33440c49e9a0a488.png?imageMogr2/format/webp" group-title="央視投屏",東方衛視
-http://43.156.8.127:5050/ysp?id=2024054503&pid=600002483&q=fhd
-#EXTINF:-1 tvg-name="浙江衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/a66c836bd98ba3e41a2e9a570d4b9c50dedc6839e9de333e2e78212ad505f37e.png?imageMogr2/format/webp" group-title="央視投屏",浙江衛視
-http://43.156.8.127:5050/ysp?id=2024054703&pid=600002520&q=fhd
-#EXTINF:-1 tvg-name="湖南衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/4120e89d3079d08aa17d382f69a2308ec70839b278367763c34a34666c75cb88.png?imageMogr2/format/webp" group-title="央視投屏",湖南衛視
-http://43.156.8.127:5050/ysp?id=2024054803&pid=600002475&q=fhd
+#EXTINF:-1 tvg-id="cctv1" tvg-name="cctv1" tvg-logo="https://epg.yang-1989.eu.org/logo/cctv1.png" group-title="國內",cctv 1 綜合」
+https://cdn-2.ttvb.eu.org/api/cctv1/index.m3u8
+#EXTINF:-1 tvg-id="cctv2" tvg-name="cctv2" tvg-logo="https://epg.yang-1989.eu.org/logo/cctv2.png" group-title="國內",cctv 2 財經」
+https://cdn-2.ttvb.eu.org/api/cctv2/index.m3u8
+#EXTINF:-1 tvg-id="cctv3" tvg-name="cctv3" tvg-logo="https://epg.yang-1989.eu.org/logo/cctv3.png" group-title="國內",cctv 3 綜藝」
+https://cdn-2.ttvb.eu.org/api/cctv3/index.m3u8
+#EXTINF:-1 tvg-id="cctv4亞洲" tvg-name="cctv4亞洲" tvg-logo="https://epg.yang-1989.eu.org/logo/cctv4.png" group-title="國內",cctv 4 中文國際」
+https://cdn-2.ttvb.eu.org/api/cctv4/index.m3u8
+#EXTINF:-1 tvg-id="cctv5" tvg-name="cctv5" tvg-logo="https://epg.yang-1989.eu.org/logo/cctv5.png" group-title="國內",cctv 5 體育」
+https://cdn-2.ttvb.eu.org/api/cctv5/index.m3u8
+#EXTINF:-1 tvg-id="cctv5+" tvg-name="cctv5+" tvg-logo="https://epg.yang-1989.eu.org/logo/cctv5+.png" group-title="國內",cctv 5+ 體育賽事」
+https://cdn-2.ttvb.eu.org/api/cctv5+/index.m3u8
+#EXTINF:-1 tvg-id="cctv6" tvg-name="cctv6" tvg-logo="https://epg.yang-1989.eu.org/logo/cctv6.png" group-title="國內",cctv 6 電影」
+https://cdn-2.ttvb.eu.org/api/cctv6/index.m3u8
+#EXTINF:-1 tvg-id="cctv7" tvg-name="cctv7" tvg-logo="https://epg.yang-1989.eu.org/logo/cctv7.png" group-title="國內",cctv 7 國防軍事」
+https://cdn-2.ttvb.eu.org/api/cctv7/index.m3u8
+#EXTINF:-1 tvg-id="cctv8" tvg-name="cctv8" tvg-logo="https://epg.yang-1989.eu.org/logo/cctv8.png" group-title="國內",cctv 8 電視劇」
+https://cdn-2.ttvb.eu.org/api/cctv8/index.m3u8
+#EXTINF:-1 tvg-id="cctv9" tvg-name="cctv9" tvg-logo="https://epg.yang-1989.eu.org/logo/cctv9.png" group-title="國內",cctv 9 記錄」
+https://cdn-2.ttvb.eu.org/api/cctv9/index.m3u8
+#EXTINF:-1 tvg-id="cctv10" tvg-name="cctv10" tvg-logo="https://epg.yang-1989.eu.org/logo/cctv10.png" group-title="國內",cctv 10 科教」
+https://cdn-2.ttvb.eu.org/api/cctv10/index.m3u8
+#EXTINF:-1 tvg-id="cctv11" tvg-name="cctv11" tvg-logo="https://epg.yang-1989.eu.org/logo/cctv11.png" group-title="國內",cctv 11 戲曲」
+https://cdn-2.ttvb.eu.org/api/cctv11/index.m3u8
+#EXTINF:-1 tvg-id="cctv12" tvg-name="cctv12" tvg-logo="https://epg.yang-1989.eu.org/logo/cctv12.png" group-title="國內",cctv 12 社會與法」
+https://cdn-2.ttvb.eu.org/api/cctv12/index.m3u8
+#EXTINF:-1 tvg-id="cctv13" tvg-name="cctv13" tvg-logo="https://epg.yang-1989.eu.org/logo/cctv13.png" group-title="國內",cctv 13 新聞」
+https://cdn-2.ttvb.eu.org/api/cctv13/index.m3u8
+#EXTINF:-1 tvg-id="cctv14" tvg-name="cctv14" tvg-logo="https://epg.yang-1989.eu.org/logo/cctv14.png" group-title="國內",cctv 14 少兒」
+https://cdn-2.ttvb.eu.org/api/cctv14/index.m3u8
+#EXTINF:-1 tvg-id="cctv15" tvg-name="cctv15" tvg-logo="https://epg.yang-1989.eu.org/logo/cctv15.png" group-title="國內",cctv 15 音樂」
+https://cdn-2.ttvb.eu.org/api/cctv15/index.m3u8
+#EXTINF:-1 tvg-id="CGTN"  tvg-name="CGTN" tvg-logo="https://epg.yang-1989.eu.org/logo/CGTN.png" group-title="國內",CGTN「
+https://iptv.yang-1989.eu.org/CGTN/cgtn
+#EXTINF:-1 tvg-id="CGTN外语纪录" tvg-name="CGTN外语纪录" tvg-logo="https://epg.yang-1989.eu.org/logo/CGTN纪录.png" group-title="國內",CGTN Documentary「
+https://iptv.yang-1989.eu.org/CGTN/cgtn_doc
+#EXTINF:-1 tvg-id="CGTN俄语" tvg-id="CGTN俄语" tvg-logo="https://epg.yang-1989.eu.org/logo/CGTN俄语.png" group-title="國內",CGTN Русский「
+https://iptv.yang-1989.eu.org/CGTN/cgtn_russian
+#EXTINF:-1 tvg-id="CGTN法语" tvg-name="CGTN法语" tvg-logo="https://epg.yang-1989.eu.org/logo/CGTN法语.png" group-title="國內",CGTN Français「
+https://iptv.yang-1989.eu.org/CGTN/cgtn_francais
+#EXTINF:-1 tvg-id="CGTN西班牙语" tvg-name="CGTN西班牙语" tvg-logo="https://epg.yang-1989.eu.org/logo/CGTN西班牙语.png" group-title="國內",CGTN Español「
+https://iptv.yang-1989.eu.org/CGTN/cgtn_espanol
+#EXTINF:-1 tvg-id="CGTN阿拉伯语" tvg-name="CGTN阿拉伯语" tvg-logo="https://epg.yang-1989.eu.org/logo/CGTN阿拉伯语.png" group-title="國內",CGTN العربية「
+https://iptv.yang-1989.eu.org/CGTN/cgtn_arabic
+#EXTINF:-1 tvg-id="北京衛視" tvg-name="北京衛視" tvg-logo="https://epg.yang-1989.eu.org/logo/北京衛視.png" group-title="國內",北京衛視」
+https://cdn-2.ttvb.eu.org/api/bjws/index.m3u8
+#EXTINF:-1 tvg-id="东方衛視" tvg-name="东方衛視" tvg-logo="https://epg.yang-1989.eu.org/logo/东方衛視.png" group-title="國內",東方衛視」
+https://cdn-2.ttvb.eu.org/api/dfws/index.m3u8
+#EXTINF:-1 tvg-id="广东衛視" tvg-name="广东衛視" tvg-logo="https://epg.yang-1989.eu.org/logo/广东衛視.png" group-title="國內",廣東衛視」
+https://cdn-2.ttvb.eu.org/api/gdws/index.m3u8
+#EXTINF:-1 tvg-id="浙江衛視" tvg-name="浙江衛視" tvg-logo="https://epg.yang-1989.eu.org/logo/浙江衛視.png" group-title="國內",浙江衛視」
+https://cdn-2.ttvb.eu.org/api/zjws/index.m3u8
+#EXTINF:-1 tvg-id="江苏衛視" tvg-name="江苏衛視" tvg-logo="https://epg.yang-1989.eu.org/logo/江苏衛視.png" group-title="國內",江蘇衛視」
+https://cdn-2.ttvb.eu.org/api/jsws/index.m3u8
+#EXTINF:-1 tvg-id="湖南衛視" tvg-name="湖南衛視" tvg-logo="https://epg.yang-1989.eu.org/logo/湖南衛視.png" group-title="國內",湖南衛視」
+https://cdn-2.ttvb.eu.org/api/hnws/index.m3u8
+#EXTINF:-1 tvg-id="四川衛視" tvg-name="四川衛視" tvg-logo="https://epg.yang-1989.eu.org/logo/四川衛視.png" group-title="國內",四川衛視」
+https://cdn-2.ttvb.eu.org/api/scws/index.m3u8
 
 
-#EXTINF:-1 tvg-name="廣東衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/28886880a4dc0f06fb7e0a528a1def0591d61a65870e29176ede0cc92033bbfd.png?imageMogr2/format/webp" group-title="央視投屏",廣東衛視
-http://43.156.8.127:5050/ysp?id=2024060903&pid=600002485&q=fhd
-#EXTINF:-1 tvg-name="深圳衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/d59fec04c902e3581c617136d02d4b9b8c4cbe64272781ddd3525e80c823edb7.png?imageMogr2/format/webp" group-title="央視投屏",深圳衛視
-http://43.156.8.127:5050/ysp?id=2024061303&pid=600002481&q=fhd
-#EXTINF:-1 tvg-name="湖北衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/7a6be5a2bb1dc53a945c016ff1f525dc4a84c51db371c15c89aa55404b0ba784.png?imageMogr2/format/webp" group-title="央視投屏",湖北衛視
-http://43.156.8.127:5050/ysp?id=2024171203&pid=600002508&q=fhd
-
-
-#EXTINF:-1 tvg-name="廣西衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/54b7e97cb816bb223fe05f3fc44da2c7820eb66e8550c19d23100f2c414ecc38.png?imageMogr2/format/webp" group-title="央視投屏",廣西衛視
-http://43.156.8.127:5050/ysp?id=2024060703&pid=600002509&q=fhd
-#EXTINF:-1 tvg-name="黑龍江衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/d8273ae9be698ce2db21f5b886ecac95a73429593f93713c60ed8c12c38bf0d3.png?imageMogr2/format/webp" group-title="央視投屏",黑龍江衛視
-http://43.156.8.127:5050/ysp?id=2029797003&pid=600002498&q=fhd
-#EXTINF:-1 tvg-name="海南衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/6e060391fde0469801fc3d84dbf204b4f8d650d251f17d7595a6964c0bb99e81.png?imageMogr2/format/webp" group-title="央視投屏",海南衛視
-http://43.156.8.127:5050/ysp?id=2024055603&pid=600002506&q=fhd
-#EXTINF:-1 tvg-name="重慶衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/657651f411de2673d1770d9a78b44c1265704f7468cc41d4be7f51d630768494.png?imageMogr2/format/webp" group-title="央視投屏",重慶衛視
-http://43.156.8.127:5050/ysp?id=2024061103&pid=600002531&q=fhd
-#EXTINF:-1 tvg-name="四川衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/3276a414ae0eaa0f116f2045cd913367967d0c7c1e978e8621ac3879436c6ed7.png?imageMogr2/format/webp" group-title="央視投屏",四川衛視
-http://43.156.8.127:5050/ysp?id=2024061403&pid=600002516&q=fhd
-#EXTINF:-1 tvg-name="河南衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/74925962148a6d31c85808b6cd4e444c2a54bab393d2c5fc85e960b50e22fa86.png?imageMogr2/format/webp" group-title="央視投屏",河南衛視
-http://43.156.8.127:5050/ysp?id=2029797303&pid=600002525&q=fhd
-#EXTINF:-1 tvg-name="東南衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/3208fe6564a293c21b711333fb3edb05bb5b406cff840573c9a8d839680a1579.png?imageMogr2/format/webp" group-title="央視投屏",福建東南衛視
-http://43.156.8.127:5050/ysp?id=2024061503&pid=600002484&q=fhd
-#EXTINF:-1 tvg-name="貴州衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/4eb45f4781d33d872af027dc01c941559aab55667dd99cc5c22bef7037807b13.png?imageMogr2/format/webp" group-title="央視投屏",貴州衛視
-http://43.156.8.127:5050/ysp?id=2024061603&pid=600002490&q=fhd
-#EXTINF:-1 tvg-name="江西衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/3c760d0d00463855890e8a1864ea4a6b6dd66b90c29b4ac714a4b17c16519871.png?imageMogr2/format/webp" group-title="央視投屏",江西衛視
-http://43.156.8.127:5050/ysp?id=2024061703&pid=600002503&q=fhd
-#EXTINF:-1 tvg-name="遼寧衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/ac4ed6058a87c101ae7147ebc38905d0cae047fb73fd277ee5049b84f52bda36.png?imageMogr2/format/webp" group-title="央視投屏",遼寧衛視
-http://43.156.8.127:5050/ysp?id=2024171303&pid=600002505&q=fhd
-#EXTINF:-1 tvg-name="安徽衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/f35fa04b51b1ee4984b03578b65403570868ebca03c6c01e11b097f999a58d9b.png?imageMogr2/format/webp" group-title="央視投屏",安徽衛視
-http://43.156.8.127:5050/ysp?id=2024171403&pid=600002532&q=fhd
-#EXTINF:-1 tvg-name="河北衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/d545becdc81c60197b08c7f47380705e4665ed3fe55efc8b855e486f6e655378.png?imageMogr2/format/webp" group-title="央視投屏",河北衛視
-http://43.156.8.127:5050/ysp?id=2024171503&pid=600002493&q=fhd
-#EXTINF:-1 tvg-name="山東衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202306/22d403f07a7cf5410b3ad3ddb65a11aa229a32475fac213f5344c9f0ec330ca1.png?imageMogr2/format/webp" group-title="央視投屏",山東衛視
-http://43.156.8.127:5050/ysp?id=2029787903&pid=600002513&q=fhd
-#EXTINF:-1 tvg-name="天津衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202411/2642bf96eaf49fdc6b08db2cf6a3d8a7c30824bbcc199985e70e8b8846c5d14d.png?imageMogr2/format/webp" group-title="央視投屏",天津衛視
-http://43.156.8.127:5050/ysp?id=2019927003&pid=600152137&q=fhd
-#EXTINF:-1 tvg-name="吉林衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202411/cfe6b0f01c7e381471b774f5a9f615e1bb70b946ad658da9ed6fcae28d752881.png?imageMogr2/format/webp" group-title="央視投屏",吉林衛視
-http://43.156.8.127:5050/ysp?id=2025561503&pid=600190405&q=fhd
-#EXTINF:-1 tvg-name="陝西衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202411/b63ce6fd91a92076273ea2d4679bfbe367ece51a114b54b79a66bc8de5831fa0.png?imageMogr2/format/webp" group-title="央視投屏",陝西衛視
-http://43.156.8.127:5050/ysp?id=2029795103&pid=600190400&q=fhd
-#EXTINF:-1 tvg-name="寧夏衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202411/8392c1ee75dca2a13f6dc0efa37519be4284764fecd65415a1a9f55b11534c5b.png?imageMogr2/format/webp" group-title="央視投屏",寧夏衛視
-http://43.156.8.127:5050/ysp?id=2025608503&pid=600190737&q=fhd
-#EXTINF:-1 tvg-name="內蒙古衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202411/fe60396ae9ead3125d763146d8bc1e9b51ed8e19e8dc61600e28cc0b2f2d28c7.png?imageMogr2/format/webp" group-title="央視投屏",內蒙古衛視
-http://43.156.8.127:5050/ysp?id=2025561203&pid=600190401&q=fhd
-#EXTINF:-1 tvg-name="雲南衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202411/907600c544719ffdaa6b6fa177d91b530dc9ce38e3dfd43a14ea7c805a7df97d.png?imageMogr2/format/webp" group-title="央視投屏",雲南衛視
-http://43.156.8.127:5050/ysp?id=2025561303&pid=600190402&q=fhd
-#EXTINF:-1 tvg-name="山西衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202411/d9fe4441f6adcfe9fd7ee2e45bf46d2a355b0fa48ff10dbba12978d2f8cf9780.png?imageMogr2/format/webp" group-title="央視投屏",山西衛視
-http://43.156.8.127:5050/ysp?id=2025560803&pid=600190407&q=fhd
-#EXTINF:-1 tvg-name="青海衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202411/182e779878c85642049514a6e033f6be41aa8bf5f489fadc6f63dfc50863c36d.png?imageMogr2/format/webp" group-title="央視投屏",青海衛視
-http://43.156.8.127:5050/ysp?id=2025559103&pid=600190406&q=fhd
-#EXTINF:-1 tvg-name="西藏衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202411/37f9668cded5cc19848cfe7dcaf717de4acc47667dde656ba2646aba372eebbe.png?imageMogr2/format/webp" group-title="央視投屏",西藏衛視
-http://43.156.8.127:5050/ysp?id=2025558003&pid=600190403&q=fhd
-#EXTINF:-1 tvg-name="中國教育電視臺-1" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202412/2b9301a4795c7f23b7ec7ed651d8c7df002ce8c608168970485999b03d29f783.png?imageMogr2/format/webp" group-title="央視投屏",中國教育電視臺1頻道
-http://43.156.8.127:5050/ysp?id=2022823801&pid=600171827&q=fhd
-#EXTINF:-1 tvg-name="新疆衛視" tvg-logo="https://resources.yangshipin.cn/assets/oms/image/202412/005fd504f809ab28ec8cdd5d34d3886f0611ddefa20ebcc0f3f7dc176ad528c7.png?imageMogr2/format/webp" group-title="央視投屏",新疆衛視
-http://43.156.8.127:5050/ysp?id=2019927403&pid=600152138&q=fhd
 
 #EXTINF:-1   tvg-id="鳳凰資訊"   tvg-name="鳳凰資訊"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/fenghuangzixun.png"     group-title="中文新聞",鳳凰資訊
 http://127.0.0.1:8081/fenghuangyoutube.php
@@ -1782,6 +1694,210 @@ http://127.0.0.1:8081/mymysuper.php?id=C2
 #KODIPROP:inputstream.adaptive.license_key=316eb6af6ffa7ec2f40b710da9004a52:22733382c3ccff75647e45a3dbf181a8
 #EXTINF:-1 tvg-id="全運818臺 (4合1 801-804)" tvg-name="全運818臺 (4合1 801-804)" tvg-logo="https://assets.mytvsuper.com/channel/1684393675758879_EVT7.png" group-title="mytvsuper",全運818臺 (4合1 801-804)
 #http://127.0.0.1:8081/mymysuper.php?id=OL07
+
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",cctv13
+http://127.0.0.1:8081/bilibili.php?id=8178490
+
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",長崎樂隊
+http://127.0.0.1:8081/douyin.php?id=832126481994
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",每日經濟新聞24小時
+http://127.0.0.1:8081/douyin.php?id=594418047350
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",cctv1
+http://127.0.0.1:8081/douyin.php?id=456815963645
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",cctv2
+http://127.0.0.1:8081/douyin.php?id=296728101980
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",cctv3
+http://127.0.0.1:8081/douyin.php?id=212606968812
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",cctv4
+http://127.0.0.1:8081/douyin.php?id=166806983360
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",cctv6
+http://127.0.0.1:8081/douyin.php?id=208823316033
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",cctv7
+http://127.0.0.1:8081/douyin.php?id=127453393722
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",cctv13
+http://127.0.0.1:8081/douyin.php?id=547977714661
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",cctv13
+http://127.0.0.1:8081/douyin.php?id=127453393722
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",cctv13
+http://127.0.0.1:8081/douyin.php?id=870887192950
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",第一財經
+http://127.0.0.1:8081/douyin.php?id=269875672114
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",第一財經
+http://127.0.0.1:8081/douyin.php?id=359100173260
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",上海外語頻道
+http://127.0.0.1:8081/douyin.php?id=250514675201
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",河南戲曲
+http://127.0.0.1:8081/douyin.php?id=38268960709
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",河北戲曲
+http://127.0.0.1:8081/douyin.php?id=904098894165
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",浙江中月婺劇團
+http://127.0.0.1:8081/douyin.php?id=261219709302
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",中月聯獻婺劇團
+http://127.0.0.1:8081/douyin.php?id=507985990773
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",浙江中月婺劇一團
+http://127.0.0.1:8081/douyin.php?id=643319157189
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",九洲婺劇團
+http://127.0.0.1:8081/douyin.php?id=455061879508
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",湖北黃梅戲
+http://127.0.0.1:8081/douyin.php?id=923977169764
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",武漢漢劇院
+http://127.0.0.1:8081/douyin.php?id=255662866404
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",湖北黃梅戲
+http://127.0.0.1:8081/douyin.php?id=303014275747
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",湖北黃梅戲
+http://127.0.0.1:8081/douyin.php?id=990934625505
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",長沙花鼓戲
+http://127.0.0.1:8081/douyin.php?id=17956512640
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",鄭州豫劇團
+http://127.0.0.1:8081/douyin.php?id=734284944650
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",河南豫劇團
+http://127.0.0.1:8081/douyin.php?id=39969987318
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",黃梅戲直播
+http://127.0.0.1:8081/douyin.php?id=320129249775
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",河南豫劇團
+http://127.0.0.1:8081/douyin.php?id=100520596558
+
+ #EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",河南豫劇團
+http://127.0.0.1:8081/douyin.php?id=848301723511
+
+ #EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",黃梅戲直播
+http://127.0.0.1:8081/douyin.php?id=899596584087
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",東方甄選
+http://127.0.0.1:8081/douyin.php?id=80017709309
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",火山引擎
+http://127.0.0.1:8081/douyin.php?id=307304939969
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",萌小貓
+http://127.0.0.1:8081/douyin.php?id=3759146893230
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",萬歲武功山
+http://127.0.0.1:8081/douyin.php?id=998484140811
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",劉peter
+http://127.0.0.1:8081/douyin.php?id=17175073975
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",中國基金報
+http://127.0.0.1:8081/douyin.php?id=310495540082
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",達摩院講座
+http://127.0.0.1:8081/douyin.php?id=280316635577
+
+  #EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",清華五道口經濟講座
+http://127.0.0.1:8081/douyin.php?id=577520267083
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",deepseek講座
+http://127.0.0.1:8081/douyin.php?id=923122033058
+  #EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",deepseek講座
+http://127.0.0.1:8081/douyin.php?id=127615516586
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",deepseek講座
+http://127.0.0.1:8081/douyin.php?id=623361874782
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",哈爾濱工業大學
+http://127.0.0.1:8081/douyin.php?id=368708017304
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",deepseek講座
+http://127.0.0.1:8081/douyin.php?id=333884269783
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",英語教學每天晚上8點
+http://127.0.0.1:8081/douyin.php?id=586689595030
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",每日財經新聞
+http://127.0.0.1:8081/douyin.php?id=594418047350
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",抖音演出
+http://127.0.0.1:8081/douyin.php?id=802975310822
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",抖音演出
+http://127.0.0.1:8081/douyin.php?id=97085749
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",抖音演出
+http://127.0.0.1:8081/douyin.php?id=664365142456
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",抖音演出
+http://127.0.0.1:8081/douyin.php?id=697422715541
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",抖音演出
+http://127.0.0.1:8081/douyin.php?id=118461877238
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",清華大學
+http://127.0.0.1:8081/douyin.php?id=821345581870
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",浙江大學
+http://127.0.0.1:8081/douyin.php?id=26123501553
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",燃（燃樂團
+http://127.0.0.1:8081/douyin.php?id=856761123728
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",胡桃裡
+http://127.0.0.1:8081/douyin.php?id=541252291945
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",北京文藝頻道
+http://127.0.0.1:8081/douyin.php?id=939337875720
+
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",看看新聞
+http://127.0.0.1:8081/douyin.php?id=808207714751
+
+ 
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",馮莫提
+http://127.0.0.1:8081/douyin.php?id=881915323288
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",湖南經濟
+http://127.0.0.1:8081/douyin1.php?id=301788940262
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",粵語🎤晴天
+http://127.0.0.1:8081/douyin.php?id=962535210669
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",粵語晴天
+http://127.0.0.1:8081/douyin.php?id=962535210669
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",榕江發佈
+http://127.0.0.1:8081/douyin.php?id=86750932176
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",雪梨阿雪梨
+http://127.0.0.1:8081/douyin.php?id=66070580592
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",竹笛莓莓
+http://127.0.0.1:8081/douyin.php?id=758593847340
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",歌手郭靜
+http://127.0.0.1:8081/douyin.php?id=754472855694
+
+
+
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播"黃梅戲宋慶
+http://127.0.0.1:8081/douyin.php?id=188824594373
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播"鰗牒（許蕙雯
+http://127.0.0.1:8081/douyin.php?id=652084864116
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播"顏七七
+http://127.0.0.1:8081/douyin.php?id=20421820138
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",武漢熱乾麵樂隊
+http://127.0.0.1:8081/douyin.php?id=500864881720
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",藍光樂隊
+http://127.0.0.1:8081/douyin.php?id=309755415931
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",晴天姐妹
+http://127.0.0.1:8081/douyin.php?id=326116465431
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",醉鄉民謠
+http://127.0.0.1:8081/douyin.php?id=736198212020
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",錦鯉樂團
+http://127.0.0.1:8081/douyin.php?id=879394547394
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",臺灣省歌手詹曼鈴
+http://127.0.0.1:8081/douyin.php?id=19604405333
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",聆韻社（評彈昆
+http://127.0.0.1:8081/douyin.php?id=895896149396
+
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",蘇州知弦社評彈
+http://127.0.0.1:8081/douyin.php?id=4647419044
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",阿看
+http://127.0.0.1:8081/douyin.php?id=930238847131
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",聆韻社（評彈昆曲
+http://127.0.0.1:8081/douyin.php?id=895896149396
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",萬象星雲樂團
+http://127.0.0.1:8081/douyin.php?id=507361726834
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",遇茉
+http://127.0.0.1:8081/douyin.php?id=418414211739
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",莊周醒醒
+http://127.0.0.1:8081/douyin.php?id=54995251856
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",唐藝
+http://127.0.0.1:8081/douyin.php?id=405518163654
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",雲之樂館
+http://127.0.0.1:8081/douyin.php?id=531441862925
+#EXTINF:-1   tvg-id=""   tvg-name=""    group-title="抖音直播",笛俠勝男
+http://127.0.0.1:8081/douyin.php?id=717523734410
+
 
 
 
