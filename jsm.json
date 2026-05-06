@@ -2955,10 +2955,10 @@
             "logo": "https://epg.112114.xyz/logo/{name}.png"
            },
            {
-            "name": "jacktv",
+            "name": "jacktv測試",
             "ua": "okhttp/3.0",
             "playerType": 2,
-            "url": "https://php.946985.filegear-sg.me/jackTV.m3u",
+            "url": "https://php.946985.filegear-sg.me/test.m3u",
            "epg":"https://epg.946985.filegear-sg.me/t.xml.gz",
             "logo":"https://epg.112114.xyz/logo/{name}.png"
              },	
