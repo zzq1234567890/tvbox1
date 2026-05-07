@@ -28,7 +28,8 @@
     "ext": {
         "class": "YoutubeSpider",
         "ext": {
-            "youtube_txt": "./youtube0418.txt"
+            ###"youtube_txt": "./youtube0418.txt"
+			"youtube_txt": "./lib/youtube.txt"
         }
     }
 },
