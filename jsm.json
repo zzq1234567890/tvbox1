@@ -180,6 +180,31 @@
                 "cookie": ""
             }
         },
+		  {
+            "key": "Youtube",
+            "name": "Youtube老张",
+            "type": 3,
+            "api": "csp_Youtube",
+            	"jar": "./pro0418.jar",
+			  ####"ua": "19.29.1 (iPhone16,2; U; CPU iOS 17_5_1 like Mac OS X;)",
+			  "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Mobile/15E148 Safari/604.1",
+            "playerType": 2,
+            "searchable": 1,
+            "quickSearch": 0,
+            "changeable": 0,
+            "timeout": 60,
+            "ext": {
+                "json": "./lib/youtube.json",
+                "type": "直播#新闻#剧集#电影#综艺#纪录片#音乐#体育#动物#风光#放松#4K#HDR#movie#music#documentary#bbc documentary#national geographic documentary",
+                "keywords": "排行榜,HOT,TRENDS,热门话题,热门趋势,热门综艺,热门电影,热门电视剧,小姐姐",
+                "codecs": "",
+                "proxy": "noproxy"
+            },
+            "style": {
+                "type": "rect",
+                "ratio": 1.5
+            }
+        },
         {
             "key": "Youtube",
             "name": "Youtube",
