@@ -17,7 +17,7 @@
     "name": "油管老张",
     "type": 3,
     "api": "csp_ProxySpider",
-	"jar": "./pro0418.jar",
+	"jar": "./pro0416.jar",
     "searchable": 1,
     "quickSearch": 1,
     "filterable": 1,
