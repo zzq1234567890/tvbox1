@@ -533,48 +533,7 @@
                     }
                 ]
             },
-            {
-                "key": "tid",
-                "name": "English",
-                "value": [
-                    {
-                        "n": "默认",
-                        "v": "documentary"
-                    },
-                    {
-                        "n": "National Geographic",
-                        "v": "@natgeo"
-                    },
-                    {
-                        "n": "History",
-                        "v": "Full history documentary"
-                    },
-                    {
-                        "n": "WILD",
-                        "v": "Full wild documentary"
-                    },
-                    {
-                        "n": "Earth",
-                        "v": "Full earth documentary"
-                    },
-                    {
-                        "n": "Universe",
-                        "v": "Full universe documentary"
-                    },
-                    {
-                        "n": "Oceans",
-                        "v": "Full oceans documentary"
-                    },
-                    {
-                        "n": "Humanism",
-                        "v": "Full humanism documentary"
-                    },
-                    {
-                        "n": "Wars",
-                        "v": "Full war documentary"
-                    }
-                ]
-            },
+          
             {
                 "key": "date",
                 "name": "排序/时间",
@@ -725,32 +684,7 @@
                     }
                 ]
             },
-            {
-                "key": "tid",
-                "name": "English",
-                "value": [
-                    {
-                        "n": "默认英文国漫",
-                        "v": "3D Chinese cartoon"
-                    },
-                    {
-                        "n": "小猪佩奇",
-                        "v": "@PeppaPigChineseOfficial"
-                    },
-                    {
-                        "n": "CoComelon",
-                        "v": "@CoComelon"
-                    },
-                    {
-                        "n": "合集",
-                        "v": "Anime ENG SUB 合集"
-                    },
-                    {
-                        "n": "爱奇艺",
-                        "v": "@iQIYIAnime"
-                    }
-                ]
-            },
+           
             {
                 "key": "date",
                 "name": "排序/时间",
@@ -1021,32 +955,7 @@
                     }
                 ]
             },
-            {
-                "key": "tid",
-                "name": "English",
-                "value": [
-                    {
-                        "n": "Variety",
-                        "v": "variety"
-                    },
-                    {
-                        "n": "Netflix variety",
-                        "v": "netflix variety"
-                    },
-                    {
-                        "n": "Korea",
-                        "v": "korea variety"
-                    },
-                    {
-                        "n": "Japan",
-                        "v": "japan variety"
-                    },
-                    {
-                        "n": "UK",
-                        "v": "uk variety"
-                    }
-                ]
-            },
+      
             {
                 "key": "tid",
                 "name": "小品",
@@ -1251,52 +1160,7 @@
                     }
                 ]
             },
-            {
-                "key": "tid",
-                "name": "English",
-                "value": [
-                    {
-                        "n": "movie",
-                        "v": "youtube movies Full movie"
-                    },
-                    {
-                        "n": "US",
-                        "v": "us Full movie movie"
-                    },
-                    {
-                        "n": "Netflix movie",
-                        "v": "netflix Full movie movie"
-                    },
-                    {
-                        "n": "Disney",
-                        "v": "disney Full movie movie"
-                    },
-                    {
-                        "n": "Apple",
-                        "v": "apple Full movie movie"
-                    },
-                    {
-                        "n": "Amazon",
-                        "v": "amazon Full movie movie"
-                    },
-                    {
-                        "n": "HBO",
-                        "v": "hbo Full movie movie"
-                    },
-                    {
-                        "n": "Korea",
-                        "v": "korea Full movie movie"
-                    },
-                    {
-                        "n": "Japan",
-                        "v": "japan Full movie movie"
-                    },
-                    {
-                        "n": "UK",
-                        "v": "uk Full movie movie"
-                    }
-                ]
-            },
+           
             {
                 "key": "date",
                 "name": "排序/时间",
@@ -1453,44 +1317,7 @@
                     }
                 ]
             },
-            {
-                "key": "tid",
-                "name": "English",
-                "value": [
-                    {
-                        "n": "Live",
-                        "v": "live sports"
-                    },
-                    {
-                        "n": "Games",
-                        "v": "live games"
-                    },
-                    {
-                        "n": "Soccer",
-                        "v": "live soccer"
-                    },
-                    {
-                        "n": "NBA",
-                        "v": "NBA"
-                    },
-                    {
-                        "n": "Extreme",
-                        "v": "extreme sports"
-                    },
-                    {
-                        "n": "InDoor",
-                        "v": "indoor sports"
-                    },
-                    {
-                        "n": "OutDoor",
-                        "v": "outdoor sports"
-                    },
-                    {
-                        "n": "Workout",
-                        "v": "workout"
-                    }
-                ]
-            },
+        
             {
                 "key": "tid",
                 "name": "体育",
@@ -1685,68 +1512,7 @@
                     }
                 ]
             },
-            {
-                "key": "tid",
-                "name": "English",
-                "value": [
-                    {
-                        "n": "sexy Miss",
-                        "v": "sexy Miss"
-                    },
-                    {
-                        "n": "Hot sexy Girl",
-                        "v": "Hot sexy Girl"
-                    },
-                    {
-                        "n": "Korean Girl",
-                        "v": "Korean sexy Girl"
-                    },
-                    {
-                        "n": "Japanese Girl",
-                        "v": "Japanese sexy Girl"
-                    },
-                    {
-                        "n": "Russian Girl",
-                        "v": "Russian sexy Girl"
-                    },
-                    {
-                        "n": "Vietnamese Girl",
-                        "v": "Vietnamese sexy Girl"
-                    },
-                    {
-                        "n": "AI Girl",
-                        "v": "AI Girl"
-                    },
-                    {
-                        "n": "TikTok Hot Siste",
-                        "v": "TikTok Hot sexy Girl"
-                    },
-                    {
-                        "n": "Cute Girl",
-                        "v": "sexy Cute Girl"
-                    },
-                    {
-                        "n": "Girl Dj",
-                        "v": "sexy Girl Dj"
-                    },
-                    {
-                        "n": "Girl Surfer",
-                        "v": "sexy Girl Surfer"
-                    },
-                    {
-                        "n": "Dance Girl",
-                        "v": "Dance sexy Girl"
-                    },
-                    {
-                        "n": "Miss Universe",
-                        "v": "Miss Universe"
-                    },
-                    {
-                        "n": "Thai Shemale",
-                        "v": "Thai Shemale"
-                    }
-                ]
-            },
+      
             {
                 "key": "date",
                 "name": "排序/时间",
@@ -1877,26 +1643,7 @@
                         "n": "小颖美食",
                         "v": "@XiaoYingFood"
                     },
-                    {
-                        "n": "primitive technology",
-                        "v": "@primitivetechnology9550"
-                    },
-                    {
-                        "n": "Mr Beast",
-                        "v": "@MrBeast"
-                    },
-                    {
-                        "n": "Airforceproud95",
-                        "v": "@Airforceproud95"
-                    },
-                    {
-                        "n": "The Great War",
-                        "v": "@TheGreatWar"
-                    },
-                    {
-                        "n": "Mark Rober",
-                        "v": "@MarkRober"
-                    },
+                 
                     {
                         "n": "不良林",
                         "v": "不良林"
