@@ -3127,18 +3127,18 @@ http://8.138.7.223/tv/cwjd.php
 http://127.0.0.1:8081/hebei.php?id=1
 #EXTINF:-1   tvg-id="河北經濟"   tvg-name="河北經濟"    tvg-logo=""    group-title="地方",河北經濟
 http://127.0.0.1:8081/hebei.php?id=2
-#EXTINF:-1   tvg-id="河北農民"   tvg-name="河北農民"    tvg-logo=""    group-title="地方",河北農民
-http://127.0.0.1:8081/hebei.php?id=3
+
 #EXTINF:-1   tvg-id="河北都市"   tvg-name="河北都市"    tvg-logo=""    group-title="地方",河北都市
+http://127.0.0.1:8081/hebei.php?id=3
+#EXTINF:-1   tvg-id="河北文旅體育"   tvg-name="河北文旅體育"    tvg-logo=""    group-title="地方",河北文旅體育
 http://127.0.0.1:8081/hebei.php?id=4
-#EXTINF:-1   tvg-id="河北影視劇"   tvg-name="河北影視劇"    tvg-logo=""    group-title="地方",河北影視劇
-http://127.0.0.1:8081/hebei.php?id=5
+
 #EXTINF:-1   tvg-id="河北少兒科教"   tvg-name="河北少兒科技"    tvg-logo=""    group-title="地方",河北少兒科教
+http://127.0.0.1:8081/hebei.php?id=5
+
+#EXTINF:-1   tvg-id="河北三農頻道"   tvg-name="河北三農頻道"    tvg-logo=""    group-title="地方",河北三農頻道
 http://127.0.0.1:8081/hebei.php?id=6
 
-
-#EXTINF:-1   tvg-id="河北公共"   tvg-name="河北公共"    tvg-logo=""    group-title="地方",河北公共
-http://127.0.0.1:8081/hebei.php?id=7
 #EXTINF:-1   tvg-id=""    tvg-logo=""   tvg-name=""    group-title="地方",高邑融媒
 http://127.0.0.1:8081/hebeidifang.php?id=gy1
 #EXTINF:-1   tvg-id=""    tvg-logo=""   tvg-name=""    group-title="地方",鹿泉綜合
