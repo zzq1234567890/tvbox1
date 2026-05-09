@@ -2685,208 +2685,209 @@ http://127.0.0.1:8081/huanlekan1.php?id=5901b5c5f53870240936be69
 http://127.0.0.1:8081/huanlekan1.php?id=543f4a313d32fc7b0e3322c5
 #EXTINF:-1 tvg-id="亞洲旅遊臺" tvg-name="亞洲旅遊臺" tvg-logo="http://ftvn.hawsing.com.tw:3000/image/livechannels/543f5a6f3d32fc7b0e3322d3/9f97dc66af512bbea9ebd1890db148a6" group-title="歡樂看",亞洲旅遊臺(HD)
 http://127.0.0.1:8081/huanlekan1.php?id=543f5a6f3d32fc7b0e3322d3
+
 #EXTINF:-1 tvg-id="華視新聞台" tvg-name="華視新聞台" tvg-logo="https://im.faintv.com/56001165805.png" group-title="歡樂看",華視新聞台
-http://127.0.0.1:8081/faintvweb.php?id=100
+http://127.0.0.1:8081/faintvweb.php?id=1
 #EXTINF:-1 tvg-id="寰宇新聞台灣台" tvg-name="寰宇新聞台灣台" tvg-logo="https://im.faintv.com/23000921005.jpg" group-title="歡樂看",寰宇新聞台灣台
-http://127.0.0.1:8081/faintvweb.php?id=101
+http://127.0.0.1:8081/faintvweb.php?id=2
 #EXTINF:-1 tvg-id="寰宇新聞台" tvg-name="寰宇新聞台" tvg-logo="https://im.faintv.com/81000920993.jpg" group-title="歡樂看",寰宇新聞台
-http://127.0.0.1:8081/faintvweb.php?id=103
+http://127.0.0.1:8081/faintvweb.php?id=3
 #EXTINF:-1 tvg-id="寰宇財經台" tvg-name="寰宇財經台" tvg-logo="https://im.faintv.com/75000693978.jpg" group-title="歡樂看",寰宇財經台
-http://127.0.0.1:8081/faintvweb.php?id=104
+http://127.0.0.1:8081/faintvweb.php?id=4
 #EXTINF:-1 tvg-id="東森購物2台" tvg-name="東森購物2台" tvg-logo="https://im.faintv.com/25001296807.jpg" group-title="歡樂看",東森購物2台
-http://127.0.0.1:8081/faintvweb.php?id=105
+http://127.0.0.1:8081/faintvweb.php?id=5
 #EXTINF:-1 tvg-id="台視新聞台" tvg-name="台視新聞台" tvg-logo="https://im.faintv.com/53001295449.png" group-title="歡樂看",台視新聞台
-http://127.0.0.1:8081/faintvweb.php?id=106
+http://127.0.0.1:8081/faintvweb.php?id=6
 #EXTINF:-1 tvg-id="軍武大觀" tvg-name="軍武大觀" tvg-logo="https://im.faintv.com/06001331117.jpg" group-title="歡樂看",軍武大觀
-http://127.0.0.1:8081/faintvweb.php?id=107
+http://127.0.0.1:8081/faintvweb.php?id=7
 #EXTINF:-1 tvg-id="歡樂看新聞" tvg-name="歡樂看新聞" tvg-logo="https://im.faintv.com/11001271978.jpg" group-title="歡樂看",歡樂看新聞
-http://127.0.0.1:8081/faintvweb.php?id=109
+http://127.0.0.1:8081/faintvweb.php?id=8
 #EXTINF:-1 tvg-id="CNEX紀實頻道" tvg-name="CNEX紀實頻道" tvg-logo="https://im.faintv.com/12001295559.png" group-title="歡樂看",CNEX紀實頻道
-http://127.0.0.1:8081/faintvweb.php?id=111
+http://127.0.0.1:8081/faintvweb.php?id=9
 #EXTINF:-1 tvg-id="鳳凰衛視中文台" tvg-name="鳳凰衛視中文台" tvg-logo="https://im.faintv.com/11001333820.jpg" group-title="歡樂看",鳳凰衛視中文台
-http://127.0.0.1:8081/faintvweb.php?id=113
+http://127.0.0.1:8081/faintvweb.php?id=10
 #EXTINF:-1 tvg-id="鳳凰衛視資訊台" tvg-name="鳳凰衛視資訊台" tvg-logo="https://im.faintv.com/13001333877.jpg" group-title="歡樂看",鳳凰衛視資訊台
-http://127.0.0.1:8081/faintvweb.php?id=114
+http://127.0.0.1:8081/faintvweb.php?id=11
 #EXTINF:-1 tvg-id="鳳凰衛視香港台" tvg-name="鳳凰衛視香港台" tvg-logo="https://im.faintv.com/65001295799.png" group-title="歡樂看",鳳凰衛視香港台
-http://127.0.0.1:8081/faintvweb.php?id=115
+http://127.0.0.1:8081/faintvweb.php?id=12
 #EXTINF:-1 tvg-id="新唐人電視" tvg-name="新唐人電視" tvg-logo="https://im.faintv.com/21001296885.png" group-title="歡樂看",新唐人電視
-http://127.0.0.1:8081/faintvweb.php?id=120
+http://127.0.0.1:8081/faintvweb.php?id=13
 #EXTINF:-1 tvg-id="台灣啟示錄" tvg-name="台灣啟示錄" tvg-logo="https://im.faintv.com/87001296974.jpg" group-title="歡樂看",台灣啟示錄
-http://127.0.0.1:8081/faintvweb.php?id=130
+http://127.0.0.1:8081/faintvweb.php?id=14
 #EXTINF:-1 tvg-id="政治狠狠問" tvg-name="政治狠狠問" tvg-logo="https://im.faintv.com/22001307053.jpg" group-title="歡樂看",政治狠狠問
-http://127.0.0.1:8081/faintvweb.php?id=134
+http://127.0.0.1:8081/faintvweb.php?id=15
 #EXTINF:-1 tvg-id="永康情報局" tvg-name="永康情報局" tvg-logo="https://im.faintv.com/85001338779.jpg" group-title="歡樂看",永康情報局
-http://127.0.0.1:8081/faintvweb.php?id=136
+http://127.0.0.1:8081/faintvweb.php?id=16
 #EXTINF:-1 tvg-id="謝龍介直播" tvg-name="謝龍介直播" tvg-logo="https://im.faintv.com/42001330087.jpg" group-title="歡樂看",謝龍介直播
-http://127.0.0.1:8081/faintvweb.php?id=137
+http://127.0.0.1:8081/faintvweb.php?id=17
 #EXTINF:-1 tvg-id="小宇宙大爆發(健康)" tvg-name="小宇宙大爆發(健康)" tvg-logo="https://im.faintv.com/14001229520.jpg" group-title="歡樂看",小宇宙大爆發(健康)
-http://127.0.0.1:8081/faintvweb.php?id=145
+http://127.0.0.1:8081/faintvweb.php?id=18
 #EXTINF:-1 tvg-id="中天亞洲台" tvg-name="中天亞洲台" tvg-logo="https://im.faintv.com/81001295882.png" group-title="歡樂看",中天亞洲台
-http://127.0.0.1:8081/faintvweb.php?id=201
+http://127.0.0.1:8081/faintvweb.php?id=19
 #EXTINF:-1 tvg-id="Smart知識台" tvg-name="Smart知識台" tvg-logo="https://im.faintv.com/74000098016.jpeg" group-title="歡樂看",Smart知識台
-http://127.0.0.1:8081/faintvweb.php?id=202
+http://127.0.0.1:8081/faintvweb.php?id=20
 #EXTINF:-1 tvg-id="台視" tvg-name="台視" tvg-logo="https://im.faintv.com/10001295806.png" group-title="歡樂看",台視
-http://127.0.0.1:8081/faintvweb.php?id=203
+http://127.0.0.1:8081/faintvweb.php?id=21
 #EXTINF:-1 tvg-id="東森購物3台" tvg-name="東森購物3台" tvg-logo="https://im.faintv.com/43001296821.jpg" group-title="歡樂看",東森購物3台
-http://127.0.0.1:8081/faintvweb.php?id=205
+http://127.0.0.1:8081/faintvweb.php?id=22
 #EXTINF:-1 tvg-id="ETtoday綜合台" tvg-name="ETtoday綜合台" tvg-logo="https://im.faintv.com/44000097138.jpeg" group-title="歡樂看",ETtoday綜合台
-http://127.0.0.1:8081/faintvweb.php?id=212
+http://127.0.0.1:8081/faintvweb.php?id=23
 #EXTINF:-1 tvg-id="海峽衛視台" tvg-name="海峽衛視台" tvg-logo="https://im.faintv.com/51001333782.jpg" group-title="歡樂看",海峽衛視台
-http://127.0.0.1:8081/faintvweb.php?id=213
+http://127.0.0.1:8081/faintvweb.php?id=24
 #EXTINF:-1 tvg-id="大愛一台" tvg-name="大愛一台" tvg-logo="https://im.faintv.com/10001296250.png" group-title="歡樂看",大愛一台
-http://127.0.0.1:8081/faintvweb.php?id=214
+http://127.0.0.1:8081/faintvweb.php?id=25
 #EXTINF:-1 tvg-id="大愛二台" tvg-name="大愛二台" tvg-logo="https://im.faintv.com/20001296375.png" group-title="歡樂看",大愛二台
-http://127.0.0.1:8081/faintvweb.php?id=215
+http://127.0.0.1:8081/faintvweb.php?id=26
 #EXTINF:-1 tvg-id="好消息綜合台" tvg-name="好消息綜合台" tvg-logo="https://im.faintv.com/67001296501.png" group-title="歡樂看",好消息綜合台
-http://127.0.0.1:8081/faintvweb.php?id=216
+http://127.0.0.1:8081/faintvweb.php?id=27
 #EXTINF:-1 tvg-id="好消息真理台" tvg-name="好消息真理台" tvg-logo="https://im.faintv.com/30001296641.png" group-title="歡樂看",好消息真理台
-http://127.0.0.1:8081/faintvweb.php?id=217
+http://127.0.0.1:8081/faintvweb.php?id=28
 #EXTINF:-1 tvg-id="雲端創作音樂台" tvg-name="雲端創作音樂台" tvg-logo="https://im.faintv.com/62001331108.jpg" group-title="歡樂看",雲端創作音樂台
-http://127.0.0.1:8081/faintvweb.php?id=300
+http://127.0.0.1:8081/faintvweb.php?id=29
 #EXTINF:-1 tvg-id="雲端電音音樂台" tvg-name="雲端電音音樂台" tvg-logo="https://im.faintv.com/17001331635.jpg" group-title="歡樂看",雲端電音音樂台
-http://127.0.0.1:8081/faintvweb.php?id=301
+http://127.0.0.1:8081/faintvweb.php?id=30
 #EXTINF:-1 tvg-id="吉馬欣代音樂" tvg-name="吉馬欣代音樂" tvg-logo="https://im.faintv.com/20001297014.jpg" group-title="歡樂看",吉馬欣代音樂
-http://127.0.0.1:8081/faintvweb.php?id=302
+http://127.0.0.1:8081/faintvweb.php?id=31
 #EXTINF:-1 tvg-id="楊桃美食台" tvg-name="楊桃美食台" tvg-logo="https://im.faintv.com/30001186426.jpg" group-title="歡樂看",楊桃美食台
-http://127.0.0.1:8081/faintvweb.php?id=303
+http://127.0.0.1:8081/faintvweb.php?id=32
 #EXTINF:-1 tvg-id="東森購物4台" tvg-name="東森購物4台" tvg-logo="https://im.faintv.com/00001296859.jpg" group-title="歡樂看",東森購物4台
-http://127.0.0.1:8081/faintvweb.php?id=305
+http://127.0.0.1:8081/faintvweb.php?id=33
 #EXTINF:-1 tvg-id="全民星攻略" tvg-name="全民星攻略" tvg-logo="https://im.faintv.com/84001333175.jpg" group-title="歡樂看",全民星攻略
-http://127.0.0.1:8081/faintvweb.php?id=309
+http://127.0.0.1:8081/faintvweb.php?id=34
 #EXTINF:-1 tvg-id="行動電源出發吧" tvg-name="行動電源出發吧" tvg-logo="https://im.faintv.com/47001329276.jpg" group-title="歡樂看",行動電源出發吧
-http://127.0.0.1:8081/faintvweb.php?id=310
+http://127.0.0.1:8081/faintvweb.php?id=35
 #EXTINF:-1 tvg-id="請問今晚住誰家" tvg-name="請問今晚住誰家" tvg-logo="https://im.faintv.com/53001286093.jpg" group-title="歡樂看",請問今晚住誰家
-http://127.0.0.1:8081/faintvweb.php?id=311
+http://127.0.0.1:8081/faintvweb.php?id=36
 #EXTINF:-1 tvg-id="花甲少年趣旅行" tvg-name="花甲少年趣旅行" tvg-logo="https://im.faintv.com/10001338780.png" group-title="歡樂看",花甲少年趣旅行
-http://127.0.0.1:8081/faintvweb.php?id=312
+http://127.0.0.1:8081/faintvweb.php?id=37
 #EXTINF:-1 tvg-id="龍華電影台" tvg-name="龍華電影台" tvg-logo="https://im.faintv.com/88001337944.png" group-title="歡樂看",龍華電影台
-http://127.0.0.1:8081/faintvweb.php?id=400
+http://127.0.0.1:8081/faintvweb.php?id=38
 #EXTINF:-1 tvg-id="龍華經典台" tvg-name="龍華經典台" tvg-logo="https://im.faintv.com/62001337986.png" group-title="歡樂看",龍華經典台
-http://127.0.0.1:8081/faintvweb.php?id=401
+http://127.0.0.1:8081/faintvweb.php?id=39
 #EXTINF:-1 tvg-id="龍華洋片台" tvg-name="龍華洋片台" tvg-logo="https://im.faintv.com/34001297204.png" group-title="歡樂看",龍華洋片台
-http://127.0.0.1:8081/faintvweb.php?id=402
+http://127.0.0.1:8081/faintvweb.php?id=40
 #EXTINF:-1 tvg-id="東森購物5台" tvg-name="東森購物5台" tvg-logo="https://im.faintv.com/23001296832.jpg" group-title="歡樂看",東森購物5台
-http://127.0.0.1:8081/faintvweb.php?id=405
+http://127.0.0.1:8081/faintvweb.php?id=41
 #EXTINF:-1 tvg-id="龍華日韓台" tvg-name="龍華日韓台" tvg-logo="https://im.faintv.com/63001297237.png" group-title="歡樂看",龍華日韓台
-http://127.0.0.1:8081/faintvweb.php?id=407
+http://127.0.0.1:8081/faintvweb.php?id=42
 #EXTINF:-1 tvg-id="龍華戲劇台" tvg-name="龍華戲劇台" tvg-logo="https://im.faintv.com/15001338034.png" group-title="歡樂看",龍華戲劇台
-http://127.0.0.1:8081/faintvweb.php?id=408
+http://127.0.0.1:8081/faintvweb.php?id=43
 #EXTINF:-1 tvg-id="龍華偶像台" tvg-name="龍華偶像台" tvg-logo="https://im.faintv.com/30001297282.png" group-title="歡樂看",龍華偶像台
-http://127.0.0.1:8081/faintvweb.php?id=409
+http://127.0.0.1:8081/faintvweb.php?id=44
 #EXTINF:-1 tvg-id="龍華卡通台" tvg-name="龍華卡通台" tvg-logo="https://im.faintv.com/26001297118.png" group-title="歡樂看",龍華卡通台
-http://127.0.0.1:8081/faintvweb.php?id=501
+http://127.0.0.1:8081/faintvweb.php?id=45
 #EXTINF:-1 tvg-id="歡樂兒童台" tvg-name="歡樂兒童台" tvg-logo="https://im.faintv.com/75001327777.png" group-title="歡樂看",歡樂兒童台
-http://127.0.0.1:8081/faintvweb.php?id=504
+http://127.0.0.1:8081/faintvweb.php?id=46
 #EXTINF:-1 tvg-id="豬豬俠之超星五靈俠" tvg-name="豬豬俠之超星五靈俠" tvg-logo="https://im.faintv.com/44001336929.jpg" group-title="歡樂看",豬豬俠之超星五靈俠
-http://127.0.0.1:8081/faintvweb.php?id=507
+http://127.0.0.1:8081/faintvweb.php?id=47
 #EXTINF:-1 tvg-id="MOMO運動綜合台" tvg-name="MOMO運動綜合台" tvg-logo="https://im.faintv.com/02001297830.png" group-title="歡樂看",MOMO運動綜合台
-http://127.0.0.1:8081/faintvweb.php?id=600
+http://127.0.0.1:8081/faintvweb.php?id=48
 #EXTINF:-1 tvg-id="博斯高球一台" tvg-name="博斯高球一台" tvg-logo="https://im.faintv.com/46000097710.jpeg" group-title="歡樂看",博斯高球一台
-http://127.0.0.1:8081/faintvweb.php?id=601
+http://127.0.0.1:8081/faintvweb.php?id=49
 #EXTINF:-1 tvg-id="博斯高球二台" tvg-name="博斯高球二台" tvg-logo="https://im.faintv.com/88000097736.jpeg" group-title="歡樂看",博斯高球二台
-http://127.0.0.1:8081/faintvweb.php?id=602
+http://127.0.0.1:8081/faintvweb.php?id=50
 #EXTINF:-1 tvg-id="博斯無限台" tvg-name="博斯無限台" tvg-logo="https://im.faintv.com/87000097799.jpeg" group-title="歡樂看",博斯無限台
-http://127.0.0.1:8081/faintvweb.php?id=603
+http://127.0.0.1:8081/faintvweb.php?id=51
 #EXTINF:-1 tvg-id="博斯無限二台" tvg-name="博斯無限二台" tvg-logo="https://im.faintv.com/47000133089.jpg" group-title="歡樂看",博斯無限二台
-http://127.0.0.1:8081/faintvweb.php?id=604
+http://127.0.0.1:8081/faintvweb.php?id=52
 #EXTINF:-1 tvg-id="博斯網球台" tvg-name="博斯網球台" tvg-logo="https://im.faintv.com/56000097755.jpeg" group-title="歡樂看",博斯網球台
-http://127.0.0.1:8081/faintvweb.php?id=605
+http://127.0.0.1:8081/faintvweb.php?id=53
 #EXTINF:-1 tvg-id="博斯魅力台" tvg-name="博斯魅力台" tvg-logo="https://im.faintv.com/21001159903.jpeg" group-title="歡樂看",博斯魅力台
-http://127.0.0.1:8081/faintvweb.php?id=606
+http://127.0.0.1:8081/faintvweb.php?id=54
 #EXTINF:-1 tvg-id="博斯運動一台" tvg-name="博斯運動一台" tvg-logo="https://im.faintv.com/22000097816.jpeg" group-title="歡樂看",博斯運動一台
-http://127.0.0.1:8081/faintvweb.php?id=607
+http://127.0.0.1:8081/faintvweb.php?id=55
 #EXTINF:-1 tvg-id="博斯運動二台" tvg-name="博斯運動二台" tvg-logo="https://im.faintv.com/75000097832.jpeg" group-title="歡樂看",博斯運動二台
-http://127.0.0.1:8081/faintvweb.php?id=608
+http://127.0.0.1:8081/faintvweb.php?id=56
 #EXTINF:-1 tvg-id="Pace Sport" tvg-name="Pace Sport" tvg-logo="https://im.faintv.com/45001298283.png" group-title="歡樂看",Pace Sport
-http://127.0.0.1:8081/faintvweb.php?id=609
+http://127.0.0.1:8081/faintvweb.php?id=57
 #EXTINF:-1 tvg-id="EuroNews" tvg-name="EuroNews" tvg-logo="https://im.faintv.com/00001337873.png" group-title="歡樂看",EuroNews
-http://127.0.0.1:8081/faintvweb.php?id=700
+http://127.0.0.1:8081/faintvweb.php?id=58
 #EXTINF:-1 tvg-id="CNA News" tvg-name="CNA News" tvg-logo="https://im.faintv.com/76001330097.jpg" group-title="歡樂看",CNA News
-http://127.0.0.1:8081/faintvweb.php?id=701
+http://127.0.0.1:8081/faintvweb.php?id=59
 #EXTINF:-1 tvg-id="FRANCE 24" tvg-name="FRANCE 24" tvg-logo="https://im.faintv.com/25001297555.png" group-title="歡樂看",FRANCE 24
-http://127.0.0.1:8081/faintvweb.php?id=705
+http://127.0.0.1:8081/faintvweb.php?id=60
 #EXTINF:-1 tvg-id="ARIRANG NEWS" tvg-name="ARIRANG NEWS" tvg-logo="https://im.faintv.com/04001297618.png" group-title="歡樂看",ARIRANG NEWS
-http://127.0.0.1:8081/faintvweb.php?id=706
+http://127.0.0.1:8081/faintvweb.php?id=61
 #EXTINF:-1 tvg-id="無上師電視台" tvg-name="無上師電視台" tvg-logo="https://im.faintv.com/05001297682.png" group-title="歡樂看",無上師電視台
-http://127.0.0.1:8081/faintvweb.php?id=707
+http://127.0.0.1:8081/faintvweb.php?id=62
 #EXTINF:-1 tvg-id="生命電視台" tvg-name="生命電視台" tvg-logo="https://im.faintv.com/11001297767.png" group-title="歡樂看",生命電視台
-http://127.0.0.1:8081/faintvweb.php?id=708
+http://127.0.0.1:8081/faintvweb.php?id=63
 #EXTINF:-1 tvg-id="記者爆料網" tvg-name="記者爆料網" tvg-logo="https://im.faintv.com/42001295387.jpg" group-title="歡樂看",記者爆料網
-http://127.0.0.1:8081/faintvweb.php?id=760
+http://127.0.0.1:8081/faintvweb.php?id=64
 #EXTINF:-1 tvg-id="六扇門(推薦)" tvg-name="六扇門(推薦)" tvg-logo="https://im.faintv.com/51001293514.jpg" group-title="歡樂看",六扇門(推薦)
-http://127.0.0.1:8081/faintvweb.php?id=815
+http://127.0.0.1:8081/faintvweb.php?id=65
 #EXTINF:-1 tvg-id="班淑傳奇(推薦)" tvg-name="班淑傳奇(推薦)" tvg-logo="https://im.faintv.com/82001338285.jpg" group-title="歡樂看",班淑傳奇(推薦)
-http://127.0.0.1:8081/faintvweb.php?id=816
+http://127.0.0.1:8081/faintvweb.php?id=66
 #EXTINF:-1 tvg-id="陸貞傳奇(推薦)" tvg-name="陸貞傳奇(推薦)" tvg-logo="https://im.faintv.com/00001291818.jpg" group-title="歡樂看",陸貞傳奇(推薦)
-http://127.0.0.1:8081/faintvweb.php?id=817
+http://127.0.0.1:8081/faintvweb.php?id=67
 #EXTINF:-1 tvg-id="君九齡 (推薦)" tvg-name="君九齡 (推薦)" tvg-logo="https://im.faintv.com/01001291935.jpg" group-title="歡樂看",君九齡 (推薦)
-http://127.0.0.1:8081/faintvweb.php?id=820
+http://127.0.0.1:8081/faintvweb.php?id=68
 #EXTINF:-1 tvg-id="雍正王朝(推薦)" tvg-name="雍正王朝(推薦)" tvg-logo="https://im.faintv.com/75001292377.jpg" group-title="歡樂看",雍正王朝(推薦)
-http://127.0.0.1:8081/faintvweb.php?id=821
+http://127.0.0.1:8081/faintvweb.php?id=69
 #EXTINF:-1 tvg-id="隋唐演義(推薦)" tvg-name="隋唐演義(推薦)" tvg-logo="https://im.faintv.com/68001338185.jpg" group-title="歡樂看",隋唐演義(推薦)
-http://127.0.0.1:8081/faintvweb.php?id=823
+http://127.0.0.1:8081/faintvweb.php?id=70
 #EXTINF:-1 tvg-id="團圓飯 (推薦)" tvg-name="團圓飯 (推薦)" tvg-logo="https://im.faintv.com/81001294214.jpg" group-title="歡樂看",團圓飯 (推薦)
-http://127.0.0.1:8081/faintvweb.php?id=827
+http://127.0.0.1:8081/faintvweb.php?id=71
 #EXTINF:-1 tvg-id="家宴(推薦)" tvg-name="家宴(推薦)" tvg-logo="https://im.faintv.com/28001294422.jpg" group-title="歡樂看",家宴(推薦)
-http://127.0.0.1:8081/faintvweb.php?id=828
+http://127.0.0.1:8081/faintvweb.php?id=72
 #EXTINF:-1 tvg-id="鳯囚凰(推薦)" tvg-name="鳯囚凰(推薦)" tvg-logo="https://im.faintv.com/05001294869.jpg" group-title="歡樂看",鳯囚凰(推薦)
-http://127.0.0.1:8081/faintvweb.php?id=830
+http://127.0.0.1:8081/faintvweb.php?id=73
 #EXTINF:-1 tvg-id="玩命賽道 (輔12)" tvg-name="玩命賽道 (輔12)" tvg-logo="https://im.faintv.com/80001309228.jpg" group-title="歡樂看",玩命賽道 (輔12)
-http://127.0.0.1:8081/faintvweb.php?id=852
+http://127.0.0.1:8081/faintvweb.php?id=74
 #EXTINF:-1 tvg-id="假球風暴" tvg-name="假球風暴" tvg-logo="https://im.faintv.com/87001337185.jpg" group-title="歡樂看",假球風暴
-http://127.0.0.1:8081/faintvweb.php?id=854
+http://127.0.0.1:8081/faintvweb.php?id=75
 #EXTINF:-1 tvg-id="史前魔種 (輔12)" tvg-name="史前魔種 (輔12)" tvg-logo="https://im.faintv.com/40001325646.jpg" group-title="歡樂看",史前魔種 (輔12)
-http://127.0.0.1:8081/faintvweb.php?id=855
+http://127.0.0.1:8081/faintvweb.php?id=76
 #EXTINF:-1 tvg-id="攔截永生碼" tvg-name="攔截永生碼" tvg-logo="https://im.faintv.com/65001338762.jpg" group-title="歡樂看",攔截永生碼
-http://127.0.0.1:8081/faintvweb.php?id=856
+http://127.0.0.1:8081/faintvweb.php?id=77
 #EXTINF:-1 tvg-id="死屍日(限)" tvg-name="死屍日(限)" tvg-logo="https://im.faintv.com/74001325941.jpg" group-title="歡樂看",死屍日(限)
-http://127.0.0.1:8081/faintvweb.php?id=857
+http://127.0.0.1:8081/faintvweb.php?id=78
 #EXTINF:-1 tvg-id="原振俠與衛斯理" tvg-name="原振俠與衛斯理" tvg-logo="https://im.faintv.com/74001336462.jpg" group-title="歡樂看",原振俠與衛斯理
-http://127.0.0.1:8081/faintvweb.php?id=858
+http://127.0.0.1:8081/faintvweb.php?id=79
 #EXTINF:-1 tvg-id="如常" tvg-name="如常" tvg-logo="https://im.faintv.com/56001326246.jpg" group-title="歡樂看",如常
-http://127.0.0.1:8081/faintvweb.php?id=860
+http://127.0.0.1:8081/faintvweb.php?id=80
 #EXTINF:-1 tvg-id="寒戰2 (輔12)" tvg-name="寒戰2 (輔12)" tvg-logo="https://im.faintv.com/85001309312.jpg" group-title="歡樂看",寒戰2 (輔12)
-http://127.0.0.1:8081/faintvweb.php?id=862
+http://127.0.0.1:8081/faintvweb.php?id=81
 #EXTINF:-1 tvg-id="三國殺幻 (護)" tvg-name="三國殺幻 (護)" tvg-logo="https://im.faintv.com/31001326136.jpg" group-title="歡樂看",三國殺幻 (護)
-http://127.0.0.1:8081/faintvweb.php?id=863
+http://127.0.0.1:8081/faintvweb.php?id=82
 #EXTINF:-1 tvg-id="變種人幽靈戰姬 (護)" tvg-name="變種人幽靈戰姬 (護)" tvg-logo="https://im.faintv.com/60001326141.jpg" group-title="歡樂看",變種人幽靈戰姬 (護)
-http://127.0.0.1:8081/faintvweb.php?id=864
+http://127.0.0.1:8081/faintvweb.php?id=83
 #EXTINF:-1 tvg-id="臥底巨星 (護)" tvg-name="臥底巨星 (護)" tvg-logo="https://im.faintv.com/65001326164.jpg" group-title="歡樂看",臥底巨星 (護)
-http://127.0.0.1:8081/faintvweb.php?id=865
+http://127.0.0.1:8081/faintvweb.php?id=84
 #EXTINF:-1 tvg-id="西遊記：女兒國 (護)" tvg-name="西遊記：女兒國 (護)" tvg-logo="https://im.faintv.com/30001309492.jpg" group-title="歡樂看",西遊記：女兒國 (護)
-http://127.0.0.1:8081/faintvweb.php?id=866
+http://127.0.0.1:8081/faintvweb.php?id=85
 #EXTINF:-1 tvg-id="古劍奇譚之流月昭明 (護)" tvg-name="古劍奇譚之流月昭明 (護)" tvg-logo="https://im.faintv.com/36001309872.jpg" group-title="歡樂看",古劍奇譚之流月昭明 (護)
-http://127.0.0.1:8081/faintvweb.php?id=867
+http://127.0.0.1:8081/faintvweb.php?id=86
 #EXTINF:-1 tvg-id="霹靂先鋒" tvg-name="霹靂先鋒" tvg-logo="https://im.faintv.com/57001338292.jpg" group-title="歡樂看",霹靂先鋒
-http://127.0.0.1:8081/faintvweb.php?id=868
+http://127.0.0.1:8081/faintvweb.php?id=87
 #EXTINF:-1 tvg-id="疾凍救援" tvg-name="疾凍救援" tvg-logo="https://im.faintv.com/12001338317.jpg" group-title="歡樂看",疾凍救援
-http://127.0.0.1:8081/faintvweb.php?id=869
+http://127.0.0.1:8081/faintvweb.php?id=88
 #EXTINF:-1 tvg-id="雲端爵士樂" tvg-name="雲端爵士樂" tvg-logo="https://im.faintv.com/71001313591.png" group-title="歡樂看",雲端爵士樂
-http://127.0.0.1:8081/faintvweb.php?id=871
+http://127.0.0.1:8081/faintvweb.php?id=89
 #EXTINF:-1 tvg-id="雲端鋼琴音樂" tvg-name="雲端鋼琴音樂" tvg-logo="https://im.faintv.com/46001321975.png" group-title="歡樂看",雲端鋼琴音樂
-http://127.0.0.1:8081/faintvweb.php?id=872
+http://127.0.0.1:8081/faintvweb.php?id=90
 #EXTINF:-1 tvg-id="雲端水晶音樂" tvg-name="雲端水晶音樂" tvg-logo="https://im.faintv.com/14001321985.png" group-title="歡樂看",雲端水晶音樂
-http://127.0.0.1:8081/faintvweb.php?id=873
+http://127.0.0.1:8081/faintvweb.php?id=91
 #EXTINF:-1 tvg-id="雲端巴薩諾瓦音樂" tvg-name="雲端巴薩諾瓦音樂" tvg-logo="https://im.faintv.com/75001322058.png" group-title="歡樂看",雲端巴薩諾瓦音樂
-http://127.0.0.1:8081/faintvweb.php?id=874
+http://127.0.0.1:8081/faintvweb.php?id=92
 #EXTINF:-1 tvg-id="雲端舒眠音樂" tvg-name="雲端舒眠音樂" tvg-logo="https://im.faintv.com/24001329168.png" group-title="歡樂看",雲端舒眠音樂
-http://127.0.0.1:8081/faintvweb.php?id=875
+http://127.0.0.1:8081/faintvweb.php?id=93
 #EXTINF:-1 tvg-id="車站人生 (預覽)" tvg-name="車站人生 (預覽)" tvg-logo="https://im.faintv.com/67001336493.jpg" group-title="歡樂看",車站人生 (預覽)
-http://127.0.0.1:8081/faintvweb.php?id=887
+http://127.0.0.1:8081/faintvweb.php?id=94
 #EXTINF:-1 tvg-id="姊姊向前衝 (預覽)" tvg-name="姊姊向前衝 (預覽)" tvg-logo="https://im.faintv.com/21001336535.jpg" group-title="歡樂看",姊姊向前衝 (預覽)
-http://127.0.0.1:8081/faintvweb.php?id=888
+http://127.0.0.1:8081/faintvweb.php?id=95
 #EXTINF:-1 tvg-id="黃金大天團 (預覽)" tvg-name="黃金大天團 (預覽)" tvg-logo="https://im.faintv.com/42001336589.jpg" group-title="歡樂看",黃金大天團 (預覽)
-http://127.0.0.1:8081/faintvweb.php?id=889
+http://127.0.0.1:8081/faintvweb.php?id=96
 #EXTINF:-1 tvg-id="菜頭梗的滋味 (推薦)" tvg-name="菜頭梗的滋味 (推薦)" tvg-logo="https://im.faintv.com/75001336641.jpg" group-title="歡樂看",菜頭梗的滋味 (推薦)
-http://127.0.0.1:8081/faintvweb.php?id=890
+http://127.0.0.1:8081/faintvweb.php?id=97
 #EXTINF:-1 tvg-id="愛上ㄆㄤˋ滋味(推薦)" tvg-name="愛上ㄆㄤˋ滋味(推薦)" tvg-logo="https://im.faintv.com/45001318182.jpg" group-title="歡樂看",愛上ㄆㄤˋ滋味(推薦)
-http://127.0.0.1:8081/faintvweb.php?id=891
+http://127.0.0.1:8081/faintvweb.php?id=98
 #EXTINF:-1 tvg-id="路邊董事長(推薦)" tvg-name="路邊董事長(推薦)" tvg-logo="https://im.faintv.com/17001325306.jpg" group-title="歡樂看",路邊董事長(推薦)
-http://127.0.0.1:8081/faintvweb.php?id=894
+http://127.0.0.1:8081/faintvweb.php?id=99
 #EXTINF:-1 tvg-id="人生算什麼(推薦)" tvg-name="人生算什麼(推薦)" tvg-logo="https://im.faintv.com/35001325339.jpg" group-title="歡樂看",人生算什麼(推薦)
-http://127.0.0.1:8081/faintvweb.php?id=895
+http://127.0.0.1:8081/faintvweb.php?id=100
 #EXTINF:-1 tvg-id="天下第一招(推薦)" tvg-name="天下第一招(推薦)" tvg-logo="https://im.faintv.com/81001325376.jpg" group-title="歡樂看",天下第一招(推薦)
-http://127.0.0.1:8081/faintvweb.php?id=896
+http://127.0.0.1:8081/faintvweb.php?id=101
 
 
 
