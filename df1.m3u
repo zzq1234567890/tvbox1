@@ -1849,19 +1849,6 @@ http://127.0.0.1:8081/hami.php?id=2117
 http://127.0.0.1:8081/hami.php?id=2061
 #EXTINF:-1 tvg-id="NHK新聞資訊臺" tvg-name="NHK新聞資訊臺"  group-title="hami",NHK新聞資訊臺
 http://127.0.0.1:8081/hami.php?id=1974
-#EXTINF:-1 tvg-id="民視綜藝臺(免費)" tvg-name="民視綜藝臺(免費)" tvg-logo="https://cdn.jsdelivr.net/gh/wanglindl/TVlogo@main/img/FTV2.png" group-title="hami",民視綜藝臺(免費)
-http://127.0.0.1:8081/hami.php?id=1611
-#EXTINF:-1 tvg-id="華視新聞資訊臺(免費)" tvg-name="華視新聞資訊臺(免費)"  group-title="hami",華視新聞資訊臺(免費)
-http://127.0.0.1:8081/hami.php?id=2081
- 
-#EXTINF:-1 tvg-id="momo親子臺(免費)" tvg-name="momo親子臺(免費)"  group-title="hami",momo親子臺(免費)
-http://127.0.0.1:8081/hami.php?id=1877
-
-
-
-
-
-
 #EXTINF:-1 tvg-id="民視新聞臺" tvg-name="民視新聞臺" tvg-logo="https://cdn.jsdelivr.net/gh/wanglindl/TVlogo@main/img/FTV1.png" group-title="4gtv",民視新聞
 
 http://127.0.0.1:8081/myvideoapp.php?id=06
