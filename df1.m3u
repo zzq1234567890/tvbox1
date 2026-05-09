@@ -1837,18 +1837,7 @@ https://globallive.tdm.com.mo/cgtn/cgtn74/playlist.m3u8
 https://dqhxk7sbp7xog.cloudfront.net/hls-live/goodtv/_definst_/liveevent/live-ch1-2.m3u8
 #EXTINF:-1   tvg-id="好消息2臺"   tvg-name="好消息2臺"    tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_litv-ftv17_mobile.png"    group-title="港澳臺",好消息2臺
 https://dqhxk7sbp7xog.cloudfront.net/hls-live/goodtv/_definst_/liveevent/live-ch2-2.m3u8
-#EXTINF:-1 tvg-id="HBLTV1臺(免費)" tvg-name="HBLTV1臺(免費)"  group-title="hami",HBLTV1臺(免費)
-http://127.0.0.1:8081/hami.php?id=2062
-#EXTINF:-1 tvg-id="HBLTV2臺(免費)" tvg-name="HBLTV2臺(免費)"  group-title="hami",HBLTV2臺(免費)
-http://127.0.0.1:8081/hami.php?id=2063
-#EXTINF:-1 tvg-id="Hami體育1臺(免費)" tvg-name="Hami體育1臺(免費)"  group-title="hami",Hami體育1臺(免費)
-http://127.0.0.1:8081/hami.php?id=1816
-#EXTINF:-1 tvg-id="Hami體育3臺(免費)" tvg-name="Hami體育3臺(免費)"  group-title="hami",Hami體育3臺(免費)
-http://127.0.0.1:8081/hami.php?id=2117
-#EXTINF:-1 tvg-id="ROCKXStream" tvg-name="ROCKXStream"  group-title="hami",ROCKExtreme(免費)
-http://127.0.0.1:8081/hami.php?id=2061
-#EXTINF:-1 tvg-id="NHK新聞資訊臺" tvg-name="NHK新聞資訊臺"  group-title="hami",NHK新聞資訊臺
-http://127.0.0.1:8081/hami.php?id=1974
+
 #EXTINF:-1 tvg-id="民視新聞臺" tvg-name="民視新聞臺" tvg-logo="https://cdn.jsdelivr.net/gh/wanglindl/TVlogo@main/img/FTV1.png" group-title="4gtv",民視新聞
 
 http://127.0.0.1:8081/myvideoapp.php?id=06
