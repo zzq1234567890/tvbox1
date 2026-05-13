@@ -1963,7 +1963,7 @@ http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv059
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live048
 #EXTINF:-1 tvg-id="INULTRA" tvg-name="INULTRA" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_INULTRA_mobile.png" group-title="4gtv",INULTRA
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live096
-#EXTINF:-1 tvg-id="博斯高球臺" tvg-name="博斯高球臺" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_litv-longturn05_mobile.png" group-title="4gtv",博斯高球臺
+#EXTINF:-1 tvg-id="博斯高球檯" tvg-name="博斯高球檯" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_litv-longturn05_mobile.png" group-title="4gtv",博斯高球臺
 http://127.0.0.1:8081/4gtvapp.php?id=litv-xinchuang05
 #EXTINF:-1 tvg-id="博斯高球二臺" tvg-name="博斯高球二臺" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_litv-xinchuang06.png" group-title="4gtv",博斯高球二臺
 http://127.0.0.1:8081/4gtvapp.php?id=litv-xinchuang06
