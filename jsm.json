@@ -2985,7 +2985,14 @@
            "epg":"https://epg.946985.filegear-sg.me/t.xml.gz",
             "logo":"https://epg.112114.xyz/logo/{name}.png"
              },	
-             
+              {
+            "name": "中國台測試",
+            "ua": "okhttp/3.0",
+            "playerType": 2,
+            "url": "https://raw.githubusercontent.com/zilong7728/Collect-IPTV/refs/heads/main/best_sorted.m3u",
+           "epg":"https://epg.946985.filegear-sg.me/t.xml.gz",
+            "logo":"https://epg.112114.xyz/logo/{name}.png"
+             },	
              {
              "name": "yang1989",
              "ua": "okhttp", 
