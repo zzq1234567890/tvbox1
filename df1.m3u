@@ -2094,7 +2094,7 @@ http://127.0.0.1:8081/4gtvapp.php?id=fast-live007
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live008
 #EXTINF:-1 tvg-id="精選華語電影-FastTV飛速看" tvg-name="精選華語電影-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live009.png" group-title="4gtv",精選華語電影-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live009
-#EXTINF:-1 tvg-id="臺灣靈異事件-FastTV飛速看" tvg-name="臺灣靈異事件-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-臺劇.png" group-title="4gtv",臺灣靈異事件-FastTV飛速看
+#EXTINF:-1 tvg-id="台灣靈異事件-FastTV飛速看" tvg-name="台灣靈異事件-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-台劇.png" group-title="4gtv",台灣靈異事件-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live010
 #EXTINF:-1 tvg-id="新兵日記-FastTV飛速看" tvg-name="新兵日記-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live011.png" group-title="4gtv",新兵日記-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live011
@@ -2120,7 +2120,7 @@ http://127.0.0.1:8081/4gtvapp.php?id=fast-live022
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live023
 #EXTINF:-1 tvg-id="飛龍在天-FastTV飛速看" tvg-name="飛龍在天-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live024.png" group-title="4gtv",飛龍在天-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live024
-#EXTINF:-1 tvg-id="臺灣傳奇-FastTV飛速看" tvg-name="臺灣傳奇-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live026.png" group-title="4gtv",臺灣傳奇-FastTV飛速看
+#EXTINF:-1 tvg-id="台灣傳奇-FastTV飛速看" tvg-name="台灣傳奇-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live026.png" group-title="4gtv",台灣傳奇-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live026
 #EXTINF:-1 tvg-id="世間路-FastTV飛速看" tvg-name="世間路-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live028.png" group-title="4gtv",世間路-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live028
@@ -2138,24 +2138,30 @@ http://127.0.0.1:8081/4gtvapp.php?id=fast-live033
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live034
 #EXTINF:-1 tvg-id="007情報員-FastTV飛速看" tvg-name="007情報員-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-主題推薦(007).png" group-title="4gtv",007情報員-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live035
+#EXTINF:-1 tvg-id="賀歲電影推薦-FastTV飛速看" tvg-name="賀歲電影推薦-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-新春賀歲.png" group-title="4gtv",賀歲電影推薦-FastTV飛速看
+http://127.0.0.1:8081/4gtvapp.php?id=fast-live036
+#EXTINF:-1 tvg-id="新年追劇首選-FastTV飛速看" tvg-name="新年追劇首選-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-新春賀歲.png" group-title="4gtv",新年追劇首選-FastTV飛速看
+http://127.0.0.1:8081/4gtvapp.php?id=fast-live037
 #EXTINF:-1 tvg-id="葉青歌仔戲-FastTV飛速看" tvg-name="葉青歌仔戲-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-葉青歌仔戲.png" group-title="4gtv",葉青歌仔戲-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live038
-#EXTINF:-1 tvg-id="大兵日記-FastTV飛速看" tvg-name="大兵日記-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-臺劇.png" group-title="4gtv",大兵日記-FastTV飛速看
+#EXTINF:-1 tvg-id="大兵日記-FastTV飛速看" tvg-name="大兵日記-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-台劇.png" group-title="4gtv",大兵日記-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live039
-#EXTINF:-1 tvg-id="親戚不計較(特輯)-FastTV飛速看" tvg-name="親戚不計較(特輯)-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-臺劇.png" group-title="4gtv",親戚不計較(特輯)-FastTV飛速看
+#EXTINF:-1 tvg-id="親戚不計較(特輯)-FastTV飛速看" tvg-name="親戚不計較(特輯)-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-台劇.png" group-title="4gtv",親戚不計較(特輯)-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live040
 #EXTINF:-1 tvg-id="日劇一丁目-FastTV飛速看" tvg-name="日劇一丁目-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-日韓劇.png" group-title="4gtv",日劇一丁目-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live041
 #EXTINF:-1 tvg-id="武媚娘傳奇-FastTV飛速看" tvg-name="武媚娘傳奇-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-陸劇.png" group-title="4gtv",武媚娘傳奇-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live042
-#EXTINF:-1 tvg-id="女力故事館-FastTV飛速看" tvg-name="女力故事館-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live033.png" group-title="4gtv",女力故事館-FastTV飛速看
-http://127.0.0.1:8081/4gtvapp.php?id=fast-live043
 #EXTINF:-1 tvg-id="中國傳奇故事-FastTV飛速看" tvg-name="中國傳奇故事-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live033.png" group-title="4gtv",中國傳奇故事-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live045
-#EXTINF:-1 tvg-id="機智校園生活-FastTV飛速看" tvg-name="機智校園生活-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-臺劇.png" group-title="4gtv",機智校園生活-FastTV飛速看
+#EXTINF:-1 tvg-id="機智校園生活-FastTV飛速看" tvg-name="機智校園生活-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-台劇.png" group-title="4gtv",機智校園生活-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live046
-#EXTINF:-1 tvg-id="女力報到-FastTV飛速看" tvg-name="女力報到-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-臺劇.png" group-title="4gtv",女力報到-FastTV飛速看
+#EXTINF:-1 tvg-id="女力報到-FastTV飛速看" tvg-name="女力報到-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-台劇.png" group-title="4gtv",女力報到-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live047
+#EXTINF:-1 tvg-id="終極一班-FastTV飛速看" tvg-name="終極一班-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live010.png" group-title="4gtv",終極一班-FastTV飛速看
+http://127.0.0.1:8081/4gtvapp.php?id=fast-live048
+#EXTINF:-1 tvg-id="鬥魚-FastTV飛速看" tvg-name="鬥魚-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live010.png" group-title="4gtv",鬥魚-FastTV飛速看
+http://127.0.0.1:8081/4gtvapp.php?id=fast-live049
 #EXTINF:-1 tvg-id="天才衝衝衝-FastTV飛速看" tvg-name="天才衝衝衝-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live201.png" group-title="4gtv",天才衝衝衝-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live201
 #EXTINF:-1 tvg-id="一字千金-FastTV飛速看" tvg-name="一字千金-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live202.png" group-title="4gtv",一字千金-FastTV飛速看
@@ -2186,6 +2192,8 @@ http://127.0.0.1:8081/4gtvapp.php?id=fast-live213
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live214
 #EXTINF:-1 tvg-id="全能歌手-FastTV飛速看" tvg-name="全能歌手-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live216.png" group-title="4gtv",全能歌手-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live216
+#EXTINF:-1 tvg-id="民視生活通-FastTV飛速看" tvg-name="民視生活通-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/消高FASTTV LOGO.png" group-title="4gtv",民視生活通-FastTV飛速看
+http://127.0.0.1:8081/4gtvapp.php?id=fast-live217
 #EXTINF:-1 tvg-id="鬥陣大廟埕-FastTV飛速看" tvg-name="鬥陣大廟埕-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live218.png" group-title="4gtv",鬥陣大廟埕-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live218
 #EXTINF:-1 tvg-id="我的成長-FastTV飛速看" tvg-name="我的成長-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live219.png" group-title="4gtv",我的成長-FastTV飛速看
@@ -2226,9 +2234,9 @@ http://127.0.0.1:8081/4gtvapp.php?id=fast-live239
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live240
 #EXTINF:-1 tvg-id="綜藝大贏家-FastTV飛速看" tvg-name="綜藝大贏家-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-熱門綜藝.png" group-title="4gtv",綜藝大贏家-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live241
-#EXTINF:-1 tvg-id="臺灣No.1棒球精選-FastTV飛速看" tvg-name="臺灣No.1棒球精選-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live242.png" group-title="4gtv",臺灣No.1棒球精選-FastTV飛速看
+#EXTINF:-1 tvg-id="台灣No.1棒球精選-FastTV飛速看" tvg-name="台灣No.1棒球精選-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live242.png" group-title="4gtv",台灣No.1棒球精選-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live242
-#EXTINF:-1 tvg-id="HahaTai 哈哈臺-FastTV飛速看" tvg-name="HahaTai 哈哈臺-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/哈哈臺FASTTV LOGO修.png" group-title="4gtv",HahaTai 哈哈臺-FastTV飛速看
+#EXTINF:-1 tvg-id="HahaTai 哈哈台-FastTV飛速看" tvg-name="HahaTai 哈哈台-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/哈哈台FASTTV LOGO修.png" group-title="4gtv",HahaTai 哈哈台-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live243
 #EXTINF:-1 tvg-id="金光布袋戲-FastTV飛速看" tvg-name="金光布袋戲-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/FastTV飛速看-主題推薦(金光).png" group-title="4gtv",金光布袋戲-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live402
@@ -2256,11 +2264,6 @@ http://127.0.0.1:8081/4gtvapp.php?id=fast-live413
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live414
 #EXTINF:-1 tvg-id="MOMO親子精選-FastTV飛速看" tvg-name="MOMO親子精選-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live415.png" group-title="4gtv",MOMO親子精選-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live415
-
-
-
-
-
 
 
 
