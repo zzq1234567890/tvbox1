@@ -134,7 +134,7 @@ http://127.0.0.1:8081/yuntongfinance.php
 http://127.0.0.1:8081/quanqiucaijing.php
 
 #EXTINF:-1   tvg-id="國會頻道1HD"   tvg-name="國會頻道1HD"    tvg-logo=""    group-title="中文新聞",國會1
-http://127.0.0.1:8081/youtube.php?v=4HysYHJ6GkY
+http://127.0.0.1:8081/youtube.php?v=x6XVbD7Ln78
 #EXTINF:-1   tvg-id="國會頻道2HD"   tvg-name="國會頻道2HD"    tvg-logo=""    group-title="中文新聞",國會2
 http://127.0.0.1:8081/youtube.php?v=Lj8OWF6nzcg
 #EXTINF:-1   tvg-id="人間衛視"   tvg-name="人間衛視"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/BeautifulLife.png"    group-title="中文新聞",人間衛視
