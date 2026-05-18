@@ -2273,7 +2273,7 @@ http://127.0.0.1:8081/4gtvapp.php?id=fast-live415
 
 
 #EXTINF:-1 tvg-id="臺視" tvg-name="臺視" tvg-logo="https://p-cdnstatic.svc.litv.tv/pics/logo_litv_4gtv-4gtv066_tv.png" group-title="ofiii",臺視
-http://127.0.0.1:8081/ofiii.php?id=4gtv-4gtv066
+#http://127.0.0.1:8081/ofiii.php?id=4gtv-4gtv066
 #EXTINF:-1 tvg-id="中視" tvg-name="中視" tvg-logo="https://p-cdnstatic.svc.litv.tv/pics/logo_litv_4gtv-4gtv040_tv.png" group-title="ofiii",中視
 http://127.0.0.1:8081/ofiii.php?id=4gtv-4gtv040
 #EXTINF:-1 tvg-id="華視" tvg-name="華視" tvg-logo="https://p-cdnstatic.svc.litv.tv/pics/logo_litv_4gtv-4gtv041_tv.png" group-title="ofiii",華視
