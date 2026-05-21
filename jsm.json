@@ -3002,6 +3002,23 @@
              "epg": "https://epg.yang-1989.eu.org/epg.xml.gz",
              "logo": "https://epg.112114.xyz/logo/{name}.png" 
              }, 
+
+		       {
+            "name": "1",
+            "ua": "okhttp/3.0",
+            "playerType": 2,
+            "url": "./1.txt",
+           "epg":"https://raw.githubusercontent.com/zzq1234567890/epg/refs/heads/main/twepg.xml",
+            "logo": "https://epg.112114.xyz/logo/{name}.png"
+           },
+		      {
+            "name": "2",
+            "ua": "okhttp/3.0",
+            "playerType": 2,
+            "url": "./2.txt",
+           "epg":"https://raw.githubusercontent.com/zzq1234567890/epg/refs/heads/main/twepg.xml",
+            "logo": "https://epg.112114.xyz/logo/{name}.png"
+           },
              { 
              "name": "mytv-yang1989", 
              "type": 3, 
