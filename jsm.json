@@ -2950,7 +2950,14 @@
             "epg": "https://epg.v1.mk/json?ch={name}&date={date}",
             "logo": "https://epg.112114.xyz/logo/{name}.png"
              },
-		
+		{
+            "name": "不知道誰4gtv",
+            "ua": "okhttp/3.0",
+            "playerType": 2,
+            "url": "https://ha.msbot.dpdns.org/4gtv_api.php",
+			"epg": "https://epg.v1.mk/json?ch={name}&date={date}",
+            "logo": "https://epg.112114.xyz/logo/{name}.png"
+             },
 	    {
             "name": "临时用",
             "ua": "okhttp/3.0",
