@@ -3525,7 +3525,7 @@
             "name": "4gtv",
             "ua": "okhttp/3.12",
             "playerType": 2,
-            "url": "./4gtv.txt",
+            "url": "http://4gtv.158.qzz.io/4gtv.m3ut",
             "epg": "https://epg.v1.mk/json?ch={name}&date={date}",
             "logo": "https://epg.112114.xyz/logo/{name}.png"
         },
