@@ -12,6 +12,15 @@
             "changeable": 0
             
         },
+		{
+      "key": "py_youtube",
+      "name": "youtubepy",
+      "type": 3,
+      "api": "./py/YouTube.py",
+	 "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+    },
 {
     "key": "油管老张r",
     "name": "油管老张",
