@@ -139,8 +139,17 @@ http://127.0.0.1:8081/youtube.php?v=x6XVbD7Ln78
 http://127.0.0.1:8081/youtube.php?v=Lj8OWF6nzcg
 #EXTINF:-1   tvg-id="人間衛視"   tvg-name="人間衛視"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/BeautifulLife.png"    group-title="中文新聞",人間衛視
 http://61.216.67.119:1935/bltvhd/bltv1/manifest.mpd
+
+
+#EXTINF:-1   tvg-id="人間衛視"   tvg-name="人間衛視"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/BeautifulLife.png"    group-title="中文新聞",人間衛視
+https://5ddce30eb4b55.streamlock.net/bltvhd/bltv1/index.m3u8
+#EXTINF:-1   tvg-id="人間衛視"   tvg-name="人間衛視"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/BeautifulLife.png"    group-title="中文新聞",人間衛視
+https://5ddce30eb4b55.streamlock.net/bltvhd/bltv1/playlist.m3u8
+#EXTINF:-1   tvg-id="生命電視臺"   tvg-name="生命電視臺"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/shengming.png"    group-title="中文新聞",生命電視臺
+https://5cac63a7bf69d.streamlock.net/lifetv/lifetv.stream/playlist.m3u8
 #EXTINF:-1   tvg-id="生命電視臺"   tvg-name="生命電視臺"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/shengming.png"    group-title="中文新聞",生命電視臺
 http://61.216.67.119:1935/lifetv/lifetv.stream/manifest.mpd
+
 #EXTINF:-1   tvg-id="正德電視臺"   tvg-name="正德電視臺"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/ChengTeTV.png"    group-title="中文新聞",正德電視臺
 http://127.0.0.1:8081/zhengde.php
 #EXTINF:-1   tvg-id="華藏衛視HD"   tvg-name="華藏衛視HD"    tvg-logo=""    group-title="中文新聞",華藏衛視
