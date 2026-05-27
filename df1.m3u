@@ -1121,6 +1121,7 @@ https://lb1-live-mv.v2h-cdn.com/hls/ffff/mvtv75/mvtv75.m3u8
 #EXTINF:-1   group-title="mytvsuper",MVMall Plus
 https://lb1-live-mv.v2h-cdn.com/hls/fded/mvmallplus/mvmallplus.m3u8
 
+
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=0737b75ee8906c00bb7bb8f666da72a0:15f515458cdb5107452f943a111cbe89
@@ -1148,14 +1149,20 @@ http://127.0.0.1:8081/mymysuper.php?id=SFOO
 http://127.0.0.1:8081/mymysuper.php?id=STRA
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=
+#EXTINF:-1 tvg-id="SUPER FUN (免費)" tvg-name="SUPER FUN (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1779420378922400_STRA.jpeg" group-title="mytvsuper",SUPER FUN (免費)
+http://127.0.0.1:8081/mymysuper.php?id=STRA
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=0d321fc47b49372df79500c8b7a5e9fc:0c4be4e8f7ccedced7de0b7434493be4
 #EXTINF:-1 tvg-id="SUPER Music (免費)" tvg-name="SUPER Music (免費)" tvg-logo="" group-title="mytvsuper",SUPER Music (免費)
 http://127.0.0.1:8081/mymysuper.php?id=SMUS
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=d841bf650caca3bf4441a536ae8580d5:c401a71b63dfa7bab1be378605973c2c
-#EXTINF:-1 tvg-id="SUPER金曲 (免費)" tvg-name="SUPER金曲 (免費)" tvg-logo="" group-title="mytvsuper",SUPER金曲 (免費)
+#EXTINF:-1 tvg-id="SUPER驚 (免費)" tvg-name="SUPER驚 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1779422039995131_SGOL.webp" group-title="mytvsuper",SUPER驚 (免費)
 http://127.0.0.1:8081/mymysuper.php?id=SGOL
+
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=203638a2e2fd4786190a58393640de54:97e1ec12dda5ee64561e072d9825e3b0
@@ -1164,13 +1171,16 @@ http://127.0.0.1:8081/mymysuper.php?id=SSIT
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=b6c020768505fa6c7910726b8ca302f0:4b5cba6d27559e6f28a232791f068824
-#EXTINF:-1 tvg-id="SUPER單元劇 (免費)" tvg-name="SUPER單元劇 (免費)" tvg-logo="" group-title="mytvsuper",SUPER單元劇 (免費)
+#EXTINF:-1 tvg-id="SUPER亞視劇 (免費)" tvg-name="SUPER亞視劇 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1779422061749535_STVM.webp" group-title="mytvsuper",SUPER亞視劇 (免費)
 http://127.0.0.1:8081/mymysuper.php?id=STVM
+
+
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=248ed59a4671da39b3bb71f860760b91:b0bd7d1495e3df963ae21790551094e1
 #EXTINF:-1 tvg-id="真情SUPER煲 (免費)" tvg-name="真情SUPER煲 (免費)" tvg-logo="" group-title="mytvsuper",真情SUPER煲 (免費)
 http://127.0.0.1:8081/mymysuper.php?id=SDOC
+
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=0d57dc882191c22a9f8185ab7e9a629b:0d2b2edbea04dde8ff880d20e20261ad
@@ -1362,7 +1372,7 @@ http://127.0.0.1:8081/mymysuper.php?id=CAXN
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=56e7f3bf6e1f142a3ac51b2ca83e7919:ba733df582f18b4b9c990a52d61d2fc6   
-#EXTINF:-1 tvg-id="ROCK Extreme" tvg-name="ROCK Extreme HK" tvg-logo="https://assets.livednow.com/logo/Rock-Extreme.png" group-title="mytvsuper",ROCK Extreme
+#EXTINF:-1 tvg-id="ROCK X Stream" tvg-name="ROCK X Stream" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",ROCK X Stream
 http://127.0.0.1:8081/mymysuper.php?id=RKEX
 
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -1587,7 +1597,6 @@ http://127.0.0.1:8081/mymysuper.php?id=EVT7
 #KODIPROP:inputstream.adaptive.license_key=0c79f7330982b6e508de3df47b88fbdc:db063550682430e8ca5857a85ccbc297
 #EXTINF:-1 tvg-id="二零二五香港公開羽毛球錦標賽-世界羽聯世界巡迴賽超級500" tvg-name="二零二五香港公開羽毛球錦標賽-世界羽聯世界巡迴賽超級500" tvg-logo="https://assets.mytvsuper.com/channel/1684393675758879_EVT7.png" group-title="mytvsuper",二零二五香港公開羽毛球錦標賽-世界羽聯世界巡迴賽超級500
 http://127.0.0.1:8081/mymysuper.php?id=EVT8
-
 
 
 
