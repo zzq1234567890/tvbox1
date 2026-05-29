@@ -26,132 +26,43 @@ class Spider(Spider):
             "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8"
         }
         self.channel_cache = {}
-        # 远程配置 URL
-        self.config_url = "https://raw.githubusercontent.com/zzq1234567890/tvbox1/refs/heads/main/lib/youtube.json"
-        self.classes = []          # 分类列表
-        self.alias_map = {}        # 别名映射（用于自媒体等）
-        self._load_config()
-
-    def _load_config(self):
-        """从远程URL加载分类配置"""
-        try:
-            r = requests.get(self.config_url, timeout=8, proxies=self.proxies, verify=False)
-            config = r.json()
-            self.classes = []
-            self.alias_map = {}
-            for item in config.get("class", []):
-                type_id = item.get("type_id", "").strip()
-                type_name = item.get("type_name", "").strip()
-                if type_id and type_name:
-                    self.classes.append({
-                        "type_id": type_id,
-                        "type_name": type_name
-                    })
-                    # 处理自媒体别名映射（格式：别名 @频道ID）
-                    if type_id.startswith("LIST:自媒體") and "@" in type_id:
-                        parts = type_id.replace("LIST:自媒體", "").strip()
-                        for part in parts.split(","):
-                            part = part.strip()
-                            if part and "@" in part:
-                                alias, ch_id = part.split("@", 1)
-                                alias = alias.strip()
-                                ch_id = ch_id.strip()
-                                if alias and ch_id:
-                                    self.alias_map[alias] = ch_id
-            print(f"[YouTube] 加载到 {len(self.classes)} 个分类")
-        except Exception as e:
-            print(f"[YouTube] 加载配置失败: {e}")
-            # 保底分类
-            self.classes = [
-               {
-			"type_id":"LIST:新闻 Live,体育直播,赛事直播",
-			"type_name":"新聞直播"
-		},
-		{
-			"type_id":"LIST:剧集,腾讯剧集,爱奇艺剧集,优酷剧集,芒果剧集,TVB,亞視精選,ATV 亞洲電視,八大劇樂部,民視戲劇,三立台劇,三立華劇,龍華戲劇,華視懷舊頻道,華視戲劇,中視經典戲劇",
-			"type_name":"劇集"
-		},
-		{
-			"type_id":"LIST:紀錄片,亞洲旅遊台,CCTV纪录,CCTV科教,公視+,National Geographic,Kevin_YOLO,Nat Geo Animals,BBC Earth,Top Travel,National Geographic India,BBC Earth Science,历史纪录片,自然纪录片,宇宙纪录片",
-			"type_name":"紀錄片"
-		},
-		{
-			"type_id":"LIST:動漫,腾讯视频 - 动漫,一号动漫社 Animation Club,蒼穹動漫社Animation Club,斗破动漫社 Animation,腾讯动漫,爱奇艺动漫,优酷动漫,芒果动漫,Ani-Mi動漫迷動畫頻道,3D国漫工厂,阅文动漫,卡通狂欢嘉会",
-			"type_name":"動漫"
-		},
-		{
-			"type_id":"短劇",
-			"type_name":"短劇"
-		},
-		{
-			"type_id":"LIST:综艺,台視時光機,芒果综艺,腾讯综艺,爱奇艺综艺,优酷综艺,卫视综艺,超級夜總會",
-			"type_name":"綜藝"
-		},
-		
-				
-		{
-			"type_id":"電影",
-			"type_name":"電影"
-		},
-                {
-			"type_id":"LIST:政論,觀點,豐富,Yahoo風向,全球大視野,環球大戰線,郭正亮頻道,論政天下,岑永康",
-			"type_name":"政論"
-		},
-				
-		
-		{
-			"type_id":"體育",
-			"type_name":"體育"
-		},
-		{
-			"type_id":"時尚潮流",
-			"type_name":"時尚潮流"
-		},
-		{
-			"type_id":"放松",
-			"type_name":"放松"
-		},
-		{
-			"type_id":"4K",
-			"type_name":"4K"
-		},
-		{
-			"type_id":"宇宙",
-			"type_name":"科普知識"
-		},
-		{
-			"type_id":"GETTRENDS",
-			"type_name":"Youtube Trends"
-		},
-		{
-			"type_id":"LIST:自媒體 We Media,老高與小茉 @laogao,脑洞乌托邦 @NDWTB,自说自话的总裁 @STBoss,纪实说 @C-Documentary,老肉雜談 @老肉雜談,李永樂老師 @TchLiyongle,滇西小哥 @dianxixiaoge,李子柒 Liziqi @cnliziqi,老饭骨 @LaoFanGu,小高姐的 Magic Ingredients @MagicIngredients,小穎美食 @XiaoYingFood,primitivetechnology9550 @primitivetechnology9550,Mr Beast@MrBeast,Airforceproud95 @Airforceproud95,TheGreatWar @TheGreatWar,Mark Rober @MarkRober,不良林,涌哥侃侃 @ygkkk,悟空的日常",
-			"type_name":"自媒體"
-		},
-		{
-			"type_id":"LIST:HDR,Girls HDR,Landscape HDR,Walk HDR",
-			"type_name":"HDR"
-		},
-		{
-			"type_id":"LIST:华语音乐,华语MV,点击率最高",
-			"type_name":"音樂"
-		},
-		{
-			"type_id":"科技",
-			"type_name":"科技"
-		},
-		{
-			"type_id":"解說",
-			"type_name":"解說"
-		},
-		{
-			"type_id":"神秘",
-			"type_name":"神秘"
-		},
-		{
-			"type_id":"动画片",
-			"type_name":"动画片"
-		}
-            ]
+        # 硬编码分类列表（完全按照您提供的 JSON）
+        self.classes = [
+            {"type_id": "LIST:新闻 Live,体育直播,赛事直播", "type_name": "新聞直播"},
+            {"type_id": "LIST:剧集,腾讯剧集,爱奇艺剧集,优酷剧集,芒果剧集,TVB,亞視精選,ATV 亞洲電視,八大劇樂部,民視戲劇,三立台劇,三立華劇,龍華戲劇,華視懷舊頻道,華視戲劇,中視經典戲劇", "type_name": "劇集"},
+            {"type_id": "LIST:紀錄片,亞洲旅遊台,CCTV纪录,CCTV科教,公視+,National Geographic,Kevin_YOLO,Nat Geo Animals,BBC Earth,Top Travel,National Geographic India,BBC Earth Science,历史纪录片,自然纪录片,宇宙纪录片", "type_name": "紀錄片"},
+            {"type_id": "LIST:動漫,腾讯视频 - 动漫,一号动漫社 Animation Club,蒼穹動漫社Animation Club,斗破动漫社 Animation,腾讯动漫,爱奇艺动漫,优酷动漫,芒果动漫,Ani-Mi動漫迷動畫頻道,3D国漫工厂,阅文动漫,卡通狂欢嘉会", "type_name": "動漫"},
+            {"type_id": "短劇", "type_name": "短劇"},
+            {"type_id": "LIST:综艺,台視時光機,芒果综艺,腾讯综艺,爱奇艺综艺,优酷综艺,卫视综艺,超級夜總會", "type_name": "綜藝"},
+            {"type_id": "電影", "type_name": "電影"},
+            {"type_id": "LIST:政論,觀點,豐富,Yahoo風向,全球大視野,環球大戰線,郭正亮頻道,論政天下,岑永康", "type_name": "政論"},
+            {"type_id": "體育", "type_name": "體育"},
+            {"type_id": "時尚潮流", "type_name": "時尚潮流"},
+            {"type_id": "放松", "type_name": "放松"},
+            {"type_id": "4K", "type_name": "4K"},
+            {"type_id": "宇宙", "type_name": "科普知識"},
+            {"type_id": "GETTRENDS", "type_name": "Youtube Trends"},
+            {"type_id": "LIST:自媒體 We Media,老高與小茉 @laogao,脑洞乌托邦 @NDWTB,自说自话的总裁 @STBoss,纪实说 @C-Documentary,老肉雜談 @老肉雜談,李永樂老師 @TchLiyongle,滇西小哥 @dianxixiaoge,李子柒 Liziqi @cnliziqi,老饭骨 @LaoFanGu,小高姐的 Magic Ingredients @MagicIngredients,小穎美食 @XiaoYingFood,primitivetechnology9550 @primitivetechnology9550,Mr Beast@MrBeast,Airforceproud95 @Airforceproud95,TheGreatWar @TheGreatWar,Mark Rober @MarkRober,不良林,涌哥侃侃 @ygkkk,悟空的日常", "type_name": "自媒體"},
+            {"type_id": "LIST:HDR,Girls HDR,Landscape HDR,Walk HDR", "type_name": "HDR"},
+            {"type_id": "LIST:华语音乐,华语MV,点击率最高", "type_name": "音樂"},
+            {"type_id": "科技", "type_name": "科技"},
+            {"type_id": "解說", "type_name": "解說"},
+            {"type_id": "神秘", "type_name": "神秘"},
+            {"type_id": "动画片", "type_name": "动画片"}
+        ]
+        # 构建别名映射（用于自媒体频道，格式：别名@频道ID）
+        self.alias_map = {}
+        for cls in self.classes:
+            if cls['type_id'].startswith("LIST:自媒體") and "@" in cls['type_id']:
+                parts = cls['type_id'].replace("LIST:自媒體", "").strip()
+                for part in parts.split(","):
+                    part = part.strip()
+                    if part and "@" in part:
+                        alias, ch_id = part.split("@", 1)
+                        alias = alias.strip()
+                        ch_id = ch_id.strip()
+                        if alias and ch_id:
+                            self.alias_map[alias] = ch_id
 
     def _resolve_search_keyword(self, cid):
         """将分类ID转换为有效的YouTube搜索关键词"""
@@ -162,12 +73,10 @@ class Spider(Spider):
         # 如果包含逗号，取第一个有效关键词（去除空格）
         if ',' in keyword:
             keyword = keyword.split(',')[0].strip()
-        # 别名映射
+        # 别名映射（主要针对自媒体频道名直接映射为频道ID）
         if keyword in self.alias_map:
             return self.alias_map[keyword]
-        # 针对一些特殊分类做映射
-        if keyword in ["短劇", "电影", "體育", "科技", "解說", "神秘", "动画片", "時尚潮流", "放松", "4K", "宇宙", "GETTRENDS"]:
-            return keyword
+        # 对于普通中文分类，直接返回原词
         return keyword
 
     def homeContent(self, filter):
@@ -299,11 +208,9 @@ class Spider(Spider):
         return "".join([c if c.isalnum() or c in "· " else "·" for c in t])[:80]
 
     def localProxy(self, param):
-        # 空实现，保持与 py_dbo.py 结构一致
         return [200, "text/plain", "YouTube Spider Local Proxy"]
 
     def liveContent(self, url):
-        # 空实现，保持与 py_dbo.py 结构一致
         pass
 
     def destroy(self):
