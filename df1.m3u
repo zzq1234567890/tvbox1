@@ -1845,6 +1845,9 @@ http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live207
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv043
 #EXTINF:-1 tvg-id="TVBS精采臺" tvg-name="TVBS精采臺" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-live086_mobile.png" group-title="4gtv",TVBS精采臺
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv067
+#EXTINF:-1 tvg-id="愛爾達寵物運動臺" tvg-name="愛爾達寵物運動臺" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv070_mobile.png" group-title="4gtv",愛爾達寵物運動臺
+http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv070
+
 #EXTINF:-1 tvg-id="靖天綜合臺" tvg-name="靖天綜合臺" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv046_mobile.png" group-title="4gtv",靖天綜合臺
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv046
 #EXTINF:-1 tvg-id="靖天日本臺" tvg-name="靖天日本臺" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv047_mobile.png" group-title="4gtv",靖天日本臺
