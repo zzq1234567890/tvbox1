@@ -35,7 +35,7 @@ class Spider(Spider):
     def _load_config(self):
         """从远程URL加载分类配置"""
         try:
-            r = requests.get(self.config_url, timeout=8, proxies=self.proxies)
+            r = requests.get(self.config_url, timeout=8, proxies=self.proxies, verify=False)
             config = r.json()
             self.classes = []
             self.alias_map = {}
@@ -83,36 +83,31 @@ class Spider(Spider):
             return self.alias_map[keyword]
         # 针对一些特殊分类做映射
         if keyword in ["短劇", "电影", "體育", "科技", "解說", "神秘", "动画片", "時尚潮流", "放松", "4K", "宇宙", "GETTRENDS"]:
-            # 这些分类直接使用原词作为搜索词
             return keyword
-        # 对于其他情况，直接返回关键词（可能为空）
         return keyword
 
     def homeContent(self, filter):
-        return {'class': self.classes}
+        return {'class': self.classes, 'parse': 0, 'jx': 0}
 
     def homeVideoContent(self):
         if self.classes:
             return self.categoryContent(self.classes[0]['type_id'], 1, {}, {})
-        return {'list': []}
+        return {'list': [], 'parse': 0, 'jx': 0}
 
     def categoryContent(self, cid, page, filter, ext):
         search_keyword = self._resolve_search_keyword(cid)
         if not search_keyword:
-            # 保底关键词
             search_keyword = "video"
         print(f"[YouTube] 分类: {cid} -> 搜索词: {search_keyword}")
         url = f"https://www.youtube.com/results?search_query={quote(search_keyword)}&sp=EgIQAQ%3D%3D"
         try:
-            r = requests.get(url, headers=self.header, timeout=10, proxies=self.proxies, stream=True)
-            # 读取前256KB
+            r = requests.get(url, headers=self.header, timeout=10, proxies=self.proxies, stream=True, verify=False)
             html_content = r.raw.read(256 * 1024).decode('utf-8', 'ignore')
             r.close()
             videos = self._extract_videos(html_content, 40)
-            # 如果没有视频，尝试使用更通用的关键词再搜一次
             if not videos and search_keyword not in ["video", "youtube trending"]:
                 fallback_url = f"https://www.youtube.com/results?search_query={quote('video')}&sp=EgIQAQ%3D%3D"
-                r2 = requests.get(fallback_url, headers=self.header, timeout=10, proxies=self.proxies, stream=True)
+                r2 = requests.get(fallback_url, headers=self.header, timeout=10, proxies=self.proxies, stream=True, verify=False)
                 html2 = r2.raw.read(256 * 1024).decode('utf-8', 'ignore')
                 r2.close()
                 videos = self._extract_videos(html2, 40)
@@ -124,11 +119,13 @@ class Spider(Spider):
                 'page': 1,
                 'pagecount': 1,
                 'limit': len(videos),
-                'total': len(videos)
+                'total': len(videos),
+                'parse': 0,
+                'jx': 0
             }
         except Exception as e:
             print(f"[YouTube] categoryContent异常: {e}")
-            return {'list': []}
+            return {'list': [], 'parse': 0, 'jx': 0}
 
     def searchContent(self, key, quick, pg=1):
         return self.categoryContent(key, pg, {}, {})
@@ -148,12 +145,15 @@ class Spider(Spider):
         }
         if episode_list:
             vod["vod_play_url"] += "#" + "#".join(episode_list)
-        return {'list': [vod]}
+        return {'list': [vod], 'parse': 0, 'jx': 0}
 
-    def playerContent(self, flag, pid, vipFlags):
-        vid = pid.split('$')[-1]
+    def playerContent(self, flag, id, vipFlags):
+        # 兼容旧调用方式：id 可能是 "标题$vid" 格式，取最后一部分作为视频ID
+        vid = id.split('$')[-1]
         return {
-            "parse": 1,
+            "parse": 1,           # 让外部解析器解析 YouTube 页面
+            "jx": 0,
+            "playUrl": "",
             "url": f"https://www.youtube.com/watch?v={vid}&t={int(time.time())}",
             "header": {
                 "User-Agent": self.header["User-Agent"],
@@ -206,13 +206,21 @@ class Spider(Spider):
 
     def _get_title(self, vid):
         try:
-            r = requests.get(f"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v={vid}&format=json", timeout=3, proxies=self.proxies)
+            r = requests.get(f"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v={vid}&format=json", timeout=3, proxies=self.proxies, verify=False)
             return r.json().get("title", "YouTube视频")
         except:
             return "YouTube视频"
 
     def _safe(self, t):
         return "".join([c if c.isalnum() or c in "· " else "·" for c in t])[:80]
+
+    def localProxy(self, param):
+        # 空实现，保持与 py_dbo.py 结构一致
+        return [200, "text/plain", "YouTube Spider Local Proxy"]
+
+    def liveContent(self, url):
+        # 空实现，保持与 py_dbo.py 结构一致
+        pass
 
     def destroy(self):
         pass
