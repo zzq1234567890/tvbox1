@@ -22,70 +22,82 @@ class Spider(Spider):
             self.extendDict = {}
         self.proxies = self.extendDict.get('proxy', {})
         self.proxy_str = self.extendDict.get('proxy_str', None)
+        # 如果 proxy 是 "noproxy" 或空，则不使用代理
+        if self.proxy_str == "noproxy":
+            self.proxy_str = None
+            self.proxies = {}
         self.header = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
             "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8"
         }
         self.channel_cache = {}
-        self.classes = []          # 分类列表
-        self.alias_map = {}        # 别名映射
-        # 加载配置
+        self.classes = []
+        self.alias_map = {}
+        # 开启调试日志（在 OK 影视运行目录下生成 youtube_debug.log）
+        self.debug_log = open(os.path.join(os.path.dirname(__file__), 'youtube_debug.log'), 'a', encoding='utf-8')
+        self._log("YouTube 插件初始化")
         self._load_config()
 
+    def _log(self, msg):
+        """写入调试日志"""
+        try:
+            self.debug_log.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} - {msg}\n")
+            self.debug_log.flush()
+        except:
+            pass
+
     def _load_config(self):
-        """加载分类配置（优先本地json，失败则使用硬编码默认分类）"""
+        """加载分类配置，失败时使用保底分类"""
         config_loaded = False
 
         # 1. 尝试从 ext 中的 json 路径加载
         json_path = self.extendDict.get('json')
         if json_path:
-            # 处理相对路径
             if json_path.startswith('./'):
                 base_dir = os.path.dirname(os.path.abspath(__file__))
                 abs_path = os.path.join(base_dir, json_path[2:])
             else:
                 abs_path = json_path
-            print(f"[YouTube] 尝试加载本地配置: {abs_path}")
+            self._log(f"尝试加载本地配置: {abs_path}")
             if os.path.exists(abs_path):
                 try:
                     with open(abs_path, 'r', encoding='utf-8') as f:
                         config = json.load(f)
                     self._parse_config(config)
                     config_loaded = True
-                    print("[YouTube] 本地配置加载成功")
+                    self._log("本地配置加载成功")
                 except Exception as e:
-                    print(f"[YouTube] 本地配置解析失败: {e}")
+                    self._log(f"本地配置解析失败: {e}")
 
-        # 2. 尝试远程默认地址
+        # 2. 尝试远程配置
         if not config_loaded:
             remote_url = "https://raw.githubusercontent.com/zzq1234567890/tvbox1/refs/heads/main/lib/youtube.json"
-            print(f"[YouTube] 尝试加载远程配置: {remote_url}")
+            self._log(f"尝试加载远程配置: {remote_url}")
             try:
                 r = requests.get(remote_url, timeout=8, proxies=self.proxies)
                 if r.status_code == 200:
                     self._parse_config(r.json())
                     config_loaded = True
-                    print("[YouTube] 远程配置加载成功")
+                    self._log("远程配置加载成功")
             except Exception as e:
-                print(f"[YouTube] 远程配置加载失败: {e}")
+                self._log(f"远程配置加载失败: {e}")
 
-        # 3. 保底：使用硬编码的常用分类（从你提供的 youtube.json 中提取）
+        # 3. 保底分类（使用简单有效的搜索词）
         if not config_loaded:
-            print("[YouTube] 使用硬编码默认分类")
+            self._log("使用硬编码保底分类")
             self.classes = [
-                {"type_id": "LIST:华语音乐,华语MV,点击率最高", "type_name": "音乐"},
-                {"type_id": "LIST:剧集,腾讯剧集,爱奇艺剧集,优酷剧集", "type_name": "剧集"},
-                {"type_id": "LIST:紀錄片,国家地理,BBC Earth", "type_name": "纪录片"},
-                {"type_id": "LIST:動漫,腾讯动漫,爱奇艺动漫", "type_name": "动漫"},
+                {"type_id": "音乐", "type_name": "音乐"},
+                {"type_id": "电视剧", "type_name": "剧集"},
+                {"type_id": "纪录片", "type_name": "纪录片"},
+                {"type_id": "动画片", "type_name": "动漫"},
                 {"type_id": "电影", "type_name": "电影"},
-                {"type_id": "LIST:综艺,芒果综艺,腾讯综艺", "type_name": "综艺"},
-                {"type_id": "热门视频", "type_name": "热门推荐"}   # 最后的保底分类
+                {"type_id": "综艺节目", "type_name": "综艺"},
+                {"type_id": "video", "type_name": "🔥测试搜索(应返回结果)"}
             ]
-            # 简单别名映射示例（如果需要可自行添加）
             self.alias_map = {}
 
     def _parse_config(self, config):
-        """解析配置 JSON，构建分类列表和别名映射"""
+        """解析配置 JSON"""
         self.classes = []
         self.alias_map = {}
         for item in config.get("class", []):
@@ -93,7 +105,7 @@ class Spider(Spider):
             type_name = item.get("type_name", "").strip()
             if type_id and type_name:
                 self.classes.append({"type_id": type_id, "type_name": type_name})
-                # 处理自媒体别名映射
+                # 自媒体别名映射
                 if type_id.startswith("LIST:自媒體") and "@" in type_id:
                     parts = type_id.replace("LIST:自媒體", "").strip()
                     for seg in parts.split(","):
@@ -104,28 +116,33 @@ class Spider(Spider):
                             ch_id = ch_id.strip()
                             if alias and ch_id:
                                 self.alias_map[alias] = ch_id
-        # 如果解析后没有分类，添加一个保底
         if not self.classes:
-            self.classes = [{"type_id": "热门视频", "type_name": "热门推荐"}]
+            self.classes = [{"type_id": "video", "type_name": "默认搜索"}]
 
     def _resolve_search_keyword(self, cid):
-        """将分类ID转换为实际搜索关键词，优化多关键词情况"""
+        """
+        将分类ID转换为有效的搜索词
+        - 去掉 "LIST:" 前缀
+        - 如果包含逗号，取第一个有效部分
+        - 如果命中别名映射则使用映射值
+        """
         keyword = cid
         if keyword.startswith("LIST:"):
             keyword = keyword[5:]
-        # 如果包含逗号，只取第一个关键词（YouTube 搜索多个关键词效果差）
+        # 取逗号前的第一个有效词（去掉首尾空格）
         if ',' in keyword:
             keyword = keyword.split(',')[0].strip()
         # 别名映射
         if keyword in self.alias_map:
             return self.alias_map[keyword]
-        # 特殊处理：如果 keyword 是 "热门视频"，改为通用关键词
-        if keyword == "热门视频":
+        # 如果关键词是“热门视频”，映射为“trending”
+        if keyword == "热门视频" or keyword == "默认搜索":
             return "youtube trending"
+        # 如果关键词是“视频”之类，直接保留
         return keyword
 
     def homeContent(self, filter):
-        print(f"[YouTube] 返回分类数量: {len(self.classes)}")
+        self._log(f"返回分类列表，数量: {len(self.classes)}")
         return {'class': self.classes}
 
     def homeVideoContent(self):
@@ -136,31 +153,50 @@ class Spider(Spider):
     def categoryContent(self, cid, page, filter, ext):
         search_keyword = self._resolve_search_keyword(cid)
         if not search_keyword:
-            print(f"[YouTube] 分类 {cid} 解析后关键词为空")
+            self._log(f"分类 {cid} 解析后关键词为空")
             return {'list': []}
-        print(f"[YouTube] 搜索关键词: {search_keyword} (原始分类: {cid})")
-        url = f"https://www.youtube.com/results?search_query={quote(search_keyword)}&sp=EgIQAQ%3D%3D"
-        try:
-            r = requests.get(url, headers=self.header, timeout=10, proxies=self.proxies, stream=True)
-            # 只读取前 128KB，避免过大
-            html_content = r.raw.read(128 * 1024).decode('utf-8', 'ignore')
-            r.close()
-            videos = self._extract_videos(html_content, 50)
-            print(f"[YouTube] 获取到 {len(videos)} 个视频")
-            self.channel_cache["current"] = videos
-            return {
-                'list': videos,
-                'page': 1,
-                'pagecount': 1,
-                'limit': len(videos),
-                'total': len(videos)
-            }
-        except Exception as e:
-            print(f"[YouTube] 搜索异常: {e}")
-            return {'list': []}
+        self._log(f"搜索关键词: {search_keyword} (原始分类: {cid})")
+        
+        # 第一次搜索
+        videos = self._search_youtube(search_keyword)
+        if not videos:
+            # 如果搜索失败，尝试使用更通用的关键词再搜一次
+            fallback_keyword = "video"
+            self._log(f"首次搜索无结果，尝试通用词: {fallback_keyword}")
+            videos = self._search_youtube(fallback_keyword)
+        
+        self._log(f"获取到 {len(videos)} 个视频")
+        self.channel_cache["current"] = videos
+        return {
+            'list': videos,
+            'page': 1,
+            'pagecount': 1,
+            'limit': len(videos),
+            'total': len(videos)
+        }
+
+    def _search_youtube(self, keyword, retry=2):
+        """执行YouTube搜索，返回视频列表"""
+        url = f"https://www.youtube.com/results?search_query={quote(keyword)}&sp=EgIQAQ%3D%3D"
+        for attempt in range(retry):
+            try:
+                self._log(f"请求URL: {url} (尝试 {attempt+1})")
+                r = requests.get(url, headers=self.header, timeout=10, proxies=self.proxies, stream=True)
+                # 只读取前 256KB，避免过大
+                html_content = r.raw.read(256 * 1024).decode('utf-8', 'ignore')
+                r.close()
+                videos = self._extract_videos(html_content, 50)
+                if videos:
+                    return videos
+                self._log(f"第{attempt+1}次请求未解析到视频，可能需更换关键词")
+            except Exception as e:
+                self._log(f"搜索异常: {e}")
+                if attempt < retry-1:
+                    time.sleep(1)
+        return []
 
     def searchContent(self, key, quick, pg=1):
-        print(f"[YouTube] 搜索关键词: {key}")
+        self._log(f"用户搜索关键词: {key}")
         return self.categoryContent(key, pg, {}, {})
 
     def detailContent(self, did):
@@ -193,28 +229,40 @@ class Spider(Spider):
         }
 
     def _extract_videos(self, html_content, limit=30):
+        """从HTML中提取视频列表"""
         videos = []
+        # 查找 ytInitialData
         m = re.search(r'var ytInitialData\s*=\s*({.*?});', html_content, re.S)
         if not m:
-            print("[YouTube] 未找到 ytInitialData")
-            return []
+            self._log("未找到 ytInitialData")
+            # 尝试另一种正则：ytInitialData = {...}; 可能有换行
+            m = re.search(r'ytInitialData\s*=\s*({.*?});', html_content, re.S)
+            if not m:
+                return []
         try:
             data = json.loads(m.group(1))
+            # 搜索结果路径
             items = data.get("contents", {}).get("twoColumnSearchResultsRenderer", {}).get("primaryContents", {}).get("sectionListRenderer", {}).get("contents", [])
+            if not items:
+                # 可能是其他布局，尝试备用路径
+                items = data.get("contents", {}).get("twoColumnBrowseResultsRenderer", {}).get("tabs", [])
+                if items:
+                    items = items[0].get("tabRenderer", {}).get("content", {}).get("sectionListRenderer", {}).get("contents", [])
             for section in items:
                 vids = section.get("itemSectionRenderer", {}).get("contents", [])
                 for item in vids:
                     r = item.get("videoRenderer")
                     if r and "videoId" in r:
+                        title = r.get("title", {}).get("runs", [{}])[0].get("text", "未知")
                         videos.append({
                             "vod_id": r["videoId"],
-                            "vod_name": r.get("title", {}).get("runs", [{}])[0].get("text", "未知"),
+                            "vod_name": title,
                             "vod_pic": f"https://img.youtube.com/vi/{r['videoId']}/hqdefault.jpg"
                         })
                         if len(videos) >= limit:
                             break
         except Exception as e:
-            print(f"[YouTube] 解析视频列表异常: {e}")
+            self._log(f"解析视频列表异常: {e}")
         return videos
 
     def _get_title(self, vid):
@@ -228,4 +276,7 @@ class Spider(Spider):
         return "".join([c if c.isalnum() or c in "· " else "·" for c in t])[:80]
 
     def destroy(self):
-        pass
+        try:
+            self.debug_log.close()
+        except:
+            pass
