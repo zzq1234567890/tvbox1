@@ -38,7 +38,7 @@ class Spider(Spider):
         # 读取 youtube.json 配置 (默认与py同目录，即lib目录下)
         try:
             base_path = os.path.dirname(os.path.abspath(__file__))
-            json_path = os.path.join(base_path, '/lib/youtube.json')
+            json_path = os.path.join(base_path, 'lib/youtube.json')
             if os.path.exists(json_path):
                 with open(json_path, 'r', encoding='utf-8') as f:
                     self.config = json.load(f)
