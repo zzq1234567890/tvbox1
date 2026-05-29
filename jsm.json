@@ -18,7 +18,7 @@
       "name": "youtubepy",
       "type": 3,
       "api": "./py/YouTube.py",
-	"jar": "./pro0416.jar",
+	
 	 "searchable": 1,
       "quickSearch": 1,
       "filterable": 0,
