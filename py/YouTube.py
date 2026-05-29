@@ -1,255 +1,185 @@
 # coding=utf-8
+#!/usr/bin/python
 import re
 import sys
+import os
 import json
+import time
 import requests
 from urllib.parse import quote
-from lxml import etree
+
 sys.path.append('..')
 from base.spider import Spider
 
 class Spider(Spider):
     def getName(self):
-        return "YouTube影视"
+        return "YouTube视频"
 
     def init(self, extend=""):
-        self.extend = extend
-        self.classes = []
-        self.filters = {}
-        self._load_config()
-
-    def _load_config(self):
-        """
-        从 lib/youtube.json 加载配置
-        """
         try:
-            # 假设 lib 目录在当前目录下，或者根据你的实际路径调整
-            with open('lib/youtube.json', 'r', encoding='utf-8') as f:
-                config = json.load(f)
+            self.extendDict = json.loads(extend) if isinstance(extend, str) else extend
+        except:
+            self.extendDict = {}
             
-            # 加载分类
-            self.classes = config.get("class", [])
-            
-            # 加载筛选器
-            self.filters = config.get("filters", {})
-            
-            print(f"[YouTube] 成功加载 {len(self.classes)} 个分类")
+        # 代理设置
+        self.proxies = self.extendDict.get('proxy', {})
+        self.proxy_str = self.extendDict.get('proxy_str', None)
+        
+        # 请求头
+        self.header = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+            "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8"
+        }
+        
+        # 缓存与配置
+        self.channel_cache = {}
+        self.config = {}
+        
+        # 读取 youtube.json 配置 (默认与py同目录，即lib目录下)
+        try:
+            base_path = os.path.dirname(os.path.abspath(__file__))
+            json_path = os.path.join(base_path, '/lib/youtube.json')
+            if os.path.exists(json_path):
+                with open(json_path, 'r', encoding='utf-8') as f:
+                    self.config = json.load(f)
         except Exception as e:
-            print(f"[YouTube] 加载配置失败: {e}")
-            # 保底配置
-            self.classes = [
-                {"type_id": "video", "type_name": "热门视频"},
-                {"type_id": "music", "type_name": "音乐"}
-            ]
-            self.filters = {}
+            print(f"[YouTube] Load config error: {e}")
 
     def homeContent(self, filter):
-        """
-        首页数据，返回分类和筛选器
-        """
-        result = {
-            "class": self.classes
-        }
-        if filter:
-            result["filters"] = self.filters
+        result = {'class': [], 'filters': {}}
+        if self.config:            result['class'] = self.config.get('class', [])
+            if filter:
+                result['filters'] = self.config.get('filters', {})
+        else:
+            # 兜底：如果json读取失败，使用简单默认值
+            result['class'] = [{'type_id': '华语音乐', 'type_name': '华语音乐'}]
         return result
 
-    def categoryContent(self, tid, pg, filter, extend):
-        """
-        分类列表页逻辑
-        """
-        # 1. 获取搜索关键词
-        search_keyword = self._get_search_keyword(tid, filter)
-        if not search_keyword:
-            search_keyword = tid
+    def homeVideoContent(self):
+        # 尝试获取推荐内容，如果没有则用第一个分类
+        recommend = self.config.get('recommend', '')
+        cid = recommend.split('|')[0].replace('LIST:', '') if recommend else '华语音乐'
+        return self.categoryContent(cid, 1, {}, {})
 
-        # 2. 构造 URL
-        # YouTube 分页参数是 &sp=...
-        # 这里简化处理，使用基本搜索
-        url = f"https://www.youtube.com/results?search_query={quote(search_keyword)}"
+    def categoryContent(self, cid, page, filter, ext):
+        # 构建搜索词
+        search_key = cid
         
-        # 如果是分页，通常需要处理 continuation token，这里简化为只取第一页
-        # 如果有筛选条件，可以在这里拼接
-        
-        try:
-            resp = requests.get(url, headers=self.get_headers(), timeout=30)
-            if resp.status_code != 200:
-                return {"list": [], "parse": 0, "jx": 0}
-                
-            html_text = resp.text
-            doc = etree.HTML(html_text)
+        # 处理 LIST: 开头的复合分类，取第一个有效词或组合
+        if search_key.startswith('LIST:'):
+            parts = [p.strip() for p in search_key.replace('LIST:', '').split(',') if p.strip()]
+            search_key = parts[0] if parts else ''
             
-            # 3. 使用 XPath 提取视频列表
-            # YouTube 的视频容器通常是 ytd-video-renderer
-            items = doc.xpath('//ytd-video-renderer')
+        # 合并筛选器参数 (ext 包含用户选择的 tid, time 等)
+        if ext:
+            # 优先使用 tid (频道/细分类型)，其次追加 time
+            tid_val = ext.get('tid', '')
+            time_val = ext.get('time', '')
             
-            videos = []
-            for item in items:
-                # 标题
-                title_nodes = item.xpath('.//*[@id="video-title"]')
-                title = title_nodes[0].get('title') if title_nodes and title_nodes[0].get('title') else "未知标题"
-                
-                # 视频ID
-                href_nodes = item.xpath('.//*[@id="video-title"]')
-                href = href_nodes[0].get('href') if href_nodes else ""
-                vid = ""
-                if href:
-                    match = re.search(r'/watch\?v=([^&]+)', href)
-                    if match:
-                        vid = match.group(1)
-                
-                # 图片
-                img_nodes = item.xpath('.//img[@src]')
-                img_src = ""
-                for img in img_nodes:
-                    src = img.get('src')
-                    if src and 'https' in src:
-                        img_src = src
-                        break
-                # 如果没有找到 https 的 src，尝试 data-src 懒加载
-                if not img_src:
-                    img_nodes = item.xpath('.//img[@data-src]')
-                    if img_nodes:
-                        img_src = img_nodes[0].get('data-src')
-                
-                # 简介
-                desc_nodes = item.xpath('.//*[@id="description-text"]//text()')
-                desc = "".join(desc_nodes).strip() if desc_nodes else ""
-                
-                # 时长
-                time_nodes = item.xpath('.//span[@class="style-scope ytd-thumbnail-overlay-time-status-renderer"]//text()')
-                duration = "".join(time_nodes).strip() if time_nodes else ""
-                
-                if vid and title:
-                    videos.append({
-                        "vod_id": vid,
-                        "vod_name": title,
-                        "vod_pic": img_src,
-                        "vod_remarks": duration or desc[:10],
-                        "vod_content": desc
-                    })
+            if tid_val:
+                # 如果选择了具体频道或细分标签，替换或追加到搜索词
+                # 对于 @ 开头的频道ID，直接作为核心搜索词效果更好
+                if tid_val.startswith('@'):
+                    search_key = tid_val
+                else:
+                    search_key = f"{tid_val} {search_key}"
                     
-            return {
-                "list": videos,
-                "parse": 0,
-                "jx": 0
-            }
-            
-        except Exception as e:
-            print(f"抓取分类 {tid} 失败: {e}")
-            return {"list": [], "parse": 0, "jx": 0}
+            if time_val and time_val.strip():
+                search_key = f"{search_key} {time_val}"
 
-    def _get_search_keyword(self, tid, filter):
-        """
-        根据 type_id 和筛选器获取最终的搜索关键词
-        """
-        keyword = tid
-        
-        # 处理 LIST: 前缀
-        if tid.startswith("LIST:"):
-            # 提取列表中的第一个有效关键词
-            parts = tid[5:].split(',')
-            if parts:
-                keyword = parts[0].strip()
-        
-        # 处理筛选器
-        if filter:
-            # 这里可以根据 filter 中的 key 来拼接关键词
-            # 例如：年份、地区等
-            # 简单示例：如果有 'area' 筛选
-            area = filter.get('area')
-            if area:
-                keyword += f" {area}"
-                
-            # 更复杂的逻辑可以在这里添加，根据 youtube.json 的 filters 结构
-            
-        return keyword
-
-    def detailContent(self, ids):
-        """
-        视频详情页逻辑
-        """
-        vid = ids[0]
-        url = f"https://www.youtube.com/watch?v={vid}"
+        url = f"https://www.youtube.com/results?search_query={quote(search_key)}&sp=EgIQAQ%3D%3D"
         
         try:
-            resp = requests.get(url, headers=self.get_headers(), timeout=30)
-            if resp.status_code != 200:
-                return {"list": []}
-                
-            html_text = resp.text
-            doc = etree.HTML(html_text)
+            # 响应截断：只获取前 64KB，防止阻塞
+            r = requests.get(url, headers=self.header, timeout=8, proxies=self.proxies, stream=True)
+            html_content = r.raw.read(64 * 1024).decode('utf-8', 'ignore')
+            r.close()
             
-            # 提取标题
-            title = doc.xpath('//meta[@name="title"]/@content')
-            title = title[0].strip() if title else f"YouTube视频 {vid}"
-            
-            # 提取描述
-            desc = doc.xpath('//meta[@name="description"]/@content')
-            description = desc[0].strip() if desc else "暂无简介"
-            
-            # 提取作者
-            owner = doc.xpath('//yt-formatted-string[@class="ytd-channel-name"]//text()')
-            author = owner[0].strip() if owner else "未知作者"
-            
-            # 提取发布日期
-            date = doc.xpath('//meta[@itemprop="datePublished"]/@content')
-            pub_date = date[0].strip() if date else ""
-            
-            # 构建播放信息
-            # 这里只有一集
-            play_url = f"{title}${vid}"
-            
-            vod_data = {
-                "vod_id": vid,
-                "vod_name": title,
-                "vod_actor": author,
-                "vod_director": "", # YouTube 通常没有导演
-                "vod_year": pub_date.split('-')[0] if pub_date else "未知",
-                "vod_area": "全球",
-                "vod_content": description,
-                "vod_play_from": "YouTube",
-                "vod_play_url": play_url
+            videos = self._extract_videos(html_content, 50)
+            self.channel_cache["current"] = videos            return {
+                'list': videos, 
+                'page': 1, 
+                'pagecount': 1, 
+                'limit': len(videos), 
+                'total': len(videos)
             }
-            
-            return {"list": [vod_data]}
-            
         except Exception as e:
-            print(f"获取详情失败: {e}")
-            return {"list": []}
-
-    def playerContent(self, flag, id, vipFlags):
-        """
-        播放器逻辑
-        """
-        # 直接返回 YouTube 链接，由播放器处理
-        vid = id.split('$')[-1]
-        play_url = f"https://www.youtube.com/watch?v={vid}"
-        
-        return {
-            "parse": 0, # 0 表示直接播放
-            "jx": 0,
-            "url": play_url,
-            "header": self.get_headers()
-        }
+            print(f"[YouTube] Category Error: {e}")
+            return {'list': []}
 
     def searchContent(self, key, quick, pg=1):
-        # 搜索逻辑
         return self.categoryContent(key, pg, {}, {})
 
-    def get_headers(self):
-        """
-        返回通用的请求头
-        """
+    def detailContent(self, did):
+        vid = did[0]
+        cache = self.channel_cache.get("current", [])
+        video_item = next((v for v in cache if v['vod_id'] == vid), None)
+        title = video_item['vod_name'] if video_item else self._get_title(vid)
+        
+        episode_list = [f"{self._safe(v['vod_name'])}${v['vod_id']}" for v in cache]
+        
+        vod = {
+            "vod_id": vid,
+            "vod_name": title,
+            "vod_pic": f"https://img.youtube.com/vi/{vid}/hqdefault.jpg",
+            "vod_play_from": "YouTube直连",
+            "vod_play_url": f"{self._safe(title)}${vid}"
+        }
+        if episode_list:
+            vod["vod_play_url"] += "#" + "#".join(episode_list)
+            
+        return {'list': [vod]}
+
+    def playerContent(self, flag, pid, vipFlags):
+        vid = pid.split('$')[-1]
         return {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-            "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
-            "Referer": "https://www.youtube.com/"
+            "parse": 1,
+            "url": f"https://www.youtube.com/watch?v={vid}&t={int(time.time())}",
+            "header": {
+                "User-Agent": self.header["User-Agent"],
+                "Referer": f"https://www.youtube.com/watch?v={vid}"
+            },
+            "proxy": self.proxy_str
         }
 
-    def localProxy(self, param):
-        return [200, "text/plain", "Hello from YouTube Modified!"]
+    def _extract_videos(self, html_content, limit=30):
+        videos = []
+        m = re.search(r'var ytInitialData\s*=\s*({.*?});', html_content, re.S)
+        if not m:             return []
+        try:
+            data = json.loads(m.group(1))
+            items = data.get("contents", {}).get("twoColumnSearchResultsRenderer", {}).get("primaryContents", {}).get("sectionListRenderer", {}).get("contents", [])
+            for section in items:
+                vids = section.get("itemSectionRenderer", {}).get("contents", [])
+                for item in vids:
+                    r = item.get("videoRenderer")
+                    if r and "videoId" in r:
+                        videos.append({
+                            "vod_id": r["videoId"],
+                            "vod_name": r.get("title", {}).get("runs", [{}])[0].get("text", "未知"),
+                            "vod_pic": f"https://img.youtube.com/vi/{r['videoId']}/hqdefault.jpg"
+                        })
+                        if len(videos) >= limit: 
+                            break
+                if len(videos) >= limit:
+                    break
+        except Exception as e:
+            print(f"[YouTube] Extract Error: {e}")
+        return videos
+
+    def _get_title(self, vid):
+        try:
+            r = requests.get(
+                f"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v={vid}&format=json", 
+                timeout=3, 
+                proxies=self.proxies
+            )
+            return r.json().get("title", "YouTube视频")
+        except:
+            return "YouTube视频"
+
+    def _safe(self, t):
+        return "".join([c if c.isalnum() or c in "· " else "·" for c in t])[:80]
 
     def destroy(self):
         pass
