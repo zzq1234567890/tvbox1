@@ -13,7 +13,26 @@
             
         },
 		
-           
+          {
+      "key": "py_youtube",
+      "name": "youtubepy",
+      "type": 3,
+      "api": "./py/YouTube.py",
+	 "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+			  "ext": {
+                "json": "./lib/youtube.json",
+                "type": "直播#新闻#剧集#电影#综艺#纪录片#音乐#体育#动物#风光#放松#4K#HDR#movie#music#documentary#bbc documentary#national geographic documentary",
+                "keywords": "排行榜,HOT,TRENDS,热门话题,热门趋势,热门综艺,热门电影,热门电视剧,小姐姐",
+                "codecs": "",
+                "proxy": "noproxy"
+            },
+            "style": {
+                "type": "rect",
+                "ratio": 1.5
+            }
+        }, 
 {
     "key": "油管老张r",
     "name": "油管老张",
