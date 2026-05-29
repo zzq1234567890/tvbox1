@@ -2981,6 +2981,13 @@
 			"epg": "https://epg.v1.mk/json?ch={name}&date={date}",
             "logo": "https://epg.112114.xyz/logo/{name}.png"
              },
+		{
+			"name": "歌手每週五晚上19:00",
+            "ua": "okhttp/3.0",
+            "playerType": 2,
+            "url": "https://mgtv.ottiptv.cc/mglist.m3u?url=https://mgtv.ottiptv.cc"
+		},
+		
 	    {
             "name": "临时用",
             "ua": "okhttp/3.0",
