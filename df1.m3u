@@ -1974,7 +1974,7 @@ http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv045
 #EXTINF:-1 tvg-id="金光布袋戲" tvg-name="金光布袋戲" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-live144_mobile.png" group-title="4gtv",金光布袋戲
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live144
 #EXTINF:-1 tvg-id="GagaOOLala 精選LGBTQ+好劇" tvg-name="GagaOOLala 精選LGBTQ+好劇" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-live139_mobile.png" group-title="4gtv",GagaOOLala 精選LGBTQ+好劇
-http://127.0.0.1:8081/4gtvapp.php?id=fast-live139
+#http://127.0.0.1:8081/4gtvapp.php?id=fast-live139
 #EXTINF:-1 tvg-id="靖天映畫" tvg-name="靖天映畫" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv055_mobile.png" group-title="4gtv",靖天映畫
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv055
 #EXTINF:-1 tvg-id="靖天電影臺" tvg-name="靖天電影臺" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv061_mobile.png" group-title="4gtv",靖天電影臺
