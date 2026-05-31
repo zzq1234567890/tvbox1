@@ -18,7 +18,7 @@
       "name": "youtubepy",
       "type": 3,
       "api": "./py/YouTube.py",
-	
+	"jar": "./so.jar",
 	 "searchable": 1,
       "quickSearch": 1,
       "filterable": 0,
@@ -39,7 +39,8 @@
     "name": "油管老张",
     "type": 3,
     "api": "csp_ProxySpider",
-	"jar": "./pro0416.jar",
+	###"jar": "./pro0416.jar",
+	"jar":"./so.jar",
     "searchable": 1,
     "quickSearch": 1,
     "filterable": 1,
