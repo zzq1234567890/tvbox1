@@ -13,8 +13,8 @@
                 "type": "rect",
                 "ratio": 1.33
             },
-            "ext": "http://127.0.0.1:9978/file/lz/youtube.json",
-            
+            ####"ext": "http://127.0.0.1:9978/file/lz/youtube.json",
+           "ext": "./lib/youtube.json",
             "filterable": 1
         },
             
