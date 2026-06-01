@@ -14,10 +14,17 @@
                 "type": "rect",
                 "ratio": 1.33
             },
-            "ext": "./lib/youtube.txt",
             
-            "filterable": 1
-        },
+            "filterable": 1,
+		    "ext": {
+        "class": "YoutubeSpider",
+        "ext": {
+            ###"youtube_txt": "./youtube0418.txt"
+			"youtube_txt": "./lib/youtube.txt"
+        }
+    }
+},
+        
 		
 		{
             "key": "服务器油管",
