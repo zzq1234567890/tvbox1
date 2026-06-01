@@ -1588,7 +1588,7 @@ http://127.0.0.1:8081/mymysuper.php?id=CARI
 http://127.0.0.1:8081/mymysuper.php?id=NSWD
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=
+#KODIPROP:inputstream.adaptive.license_key=5423a982f9b417dad069478d71ea68c1:2e455eab6685c37ef443b1414c7332a5
 #EXTINF:-1 tvg-id="The Indonesia Channel (免費)" tvg-name="The Indonesia Channel (免費)" tvg-logo="" group-title="mytvsuper",The Indonesia Channel (免費)
 http://127.0.0.1:8081/mymysuper.php?id=INDO
 
