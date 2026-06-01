@@ -1528,6 +1528,28 @@ http://127.0.0.1:8081/mymysuper.php?id=CONC
 http://127.0.0.1:8081/mymysuper.php?id=TRUR
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=8413d081b89c30a154190546aa9a3aae:7e671fe8f58adde998bd598402f99141
+#EXTINF:-1 tvg-id="NewTV古裝劇場 (免費)" tvg-name="NewTV古裝劇場 (免費)" tvg-logo="" group-title="mytvsuper",NewTV古裝劇場 (免費)
+http://127.0.0.1:8081/mymysuper.php?id=NWDR
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=98e2cc4a310b3efb731b935f351364db:de1a0f214080baca0a3f63ee384e17b7
+#EXTINF:-1 tvg-id="New TV科教 (免費)" tvg-name="New TV科教 (免費)" tvg-logo="" group-title="mytvsuper",New TV科教 (免費)
+http://127.0.0.1:8081/mymysuper.php?id=NWED
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=ecfeb1656c27c777daa840a3f95bae4c:7579f8a86d20687f13a09174d0278f2b
+#EXTINF:-1 tvg-id="NewTV養生 (免費)" tvg-name="NewTV養生 (免費)" tvg-logo="" group-title="mytvsuper",NewTV養生 (免費)
+http://127.0.0.1:8081/mymysuper.php?id=NWHE
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=d3bc816e5f79917c667c3cf3ab29d74f:64ea95796ef6fbb90050854a694b72fd
+#EXTINF:-1 tvg-id="NewTV功夫 (免費)" tvg-name="NewTV功夫 (免費)" tvg-logo="" group-title="mytvsuper",NewTV功夫 (免費)
+http://127.0.0.1:8081/mymysuper.php?id=NWMA
+
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=73aaeb9e84db423627018017059e0f9d:34148a56250459383f7ef7369073bf39
 #EXTINF:-1 tvg-id="無線衛星新聞臺" tvg-name="無線衛星新聞臺" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",無線衛星新聞臺
 http://127.0.0.1:8081/mymysuper.php?id=CTSN
@@ -1564,6 +1586,12 @@ http://127.0.0.1:8081/mymysuper.php?id=CARI
 
 #EXTINF:-1 tvg-id="NewsWorld (免費)" tvg-name="NewsWorld (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",NewsWorld (免費)
 http://127.0.0.1:8081/mymysuper.php?id=NSWD
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=
+#EXTINF:-1 tvg-id="The Indonesia Channel (免費)" tvg-name="The Indonesia Channel (免費)" tvg-logo="" group-title="mytvsuper",The Indonesia Channel (免費)
+http://127.0.0.1:8081/mymysuper.php?id=INDO
+
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=024f2733fb9afad23490149c601ce47c:034db34d56263c79c7f41448f2a6cfc1
