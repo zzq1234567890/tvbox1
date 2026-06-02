@@ -3317,26 +3317,21 @@ http://127.0.0.1:8081/jiangsuapp.php?id=jsjypro
 
 
 
+#EXTINF:-1   tvg-id="福建綜合"   tvg-name="福建綜合"    tvg-logo=""    group-title="地方",福建綜合
+http://127.0.0.1:8081/fujian.php?id=665248990102917120
+#EXTINF:-1   tvg-id="東南衛視"   tvg-name="東南衛視"    tvg-logo=""    group-title="地方",東南衛視
+http://127.0.0.1:8081/fujian.php?id=665248966136664064
+
+#EXTINF:-1   tvg-id="福建新聞"   tvg-name="福建新聞"    tvg-logo=""    group-title="地方",福建新聞
+http://127.0.0.1:8081/fujian.php?id=665248914378952704
+#EXTINF:-1   tvg-id="福建文旅體育"   tvg-name="福福建文旅體育"    tvg-logo=""    group-title="地方",福建文旅體育
+http://127.0.0.1:8081/fujian.php?id=665248752898248704
+
 #EXTINF:-1   tvg-id="福建少兒頻道"   tvg-name="福建少兒頻道"    tvg-logo=""    group-title="地方",福建少兒
 http://127.0.0.1:8081/fujian.php?id=665248553475870720
 #EXTINF:-1   tvg-id="海峽衛視"   tvg-name="海峽衛視"    tvg-logo=""    group-title="地方",海峽衛視
 http://127.0.0.1:8081/fujian.php?id=665248523855695872
-#EXTINF:-1   tvg-id="福建綜合頻道"   tvg-name="福建綜合頻道"    tvg-logo=""    group-title="地方",福建綜合
-http://127.0.0.1:8081/fujian.php?id=665248990102917120
-#EXTINF:-1   tvg-id="東南衛視"   tvg-name="東南衛視"    tvg-logo=""    group-title="地方",東南衛視
-http://127.0.0.1:8081/fujian.php?id=665248966136664064
-#EXTINF:-1   tvg-id="福建鄉村振興"  tvg-name="福建鄉村振興"    tvg-logo=""    group-title="地方",福建鄉村振興·公共
-http://127.0.0.1:8081/fujian.php?id=665248940467523584
-#EXTINF:-1   tvg-id="福建電視劇頻道"   tvg-name="福建電視劇頻道"    tvg-logo=""    group-title="地方",福建電視劇
-http://127.0.0.1:8081/fujian.php?id=665248891478052864
-#EXTINF:-1   tvg-id="福建旅遊頻道"   tvg-name="福建旅遊頻道"    tvg-logo=""    group-title="地方",福建旅遊
-http://127.0.0.1:8081/fujian.php?id=665248752898248704
-#EXTINF:-1   tvg-id="福建經濟頻道"   tvg-name="福建經濟頻道"    tvg-logo=""    group-title="地方",福建經視
-http://127.0.0.1:8081/fujian.php?id=665248614498799616
-#EXTINF:-1   tvg-id="福建體育頻道"   tvg-name="福建體育頻道"    tvg-logo=""    group-title="地方",福建文體
-http://127.0.0.1:8081/fujian.php?id=665248584991870976
-#EXTINF:-1   tvg-id="福建電視臺新聞頻道"   tvg-name="福建電視臺新聞頻道"    tvg-logo=""    group-title="地方",福建新聞
-http://127.0.0.1:8081/fujian.php?id=665248914378952704
+
 
 #EXTINF:-1   tvg-id="廈門1"   tvg-name="廈門1"    tvg-logo=""    group-title="地方",廈門1
 http://127.0.0.1:8081/hoge.php?id=xmtv1
