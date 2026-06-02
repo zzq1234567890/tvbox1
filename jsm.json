@@ -37,7 +37,7 @@
       "name": "youtubepy",
       "type": 3,
       "api": "./py/YouTube.py",
-	"jar": "./so.jar",
+	"jar": "./lib/so.jar",
 	 "searchable": 1,
       "quickSearch": 1,
       "filterable": 0,
