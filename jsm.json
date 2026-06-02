@@ -6,7 +6,7 @@
             "name": "油管so",
             "type": 3,
             "api": "csp_Ytdl",
-            "jar": "./lz/so.jar",
+            "jar": "file://lz/so.jar",
             "searchable": 1,
             "quickSearch": 1,
             "style": {
@@ -42,7 +42,7 @@
       "quickSearch": 1,
       "filterable": 0,
 			  "ext": {
-                "json": "./lib/youtube.json",
+                "json": "file://lib/youtube.json",
                 "type": "直播#新闻#剧集#电影#综艺#纪录片#音乐#体育#动物#风光#放松#4K#HDR#movie#music#documentary#bbc documentary#national geographic documentary",
                 "keywords": "排行榜,HOT,TRENDS,热门话题,热门趋势,热门综艺,热门电影,热门电视剧,小姐姐",
                 "codecs": "",
