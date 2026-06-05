@@ -1,4 +1,4 @@
-#EXTM3U url-tvg="https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz" 
+zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz(zzzzzzzzzzzzzzzzzzzzz(ZzZz tfzz#EXTM3U url-tvg="https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz" 
 
 
 
@@ -3131,14 +3131,14 @@ http://127.0.0.1:8081/qinghuatv.php
 
 
 
-
-
-
+ 
 #EXTINF:-1   tvg-id="北京衛視"   tvg-name="北京衛視"    tvg-logo="http://epg.51zmt.top:8000/tb1/ws/beijing.png"    group-title="地方",北京衛視4k
 http://127.0.0.1:8081/beijingapp.php?id=bjwsuhd
 #EXTINF:-1   tvg-id="北京衛視"   tvg-name="北京衛視"    tvg-logo="http://epg.51zmt.top:8000/tb1/ws/beijing.png"    group-title="地方",北京衛視
 http://127.0.0.1:8081/beijingapp.php?id=bjws
-#EXTINF:-1   tvg-id="紀實科教"   tvg-name="紀實科教"    tvg-logo="http://epg.51zmt.top:8000/tb1/ws/beijingjishi.png"    group-title="地方",北京紀實科教
+#EXTINF:-1   tvg-id="北京體育休閒"   tvg-name="北京體育休閒"    tvg-logo="http://epg.51zmt.top:8000/tb1/ws/beijingjishi.png"    group-title="地方",北京體育休閒
+http://127.0.0.1:8081/beijingapp.php?id=bjtyxm
+#EXTINF:-1   tvg-id="北京紀實科教"   tvg-name="北京紀實科教"    tvg-logo="http://epg.51zmt.top:8000/tb1/ws/beijingjishi.png"    group-title="地方",北京紀實科教
 http://127.0.0.1:8081/beijingapp.php?id=bjjskj
 #EXTINF:-1   tvg-id="BTV影視"   tvg-name="BTV影視"    tvg-logo="http://epg.51zmt.top:8000/tb1/sheng/BTV影視.png"    group-title="地方",北京影視
 http://127.0.0.1:8081/beijingapp.php?id=bjys
@@ -3152,7 +3152,6 @@ http://127.0.0.1:8081/beijingapp.php?id=bjsh
 http://127.0.0.1:8081/beijingapp.php?id=bjxw
 #EXTINF:-1      tvg-logo="http://epg.51zmt.top:8000/tb1/qt/kaku.png" tvg-id="卡酷少兒"   tvg-name="卡酷少兒"    group-title="地方",卡酷少兒
 http://127.0.0.1:8081/beijingapp.php?id=bjkk
-
 
 
 
