@@ -1,26 +1,12 @@
 {
     "spider": "./pg.jar",
     "sites": [ 
-     {
-             "key": "油管so",
-            "name": "油管so",
-            "type": 3,
-            "api": "csp_Ytdl",
-            "jar": "./lz/so.jar",
-            "searchable": 1,
-            "quickSearch": 1,
-            "style": {
-                "type": "rect",
-                "ratio": 1.33
-            },
-            "filterable": 1,
-            "ext": "./lib/youtube.txt"
-		  	
-        },
+
+
             
         {
-            "key": "油管so1",
-            "name": "油管so1",
+            "key": "油管so",
+            "name": "油管so",
             "type": 3,
             "api": "csp_Ytdl",
             "jar":"./so0604.jar",
