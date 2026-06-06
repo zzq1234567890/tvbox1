@@ -18,7 +18,25 @@
 		  	
         },
             
-        
+        {
+            "key": "油管so",
+            "name": "油管so",
+            "type": 3,
+            "api": "csp_Ytdl",
+            "jar":"./pg/so0604.jar",
+            "searchable": 1,
+            "quickSearch": 1,
+            "style": {
+                "type": "rect",
+                "ratio": 1.33
+            },
+            "ext": {
+                "proxy": "",
+                "youtube_txt": "./lib/youtube.txt"
+            },
+            "filterable": 1
+        },
+
 		
 		{
             "key": "服务器油管",
