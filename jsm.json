@@ -20,10 +20,10 @@
             
         {
             "key": "油管so",
-            "name": "油管so",
+            "name": "油管so1",
             "type": 3,
             "api": "csp_Ytdl",
-            "jar":"./pg/so0604.jar",
+            "jar":"./so0604.jar",
             "searchable": 1,
             "quickSearch": 1,
             "style": {
