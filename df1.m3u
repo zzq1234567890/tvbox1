@@ -1,5 +1,4 @@
-#EXTM3U url-tvg="https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz" 
-
+#EXTM3U url-tvg="https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz"
 
 
 #EXTINF:-1   tvg-id="鳳凰資訊"   tvg-name="鳳凰資訊"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/fenghuangzixun.png"     group-title="中文新聞",鳳凰資訊
