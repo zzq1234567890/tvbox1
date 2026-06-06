@@ -3129,6 +3129,31 @@ http://127.0.0.1:8081/shanghai1.php?id=ly
 http://127.0.0.1:8081/qinghuatv.php
 
 
+#EXTINF:-1   tvg-id="北京衛視"   tvg-name="北京衛視"    tvg-logo="http://epg.51zmt.top:8000/tb1/ws/beijing.png"    group-title="地方",北京衛視4k
+http://127.0.0.1:8081/btimeweb.php?id=bjwsuhd
+#EXTINF:-1   tvg-id="北京衛視"   tvg-name="北京衛視"    tvg-logo="http://epg.51zmt.top:8000/tb1/ws/beijing.png"    group-title="地方",北京衛視
+http://127.0.0.1:8081/btimeweb.php?id=bjws
+#EXTINF:-1   tvg-id="北京體育休閒"   tvg-name="北京體育休閒"    tvg-logo="http://epg.51zmt.top:8000/tb1/ws/beijingjishi.png"    group-title="地方",北京體育休閒
+http://127.0.0.1:8081/btimeweb.php?id=bjtyxm
+#EXTINF:-1   tvg-id="北京紀實科教"   tvg-name="北京紀實科教"    tvg-logo="http://epg.51zmt.top:8000/tb1/ws/beijingjishi.png"    group-title="地方",北京紀實科教
+http://127.0.0.1:8081/btimeweb.php?id=bjjskj
+#EXTINF:-1   tvg-id="BTV影視"   tvg-name="BTV影視"    tvg-logo="http://epg.51zmt.top:8000/tb1/sheng/BTV影視.png"    group-title="地方",北京影視
+http://127.0.0.1:8081/btimeweb.php?id=bjys
+#EXTINF:-1   tvg-id="BTV財經"   tvg-name="BTV財經"    tvg-logo="http://epg.51zmt.top:8000/tb1/sheng/BTV財經.png"    group-title="地方",北京財經
+http://127.0.0.1:8081/btimeweb.php?id=bjcj
+#EXTINF:-1      tvg-logo="http://epg.51zmt.top:8000/tb1/sheng/BTV文藝.png" tvg-id="北京文藝"   tvg-name="北京文藝"    group-title="地方",BTV文藝
+http://127.0.0.1:8081/btimeweb.php?id=bjwy
+#EXTINF:-1   tvg-id="BTV生活"   tvg-name="BTV生活"    tvg-logo="http://epg.51zmt.top:8000/tb1/sheng/BTV生活.png"    group-title="地方",北京生活
+http://127.0.0.1:8081/btimeweb.php?id=bjsh
+#EXTINF:-1   tvg-id="BTV新聞"   tvg-name="BTV新聞"    tvg-logo="http://epg.51zmt.top:8000/tb1/sheng/BTV新聞.png"    group-title="地方",北京新聞
+http://127.0.0.1:8081/btimeweb.php?id=bjxw
+#EXTINF:-1      tvg-logo="http://epg.51zmt.top:8000/tb1/qt/kaku.png" tvg-id="卡酷少兒"   tvg-name="卡酷少兒"    group-title="地方",卡酷少兒
+http://127.0.0.1:8081/btimeweb.php?id=bjkk
+
+
+
+
+
 
  
 #EXTINF:-1   tvg-id="北京衛視"   tvg-name="北京衛視"    tvg-logo="http://epg.51zmt.top:8000/tb1/ws/beijing.png"    group-title="地方",北京衛視4k
