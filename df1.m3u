@@ -1,21 +1,22 @@
 #EXTM3U url-tvg="https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz"
 
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=a2492062d374c62abaa4847227f0be03:1442846a59b1bf304d8d78effefb871d
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/fenghuangzixun.png"     group-title="中文新聞",測試1
-
 https://lin1-gb-s8-prd-cf-sycwr.cdn01.skycdp.com/v2/bmff/cenc/t/SSPOGOD_HD_SU_SKYUK_4026_100_5456092579015190163.mpd
 
- #KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=b331b921fc13c2c9ed599bd2474c5cad:add7fd82d04e525b069a5f120b5f858c
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/fenghuangzixun.png"     group-title="中文新聞",測試1
 https://lin1-gb-s8-prd-cf-sycwr.cdn01.skycdp.com/v2/bmff/cenc/t/SSPOGOD_HD_SU_SKYUK_4026_100_5456092579015190163.mpd
 
 
- #KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=bdaf946590703bef483fe5b043593527:9b11c32c2e8e0d9134cb5581ee8e60e0
- #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/fenghuangzixun.png"     group-title="中文新聞",測試1
-
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/fenghuangzixun.png"     group-title="中文新聞",測試1
 https://lin1-gb-s8-prd-cf-sycwr.cdn01.skycdp.com/v2/bmff/cenc/t/SSPOGOD_HD_SU_SKYUK_4026_100_5456092579015190163.mpd
 
 
