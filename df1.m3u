@@ -14,7 +14,7 @@ https://lin1-gb-s8-prd-cf-sycwr.cdn01.skycdp.com/v2/bmff/cenc/t/SSPOGOD_HD_SU_SK
 
 
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=bdaf946590703bef483fe5b043593527:9b11c32c2e8e0d9134cb5581ee8e60e0
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/fenghuangzixun.png"     group-title="中文新聞",測試1
 https://lin1-gb-s8-prd-cf-sycwr.cdn01.skycdp.com/v2/bmff/cenc/t/SSPOGOD_HD_SU_SKYUK_4026_100_5456092579015190163.mpd
