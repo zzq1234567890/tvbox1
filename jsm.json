@@ -3074,7 +3074,15 @@
             "epg": "https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz",
             "logo": "https://epg.112114.xyz/logo/{name}.png"
            },
-           
+          {
+            "name": "df1",
+            "ua": "okhttp/3.0",
+            "playerType": 2,
+            "url": "http://82.156.243.185:33389/fwc.m3u",
+			"epg": "https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz",
+            "logo": "https://epg.112114.xyz/logo/{name}.png"
+           },
+		
              {
              "name": "mqitv",
              "api": "csp_MQiTV",
