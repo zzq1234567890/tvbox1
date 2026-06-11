@@ -245,43 +245,43 @@
                     },
                     {
                         "n": "亚视精选",
-                        "v": "@drama_asia"
+                        "v": "drama_asia"
                     },
                     {
                         "n": "ATV 亚洲电视",
-                        "v": "@atvhongkong"
+                        "v": "atvhongkong"
                     },
                     {
                         "n": "民视剧集",
-                        "v": "@FTVDRAMA"
+                        "v": "FTVDRAMA"
                     },
                     {
                         "n": "八大剧乐部",
-                        "v": "@gtv-drama"
+                        "v": "gtv-drama"
                     },
                     {
                         "n": "三立华剧",
-                        "v": "@SETdrama"
+                        "v": "SETdrama"
                     },
                     {
                         "n": "华视怀旧频道",
-                        "v": "@cts_arch"
+                        "v": "cts_arch"
                     },
                     {
                         "n": "三立台剧",
-                        "v": "@setdramatw"
+                        "v": "setdramatw"
                     },
                     {
                         "n": "华视戏剧",
-                        "v": "@cts_drama"
+                        "v": "cts_drama"
                     },
                     {
                         "n": "龙华电视",
-                        "v": "@ltv_tw"
+                        "v": "ltv_tw"
                     },
                     {
                         "n": "中视经典戏剧",
-                        "v": "@ctvdrama_classic"
+                        "v": "ctvdrama_classic"
                     },
                     {
                         "n": "国剧放映社",
@@ -584,7 +584,7 @@
                     },
                     {
                         "n": "腾讯视频 - 动漫",
-                        "v": "@TencentVideoAnimation"
+                        "v": "TencentVideoAnimation"
                     },
                     {
                         "n": "一号动漫社 Animation Club",
@@ -592,39 +592,39 @@
                     },
                     {
                         "n": "苍穹动漫社Animation Club",
-                        "v": "@animationclub3747"
+                        "v": "animationclub3747"
                     },
                     {
                         "n": "斗破动漫社 Animation",
-                        "v": "@doupo"
+                        "v": "doupo"
                     },
                     {
                         "n": "卡通狂欢嘉会",
-                        "v": "@CartoonGala-r8"
+                        "v": "CartoonGala-r8"
                     },
                     {
                         "n": "国漫社",
-                        "v": "@Animation"
+                        "v": "Animation"
                     },
                     {
                         "n": "Ani-Mi动漫迷动画频道",
-                        "v": "@animiforanime"
+                        "v": "animiforanime"
                     },
                     {
                         "n": "3D国漫工厂",
-                        "v": "@3DGuoman"
+                        "v": "3DGuoman"
                     },
                     {
                         "n": "阅文动漫",
-                        "v": "@yuewenanimation"
+                        "v": "yuewenanimation"
                     },
                     {
                         "n": "哔哩",
-                        "v": "@madebybilibili"
+                        "v": "madebybilibili"
                     },
                     {
                         "n": "优酷",
-                        "v": "@youkuanimation"
+                        "v": "youkuanimation"
                     },
                     {
                         "n": "大陆",
