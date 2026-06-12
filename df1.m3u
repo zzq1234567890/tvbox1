@@ -1,4 +1,15 @@
 #EXTM3U url-tvg="https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz"
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=00225c79d15b21ba40c0e6978274c3ec:dd34f29471fd2e7fce87772a53367dda
+#EXTINF:-1 group-title="中文新聞" tvg-id="" tvg-name"",Peacock 4K Feed
+https://g002-sle-us-cmaf-prd-fy.cdn.peacocktv.com/v~1-0-0_e~1781299783_f~0_g~1_s~5641a55e-58eb-4016-b239-519de6ca62d1_u~0e39401beba8e6cc8c9d7bdeea89d623837fb40633fe7e604e20dd6dd290c4ffd384edc30196c51cb314d06b266906da_k~A_l~78_x~1f314c897b55690cd33f59c007322914/co01/pcksle2/Content/CMAF_CTR-4s-v2/Live/channel(5021147-723005-49113b9f4fd)/master_2min.mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=00227ce5322699d94c9b4e4f757afc9c:40c71bc63e44d73c2a77f998c72caa53
+#EXTINF:-1 group-title="中文新聞" tvg-id="" tvg-name"", Live event
+https://g003-sle-us-cmaf-prd-fy.cdn.peacocktv.com/pck-sle/us-west-2/v1/dash/6f3f45fea6332a47667932dede90d20a96f2690c/peacock-dash-sle-4s-generic-cfd/co01/pcksle2/Content/CMAF_CTR-4s-v2/Live/channel(5021104-722962-4911129d412)/master_2hr.mpd?c3.ri=6a2b0450_Q1ZYMDc_1_RkFTVExZ_f10fe37577d7%3A0&aws.sessionId=4bfab5e4-c69b-4f2e-b329-5157e0fcb0c0&ck=eyIwMDIyN2NlNTMyMjY5OWQ5NGM5YjRlNGY3NTdhZmM5YyI6IjQwYzcxYmM2M2U0NGQ3M2MyYTc3Zjk5OGM3MmNhYTUzIn0%3D
+
+
+
 #EXTINF:-1   tvg-id="鳳凰資訊"   tvg-name="鳳凰資訊"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/fenghuangzixun.png"     group-title="中文新聞",鳳凰資訊
 http://127.0.0.1:8081/fenghuangyoutube.php
 #EXTINF:-1   tvg-id="CCTV-4美洲頻道"   tvg-name="CCTV-4美洲頻道"    tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV4.png"    group-title="中文新聞",CCTV-4美洲頻道
