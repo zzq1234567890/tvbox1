@@ -1,5 +1,23 @@
 #EXTM3U url-tvg="https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz"
 #KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=d14658a0ede94debcb4013b2056ba6d1:60838a3176127fed0eaf038a5575de11
+#EXTINF:-1 group-title="中文新聞" tvg-id="" tvg-name"",TNT1
+https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/vaplpo3app/out/v1/49b4d538ec854efa90d45084866cf7f9/cenc.mpd
+
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key= 0b59ce06de74ed84f2eda5e81dadba13:48e4ba4ad6c2a60d2bda5d71a0050844
+
+#EXTINF:-1 group-title="中文新聞" tvg-id="" tvg-name"",TNT2
+https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/3j04z3pbit/out/v1/042ee0757ed348bf8c26f75895cae871/cenc.mpd
+
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=12413e2c2855cfc59ce0fe6b20cc71ca:08d55a8f5fc93a9375f9b0cb2e1739ca
+#EXTINF:-1 group-title="中文新聞" tvg-id="" tvg-name"",TNT3
+https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/2szrn2y3ep/out/v1/eacd8a4207dc4f0d9661a4b085b8fdd9/cenc.mpd
+
+
+
+#KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=00225c79d15b21ba40c0e6978274c3ec:dd34f29471fd2e7fce87772a53367dda
 #EXTINF:-1 group-title="中文新聞" tvg-id="" tvg-name"",Peacock 4K Feed
 https://g002-sle-us-cmaf-prd-fy.cdn.peacocktv.com/v~1-0-0_e~1781299783_f~0_g~1_s~5641a55e-58eb-4016-b239-519de6ca62d1_u~0e39401beba8e6cc8c9d7bdeea89d623837fb40633fe7e604e20dd6dd290c4ffd384edc30196c51cb314d06b266906da_k~A_l~78_x~1f314c897b55690cd33f59c007322914/co01/pcksle2/Content/CMAF_CTR-4s-v2/Live/channel(5021147-723005-49113b9f4fd)/master_2min.mpd
