@@ -2963,6 +2963,12 @@
             "logo": "https://epg.112114.xyz/logo/{name}.png"
              },
 		{
+            "name": "不知道誰",
+            "ua": "okhttp/3.0",
+            "playerType": 2,
+            "url": "https://garyshare.sharewithyou.dpdns.org/mylist.m3u"
+		},
+		{
             "name": "不知道誰4gtv",
             "ua": "okhttp/3.0",
             "playerType": 2,
