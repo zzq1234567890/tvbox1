@@ -3084,6 +3084,24 @@ http://127.0.0.1:8081/dongfang5g.php?id=dfcj
 http://127.0.0.1:8081/dongfang5g.php?id=yxfy 
 
 
+#EXTINF:-1   tvg-id="東方衛視"   tvg-name="東方衛視"    tvg-logo="http://epg.51zmt.top:8000/tb1/ws/dongfang.png"    group-title="地方",東方衛視4k
+http://127.0.0.1:8081/shanghaiweb1.php?id=dfws4k
+#EXTINF:-1   tvg-id="新聞綜合"   tvg-name="新聞綜合"    tvg-logo="http://epg.51zmt.top:8000/tb1/qt/shangshixinwen.png"     group-title="地方",上海新聞綜合
+http://127.0.0.1:8081/shanghaiweb1.php?id=shxwzh
+#EXTINF:-1   tvg-id="都市頻道"   tvg-name="都市頻道"    tvg-logo="https://assets.livednow.com/logo/上海都市.png"     group-title="地方",上海都市
+http://127.0.0.1:8081/shanghaiweb1.php?id=dspd
+#EXTINF:-1   tvg-id="第一財經"   tvg-name="第一財經"    tvg-logo="http://epg.51zmt.top:8000/tb1/qt/diyicaijing.png"    group-title="地方",第一財經
+http://127.0.0.1:8081/shanghaiweb1.php?id=dycj
+#EXTINF:-1   tvg-id="哈哈炫動"   tvg-name="哈哈炫動"    tvg-logo="https://assets.livednow.com/logo/哈哈炫動.png"    group-title="地方",哈哈炫動
+http://127.0.0.1:8081/shanghaiweb1.php?id=hhxd
+
+#EXTINF:-1   tvg-id="紀實人文"   tvg-name="紀實人文"    tvg-logo="https://epg.v1.mk/logo/紀實人文.png"    group-title="地方",上海新紀實
+http://127.0.0.1:8081/shanghaiweb1.php?id=jsrw
+#EXTINF:-1   tvg-id="外語頻道"   tvg-name="外語頻道"    tvg-logo=""    group-title="地方",上海魔都
+http://127.0.0.1:8081/shanghaiweb1.php?id=mdy
+#EXTINF:-1   tvg-id="上海五星體育"   tvg-name="上海五星體育"    tvg-logo=""    group-title="地方",五星體育
+http://127.0.0.1:8081/shanghaiweb1.php?id=wxty
+
 
 
 #EXTINF:-1   tvg-id="東方衛視"   tvg-name="東方衛視"    tvg-logo="http://epg.51zmt.top:8000/tb1/ws/dongfang.png"    group-title="地方",東方衛視4k
