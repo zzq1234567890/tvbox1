@@ -1758,6 +1758,14 @@ http://127.0.0.1:8081/nowtvweb.php?id=333
 
 http://127.0.0.1:8081/nowtvweb.php?id=630
 
+#EXTINF:-1 tvg-id="TVB無綫新聞臺(TVB News)" tvg-name="TVB無綫新聞臺(TVB News)" tvg-logo="" group-title="mytvsuper",TVB無綫新聞臺(TVB News)
+http://127.0.0.1:8081/tvbnewsweb.php?channel=C
+#EXTINF:-1 tvg-id="TVB無綫新聞臺(TVB News)" tvg-name="TVB無綫新聞臺(TVB News)" tvg-logo="" group-title="mytvsuper",TVB無綫新聞財經臺(TVB News)
+http://127.0.0.1:8081/tvbnewsweb.php?channel=F
+#EXTINF:-1 tvg-id="TVB無綫新聞臺(TVB News)" tvg-name="TVB無綫新聞臺(TVB News)" tvg-logo="" group-title="mytvsuper",TVB無綫新聞臺(TVB News)
+http://127.0.0.1:8081/tvbnewsweb1.php?channel=C
+#EXTINF:-1 tvg-id="TVB無綫新聞臺(TVB News)" tvg-name="TVB無綫新聞臺(TVB News)" tvg-logo="" group-title="mytvsuper",TVB無綫新聞財經臺(TVB News)
+http://127.0.0.1:8081/tvbnewsweb1.php?channel=F
 
 
 #EXTINF:-1 tvg-id="香港電臺31" tvg-name="香港電臺31" tvg-logo="" group-title="港澳臺",香港電臺31test1
