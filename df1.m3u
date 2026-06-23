@@ -1760,7 +1760,7 @@ http://127.0.0.1:8081/nowtvweb.php?id=630
 
 #EXTINF:-1 tvg-id="TVB無綫新聞臺(TVB News)" tvg-name="TVB無綫新聞臺(TVB News)" tvg-logo="" group-title="港澳臺",TVB無綫新聞臺(TVB News)
 http://127.0.0.1:8081/tvbnewsweb.php?channel=C
-#EXTINF:-1 tvg-id="TVB無綫新聞臺(TVB News)" tvg-name="TVB無綫新聞臺(TVB News)" tvg-logo="" group-title="港澳臺",TVB無綫新聞財經臺(TVB News)
+#EXTINF:-1 tvg-id="TVB Plus (免費)" tvg-name="TVB Plus (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="港澳臺",TVB無綫新聞財經臺(TVB News)
 http://127.0.0.1:8081/tvbnewsweb.php?channel=F
 
 
