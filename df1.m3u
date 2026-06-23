@@ -1769,8 +1769,10 @@ http://127.0.0.1:8081/tvbnewsweb.php?channel=F
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=bba574b22adb328fad3e0496157d4568:85c32f42f52c3fb9cc5a8ef54088b4e9
+#KODIPROP:inputstream.adaptive.license_key=https://rthk.live.ott.irdeto.com/licenseServer/widevine/v1/rthk/license?contentId=RTHK_CH31_Pull_DASH_WV_PR
 https://rthktv31-vos-live.akamaized.net/Content/DASH/Live/channel(rthk_ch31)/master.mpd
+
+
 #EXTINF:-1 tvg-id="香港電臺32" tvg-name="香港電臺32" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/RTHK.svg/200px-RTHK.svg.png" group-title="港澳臺",香港電臺32test
  #KODIPROP:inputstreamaddon=inputstream.adaptive
  #KODIPROP:inputstream.adaptive.manifest_type=dash
