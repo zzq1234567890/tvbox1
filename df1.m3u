@@ -1762,10 +1762,7 @@ http://127.0.0.1:8081/nowtvweb.php?id=630
 http://127.0.0.1:8081/tvbnewsweb.php?channel=C
 #EXTINF:-1 tvg-id="TVB無綫新聞臺(TVB News)" tvg-name="TVB無綫新聞臺(TVB News)" tvg-logo="" group-title="港澳臺",TVB無綫新聞財經臺(TVB News)
 http://127.0.0.1:8081/tvbnewsweb.php?channel=F
-#EXTINF:-1 tvg-id="TVB無綫新聞臺(TVB News)" tvg-name="TVB無綫新聞臺(TVB News)" tvg-logo="" group-title="港澳臺",TVB無綫新聞臺(TVB News)
-http://127.0.0.1:8081/tvbnewsweb1.php?channel=C
-#EXTINF:-1 tvg-id="TVB無綫新聞臺(TVB News)" tvg-name="TVB無綫新聞臺(TVB News)" tvg-logo="" group-title="港澳臺",TVB無綫新聞財經臺(TVB News)
-http://127.0.0.1:8081/tvbnewsweb1.php?channel=F
+
 
 
 #EXTINF:-1 tvg-id="香港電臺31" tvg-name="香港電臺31" tvg-logo="" group-title="港澳臺",香港電臺31test1
@@ -1996,7 +1993,7 @@ http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live121
 #EXTINF:-1 tvg-id="TV5MONDE STYLE HD 生活時尚" tvg-name="TV5MONDE STYLE HD 生活時尚" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-live122_mobile.png" group-title="4gtv",TV5MONDE STYLE HD 生活時尚
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live122
 #EXTINF:-1 tvg-id="MagellanTV頻道 (麥哲倫頻道) " tvg-name="MagellanTV頻道 (麥哲倫頻道) " tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_MGTV_mobile.png" group-title="4gtv",MagellanTV頻道 (麥哲倫頻道) 
-http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live123
+#http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live123
 #EXTINF:-1 tvg-id="ROCK Xstream搖滾極限頻道" tvg-name="ROCK Xstream搖滾極限頻道" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-live124.png" group-title="4gtv",ROCK Xstream搖滾極限頻道
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live124
 #EXTINF:-1 tvg-id="公視戲劇" tvg-name="公視戲劇" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv042_mobile.png" group-title="4gtv",公視戲劇
