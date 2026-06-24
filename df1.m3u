@@ -1761,7 +1761,7 @@ http://127.0.0.1:8081/tvbnewsweb.php?channel=C
 #EXTINF:-1 tvg-id="TVB Plus (免費)" tvg-name="TVB Plus (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="港澳臺",TVB無綫新聞財經臺(TVB News)
 http://127.0.0.1:8081/tvbnewsweb.php?channel=F
 
- yspios.php
+ 
 
 #EXTINF:-1 tvg-id="香港電臺31" tvg-name="香港電臺31" tvg-logo="" group-title="港澳臺",香港電臺31test1
 #KODIPROP:inputstreamaddon=inputstream.adaptive
@@ -1770,7 +1770,10 @@ http://127.0.0.1:8081/tvbnewsweb.php?channel=F
 #KODIPROP:inputstream.adaptive.license_key=7b30ca98e59a3e3c8df53da89ff59323:a1b2c3d4e5f67890a1b2c3d4e5f67890
 https://rthktv31-vos-live.akamaized.net/Content/DASH/Live/channel(rthk_ch31)/master.mpd
 
-
+#EXTINF:-1 tvg-id="RTHK32" tvg-logo="https://webstatic.rthk.hk/img/tv_logo_32_s.svg" tvg-name="RTHK 32" group-title="港澳臺", RTHK 32(DTMB)
+##KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=451d2f5521f03118ab0b08fff91b7bce:c1997f65812cdf0c0651991c6c5a8c5b
+https://rthktv32-vos-live.akamaized.net/Content/DASH/Live/channel(rthk_ch32)/master.mpd
 #EXTINF:-1 tvg-id="香港電臺32" tvg-name="香港電臺32" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/RTHK.svg/200px-RTHK.svg.png" group-title="港澳臺",香港電臺32test
  #KODIPROP:inputstreamaddon=inputstream.adaptive
  #KODIPROP:inputstream.adaptive.manifest_type=dash
