@@ -24,7 +24,7 @@
         },
 
 		{
-      "key": "py_fyyy",
+      "key": "py_fy",
       "name": "枫叶影院py",
       "type": 3,
       "api": "./py/枫叶影院.py",
