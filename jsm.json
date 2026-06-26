@@ -787,32 +787,7 @@
             "searchable": 1,
             "changeable": 0
         },
-        {
-            "key": "克隆合集",
-            "name": "克隆合集",
-            "type": 4,
-            "api": "http://zhangqun66.xyz/klhj.php",
-            "searchable": 1,
-            "quickSearch": 1,
-            "style": {
-                "type": "rect",
-                "ratio": 1.33
-            },
-            "changeable": 1,
-            "filterable": 0
-        },
-        {
-            "key": "采集集合",
-            "name": "采集集合",
-            "type": 1,
-            "api": "http://zhangqun1818.serv00.net/cjjh.php",
-            "searchable": 1,
-            "style": {
-                "type": "rect",
-                "ratio": 1.33
-            },
-            "changeable": 1
-        },
+    
         {
             "key": "服务器油管",
             "name": "服务器油管",
