@@ -886,9 +886,9 @@ http://127.0.0.1:8081/shandong1.php?id=1
 #EXTINF:-1   tvg-id="LOVE NATURE有線"   tvg-name="LOVE NATURE有線"    tvg-logo=""    group-title="4K",love nature 4K
 https://pb-ehs1glsha1juy.akamaized.net/Love_Nature_4K.m3u8
 
- #EXTINF:-1 tvg-id="Bloomberg.HD.us2" tvg-name="Bloomberg Television 4K" tvg-logo="http://schedulesdirect-api20141201-logos.s3.dualstack.us-east-1.amazonaws.com/stationLogos/s71799_dark_360w_270h.png" group-title="4K",Bloomberg Television 4K
-#https://iptv.707626.xyz/ch/08faf53432bbf172d66658f7d6bb7eed/master.m3u8
+#EXTINF:-1 tvg-id="Bloomberg.HD.us2" tvg-name="Bloomberg Television 4K" tvg-logo="http://schedulesdirect-api20141201-logos.s3.dualstack.us-east-1.amazonaws.com/stationLogos/s71799_dark_360w_270h.png" group-title="4K",Bloomberg Television 4K
 https://d8975dc3.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/U2Ftc3VuZy1nYl9CbG9vbWJlcmdUVlBsdXNfSExT/playlist.m3u8
+
 #EXTINF:-1 tvg-id="USBA3800005NI" tvg-name="Clarity 4K" tvg-logo="https://i.imgur.com/M87kbVk.png" group-title="4K",Clarity 4K
 https://iptv.707626.xyz/ch/6b524eba472d8b84fc243b6510737145/master.m3u8
 
