@@ -22,15 +22,18 @@
             },
             "filterable": 1
         },
-{
-      "key": "枫叶4k影院",
-      "name": "枫叶4k影院(JS源)",
-      "type": 3,
-      "api": "./js/枫叶4k影院.js",
-      "quickSearch": 1,
-      "changeable": 0,
-      "filterable": 1
-    },
+        {
+	        "key":"枫叶4k",
+			"name":"枫叶4k",
+			"type":3,
+			"api":"./js/枫叶4k影院.js",
+			"jar": "./fm.jar",
+			"style":{
+				"type":"rect",
+				"ratio":1.33
+			},
+			"changeable":1
+		},
 		{
       "key": "py_fy",
       "name": "枫叶影院py",
