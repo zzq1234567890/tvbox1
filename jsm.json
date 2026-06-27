@@ -2946,6 +2946,13 @@
             "epg": "https://epg.v1.mk/json?ch={name}&date={date}",
             "logo": "https://epg.112114.xyz/logo/{name}.png"
              },
+		 {
+            "name": "YouTubeWorldLive每6小时自动抓取",
+            "ua": "okhttp/3.0",
+            "playerType": 2,
+            ####"url": "https://raw.githubusercontent.com/zzq12345/epgtest/refs/heads/main/youtubeworld.m3u",
+			"url": "https://raw.githubusercontent.com/zzq12345/epgtest/refs/heads/main/youtubeworld.m3u"
+		 },
 		{
             "name": "不知道誰",
             "ua": "okhttp/3.0",
