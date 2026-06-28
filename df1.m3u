@@ -1121,6 +1121,568 @@ https://lb1-live-mv.v2h-cdn.com/hls/fdee/mvmalldd/mvmalldd.m3u8
 https://lb1-live-mv.v2h-cdn.com/hls/ffff/mvtv75/mvtv75.m3u8
 #EXTINF:-1   group-title="mytvsuper",MVMall Plus
 https://lb1-live-mv.v2h-cdn.com/hls/fded/mvmallplus/mvmallplus.m3u8
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=0737b75ee8906c00bb7bb8f666da72a0:15f515458cdb5107452f943a111cbe89
+#EXTINF:-1 tvg-id="SUPER FREE (免費)" tvg-name="SUPER FREE (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1679473718355177_CWIN.png" group-title="mytvsuper",SUPER FREE (免費)
+https://cdn.19891230.eu.org/myTV/CWIN/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=977869c9cd6aa804921a2e20724b9e6c:16f76fa19ae5199c920de5cfc1a6ca1e
+#EXTINF:-1 tvg-id="SUPER獎門人 (免費)" tvg-name="SUPER獎門人 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1745985345748344_SVAR.png" group-title="mytvsuper",SUPER獎門人 (免費)
+https://cdn.19891230.eu.org/myTV/SVAR/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=c83f061a8685a0071fc62c65b6ab7af3:b8cf98951b940dca9174230430faf10d
+#EXTINF:-1 tvg-id="愛．回家SUPER煲 (免費)" tvg-name="愛．回家SUPER煲 (免費)" tvg-logo="" group-title="mytvsuper",愛．回家SUPER煲 (免費)
+https://cdn.19891230.eu.org/myTV/SEYT/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=2370118ce3d6fafe17502b0176abf9ae:357c7b5a9d01c25d8e30e46cc396de08
+#EXTINF:-1 tvg-id="SUPER識食 (免費)" tvg-name="SUPER識食 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1745985725790287_SFOO.png" group-title="mytvsuper",SUPER識食 (免費)
+https://cdn.19891230.eu.org/myTV/SFOO/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=206a559933b51efbba226fe939040d68:c671ac5afccd7f2d26839e6d9b91d130
+#EXTINF:-1 tvg-id="SUPER識嘆 (免費)" tvg-name="SUPER識嘆 (免費)" tvg-logo="" group-title="mytvsuper",SUPER識嘆 (免費)
+https://cdn.19891230.eu.org/myTV/STRA/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=2370118ce3d6fafe17502b0176abf9ae:357c7b5a9d01c25d8e30e46cc396de08
+#EXTINF:-1 tvg-id="SUPER FUN (免費)" tvg-name="SUPER FUN (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1779420378922400_STRA.jpeg" group-title="mytvsuper",SUPER FUN (免費)
+https://cdn.19891230.eu.org/myTV/STRA/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=0d321fc47b49372df79500c8b7a5e9fc:0c4be4e8f7ccedced7de0b7434493be4
+#EXTINF:-1 tvg-id="SUPER Music (免費)" tvg-name="SUPER Music (免費)" tvg-logo="" group-title="mytvsuper",SUPER Music (免費)
+https://cdn.19891230.eu.org/myTV/SMUS/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=d841bf650caca3bf4441a536ae8580d5:c401a71b63dfa7bab1be378605973c2c
+#EXTINF:-1 tvg-id="SUPER驚 (免費)" tvg-name="SUPER驚 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1779422039995131_SGOL.webp" group-title="mytvsuper",SUPER驚 (免費)
+https://cdn.19891230.eu.org/myTV/SGOL/index.mpd
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=203638a2e2fd4786190a58393640de54:97e1ec12dda5ee64561e072d9825e3b0
+#EXTINF:-1 tvg-id="SUPER煲劇 (免費)" tvg-name="SUPER煲劇 (免費)" tvg-logo="" group-title="mytvsuper",SUPER煲劇 (免費)
+https://cdn.19891230.eu.org/myTV/SSIT/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=b6c020768505fa6c7910726b8ca302f0:4b5cba6d27559e6f28a232791f068824
+#EXTINF:-1 tvg-id="SUPER亞視劇 (免費)" tvg-name="SUPER亞視劇 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1779422061749535_STVM.webp" group-title="mytvsuper",SUPER亞視劇 (免費)
+https://cdn.19891230.eu.org/myTV/STVM/index.mpd
+
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=248ed59a4671da39b3bb71f860760b91:b0bd7d1495e3df963ae21790551094e1
+#EXTINF:-1 tvg-id="真情SUPER煲 (免費)" tvg-name="真情SUPER煲 (免費)" tvg-logo="" group-title="mytvsuper",真情SUPER煲 (免費)
+https://cdn.19891230.eu.org/myTV/SDOC/index.mpd
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=0d57dc882191c22a9f8185ab7e9a629b:0d2b2edbea04dde8ff880d20e20261ad
+#EXTINF:-1 tvg-id="SUPER Sports (免費)" tvg-name="SUPER Sports (免費)" tvg-logo="" group-title="mytvsuper",SUPER Sports (免費)
+https://cdn.19891230.eu.org/myTV/SSPT/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=72de7d0a1850c8d40c5bdf9747a4ca7c:4967537ff0bc8209277160759de4adef
+#EXTINF:-1 tvg-id="myTV SUPER 18臺" tvg-name="myTV SUPER 18臺" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",myTV SUPER 18臺
+https://cdn.19891230.eu.org/myTV/C18/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=1b778a3241e5fa3bb97d1cb9b57f9e09:3b1f318259fcf0dccd04742cd679fd25
+#EXTINF:-1 tvg-id="28AI智慧賽馬 (免費)" tvg-name="28AI智慧賽馬 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1725457904756709_EVT1.png" group-title="mytvsuper",28AI智慧賽馬 (免費)
+#https://cdn.19891230.eu.org/myTV/C28/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=8fe3db1a24969694ae3447f26473eb9f:5cce95833568b9e322f17c61387b306f
+#EXTINF:-1 tvg-id="黃金翡翠臺 (免費)" tvg-name="黃金翡翠臺 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1651032648621471_TVG.png" group-title="mytvsuper",黃金翡翠臺 (免費)
+https://cdn.19891230.eu.org/myTV/TVG/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=980d5c8748c494a3c57902a3074e4ed4:76dcab6f98a0d8145b9d25c32fa341c4
+#EXTINF:-1 tvg-id="2025香港小姐競選---我最喜愛佳麗投票頻道" tvg-name="2025香港小姐競選 - 我最喜愛佳麗投票頻道" tvg-logo="https://assets.mytvsuper.com/channel/1651032648621471_TVG.png" group-title="mytvsuper",2025香港小姐競選 - 我最喜愛佳麗投票頻道
+#https://cdn.19891230.eu.org/myTV/EV11/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=2c045f5adb26d391cc41cd01f00416fa:fc146771a9b096fc4cb57ffe769861be
+#EXTINF:-1 tvg-id="翡翠臺 (免費)" tvg-name="翡翠臺 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1690795271513283_J4K.png" group-title="mytvsuper",翡翠臺(超高清)
+https://cdn.19891230.eu.org/myTV/JUHD/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=0958b9c657622c465a6205eb2252b8ed:2d2fd7b1661b1e28de38268872b48480
+#EXTINF:-1 tvg-id="翡翠臺 (免費)" tvg-name="翡翠臺 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",翡翠臺 (免費)
+https://cdn.19891230.eu.org/myTV/J/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=56603b65fa1d7383b6ef0e73b9ae69fa:5d9d8e957d2e45d8189a56fe8665aaaa
+#EXTINF:-1 tvg-id="TVB Plus (免費)" tvg-name="TVB Plus (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",TVB Plus (免費)
+https://cdn.19891230.eu.org/myTV/B/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=90a0bd01d9f6cbb39839cd9b68fc26bc:51546d1f2af0547f0e961995b60a32a1
+#EXTINF:-1 tvg-id="無綫新聞臺 (免費)" tvg-name="無綫新聞臺 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",無綫新聞臺 (免費)
+https://cdn.19891230.eu.org/myTV/C/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=e04facdd91354deee318c674993b74c1:8f97a629de680af93a652c3102b65898
+#EXTINF:-1 tvg-id="明珠臺 (免費)" tvg-name="明珠臺 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",明珠臺 (免費)
+https://cdn.19891230.eu.org/myTV/P/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=6c308490b3198b62a988917253653692:660578b8966fe8012ad51b9aae7a5d78
+#EXTINF:-1 tvg-id="千禧經典臺" tvg-name="千禧經典臺" tvg-logo="https://assets.mytvsuper.com/channel/1651032673030814_CTVC.png" group-title="mytvsuper",千禧經典臺
+https://cdn.19891230.eu.org/myTV/CTVC/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=df5c0e617dffc3e3c44cb733dccb33c0:7d00ec9cd4f54d5baf94c03edc8cfe25
+#EXTINF:-1 tvg-id="亞洲劇臺" tvg-name="亞洲劇臺" tvg-logo="https://assets.mytvsuper.com/channel/1651032687467218_CTVS.png" group-title="mytvsuper",亞洲劇臺
+https://cdn.19891230.eu.org/myTV/CTVS/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=baae227b5fc06e2545868d4a1c9ced14:8cd460458b0bdecca5c12791b6409278
+#EXTINF:-1 tvg-id="華語劇臺" tvg-name="華語劇臺" tvg-logo="https://assets.mytvsuper.com/channel/1651032713939760_CDR3.png" group-title="mytvsuper",華語劇臺
+https://cdn.19891230.eu.org/myTV/CDR3/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=acd93a5f665efd4feadb26f5ed48fd96:c6ce58ef9cce30638e0c2e9fc45a6dbd
+#EXTINF:-1 tvg-id="黃金華劇臺" tvg-name="黃金華劇臺" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",黃金華劇臺
+https://cdn.19891230.eu.org/myTV/TVO/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=6fa0e47750b5e2fb6adf9b9a0ac431a3:a256220e6c2beaa82f4ca5fba4ec1f95
+#EXTINF:-1 tvg-id="娛樂新聞臺 (免費)" tvg-name="娛樂新聞臺 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1651033225649707_CTVE.png" group-title="mytvsuper",娛樂新聞臺 (免費)
+https://cdn.19891230.eu.org/myTV/CTVE/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=c91c296ef6c46b3f2af1da257553bd17:d6e92d5e594f6f8e494a6e1c9df75298
+#EXTINF:-1 tvg-id="戲曲臺" tvg-name="戲曲臺" tvg-logo="https://assets.mytvsuper.com/channel/1651033348934776_CCOC.png" group-title="mytvsuper",戲曲臺
+https://cdn.19891230.eu.org/myTV/CCOC/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=42527ca90ad525ba2eac9979c93d3bca:b730006ad1da48b412ceb1f9e36a833d
+#EXTINF:-1 tvg-id="SUPER Kids Channel" tvg-name="SUPER Kids Channel" tvg-logo="https://assets.mytvsuper.com/channel/1651033359059853_KID.png" group-title="mytvsuper",SUPER Kids Channel
+https://cdn.19891230.eu.org/myTV/KID/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=9c302eb50bef5a9589d97cb90982b05e:2603e646caafe22bc4e8a17b5a2dd55b
+#EXTINF:-1 tvg-id="ZooMoo" tvg-name="ZooMoo" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",ZooMoo
+https://cdn.19891230.eu.org/myTV/ZOO/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=0e69430290ed7b00af4db78419dcad8b:e4769b57a66e8e9737d6d86f317600c0
+#EXTINF:-1 tvg-id="Nickelodeon" tvg-name="Nickelodeon" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",Nickelodeon
+https://cdn.19891230.eu.org/myTV/CNIKO/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=9f1385d2a12a67b572b9d968eb850337:3086bcd49a909606a8686858c05c7e33
+#EXTINF:-1 tvg-id="Nick Jr" tvg-name="Nick Jr" tvg-logo="https://assets.mytvsuper.com/channel/1651033388527501_CNIJR.png" group-title="mytvsuper",Nick Jr
+https://cdn.19891230.eu.org/myTV/CNIJR/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=5b90da7fd2f018bf85a757241075626f:75c0897b4cf5ce154ddae86eddb79cd3
+#EXTINF:-1 tvg-id="粵語片臺" tvg-name="粵語片臺" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",粵語片臺
+https://cdn.19891230.eu.org/myTV/CCLM/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=c5d6f2afbd6b276312b0471a653828e1:ecbbb4a3ffa2200ae69058e20e71e91b
+#EXTINF:-1 tvg-id="美亞電影臺" tvg-name="美亞電影臺" tvg-logo="https://assets.mytvsuper.com/channel/1651033399435307_CMAM.png" group-title="mytvsuper",美亞電影臺
+https://cdn.19891230.eu.org/myTV/CMAM
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=b22355363ab2b09a6def54be0c89b9f2:4b196c2bf24b37e82a81031246de6efe
+#EXTINF:-1 tvg-id="Thrill" tvg-name="Thrill" tvg-logo="https://assets.mytvsuper.com/channel/1651033409415375_CTHR.png" group-title="mytvsuper",Thrill
+https://cdn.19891230.eu.org/myTV/CTHR/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=627b6ca150887912bec47ae4a9b85269:2bf49b2105d20544a6db89c0577b9802
+#EXTINF:-1 tvg-id="天映經典頻道" tvg-name="天映經典頻道" tvg-logo="https://assets.mytvsuper.com/channel/1651033418318599_CCCM.png" group-title="mytvsuper",天映經典頻道
+https://cdn.19891230.eu.org/myTV/CCCM/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=cabb16d20e71b512f24e9ece0cb09396:2d43505980a22014ee1a476880982308
+#EXTINF:-1 tvg-id="中國電影頻道" tvg-name="中國電影頻道" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",中國電影頻道
+https://cdn.19891230.eu.org/myTV/CMC/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=358eacad1f06e8e375493dabee96d865:461a02b2eb1232c6c100b95bd0bf40f8
+#EXTINF:-1 tvg-id="ROCK Action" tvg-name="ROCK Action" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",ROCK Action
+https://cdn.19891230.eu.org/myTV/CRTX/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=221591babff135a71961d09399d2c922:c80ca4c7b801a76a07179dfb7debb57d
+#EXTINF:-1 tvg-id="PopC" tvg-name="PopC" tvg-logo="" group-title="mytvsuper",PopC
+https://cdn.19891230.eu.org/myTV/POPC/index.mpd
+
+#EXTINF:-1 tvg-id="Action Hollywood Movies (免費)" tvg-name="Action Hollywood Movies (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1745931648041810_ACTM.png" group-title="mytvsuper",Action Hollywood Movies (免費)
+https://cdn.19891230.eu.org/myTV/ACTM/index.mpd
+
+#EXTINF:-1 tvg-id="Rialto Classic Movies (RCM) (免費)" tvg-name="Rialto Classic Movies (RCM) (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1745931759705569_RCM.png" group-title="mytvsuper",Rialto Classic Movies (RCM) (免費)
+https://cdn.19891230.eu.org/myTV/RCM/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=3b4a44c5ef3217c55a357ad976d328b2:f3355e5a30722e631031b851642c27f1
+#EXTINF:-1 tvg-id="KIX" tvg-name="KIX" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",KIX
+https://cdn.19891230.eu.org/myTV/CKIX/index.mpd
+
+#EXTINF:-1 tvg-id="TRACE Sport Stars (免費)" tvg-name="TRACE Sport Stars (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",TRACE Sport Stars (免費)
+https://cdn.19891230.eu.org/myTV/TRSP/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=03fb0f439f942f50d06bf23a511bf4f8:bae7115da07195263e50ae5fc8bbe4f3
+#EXTINF:-1 tvg-id="Love Nature HD" tvg-name="Love Nature HD" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",Love Nature HD
+https://cdn.19891230.eu.org/myTV/LNH/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=037c644cb92137ac5c8d653e952e4c8f:b3b2fcbe576a63cf3bbb9425da3de4cf
+#EXTINF:-1 tvg-id="Love Nature 4K" tvg-name="Love Nature 4K" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",Love Nature 4K
+https://cdn.19891230.eu.org/myTV/LN4/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=a8f381c2a3114cc6c55f50b6ff0c78f3:86922e5993788488e1eca857c00d4fab
+#EXTINF:-1 tvg-id="Global Trekker" tvg-name="Global Trekker" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",Global Trekker
+https://cdn.19891230.eu.org/myTV/SMS/index.mpd
+
+#EXTINF:-1 tvg-id="Pet Club TV (免費)" tvg-name="Pet Club TV (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1745932012475990_PETC.png" group-title="mytvsuper",Pet Club TV (免費)
+https://cdn.19891230.eu.org/myTV/PETC/index.mpd
+
+#EXTINF:-1 tvg-id="Globetrotter (免費)" tvg-name="Globetrotter (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1745932063837509_GLBT.png" group-title="mytvsuper",Globetrotter (免費)
+https://cdn.19891230.eu.org/myTV/GLBT/index.mpd
+
+#EXTINF:-1 tvg-id="DocsVille (免費)" tvg-name="DocsVille (免費)" tvg-logo="" group-title="mytvsuper",DocsVille (免費)
+https://cdn.19891230.eu.org/myTV/DOCV/index.mpd
+
+#EXTINF:-1 tvg-id="Wild Stuff (免費)" tvg-name="Wild Stuff (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1745932190537668_DOCV.png" group-title="mytvsuper",Wild Stuff (免費)
+https://cdn.19891230.eu.org/myTV/PULS/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=002d034731b6ac938ea7ba85bc3dc759:6694258c023d73492a10acb860bc6161
+#EXTINF:-1 tvg-id="ROCK綜藝娛樂" tvg-name="ROCK綜藝娛樂" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",ROCK綜藝娛樂
+https://cdn.19891230.eu.org/myTV/CRTE/index.mpd
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=20bea0e14af0d3dcb63d4126e8b50172:07382de357a2b0cceabe82e0b37cb8de
+#EXTINF:-1 tvg-id="AXN" tvg-name="AXN" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",AXN
+https://cdn.19891230.eu.org/myTV/CAXN/index.mpd
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=56e7f3bf6e1f142a3ac51b2ca83e7919:ba733df582f18b4b9c990a52d61d2fc6   
+#EXTINF:-1 tvg-id="ROCK X Stream" tvg-name="ROCK X Stream" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",ROCK X Stream
+https://cdn.19891230.eu.org/myTV/RKEX/index.mpd
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=b1a073dbd8272b0c99940db624ce8d74:9fec26ff4c6774a8bde881e5cb0fe82e
+#EXTINF:-1 tvg-id="Animax" tvg-name="Animax" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",Animax
+https://cdn.19891230.eu.org/myTV/CANI/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=adcab9e8e5644ff35f04e4035cc6ad3b:d8e879e108a96fde6537c1b679c369b5
+#EXTINF:-1 tvg-id="tvN" tvg-name="tvN" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",tvN
+https://cdn.19891230.eu.org/myTV/CJTV/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=ad7b06658e8a36a06def6b3550bde35c:b672f89570a630abb1d2abb5030e6303
+#EXTINF:-1 tvg-id="無線衛星亞洲臺" tvg-name="無線衛星亞洲臺" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",無線衛星亞洲臺
+https://cdn.19891230.eu.org/myTV/CTS1/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=adef00c5ba927d01642b1e6f3cedc9fb:b45d912fec43b5bbd418ea7ea1fbcb60
+#EXTINF:-1 tvg-id="創世電視 (免費)" tvg-name="創世電視 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",創世電視 (免費)
+https://cdn.19891230.eu.org/myTV/CRE/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=4df52671ef55d2a7ac03db75e9bba2f7:4a3c16e8098c5021f32c7d4f66122477
+#EXTINF:-1 tvg-id="FashionBox" tvg-name="FashionBox" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",FashionBox
+https://cdn.19891230.eu.org/myTV/FBX/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=e46f2747a9cf6822a608786bbc21d400:d8778fcf92c949e949a6700828f5f67e
+#EXTINF:-1 tvg-id="Mezzo Live HD" tvg-name="Mezzo Live HD" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",Mezzo Live HD
+https://cdn.19891230.eu.org/myTV/CMEZ/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=e50b18fee7cab76b9f2822e2ade8773a:2e2e8602b6d835ccf10ee56a9a7d91a2
+#EXTINF:-1 tvg-id="中央電視臺綜合頻道 (港澳版) (免費)" tvg-name="中央電視臺綜合頻道 (港澳版) (免費)" tvg-logo="" group-title="mytvsuper",中央電視臺綜合頻道 (港澳版) (免費)
+https://cdn.19891230.eu.org/myTV/CC1/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=b570ae67cb063428b158eb2f91c6d77c:c573dabca79a17f81755c0d4b33384bc
+#EXTINF:-1 tvg-id="CGTN (中國環球電視網)記錄頻道 (免費)" tvg-name="CGTN (中國環球電視網)記錄頻道 (免費)" tvg-logo="" group-title="mytvsuper",CGTN (中國環球電視網)記錄頻道 (免費)
+https://cdn.19891230.eu.org/myTV/CGD/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=4331903278b673916cc6940a8b8d9e7e:02a409115819de9acd9e907b053e3aa8
+#EXTINF:-1 tvg-id="CGTN (中國環球電視網)英語頻道 (免費)" tvg-name="CGTN (中國環球電視網)英語頻道 (免費)" tvg-logo="" group-title="mytvsuper",CGTN (中國環球電視網)英語頻道 (免費)
+https://cdn.19891230.eu.org/myTV/CGE/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=9d6a139158dd1fcd807d1cfc8667e965:f643ba9204ebba7a5ffd3970cfbc794c
+#EXTINF:-1 tvg-id="東方衛視國際頻道 (免費)" tvg-name="東方衛視國際頻道 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1681274162227607_DTV.png" group-title="mytvsuper",東方衛視國際頻道 (免費)
+https://cdn.19891230.eu.org/myTV/DTV/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=7bca0771ba9205edb5d467ce2fdf0162:eb19c7e3cea34dc90645e33f983b15ab
+#EXTINF:-1 tvg-id="鳳凰衛視中文臺 (免費)" tvg-name="鳳凰衛視中文臺 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1687317650120517_PCC.png" group-title="mytvsuper",鳳凰衛視中文臺 (免費)
+#https://cdn.19891230.eu.org/myTV/PCC/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=83f7d313adfc0a5b978b9efa0421ce25:ecdc8065a46287bfb58e9f765e4eec2b
+#EXTINF:-1 tvg-id="鳳凰衛視資訊臺 (免費)" tvg-name="鳳凰衛視資訊臺 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1687317778284878_PIN.png" group-title="mytvsuper",鳳凰衛視資訊臺 (免費)
+#https://cdn.19891230.eu.org/myTV/PIN/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=cde62e1056eb3615dab7a3efd83f5eb4:b8685fbecf772e64154630829cf330a3
+#EXTINF:-1 tvg-id="鳳凰衛視香港臺 (免費)" tvg-name="鳳凰衛視香港臺 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1687317856889913_PHK.png" group-title="mytvsuper",鳳凰衛視香港臺 (免費)
+#https://cdn.19891230.eu.org/myTV/PHK/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=9b2762e6912e2f37a1cad1df9af6dc6e:f4edc1240a3e852661c0607db463a6dd
+#EXTINF:-1 tvg-id="中國中央電視臺中文國際頻道 (免費)" tvg-name="中國中央電視臺中文國際頻道 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1744698032334475_CC4.png" group-title="mytvsuper",中國中央電視臺中文國際頻道 (免費)
+https://cdn.19891230.eu.org/myTV/CC4/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=e173591f7ab25dbc47f6c05abcbb92c7:21c5e4987d1e255d0e171280ad13d815
+#EXTINF:-1 tvg-id="中國中央電視臺娛樂頻道 (免費)" tvg-name="中國中央電視臺娛樂頻道 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1744698047756405_CCE.png" group-title="mytvsuper",中國中央電視臺娛樂頻道 (免費)
+https://cdn.19891230.eu.org/myTV/CCE/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=310ee76e894b8361fefdedf5c7b50983:f113fcca4a982e53ba2fc31e7fbf6e2c
+#EXTINF:-1 tvg-id="中國中央電視臺戲曲頻道 (免費)" tvg-name="中國中央電視臺戲曲頻道 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1744698101514218_CCO.png" group-title="mytvsuper",中國中央電視臺戲曲頻道 (免費)
+https://cdn.19891230.eu.org/myTV/CCO/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=7ec2be4ec767b0a7b23bb9d665c39dab:738f330e2e319ee51ebcb8f2d0614f0a
+#EXTINF:-1 tvg-id="雲南瀾湄國際衛視 (免費)" tvg-name="雲南瀾湄國際衛視 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1744698246712152_YNTV.png" group-title="mytvsuper",雲南瀾湄國際衛視 (免費)
+https://cdn.19891230.eu.org/myTV/YNTV/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=460151d2b91a7504c6e7fcdc2e5b3ccc:a2900973ab6de674a8535fd1627f8cce
+#EXTINF:-1 tvg-id="安徽廣播電視臺國際頻道 (免費)" tvg-name="安徽廣播電視臺國際頻道 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1744698398526127_AHTV.png" group-title="mytvsuper",安徽廣播電視臺國際頻道 (免費)
+https://cdn.19891230.eu.org/myTV/AHTV/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=a8965a188153cee562c067ba66b0f0fb:c373bfab2e75b979beefbb6b370bcdc2
+#EXTINF:-1 tvg-id="北京電視臺國際頻道 (免費)" tvg-name="北京電視臺國際頻道 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1744698452166744_BJTV.png" group-title="mytvsuper",北京電視臺國際頻道 (免費)
+https://cdn.19891230.eu.org/myTV/BJTV/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=e5d541db8252789f10a05d4b26325532:0b2fb5ab1b5c9df031e7086147a0f853
+#EXTINF:-1 tvg-id="廣西電視臺國際頻道 (免費)" tvg-name="廣西電視臺國際頻道 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1744698733860164_GXTV.png" group-title="mytvsuper",廣西電視臺國際頻道 (免費)
+#https://cdn.19891230.eu.org/myTV/GXTV/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=3d5e3a2fd144c5f196cbcb9d037b417d:7be2fcb0ee5efe52ff95b0866f183abb
+#EXTINF:-1 tvg-id="福建海峽衛視國際頻道 (免費)" tvg-name="福建海峽衛視國際頻道 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1744698901041616_FJTV.png" group-title="mytvsuper",福建海峽衛視國際頻道 (免費)
+https://cdn.19891230.eu.org/myTV/FJTV/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=a43885f5c495e3ce5b1162ecb5c35c03:e506caf7a71025850e8823c07a1b29dc
+#EXTINF:-1 tvg-id="湖南電視臺國際頻道 (免費)" tvg-name="湖南電視臺國際頻道 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1744698965997689_HNTV.png" group-title="mytvsuper",湖南電視臺國際頻道 (免費)
+https://cdn.19891230.eu.org/myTV/HNTV/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=5287fd241995f7b097597c4349bea5b5:23398eb21eee12ddb9a9df1dd6373687
+#EXTINF:-1 tvg-id="江蘇電視臺國際頻道 (免費)" tvg-name="江蘇電視臺國際頻道 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1744699023385650_JSTV.png" group-title="mytvsuper",江蘇電視臺國際頻道 (免費)
+https://cdn.19891230.eu.org/myTV/JSTV/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=25049a9d742e24329e009d2a8a02b4bd:914a1b9442ba239aaa5a8f63c6e10f83
+#EXTINF:-1 tvg-id="廣東廣播電視臺大灣區衛視頻道 (免費)" tvg-name="廣東廣播電視臺大灣區衛視頻道 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1744699073258168_GBTV.png" group-title="mytvsuper",廣東廣播電視臺大灣區衛視頻道 (免費)
+https://cdn.19891230.eu.org/myTV/GBTV/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=8799940a2a97f5eb997753983be48fe5:53c4b68330f10e5507d3c0647703031e
+#EXTINF:-1 tvg-id="浙江電視臺國際頻道 (免費)" tvg-name="浙江電視臺國際頻道 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1744699142762349_ZJTV.png" group-title="mytvsuper",浙江電視臺國際頻道 (免費)
+https://cdn.19891230.eu.org/myTV/ZJTV/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=a265a47191734322dc32596c771887cc:5d19d055e814b3fcc521afe772ecf110
+#EXTINF:-1 tvg-id="深圳衛視國際頻道 (免費)" tvg-name="深圳衛視國際頻道 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1744699192744305_SZTV.png" group-title="mytvsuper",深圳衛視國際頻道 (免費)
+https://cdn.19891230.eu.org/myTV/SZTV/index.mpd
+
+#EXTINF:-1 tvg-id="that's 70s (免費)" tvg-name="that's 70s (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1745932338100361_NOW7.png" group-title="mytvsuper",that's 70s (免費)
+https://cdn.19891230.eu.org/myTV/NOW7/index.mpd
+#EXTINF:-1 tvg-id="that's 80s (免費)" tvg-name="that's 80s (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1745932390285250_NOW8.png" group-title="mytvsuper",that's 80s (免費)
+https://cdn.19891230.eu.org/myTV/NOW8/index.mpd
+
+#EXTINF:-1 tvg-id="that's Rock (免費)" tvg-name="that's Rock (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1745932445714549_NOWR.png" group-title="mytvsuper",that's Rock (免費)
+https://cdn.19891230.eu.org/myTV/NOWR/index.mpd
+
+#EXTINF:-1 tvg-id="that's 90s00s (免費)	" tvg-name="that's 90s00s (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1745932498130891_NOW9.png" group-title="mytvsuper",that's 90s00s (免費)	
+https://cdn.19891230.eu.org/myTV/NOW9/index.mpd
+
+#EXTINF:-1 tvg-id="Concerto (免費)" tvg-name="Concerto (免費)" tvg-logo="" group-title="mytvsuper",Concerto (免費)
+https://cdn.19891230.eu.org/myTV/CONC/index.mpd
+
+#EXTINF:-1 tvg-id="TRACE Urban (免費)" tvg-name="TRACE Urban (免費)" tvg-logo="" group-title="mytvsuper",TRACE Urban (免費)
+https://cdn.19891230.eu.org/myTV/TRUR
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=8413d081b89c30a154190546aa9a3aae:7e671fe8f58adde998bd598402f99141
+#EXTINF:-1 tvg-id="NewTV古裝劇場 (免費)" tvg-name="NewTV古裝劇場 (免費)" tvg-logo="" group-title="mytvsuper",NewTV古裝劇場 (免費)
+https://cdn.19891230.eu.org/myTV/NWDR/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=98e2cc4a310b3efb731b935f351364db:de1a0f214080baca0a3f63ee384e17b7
+#EXTINF:-1 tvg-id="New TV科教 (免費)" tvg-name="New TV科教 (免費)" tvg-logo="" group-title="mytvsuper",New TV科教 (免費)
+https://cdn.19891230.eu.org/myTV/NWED/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=ecfeb1656c27c777daa840a3f95bae4c:7579f8a86d20687f13a09174d0278f2b
+#EXTINF:-1 tvg-id="NewTV養生 (免費)" tvg-name="NewTV養生 (免費)" tvg-logo="" group-title="mytvsuper",NewTV養生 (免費)
+https://cdn.19891230.eu.org/myTV/NWHE/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=d3bc816e5f79917c667c3cf3ab29d74f:64ea95796ef6fbb90050854a694b72fd
+#EXTINF:-1 tvg-id="NewTV功夫 (免費)" tvg-name="NewTV功夫 (免費)" tvg-logo="" group-title="mytvsuper",NewTV功夫 (免費)
+https://cdn.19891230.eu.org/myTV/NWMA/index.mpd
+
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=73aaeb9e84db423627018017059e0f9d:34148a56250459383f7ef7369073bf39
+#EXTINF:-1 tvg-id="無線衛星新聞臺" tvg-name="無線衛星新聞臺" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",無線衛星新聞臺
+https://cdn.19891230.eu.org/myTV/CTSN/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=ddc7bb2603628134334919a0d7327d1d:a5fcd8bb852371faedd13b684f5adede
+#EXTINF:-1 tvg-id="亞洲新聞臺" tvg-name="亞洲新聞臺" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",亞洲新聞臺
+https://cdn.19891230.eu.org/myTV/CCNA/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=80c76105d3ae35dfe25f939d1fb83383:6d76e7ba039773bced47d78e6de4fcf0
+#EXTINF:-1 tvg-id="半島電視臺英語頻道" tvg-name="半島電視臺英語頻道" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",半島電視臺英語頻道
+https://cdn.19891230.eu.org/myTV/CJAZ/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=2d4f6b8755a918d2126a2ee78791cf0b:c392acc1a1a070d2bcdf518d99d88406
+#EXTINF:-1 tvg-id="France 24" tvg-name="France 24" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",France 24
+https://cdn.19891230.eu.org/myTV/CF24/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=2bb557c09dfc01a27ab81778913f2a10:d00ca6eb9a83ffde846324109fb445ba
+#EXTINF:-1 tvg-id="DW" tvg-name="DW" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",DW
+https://cdn.19891230.eu.org/myTV/CDW1
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=9c2ecde1c31185ab61ed4689b87ae332:54895a656e053a73b39882e7a56d642b
+#EXTINF:-1 tvg-id="NHK World-Japan" tvg-name="NHK World-Japan" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",NHK World-Japan
+https://cdn.19891230.eu.org/myTV/CNHK/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=f3ae14e72f585eaf14b18d8d9515d43f:ce0e375c3966263877078aadd815742e
+#EXTINF:-1 tvg-id="Arirang TV" tvg-name="Arirang TV" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",Arirang TV
+https://cdn.19891230.eu.org/myTV/CARI/index.mpd
+
+#EXTINF:-1 tvg-id="NewsWorld (免費)" tvg-name="NewsWorld (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",NewsWorld (免費)
+https://cdn.19891230.eu.org/myTV/NSWD/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=5423a982f9b417dad069478d71ea68c1:2e455eab6685c37ef443b1414c7332a5
+#EXTINF:-1 tvg-id="The Indonesia Channel (免費)" tvg-name="The Indonesia Channel (免費)" tvg-logo="" group-title="mytvsuper",The Indonesia Channel (免費)
+https://cdn.19891230.eu.org/myTV/INDO/index.mpd
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=024f2733fb9afad23490149c601ce47c:034db34d56263c79c7f41448f2a6cfc1
+#EXTINF:-1 tvg-id="myTV SUPER直播足球2臺" tvg-name="myTV SUPER直播足球2臺" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",myTV SUPER直播足球2臺
+https://cdn.19891230.eu.org/myTV/EVT2/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=84f456002b780253dab5534e9713323c:65aeb769264f41037cec607813e91bae
+#EXTINF:-1 tvg-id="myTV SUPER直播足球3臺" tvg-name="myTV SUPER直播足球3臺" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",myTV SUPER直播足球3臺
+https://cdn.19891230.eu.org/myTV/EVT3/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=848d6d82c14ffd12adf4a7b49afdc978:3221125831a2f980139c34b35def3b0d
+#EXTINF:-1 tvg-id="myTV SUPER直播足球4臺" tvg-name="myTV SUPER直播足球4臺" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",myTV SUPER直播足球4臺
+https://cdn.19891230.eu.org/myTV/EVT4/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=54700d7a381b80ae395a312e03a9abeb:7c68d289628867bf691b42e90a50d349
+#EXTINF:-1 tvg-id="myTV SUPER直播足球5臺" tvg-name="myTV SUPER直播足球5臺" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="mytvsuper",myTV SUPER直播足球5臺
+https://cdn.19891230.eu.org/myTV/EVT5/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=e069fc056280e4caa7d0ffb99024c05a:d3693103f232f28b4781bbc7e499c43a
+#EXTINF:-1 tvg-id="myTV SUPER直播足球6臺" tvg-name="myTV SUPER直播足球6臺" tvg-logo="https://assets.mytvsuper.com/channel/1672992594257554_EVT6.png" group-title="mytvsuper",myTV SUPER直播足球6臺
+https://cdn.19891230.eu.org/myTV/EVT6/index.mpd
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=69a81a757b16a3d431d4365d81f07f07:292f2fdc2002e8346cd2c18af4a3a4bc
+#EXTINF:-1 tvg-id="myTV SUPER直播足球7臺" tvg-name="myTV SUPER直播足球7臺" tvg-logo="https://assets.mytvsuper.com/channel/1684393675758879_EVT7.png" group-title="mytvsuper",myTV SUPER直播足球7臺
+https://cdn.19891230.eu.org/myTV/EVT7/index.mpd
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=0c79f7330982b6e508de3df47b88fbdc:db063550682430e8ca5857a85ccbc297
+#EXTINF:-1 tvg-id="二零二五香港公開羽毛球錦標賽-世界羽聯世界巡迴賽超級500" tvg-name="二零二五香港公開羽毛球錦標賽-世界羽聯世界巡迴賽超級500" tvg-logo="https://assets.mytvsuper.com/channel/1684393675758879_EVT7.png" group-title="mytvsuper",二零二五香港公開羽毛球錦標賽-世界羽聯世界巡迴賽超級500
+https://cdn.19891230.eu.org/myTV/EVT8/index.mpd
+
+
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=f07372db27b162d69adf9aa612ae3364:da1631a2b2a836c5b7a3d044a18a4f16
+#EXTINF:-1 tvg-id="C3" tvg-logo="https://assets.livednow.com/logo/MytvSuper.png"   group-title="mytvsuper" ,2024年WBSC五人制棒球世界盃直播1臺
+https://cdn.19891230.eu.org/myTV/C3/index.mpd
+
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=1ba88eacde780c7567255b8b33026ae5:f7df792aab8992b79d72a8d01987ecb5
+#EXTINF:-1 tvg-id="C2" tvg-logo="https://assets.livednow.com/logo/MytvSuper.png"   group-title="mytvsuper" ,2024年WBSC五人制棒球世界盃直播2臺
+https://cdn.19891230.eu.org/myTV/C2/index.mpd
+
+
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=e8ca7903e25450d85cb32b3057948522:d5db5c03608f5f6c8a382c6abcb829e4
+#EXTINF:-1 tvg-id="全運800臺" tvg-name="全運800臺" tvg-logo="https://assets.mytvsuper.com/channel/1684393675758879_EVT7.png" group-title="mytvsuper",全運800臺
+#https://cdn.19891230.eu.org/myTV/OL00
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=0c79f7330982b6e508de3df47b88fbdc:db063550682430e8ca5857a85ccbc297
+#EXTINF:-1 tvg-id="全運801臺" tvg-name="全運801臺" tvg-logo="https://assets.mytvsuper.com/channel/1684393675758879_EVT7.png" group-title="mytvsuper",全運801臺
+#https://cdn.19891230.eu.org/myTV/OL01
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=dddcd998a3107f7b350a7536c7fd30b1:15b343513bda8a5816b45295690c3792
+#EXTINF:-1 tvg-id="全運802臺" tvg-name="全運802臺" tvg-logo="https://assets.mytvsuper.com/channel/1684393675758879_EVT7.png" group-title="mytvsuper",全運800臺
+#https://cdn.19891230.eu.org/myTV/OL02
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=b8d3124914a5cf9c913eccff19d53510:529601f9fca6d76bb429ef2d2bca3622
+#EXTINF:-1 tvg-id="全運803臺" tvg-name="全運803臺" tvg-logo="https://assets.mytvsuper.com/channel/1684393675758879_EVT7.png" group-title="mytvsuper",全運803臺
+#https://cdn.19891230.eu.org/myTV/OL03
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=89db5bfd8f088f9e100ab81b2c2c0cda:e3465fb5fa8daa0f575f2258a7a30220
+#EXTINF:-1 tvg-id="全運804臺" tvg-name="全運804臺" tvg-logo="https://assets.mytvsuper.com/channel/1684393675758879_EVT7.png" group-title="mytvsuper",全運804臺
+#https://cdn.19891230.eu.org/myTV/OL04
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=97a0b07f2c0739e2843b7a62e77dc452:165f65fd3be0c5f0f62b9647c13af521
+#EXTINF:-1 tvg-id="全運805臺" tvg-name="全運805臺" tvg-logo="https://assets.mytvsuper.com/channel/1684393675758879_EVT7.png" group-title="mytvsuper",全運805臺
+#https://cdn.19891230.eu.org/myTV/OL05
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=e72be084c3c0b3ee2a6856220c060d94:42851811d34c03c744c265c270bd89e6
+#EXTINF:-1 tvg-id="全運806臺" tvg-name="全運806臺" tvg-logo="https://assets.mytvsuper.com/channel/1684393675758879_EVT7.png" group-title="mytvsuper",全運806臺
+#https://cdn.19891230.eu.org/myTV/OL06
+
 
 
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
