@@ -721,36 +721,6 @@ http://127.0.0.1:8081/cnbcarabic.php
 
 
 
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=52358519f886446d82834a803b36f796:58b6ac8e07d354b178255e03b9d0f819
-#EXTINF:-1 tvg-logo="https://static.tvtropes.org/pmwiki/pub/images/ocn.png" group-title="telus测试",索尼
-https://bks400-tol-110.quieroxview.com.mx/bpk-tv/sony_hd/default/index.mpd
-
-
-
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=3fe5dc0503a849cbb1966cdd1faa6066:1058f9cebf4d4198b09335ee64cea5dc
-#KODIPROP:inputstream.adaptive.manifest_type=dash
-#EXTINF:-1 tvg-logo="https://static.tvtropes.org/pmwiki/pub/images/ocn.png" group-title="telus测试",OCN
-https://ocn-drm2-mcdn.tving.com/ocn_drm/live5000.smil/manifest.mpd
-
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=817839de27764deb879c65c571c19226:2b1443f33c919c89429a21259974a224
-#KODIPROP:inputstream.adaptive.manifest_type=dash
-#EXTINF:-1 group-title="telus测试" tvg-logo="https://i.imgur.com/YmjxDkx.png",OCN Movies
-https://ocnmovies-drm2-mcdn.tving.com/ocnmovies_drm/live5000.smil/manifest.mpd
-
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=a97de619e5834e6da10c9bab768fc626:1452d46b8ecd87b38310ce90d4f5209f
-#KODIPROP:inputstream.adaptive.manifest_type=dash
-#EXTINF:-1 group-title="telus测试" tvg-logo="https://i.imgur.com/mBaw5TZ.png",OCN Movies2
-https://ocnmovies2-drm2-mcdn.tving.com/ocnmovies2_drm/live5000.smil/manifest.mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=8e3977c581333101a527776030e5d379:f726e9c49a640e932ec6a92685153772
-#KODIPROP:inputstream.adaptive.manifest_type=dash
-#EXTINF:-1 group-title="telus测试" tvg-logo="https://i.imgur.com/mBaw5TZ.png",OCN Movies3
-https://live-d-02-rogers-uw-prd.akamaized.net/out/v1/r-prd/ch-01-prd-r-v2/hls-ch-01-prd-r-hd/index.m3u8
-
 
 
 
@@ -1062,65 +1032,65 @@ http://127.0.0.1:8081/ssc_sport.php?id=ssc_extra3
 #https://neacdnpop3-edge02.aws.playco.com/live/eds/MBC_Action_HD/DASH/MBC_Action_HD.mpd
 
 #EXTINF:-1 tvg-id="翡翠臺(國際版)" tvg-name="翡翠臺(國際版)" tvg-logo="https://assets.mytvsuper.com/channel/1679473718355177_CWIN.png" group-title="mytvsuper",翡翠臺(國際版)
-http://php.jdshipin.com/TVOD/iptv.php?id=huali2
+#http://php.jdshipin.com/TVOD/iptv.php?id=huali2
 #EXTINF:-1 tvg-id="TVB功夫臺 " tvg-name="TVB功夫臺" tvg-logo="https://assets.mytvsuper.com/channel/1679473718355177_CWIN.png" group-title="mytvsuper",TVB功夫臺
-http://php.jdshipin.com/TVOD/iptv.php?id=yzwx
+#http://php.jdshipin.com/TVOD/iptv.php?id=yzwx
 #EXTINF:-1 tvg-id="娛樂新聞" tvg-name="娛樂新聞" tvg-logo="https://assets.mytvsuper.com/channel/1679473718355177_CWIN.png" group-title="mytvsuper",娛樂新聞
-http://php.jdshipin.com/TVOD/iptv.php?id=tvbylxw
+#http://php.jdshipin.com/TVOD/iptv.php?id=tvbylxw
 #EXTINF:-1 tvg-id="無線新聞(國際版)" tvg-name="無線新聞(國際版)" tvg-logo="https://assets.mytvsuper.com/channel/1679473718355177_CWIN.png" group-title="mytvsuper",無線新聞(國際版)
-http://php.jdshipin.com/TVOD/iptv.php?id=wxxw
+#http://php.jdshipin.com/TVOD/iptv.php?id=wxxw
 #EXTINF:-1 tvg-id="TVB星河" tvg-name="TVB星河" tvg-logo="https://assets.mytvsuper.com/channel/1679473718355177_CWIN.png" group-title="mytvsuper", TVB星河
-http://php.jdshipin.com/TVOD/iptv.php?id=xinghe
+#http://php.jdshipin.com/TVOD/iptv.php?id=xinghe
 #EXTINF:-1 tvg-id="翡翠臺(國際版)" tvg-name="翡翠臺(國際版)" tvg-logo="https://assets.mytvsuper.com/channel/1679473718355177_CWIN.png" group-title="mytvsuper",翡翠臺(國際版)
-https://lb1-live-mv.v2h-cdn.com/hls/fece/tvbjade/tvbjade.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/fece/tvbjade/tvbjade.m3u8
 #EXTINF:-1 tvg-id="TVB功夫臺 " tvg-name="TVB功夫臺" tvg-logo="https://assets.mytvsuper.com/channel/1679473718355177_CWIN.png" group-title="mytvsuper",TVB功夫臺
-https://lb1-live-mv.v2h-cdn.com/hls/ffde/asianaction/asianaction.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/ffde/asianaction/asianaction.m3u8
 #EXTINF:-1 tvg-id="娛樂新聞" tvg-name="娛樂新聞" tvg-logo="https://assets.mytvsuper.com/channel/1679473718355177_CWIN.png" group-title="mytvsuper",娛樂新聞
-https://lb1-live-mv.v2h-cdn.com/hls/fede/entertainmentnews/entertainmentnews.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/fede/entertainmentnews/entertainmentnews.m3u8
 #EXTINF:-1 tvg-id="無線新聞(國際版)" tvg-name="無線新聞(國際版)" tvg-logo="https://assets.mytvsuper.com/channel/1679473718355177_CWIN.png" group-title="mytvsuper",無線新聞(國際版)
-https://lb1-live-mv.v2h-cdn.com/hls/fdca/tvbnews/tvbnews.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/fdca/tvbnews/tvbnews.m3u8
 #EXTINF:-1 tvg-id="TVB星河" tvg-name="TVB星河" tvg-logo="https://assets.mytvsuper.com/channel/1679473718355177_CWIN.png" group-title="mytvsuper", TVB星河
-https://lb1-live-mv.v2h-cdn.com/hls/fddb/xinghe/xinghe.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/fddb/xinghe/xinghe.m3u8
 #EXTINF:-1   group-title="mytvsuper",TVB Live Shows
-https://lb1-live-mv.v2h-cdn.com/hls/fecb/tvbliveshow/tvbliveshow.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/fecb/tvbliveshow/tvbliveshow.m3u8
 
 #EXTINF:-1   group-title="mytvsuper",CCTV Entertainment
-https://lb1-live-mv.v2h-cdn.com/hls/feee/cctvent/cctvent.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/feee/cctvent/cctvent.m3u8
 #EXTINF:-1   group-title="mytvsuper",CCTV4
-https://lb1-live-mv.v2h-cdn.com/hls/fefb/cctv4/cctv4.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/fefb/cctv4/cctv4.m3u8
 
 #EXTINF:-1   group-title="mytvsuper",CGTN Documentary
-https://english-livebkali.cgtn.com/live/doccgtn_1.m3u8
+#https://english-livebkali.cgtn.com/live/doccgtn_1.m3u8
 #EXTINF:-1   group-title="mytvsuper",ZTV International
-https://lb1-live-mv.v2h-cdn.com/hls/fdce/ztv/ztv.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/fdce/ztv/ztv.m3u8
 #EXTINF:-1   group-title="mytvsuper",JSBC International
-https://lb1-live-mv.v2h-cdn.com/hls/fecc/jsbc/jsbc.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/fecc/jsbc/jsbc.m3u8
 #EXTINF:-1   group-title="mytvsuper",BTV International
-https://lb1-live-mv.v2h-cdn.com/hls/ffdd/btv/btv.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/ffdd/btv/btv.m3u8
 #EXTINF:-1   group-title="mytvsuper",Fujian Straits TV
-https://lb1-live-mv.v2h-cdn.com/hls/fedc/fjtv/fjtv.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/fedc/fjtv/fjtv.m3u8
 #EXTINF:-1   group-title="mytvsuper",Guangxi TV International
-https://lb1-live-mv.v2h-cdn.com/hls/feda/guangxitv/guangxitv.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/feda/guangxitv/guangxitv.m3u8
 #EXTINF:-1   group-title="mytvsuper",Sichuan TV International Channel
-https://lb1-live-mv.v2h-cdn.com/hls/fdde/sichuantv/sichuantv.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/fdde/sichuantv/sichuantv.m3u8
 #EXTINF:-1   group-title="mytvsuper",TSTV
-https://lb1-live-mv.v2h-cdn.com/hls/fdcb/tstv/tstv.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/fdcb/tstv/tstv.m3u8
 #EXTINF:-1   group-title="mytvsuper",MVMall Trend
-https://lb1-live-mv.v2h-cdn.com/hls/fdfe/mvmalltrend/mvmalltrend.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/fdfe/mvmalltrend/mvmalltrend.m3u8
 #EXTINF:-1   group-title="mytvsuper",MVMall Heathly
-https://lb1-live-mv.v2h-cdn.com/hls/fdff/mvmallhelth/mvmallhelth.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/fdff/mvmallhelth/mvmallhelth.m3u8
 #EXTINF:-1   group-title="mytvsuper",MVLAO
-https://lb1-live-mv.v2h-cdn.com/hls/ffaa/mvlao/mvlao.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/ffaa/mvlao/mvlao.m3u8
 #EXTINF:-1   group-title="mytvsuper",MVM
-https://lb1-live-mv.v2h-cdn.com/hls/feff/mvm/mvm.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/feff/mvm/mvm.m3u8
 #EXTINF:-1   group-title="mytvsuper",MVMall Plus
-https://lb1-live-mv.v2h-cdn.com/hls/fded/mvmallplus/mvmallplus.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/fded/mvmallplus/mvmallplus.m3u8
 #EXTINF:-1   group-title="mytvsuper",MVMall DD
-https://lb1-live-mv.v2h-cdn.com/hls/fdee/mvmalldd/mvmalldd.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/fdee/mvmalldd/mvmalldd.m3u8
 #EXTINF:-1   group-title="mytvsuper",MVTV ท้องถิ่นไทย
-https://lb1-live-mv.v2h-cdn.com/hls/ffff/mvtv75/mvtv75.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/ffff/mvtv75/mvtv75.m3u8
 #EXTINF:-1   group-title="mytvsuper",MVMall Plus
-https://lb1-live-mv.v2h-cdn.com/hls/fded/mvmallplus/mvmallplus.m3u8
+#https://lb1-live-mv.v2h-cdn.com/hls/fded/mvmallplus/mvmallplus.m3u8
 
 
 #EXTINF:-1 tvg-id="翡翠台" tvg-name="翡翠台" tvg-logo="https://epg.yang-1989.eu.org/logo/翡翠台.png" group-title="mytvsuper",翡翠台
