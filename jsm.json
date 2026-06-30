@@ -19,7 +19,17 @@
             },
             "filterable": 1
         },
-		 
+		 {
+      "key": "py_hg",
+      "name": "红果短剧py",
+      "type": 3,
+      "api": "./py/红果短剧.py",
+	 "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+    },
+
+		
 		 {
 			"key":"玩偶",
 			"name":"👽玩偶哥哥┃4K弹幕",
