@@ -1,40 +1,233 @@
 from base.spider import Spider
 import requests
-import re
 import urllib.parse
-import time
-import hashlib
+import json
+import re
 
-# B站API基础地址
+# ================= 配置区域 =================
 API_BASE = "https://api.bilibili.com"
 WEB_BASE = "https://www.bilibili.com"
-
-# 请求头（模拟浏览器）
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36',
     'Referer': 'https://www.bilibili.com/',
-    'Origin': 'https://www.bilibili.com'
 }
 TIMEOUT = 10
 
-# 分区映射（rid -> 名称）
+# 分区映射 (rid -> 名称)
 REGION_MAP = {
-    "1": "动画",
-    "3": "音乐",
-    "4": "游戏",
-    "5": "娱乐",
-    "11": "电视剧",
-    "13": "番剧",
-    "23": "电影",
-    "36": "科技",
-    "119": "鬼畜",
-    "129": "舞蹈",
-    "155": "生活",
-    "160": "时尚",
-    "181": "影视",
-    "188": "纪录片",
-    "217": "资讯",
-    "234": "美食",
+    "1": "动画", "3": "音乐", "4": "游戏", "5": "娱乐",
+    "11": "电视剧", "13": "番剧", "23": "电影", "36": "科技",
+    "119": "鬼畜", "129": "舞蹈", "155": "生活", "160": "时尚",
+    "181": "影视", "188": "纪录片", "217": "资讯", "234": "美食", "235": "国创"
+}
+# ==========================================
+
+class Spider(Spider):
+    def getName(self):
+        return "哔哩哔哩"
+
+    def init(self, extend):
+        pass
+
+    def isVideoFormat(self, url):
+        pass
+
+    def manualVideoCheck(self):
+        pass
+
+    def homeContent(self, filter):
+        """返回所有分区列表"""
+        classes = [{"type_id": rid, "type_name": name} for rid, name in REGION_MAP.items()]
+        return {"class": classes}
+
+    def homeVideoContent(self):
+        return {'list': []}
+
+    def categoryContent(self, cid, pg, filter, ext):
+        """获取分区视频列表"""
+        try:
+            page = int(pg) if pg else 1
+            # 使用新接口获取分区视频
+            url = f"{API_BASE}/x/web-interface/wbi/index/icon?rid={cid}&pn={page}&ps=20"
+            resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
+            if resp.status_code != 200:
+                return {'list': []}
+            data = resp.json()
+            if data.get('code') != 0:
+                return {'list': []}
+
+            videos = []
+            # 注意：此接口返回结构可能需要根据实际调整，这里做通用处理
+            archives = data.get('data', {}).get('list', [])
+            for item in archives:
+                bvid = item.get('bvid', '')
+                if not bvid:
+                    continue
+                videos.append({
+                    "vod_id": bvid,
+                    "vod_name": item.get('title', '无标题'),
+                    "vod_pic": item.get('pic', ''),
+                    "vod_remarks": self._format_duration(item.get('duration', 0)),
+                    "vod_content": item.get('desc', '')[:50]
+                })
+
+            return {
+                'list': videos,
+                'page': page,
+                'pagecount': 9999,
+                'limit': 20,
+                'total': 999999
+            }
+        except Exception as e:
+            print(f"categoryContent error: {e}")
+            return {'list': []}
+
+    def detailContent(self, ids):
+        """获取视频详情（含分P）"""
+        bvid = ids[0]
+        if not bvid:
+            return {'list': []}
+
+        try:
+            # 1. 获取视频信息
+            view_url = f"{API_BASE}/x/web-interface/view?bvid={bvid}"
+            resp = requests.get(view_url, headers=HEADERS, timeout=TIMEOUT)
+            if resp.status_code != 200:
+                return {'list': []}
+            view_data = resp.json()
+            if view_data.get('code') != 0:
+                return {'list': []}
+            vinfo = view_data.get('data', {})
+
+            title = vinfo.get('title', '')
+            pic = vinfo.get('pic', '')
+            desc = vinfo.get('desc', '')
+            author = vinfo.get('owner', {}).get('name', '')
+            tid = str(vinfo.get('tid', ''))
+            type_name = REGION_MAP.get(tid, '')
+
+            pages = vinfo.get('pages', [])
+            if not pages:
+                pages = [{'cid': vinfo.get('cid', 0), 'part': '完整视频'}]
+
+            # 2. 构造播放源（不同清晰度）
+            quality_map = {"超清": 80, "高清": 64, "标清": 32, "流畅": 16}
+            play_from = []
+            play_url = []
+            avid = vinfo.get('aid', 0)
+
+            for qname, qn in quality_map.items():
+                urls = []
+                for page in pages:
+                    cid = page.get('cid', 0)
+                    part_name = page.get('part', f'P{len(urls)+1}')
+                    # 将请求参数放在URL中，由playerContent解析
+                    play_req_url = f"{API_BASE}/x/player/playurl?avid={avid}&cid={cid}&qn={qn}&type=json"
+                    urls.append(f"{part_name}${play_req_url}")
+                play_from.append(qname)
+                play_url.append("#".join(urls))
+
+            VOD = {
+                "vod_id": bvid,
+                "vod_name": title,
+                "vod_pic": pic,
+                "vod_actor": author,
+                "type_name": type_name,
+                "vod_remarks": f"共{len(pages)}P",
+                "vod_content": desc,
+                "vod_play_from": "$$$".join(play_from),
+                "vod_play_url": "$$$".join(play_url)
+            }
+            return {'list': [VOD]}
+
+        except Exception as e:
+            print(f"detailContent error: {e}")
+            return {'list': []}
+
+    def playerContent(self, flag, id, vipFlags):
+        """解析视频播放地址"""
+        for attempt in range(3):
+            try:
+                resp = requests.get(id, headers=HEADERS, timeout=TIMEOUT)
+                if resp.status_code != 200:
+                    continue
+                data = resp.json()
+                if data.get('code') != 0:
+                    continue
+
+                # 处理 DASH 格式
+                dash = data.get('data', {}).get('dash', {})
+                if dash:
+                    video_list = dash.get('video', [])
+                    if video_list:
+                        # 取第一个视频流（通常为最高画质）
+                        play_url = video_list[0].get('baseUrl', '')
+                        if play_url:
+                            return {"parse": 0, "playUrl": '', "url": play_url, "header": HEADERS}
+
+                # 处理 DURL 格式（旧版）
+                durl = data.get('data', {}).get('durl', [])
+                if durl:
+                    play_url = durl[0].get('url', '')
+                    if play_url:
+                        return {"parse": 0, "playUrl": '', "url": play_url, "header": HEADERS}
+
+            except Exception as e:
+                print(f"playerContent attempt {attempt+1} error: {e}")
+                continue
+
+        return {"parse": 0, "playUrl": '', "url": 'about:blank', "header": HEADERS}
+
+    def searchContent(self, key, quick, pg=1):
+        """搜索视频"""
+        try:
+            page = int(pg) if pg else 1
+            keyword = urllib.parse.quote(key)
+            url = f"{API_BASE}/x/web-interface/search/type?search_type=video&keyword={keyword}&page={page}"
+            resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
+            if resp.status_code != 200:
+                return {'list': []}
+            data = resp.json()
+            if data.get('code') != 0:
+                return {'list': []}
+
+            videos = []
+            result = data.get('data', {}).get('result', [])
+            for item in result:
+                bvid = item.get('bvid', '')
+                if not bvid:
+                    continue
+                # 移除搜索高亮标签
+                title = re.sub(r'<em[^>]*>|</em>', '', item.get('title', '无标题'))
+                videos.append({
+                    "vod_id": bvid,
+                    "vod_name": title,
+                    "vod_pic": item.get('pic', ''),
+                    "vod_remarks": self._format_duration(item.get('duration', 0)),
+                    "vod_content": item.get('description', '')[:50]
+                })
+
+            return {
+                'list': videos,
+                'page': page,
+                'pagecount': 9999,
+                'limit': len(videos),
+                'total': 999999
+            }
+        except Exception as e:
+            print(f"searchContent error: {e}")
+            return {'list': []}
+
+    # ---------- 辅助方法 ----------
+    def _format_duration(self, seconds):
+        """将秒数格式化为 HH:MM:SS 或 MM:SS"""
+        if not seconds:
+            return "00:00"
+        m, s = divmod(int(seconds), 60)
+        h, m = divmod(m, 60)
+        if h > 0:
+            return f"{h}:{m:02d}:{s:02d}"
+        return f"{m:02d}:{s:02d}"    "234": "美食",
     "235": "国创"
 }
 
