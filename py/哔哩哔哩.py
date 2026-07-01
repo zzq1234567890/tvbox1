@@ -5,26 +5,21 @@ import json
 import re
 import time
 import hashlib
-import base64
 from urllib.parse import urlencode
 
-# ================= 配置区域 =================
 API_BASE = "https://api.bilibili.com"
-WEB_BASE = "https://www.bilibili.com"
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36',
     'Referer': 'https://www.bilibili.com/',
 }
 TIMEOUT = 10
 
-# 分区映射 (rid -> 名称)
 REGION_MAP = {
     "1": "动画", "3": "音乐", "4": "游戏", "5": "娱乐",
     "11": "电视剧", "13": "番剧", "23": "电影", "36": "科技",
     "119": "鬼畜", "129": "舞蹈", "155": "生活", "160": "时尚",
     "181": "影视", "188": "纪录片", "217": "资讯", "234": "美食", "235": "国创"
 }
-# ==========================================
 
 class Spider(Spider):
     def getName(self):
@@ -41,7 +36,6 @@ class Spider(Spider):
 
     # ---------- WBI 签名 ----------
     def _get_wbi_keys(self):
-        """获取用于签名的 img_key 和 sub_key"""
         try:
             url = f"{API_BASE}/x/web-interface/nav"
             resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
@@ -53,7 +47,6 @@ class Spider(Spider):
             wbi_img = data.get('data', {}).get('wbi_img', {})
             img_url = wbi_img.get('img_url', '')
             sub_url = wbi_img.get('sub_url', '')
-            # 从URL中提取文件名（去掉扩展名）
             img_key = img_url.split('/')[-1].split('.')[0] if img_url else ''
             sub_key = sub_url.split('/')[-1].split('.')[0] if sub_url else ''
             return img_key, sub_key
@@ -62,13 +55,10 @@ class Spider(Spider):
             return None, None
 
     def _encrypt_wbi(self, params, img_key, sub_key):
-        """对参数进行WBI签名，返回加签后的参数字典"""
         if not img_key or not sub_key:
             return params
         mix_key = sub_key[:4] + img_key[:4]
-        # 对参数按key排序
         sorted_params = sorted(params.items())
-        # 拼接成字符串
         query = urlencode(sorted_params)
         sign = hashlib.md5((query + mix_key).encode()).hexdigest()
         params['w_rid'] = sign
@@ -76,15 +66,11 @@ class Spider(Spider):
         return params
 
     def _wbi_request(self, url, params=None):
-        """带WBI签名的GET请求"""
         if params is None:
             params = {}
         img_key, sub_key = self._get_wbi_keys()
         if img_key and sub_key:
             params = self._encrypt_wbi(params, img_key, sub_key)
-        else:
-            # 若获取失败，则不加签名（降级）
-            pass
         try:
             resp = requests.get(url, params=params, headers=HEADERS, timeout=TIMEOUT)
             return resp
@@ -92,7 +78,7 @@ class Spider(Spider):
             print(f"WBI请求失败: {e}")
             return None
 
-    # ---------- 首页/分类 ----------
+    # ---------- 首页 ----------
     def homeContent(self, filter):
         classes = [{"type_id": rid, "type_name": name} for rid, name in REGION_MAP.items()]
         return {"class": classes}
@@ -100,16 +86,13 @@ class Spider(Spider):
     def homeVideoContent(self):
         return {'list': []}
 
+    # ---------- 分区视频列表 ----------
     def categoryContent(self, cid, pg, filter, ext):
-        """获取分区视频列表（使用WBI签名）"""
         try:
             page = int(pg) if pg else 1
-            params = {
-                'rid': cid,
-                'pn': page,
-                'ps': 20
-            }
-            url = f"{API_BASE}/x/web-interface/wbi/index/icon"
+            params = {'rid': cid, 'pn': page, 'ps': 20}
+            # 使用 dynamic/region 接口（需签名）
+            url = f"{API_BASE}/x/web-interface/dynamic/region"
             resp = self._wbi_request(url, params)
             if not resp or resp.status_code != 200:
                 return {'list': []}
@@ -119,10 +102,7 @@ class Spider(Spider):
                 return {'list': []}
 
             videos = []
-            # 注意：返回的数据结构可能为 data.list 或 data.archives，根据实测调整
-            archives = data.get('data', {}).get('list', [])
-            if not archives:
-                archives = data.get('data', {}).get('archives', [])
+            archives = data.get('data', {}).get('archives', [])
             for item in archives:
                 bvid = item.get('bvid', '')
                 if not bvid:
@@ -151,7 +131,6 @@ class Spider(Spider):
         if not bvid:
             return {'list': []}
         try:
-            # 获取视频信息（view接口目前不需要WBI签名，但可保留）
             view_url = f"{API_BASE}/x/web-interface/view?bvid={bvid}"
             resp = requests.get(view_url, headers=HEADERS, timeout=TIMEOUT)
             if resp.status_code != 200:
@@ -172,7 +151,6 @@ class Spider(Spider):
             if not pages:
                 pages = [{'cid': vinfo.get('cid', 0), 'part': '完整视频'}]
 
-            # 构造播放源（清晰度）
             quality_map = {"超清": 80, "高清": 64, "标清": 32, "流畅": 16}
             play_from = []
             play_url = []
@@ -183,7 +161,6 @@ class Spider(Spider):
                 for page in pages:
                     cid = page.get('cid', 0)
                     part_name = page.get('part', f'P{len(urls)+1}')
-                    # 播放地址请求交给 playerContent 处理
                     play_req_url = f"{API_BASE}/x/player/playurl?avid={avid}&cid={cid}&qn={qn}&type=json"
                     urls.append(f"{part_name}${play_req_url}")
                 play_from.append(qname)
@@ -207,7 +184,6 @@ class Spider(Spider):
 
     # ---------- 播放 ----------
     def playerContent(self, flag, id, vipFlags):
-        """解析播放地址（playurl接口无需签名，但返回的baseUrl可直接播放）"""
         for attempt in range(3):
             try:
                 resp = requests.get(id, headers=HEADERS, timeout=TIMEOUT)
@@ -237,11 +213,7 @@ class Spider(Spider):
     def searchContent(self, key, quick, pg=1):
         try:
             page = int(pg) if pg else 1
-            params = {
-                'keyword': key,
-                'page': page,
-                'search_type': 'video'
-            }
+            params = {'keyword': key, 'page': page, 'search_type': 'video'}
             url = f"{API_BASE}/x/web-interface/wbi/search/type"
             resp = self._wbi_request(url, params)
             if not resp or resp.status_code != 200:
