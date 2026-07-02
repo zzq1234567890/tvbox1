@@ -17,9 +17,9 @@ HEADERS = {
 TIMEOUT = 10
 MAX_RETRIES = 3
 
-# 分类映射（已移除重复的"5": "戏曲"，保留"5": "娱乐"）
+# 分类映射（与红果短剧风格一致：用 & 拼接）
 REGION_MAP = {
-    "1": "动画", "3": "音乐", "4": "游戏", "5": "娱乐",
+    "6": "戏曲","1": "动画", "3": "音乐", "4": "游戏", "5": "娱乐",
     "11": "电视剧", "13": "番剧", "23": "电影", "36": "科技",
     "119": "鬼畜", "129": "舞蹈", "155": "生活", "160": "时尚",
     "181": "影视", "188": "纪录片", "217": "资讯", "234": "美食", "235": "国创"
@@ -97,11 +97,6 @@ class Spider(Spider):
             if rid is None:
                 rid = str(idx + 1)
             classes.append({"type_id": rid, "type_name": name})
-        
-        # ========== 新增：添加“戏曲”栏目（特殊分类，使用搜索实现） ==========
-        classes.append({"type_id": "xiqu", "type_name": "戏曲"})
-        # ===================================================================
-        
         return {"class": classes}
 
     def homeVideoContent(self):
@@ -130,12 +125,6 @@ class Spider(Spider):
 
     # ---------- 分类视频列表（使用稳定接口，无需签名） ----------
     def categoryContent(self, cid, pg, filter, ext):
-        # ========== 新增：处理“戏曲”特殊分类 ==========
-        if cid == "xiqu":
-            # 使用搜索功能获取戏曲内容，支持分页
-            return self.searchContent(key="戏曲", quick=False, pg=int(pg) if pg else 1)
-        # ===============================================
-        
         videos = []
         page = int(pg) if pg else 1
         try:
