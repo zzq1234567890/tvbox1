@@ -1,7 +1,35 @@
 {
     "spider": "./pg.jar",
     "sites": [    
-        {
+       
+		  {
+            "key": "Youtube",
+            "name": "Youtube",
+            "type": 3,
+            "api": "csp_Youtube",
+            "ua": "19.29.1 (iPhone16,2; U; CPU iOS 17_5_1 like Mac OS X;)",
+            "playerType": 2,
+            "searchable": 1,
+            "quickSearch": 0,
+            "changeable": 0,
+            "timeout": 60,
+            "ext": {
+              "json": "./lib/youtube.json",
+				###"txt":"./youtube0416.txt",
+                "type": "直播#新闻#剧集#电影#综艺#纪录片#音乐#体育#动物#风光#放松#4K#HDR#movie#music#documentary#bbc documentary#national geographic documentary",
+                "keywords": "排行榜,HOT,TRENDS,热门话题,热门趋势,热门综艺,热门电影,热门电视剧,小姐姐",
+                "codecs": "",
+                "proxy": "noproxy"
+            },
+            "style": {
+                "type": "rect",
+                "ratio": 1.5
+            }
+        },
+
+
+		
+		{
             "key": "油管so",
             "name": "油管so",
             "type": 3,
@@ -214,30 +242,7 @@
                 "cookie": ""
             }
         },
-		  {
-            "key": "Youtube",
-            "name": "Youtube",
-            "type": 3,
-            "api": "csp_Youtube",
-            "ua": "19.29.1 (iPhone16,2; U; CPU iOS 17_5_1 like Mac OS X;)",
-            "playerType": 2,
-            "searchable": 1,
-            "quickSearch": 0,
-            "changeable": 0,
-            "timeout": 60,
-            "ext": {
-                "json": "./lib/youtube.json",
-                "type": "直播#新闻#剧集#电影#综艺#纪录片#音乐#体育#动物#风光#放松#4K#HDR#movie#music#documentary#bbc documentary#national geographic documentary",
-                "keywords": "排行榜,HOT,TRENDS,热门话题,热门趋势,热门综艺,热门电影,热门电视剧,小姐姐",
-                "codecs": "",
-                "proxy": "noproxy"
-            },
-            "style": {
-                "type": "rect",
-                "ratio": 1.5
-            }
-        },
-
+		 
        
 	  {
          "key":"AQY",
@@ -420,30 +425,7 @@
             ]
         },
         
-        {
-            "key": "Youtube",
-            "name": "Youtube",
-            "type": 3,
-            "api": "csp_Youtube",
-            "ua": "19.29.1 (iPhone16,2; U; CPU iOS 17_5_1 like Mac OS X;)",
-            "playerType": 2,
-            "searchable": 1,
-            "quickSearch": 0,
-            "changeable": 0,
-            "timeout": 60,
-            "ext": {
-              "json": "./lib/youtube.json",
-				###"txt":"./youtube0416.txt",
-                "type": "直播#新闻#剧集#电影#综艺#纪录片#音乐#体育#动物#风光#放松#4K#HDR#movie#music#documentary#bbc documentary#national geographic documentary",
-                "keywords": "排行榜,HOT,TRENDS,热门话题,热门趋势,热门综艺,热门电影,热门电视剧,小姐姐",
-                "codecs": "",
-                "proxy": "noproxy"
-            },
-            "style": {
-                "type": "rect",
-                "ratio": 1.5
-            }
-        },
+      
       {
 		  "key":"玩偶",
 		  "name":"👽玩偶哥哥┃4K弹幕",
