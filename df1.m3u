@@ -39,8 +39,7 @@ http://127.0.0.1:8081/zhongtiannews.php
 
 #EXTINF:-1   tvg-id="中天新聞臺"   tvg-name="中天新聞臺"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/CtiNews.png"    group-title="中文新聞",中天新聞2
 http://127.0.0.1:8081/youtube.php?v=vr3XyVCR4T0
-#EXTINF:-1   tvg-id=""    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/TVBS.png"    tvg-name="TVBS"    group-title="中文新聞",TVBS強檔優選節目24小時
-http://127.0.0.1:8081/youtube.php?v=WAUECPu9EOw
+
 
 #EXTINF:-1   tvg-id=""    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/TVBS.png"    tvg-name="TVBS"    group-title="中文新聞",TVBS新聞
 http://127.0.0.1:8081/tvbs561.php
