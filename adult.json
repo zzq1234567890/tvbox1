@@ -23,6 +23,15 @@
 	      
   ],
   "sites": [
+	  	 {
+      "key": "py_51xg",
+      "name": "红果短剧py",
+      "type": 3,
+      "api": "./py/51吸瓜.py",
+	 "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+    },
 {
       "key": "随客影视",
       "name": "🎥｜随客｜補全",
