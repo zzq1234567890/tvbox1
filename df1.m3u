@@ -3459,7 +3459,7 @@ http://127.0.0.1:8081/hebei.php?id=4
 #EXTINF:-1   tvg-id="河北少兒科教"   tvg-name="河北少兒科技"    tvg-logo=""    group-title="地方",河北少兒科教
 http://127.0.0.1:8081/hebei.php?id=5
 
-#EXTINF:-1   tvg-id="河北三農頻道"   tvg-name="河北三農頻道"    tvg-logo=""    group-title="地方",河北三農頻道
+#EXTINF:-1   tvg-id="河北三農"   tvg-name="河北三農"    tvg-logo=""    group-title="地方",河北三農
 http://127.0.0.1:8081/hebei.php?id=6
 
 #EXTINF:-1   tvg-id=""    tvg-logo=""   tvg-name=""    group-title="地方",高邑融媒
