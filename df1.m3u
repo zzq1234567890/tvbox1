@@ -64,6 +64,8 @@ http://127.0.0.1:8081/huanyunews.php?id=3
 
 http://127.0.0.1:8081/huanyufince.php
 #EXTINF:-1   tvg-id="東森新聞臺"   tvg-name="東森新聞臺"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/EBCNews.png" group-title="中文新聞",東森新聞臺
+http://127.0.0.1:8081/dongsennewsweb.php
+#EXTINF:-1   tvg-id="東森新聞臺"   tvg-name="東森新聞臺"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/EBCNews.png" group-title="中文新聞",東森新聞臺
 http://127.0.0.1:8081/dongsennews2.php?id=1
 #EXTINF:-1   tvg-id="東森新聞臺"   tvg-name="東森新聞臺"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/EBCNews.png" group-title="中文新聞",東森新聞臺
 http://127.0.0.1:8081/dongsennews.php
