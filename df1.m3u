@@ -866,7 +866,8 @@ https://pb-ehs1glsha1juy.akamaized.net/v1/manifest/3722c60a815c199d9c0ef36c5b73d
 #EXTINF:-1 tvg-id="Love.Nature.ca2" tvg-name="Love Nature 4K CA" tvg-logo="https://garyshare.sharewithyou.dpdns.org/logos/Love_Nature.png" group-title="4K",Love Nature 4K CA
 http://89.187.179.148:826/anto.j/c9
 
-
+ #EXTINF:-1 tvg-id="INULTRA.pl" tvg-name="INULTRA 4K PL" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/czech-republic/inultra-cz.png?raw=true" group-title="4K",INULTRA 4K PL
+http://89.187.179.148:826/anto.j/c9yJDcXyPe/119321
 #EXTINF:-1   tvg-id="LOVE NATURE有線"   tvg-name="LOVE NATURE有線"    tvg-logo=""    group-title="4K",love nature 4K
 https://pb-ehs1glsha1juy.akamaized.net/Love_Nature_4K.m3u8
 
