@@ -2978,7 +2978,9 @@
             "name": "garyshare",
             "ua": "okhttp/3.0",
             "playerType": 2,
-			"url":"https://garyshare.sharewithyou.dpdns.org/garyshare_rules.m3u",
+			"url":"https://garyshare.sharewithyou.dpdns.org/garyshare_united.m3u",
+			
+			###"url":"https://garyshare.sharewithyou.dpdns.org/garyshare_rules.m3u",
            ### "url": "https://garyshare.sharewithyou.dpdns.org/garyshare.m3u?token=worldcup2026",
 			"epg": "https://github.com/iwinstar/epg_merge_filter/releases/download/latest/merged_epg.xml.gz"
 		},
