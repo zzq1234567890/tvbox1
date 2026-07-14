@@ -8,13 +8,16 @@ import html
 import time
 from urllib.parse import quote, unquote, parse_qs, urlencode, urlparse, urlunparse
 import requests
-from base.spider import Spider
 sys.path.append('..')
+try:
+    from base.spider import Spider
+except Exception:
+    class Spider:
+        pass
 
 DEBUG_LOG = '/sdcard/Download/0712youtube_trace.log'
 
 YOUTUBE_CLASSES = [
-    # 原有分类保留
     {'type_id': '4K', 'type_name': '4K'},
     {'type_id': 'HDR', 'type_name': 'HDR'},
     {'type_id': '自然', 'type_name': '自然'},
@@ -27,7 +30,6 @@ YOUTUBE_CLASSES = [
     {'type_id': '16K HDR', 'type_name': '16K HDR'},
     {'type_id': '科技', 'type_name': '科技'},
     {'type_id': '解说', 'type_name': '解说'},
-    # 从 JSON 新增的分类
     {'type_id': '新闻直播', 'type_name': '新闻直播'},
     {'type_id': '动漫', 'type_name': '动漫'},
     {'type_id': '综艺', 'type_name': '综艺'},
@@ -53,7 +55,6 @@ CATEGORY_QUERY = {
     '16K HDR': '16K HDR video',
     '科技': '科技 technology',
     '解说': '电影解说 故事解说',
-    # 新增分类的基础搜索词
     '新闻直播': '新闻 Live 直播',
     '动漫': '动漫 国漫 anime',
     '综艺': '综艺 variety show',
@@ -67,7 +68,6 @@ CATEGORY_QUERY = {
 }
 
 CATEGORY_ALIASES = {
-    # 原有别名
     '動畫片': '动画片',
     '劇集': '剧集',
     '電影': '电影',
@@ -76,7 +76,6 @@ CATEGORY_ALIASES = {
     'movie': '电影',
     'game': '科技',
     'documentary': '纪录片',
-    # 新增繁体/别名映射
     '新聞直播': '新闻直播',
     '動漫': '动漫',
     '綜藝': '综艺',
@@ -86,19 +85,7 @@ CATEGORY_ALIASES = {
     '自媒體': '自媒体',
     '音樂': '音乐',
     '科普知識': '科普知识',
-    # 处理 JSON 中复杂的 LIST type_id 映射
-    'LIST:新闻 Live,体育直播,赛事直播': '新闻直播',
-    'LIST:剧集,腾讯剧集,爱奇艺剧集,优酷剧集,芒果剧集,TVB,亞視精選,ATV 亞洲電視,八大劇樂部,民視戲劇,三立台劇,三立華劇,龍華戲劇,華視懷舊頻道,華視戲劇,中視經典戲劇': '剧集',
-    'LIST:紀錄片,亞洲旅遊台,CCTV纪录,CCTV科教,公視+,National Geographic,Kevin_YOLO,Nat Geo Animals,BBC Earth,Top Travel,National Geographic India,BBC Earth Science,历史纪录片,自然纪录片,宇宙纪录片': '纪录片',
-    'LIST:動漫,腾讯视频 - 动漫,一号动漫社 Animation Club,蒼穹動漫社Animation Club,斗破动漫社 Animation,腾讯动漫,爱奇艺动漫,优酷动漫,芒果动漫,Ani-Mi動漫迷動畫頻道,3D国漫工厂,阅文动漫,卡通狂欢嘉会': '动漫',
     '短劇': '短剧',
-    'LIST:综艺,台視時光機,芒果综艺,腾讯综艺,爱奇艺综艺,优酷综艺,卫视综艺,超級夜總會': '综艺',
-    'LIST:政論,觀點,豐富,Yahoo風向,全球大視野,環球大戰線,郭正亮頻道,論政天下,岑永康': '政论',
-    '體育': '体育',
-    '宇宙': '科普知识',
-    'LIST:自媒體 We Media,老高與小茉 @laogao,脑洞乌托邦 @NDWTB,自说自话的总裁 @STBoss,纪实说 @C-Documentary,老肉雜談 @老肉雜談,李永樂老師 @TchLiyongle,滇西小哥 @dianxixiaoge,李子柒 Liziqi @cnliziqi,老饭骨 @LaoFanGu,小高姐的 Magic Ingredients @MagicIngredients,小穎美食 @XiaoYingFood,primitivetechnology9550 @primitivetechnology9550,Mr Beast@MrBeast,Airforceproud95 @Airforceproud95,TheGreatWar @TheGreatWar,Mark Rober @MarkRober,不良林,涌哥侃侃 @ygkkk,悟空的日常': '自媒体',
-    'LIST:HDR,Girls HDR,Landscape HDR,Walk HDR': 'HDR',
-    'LIST:华语音乐,华语MV,点击率最高': '音乐',
 }
 
 def _filter_group(key, name, pairs):
@@ -180,7 +167,7 @@ CATEGORY_FILTERS = {
             ('movie', 'youtube movies Full movie'), ('US', 'us Full movie movie'),
             ('Netflix movie', 'netflix Full movie movie'), ('Disney', 'disney Full movie movie'),
             ('Apple', 'apple Full movie movie'), ('Amazon', 'amazon Full movie movie'),
-            ('HBO', 'hbo Full movie movie'), ('Koera', 'korea Full movie movie'),
+            ('HBO', 'hbo Full movie movie'), ('Korea', 'korea Full movie movie'),
             ('Japan', 'japan Full movie movie'), ('UK', 'uk Full movie movie'),
         ])
     ),
@@ -198,7 +185,7 @@ CATEGORY_FILTERS = {
         _filter_group('platform', 'English', [
             ('默认', 'documentary'), ('National Geographic', '@natgeo'),
             ('History', 'Full history documentary'), ('WILD', 'Full wild documentary'),
-            ('Earch', 'Full earth documentary'), ('Universe', 'Full universe documentary'),
+            ('Earth', 'Full earth documentary'), ('Universe', 'Full universe documentary'),
             ('Oceans', 'Full oceans documentary'), ('Humanism', 'Full humanism documentary'),
             ('Wars', 'Full war documentary'),
         ])
@@ -218,7 +205,7 @@ CATEGORY_FILTERS = {
     ],
     'HDR': [
         _filter_group('topic', '风景', [
-            ('运动', 'GoPro 女翼裝飛行 極限自行車運動'), ('风景', 'hdr 大自然'),
+            ('运动', 'GoPro 极限运动'), ('风景', 'hdr 大自然'),
             ('Links TV频道主', '@linksphotograph Links TV hdr'), ('放松', 'hdr 放鬆'),
             ('动物世界', 'hdr Carnivorous Animals 動物世界'), ('深海世界', 'hdr Invertebrate Fish 深海世界'),
             ('飞禽走兽', 'hdr Birds of Prey Columbiform Birds Passerine Birds'), ('生物世界', 'hdr Amphibians Reptiles 生物世界'),
@@ -250,7 +237,6 @@ CATEGORY_FILTERS = {
     '解说': [
         _filter_group('channel', '频道主', [('宇哥侃故事', '@yuge'), ('零度解说', '@lingdujieshuo')])
     ],
-    # --- 以下为从 JSON 新增的筛选规则 ---
     '新闻直播': [
         _filter_group('live', '中文直播', [
             ('赛事', '直播 赛事'), ('CCTV', '直播 CCTV'), ('港台', '直播 港台'),
@@ -264,8 +250,8 @@ CATEGORY_FILTERS = {
             ('大陆', '大陆 新闻'), ('港台', '港台 新闻'),
         ]),
         _filter_group('news_eng', 'English News', [
-            ('科技与发展', '閱兵 奧運會 航母 航空母艦 潛水艇 核武器 坦克 武器 卫星 火箭 輪船 飛機 飛碟'),
-            ('法治与社会', '法治 法制 社会 卖淫 淫秽 污蔑 赌博 毒品 裸聊 诈骗 拐卖 强奸 勒索'),
+            ('科技与发展', '科技 航空 航天 卫星 火箭'),
+            ('法治与社会', '法治 法制 社会新闻'),
             ('News', 'News'), ('CNN', 'CNN news'), ('BBC', 'BBC news'),
         ])
     ],
@@ -281,7 +267,7 @@ CATEGORY_FILTERS = {
             ('台视时光机', '@ttvclassic'), ('超级夜总会', '@SuperNightClubCH2'),
             ('大陆', '大陆 综艺'), ('芒果', '芒果 综艺'), ('腾讯', '腾讯 综艺'),
             ('爱奇艺', '爱奇艺 综艺'), ('优酷', '优酷 综艺'), ('港台', '港台 综艺'),
-            ('美国', '美国 综艺'), ('Netflix', 'Netflix 综艺'), ('韩国', 'CRAVITY on Variety Shows 韩国 综艺'),
+            ('美国', '美国 综艺'), ('Netflix', 'Netflix 综艺'), ('韩国', '韩国 综艺'),
             ('日本', '日本 综艺'), ('英国', '英国 综艺'),
         ]),
         _filter_group('platform', 'English', [
@@ -310,19 +296,19 @@ CATEGORY_FILTERS = {
             ('OutDoor', 'outdoor sports'), ('Workout', 'workout'),
         ]),
         _filter_group('channel', '体育频道', [
-            ('女足港场', '女足港場 @Hong KongWomensStadium'),
-            ('全国校运动会', '全國大專 校院運動會 全中運 女子組賽事 全國中等 學校運動會'),
-            ('女中仪队', '北一女中樂儀旗隊永續發展協會 北一女中家長會樂儀旗家長後援會 北一女中儀隊校友隊 台灣 学校运动会 景美女中儀隊 北一女樂儀旗隊 full樂儀隊'),
-            ('校园热舞', 'full 校園熱舞 開南熱無 開南大學課外活動組 女生熱舞社 南寶熱舞社 寶踐熱舞社 NTDC 熱舞社 STUST'),
-            ('红星体育官方频道', '红星体育官方频道【高清直播】'), ('中国体育比赛传奇', '中國體育比賽傳奇'),
+            ('女足港场', '女足港場 @HongKongWomensStadium'),
+            ('全国校运动会', '全國大專校院運動會 全中運 女子組賽事'),
+            ('女中仪队', '北一女中樂儀旗隊 台灣 学校运动会 景美女中儀隊'),
+            ('校园热舞', '校園熱舞 開南大學 女生熱舞社 熱舞社'),
+            ('红星体育官方频道', '红星体育官方频道'), ('中国体育比赛传奇', '中國體育比賽傳奇'),
             ('爱尔达体育家族', '愛爾達體育家族 ELTA Sports'), ('公视体育', '公視體育'),
             ('体育之光', '體育之光'), ('偶然体育赛事', '偶然體育賽事'),
         ])
     ),
     '音乐': _with_year(
         _filter_group('region', '地区', [
-            ('华语音乐', '華語音樂'), ('华语MV', '華語MV'), ('环球视听', '环球视听1980 @RippleOfficialEvent'),
-            ('YouTube 点阅率最高', 'YouTube 點閱率最高觀看次數最多華語歌曲'), ('海外抖音', 'TikTok 翻唱 抖音 音樂'),
+            ('华语音乐', '華語音樂'), ('华语MV', '華語MV'), ('环球视听', '环球视听1980'),
+            ('YouTube 点阅率最高', 'YouTube 點閱率最高 華語歌曲'), ('海外抖音', 'TikTok 翻唱 抖音 音樂'),
             ('粤语', '粵語 音樂'), ('国语', '國語 音樂'), ('大陆', '大陆 音乐'),
             ('香港', '香港 音乐'), ('台湾', '台湾 音乐'), ('新加坡', '新加坡 音乐'),
             ('马来西亚', '馬來西亞 音乐'), ('泰国', '泰國 音乐'), ('越南', '越南 音乐'),
@@ -331,12 +317,12 @@ CATEGORY_FILTERS = {
         _filter_group('hobby', '爱好', [
             ('舞曲', '慢搖 夜店 低音 女聲'), ('80-90', '80 90 音樂'), ('人声', '人聲 音樂'),
             ('A8制造', 'A8製造 工體音樂'), ('硬歌', '深水炸彈 音樂'), ('失传已久', '嗨音雷虎 失傳 嗨音會所 音樂'),
-            ('重低音DJ', '3D 8D 慢搖 重低音 音樂'), ('车载舞曲', '車載慢搖DJ歌曲串燒 深水炸彈DJ歌曲串燒 越南鼓DJ歌曲串燒 音樂'),
+            ('重低音DJ', '3D 8D 慢搖 重低音 音樂'), ('车载舞曲', '車載慢搖DJ歌曲串燒 音樂'),
             ('超级女声', '超級女聲'), ('tseries', '@tseries'),
         ]),
         _filter_group('singer', '歌手', [
-            ('迈克尔杰克逊', '邁克爾傑克遜 演唱會，巡演 音樂'), ('张玮伽', '張瑋伽 演唱會 巡演 音樂'),
-            ('孙露', '孫露 演唱會 巡演 音樂'), ('凤凰传奇', '鳳凰傳奇 演 巡演 音樂'),
+            ('迈克尔杰克逊', '邁克爾傑克遜 演唱會 巡演 音樂'), ('张玮伽', '張瑋伽 演唱會 巡演 音樂'),
+            ('孙露', '孫露 演唱會 巡演 音樂'), ('凤凰传奇', '鳳凰傳奇 巡演 音樂'),
             ('龙梅子', '龍梅子 演唱會 巡演 音樂'), ('刀郎', '刀郎 演唱會 巡演 音樂'),
             ('S.H.E', 'S.H.E 演唱會 巡演 音樂'), ('慕容晓晓', '慕容曉曉 演唱會 巡演 音樂'),
             ('东方红艳', '東方紅豔 演唱會 巡演 音樂'), ('孟庭苇', '孟庭葦 演唱會 巡演 音樂'),
@@ -346,41 +332,38 @@ CATEGORY_FILTERS = {
     ),
     '时尚潮流': [
         _filter_group('show', '时装秀', [
-            ('街舞', '脫衣舞 丁字褲 街舞 太空步 機械舞 舞 裸體舞蹈 霹靂舞 魔性舞蹈 鬼步舞 木偶舞 女性藝術舞蹈'),
-            ('时尚走秀', 'T台走秀 lingerie show'), ('时装秀', 'hdr ASM lingerieTV 東京ファッションショー 下着ショー'),
-            ('潮流秀', 'FASHION IN UHD'), ('时装模特', 'FASHION Runway'),
-            ('模特', '比基尼 泳裝 頂級車模 空姐 寫真 Car model Stewardess Portrait'),
-            ('裸体秀', 'hdr 人體藝術 裸体秀 Nude show'),
-            ('无限乱斗', 'hdr 廟會秀 無限HD 公廟 鋼管舞 脫衣舞 舞女 清純 寫真'),
+            ('街舞', '街舞 太空步 機械舞 霹靂舞 鬼步舞'), ('时尚走秀', 'T台走秀 fashion show'),
+            ('时装秀', 'fashion show runway'), ('潮流秀', 'FASHION IN UHD'),
+            ('时装模特', 'FASHION Runway model'), ('模特', '模特 寫真 Car model'),
         ]),
         _filter_group('girl', '小姐姐', [
             ('小姐姐超清', '小姐姐超清'), ('国内小姐姐', '快手模特 抖音模特 国内小姐姐'),
             ('韩国小姐姐', '韩国小姐姐'), ('日本小姐姐', '日本小姐姐'), ('俄罗斯小姐姐', '俄罗斯小姐姐'),
-            ('混血小姐姐', '混血小姐姐'), ('越南小姐姐', '越南小姐姐'), ('Al小姐姐', 'Al美女超清'),
+            ('混血小姐姐', '混血小姐姐'), ('越南小姐姐', '越南小姐姐'), ('AI小姐姐', 'AI美女超清'),
             ('抖音热门小姐姐', '抖音热门小姐姐'), ('快手热门美女', '快手热门美女'), ('打碟小姐姐', '打碟小姐姐'),
             ('冲浪小姐姐', '冲浪小姐姐'), ('蹦迪小姐姐', '蹦迪小姐姐'), ('艺校小姐姐', '艺校小姐姐'),
-            ('环球小姐', '环球小姐'), ('泰国人妖', '泰国人妖'), ('人间胸器', '人间胸器'),
+            ('环球小姐', '环球小姐'),
         ]),
         _filter_group('girl_eng', 'English', [
-            ('sexy Miss', 'sexy Miss'), ('Hot sexy Girl', 'Hot sexy Girl'), ('Korean Girl', 'Korean sexy Girl'),
-            ('Japanese Girl', 'Japanese sexy Girl'), ('Russian Girl', 'Russian sexy Girl'),
-            ('Vietnamese Girl', 'Vietnamese sexy Girl'), ('AI Girl', 'AI Girl'),
-            ('TikTok Hot Siste', 'TikTok Hot sexy Girl'), ('Cute Girl', 'sexy Cute Girl'),
-            ('Girl Dj', 'sexy Girl Dj'), ('Girl Surfer', 'sexy Girl Surfer'), ('Dance Girl', 'Dance sexy Girl'),
-            ('Miss Universe', 'Miss Universe'), ('Thai Shemale', 'Thai Shemale'),
+            ('Miss', 'Miss'), ('Hot Girl', 'Hot Girl'), ('Korean Girl', 'Korean Girl'),
+            ('Japanese Girl', 'Japanese Girl'), ('Russian Girl', 'Russian Girl'),
+            ('Vietnamese Girl', 'Vietnamese Girl'), ('AI Girl', 'AI Girl'),
+            ('TikTok Hot', 'TikTok Hot Girl'), ('Cute Girl', 'Cute Girl'),
+            ('Girl Dj', 'Girl Dj'), ('Girl Surfer', 'Girl Surfer'), ('Dance Girl', 'Dance Girl'),
+            ('Miss Universe', 'Miss Universe'),
         ])
     ],
     '科普知识': [
         _filter_group('science', '科普知识', [
             ('宇宙', '光年 黑洞 銀河系 空間站 太空技術'),
-            ('粒子', '空間粒子 宇宙磁場 四維空間 元素 量子 光波 光源 靈魂'),
-            ('靠蒙', 'microorganism'),
+            ('粒子', '空間粒子 宇宙磁場 四維空間 元素 量子'),
+            ('微生物', 'microorganism'),
         ]),
         _filter_group('history', '历史科普', [
-            ('世界大战', '世界大戰 二戰 日侵 八國聯軍'),
-            ('人物', '古代名人 歷史名人 歷代祖先'),
-            ('生物进化史', '人類進化 微生物進化 動物進化 地球進化'),
-            ('靠蒙', '歷史 History'),
+            ('世界大战', '世界大戰 二戰'),
+            ('人物', '古代名人 歷史名人'),
+            ('生物进化史', '人類進化 動物進化 地球進化'),
+            ('历史', '歷史 History'),
         ])
     ],
     '自媒体': [
@@ -397,14 +380,22 @@ CATEGORY_FILTERS = {
             ('野外求生', 'primitivetechnology9550 @primitivetechnology9550'),
         ]),
         _filter_group('science', '科普频道主', [
-            ('科普', 'Mr Beast@MrBeast'), ('航天大学', 'Airforceproud95 @Airforceproud95'),
+            ('科普', 'Mr Beast @MrBeast'), ('航天', 'Airforceproud95 @Airforceproud95'),
             ('世界大战', 'TheGreatWar @TheGreatWar'), ('MarkRober', 'Mark Rober @MarkRober'),
         ]),
         _filter_group('edu', '教材', [
             ('不良林', '不良林'), ('涌哥侃侃', '涌哥侃侃 @ygkkk'), ('悟空的日常', '悟空的日常'),
         ])
     ],
+    '神秘': [
+        _filter_group('topic', '主题', [
+            ('未解之谜', '未解之谜 mystery'), ('UFO', 'UFO 外星人'),
+            ('灵异', '灵异 超自然'), ('考古', '考古 发现'),
+            ('预言', '预言 诺查丹玛斯'), ('百慕大', '百慕大三角'),
+        ])
+    ],
 }
+
 
 def debug_log(message, data=None):
     try:
@@ -418,6 +409,7 @@ def debug_log(message, data=None):
             f.write(line + '\n')
     except Exception:
         pass
+
 
 class YouTubeLite:
     def __init__(self, session, headers=None, config=None):
@@ -448,9 +440,17 @@ class YouTubeLite:
         player_url = self._extract_player_url(page)
         api_key = ytcfg.get('INNERTUBE_API_KEY') or self._search(r'"INNERTUBE_API_KEY":"([^"]+)"', page)
         visitor_data = self._extract_visitor_data(ytcfg, player_response)
-        # ANDROID_VR 返回明文 URL，不需要下载 base.js 提取 signatureTimestamp。
         sts = None
-        debug_log('page parsed', {'has_ytcfg': bool(ytcfg), 'has_initial_pr': bool(player_response), 'initial_status': (player_response.get('playabilityStatus') or {}).get('status'), 'initial_has_streaming': bool(player_response.get('streamingData')), 'has_api_key': bool(api_key), 'has_visitor': bool(visitor_data), 'sts': sts, 'player_url': player_url})
+        debug_log('page parsed', {
+            'has_ytcfg': bool(ytcfg),
+            'has_initial_pr': bool(player_response),
+            'initial_status': (player_response.get('playabilityStatus') or {}).get('status'),
+            'initial_has_streaming': bool(player_response.get('streamingData')),
+            'has_api_key': bool(api_key),
+            'has_visitor': bool(visitor_data),
+            'sts': sts,
+            'player_url': player_url
+        })
         context = ytcfg.get('INNERTUBE_CONTEXT') or {
             'client': {'clientName': 'WEB', 'clientVersion': '2.20240310.01.00', 'hl': 'en', 'gl': 'US'}
         }
@@ -460,7 +460,10 @@ class YouTubeLite:
             if not isinstance(api_responses, list):
                 api_responses = [api_responses] if api_responses else []
             responses.extend([x for x in api_responses if x])
-            debug_log('player api result', {'responses': len(api_responses), 'has_streaming': [bool((x or {}).get('streamingData')) for x in api_responses]})
+            debug_log('player api result', {
+                'responses': len(api_responses),
+                'has_streaming': [bool((x or {}).get('streamingData')) for x in api_responses]
+            })
         player_response = next((x for x in responses if (x.get('playabilityStatus') or {}).get('status') == 'OK'), player_response)
         status = (player_response.get('playabilityStatus') or {}).get('status')
         streaming = player_response.get('streamingData') or {}
@@ -474,7 +477,10 @@ class YouTubeLite:
         for response in responses:
             response_streaming = (response or {}).get('streamingData') or {}
             source_raw = (response_streaming.get('formats') or []) + (response_streaming.get('adaptiveFormats') or [])
-            source_counts.append({'formats': len(response_streaming.get('formats') or []), 'adaptive': len(response_streaming.get('adaptiveFormats') or [])})
+            source_counts.append({
+                'formats': len(response_streaming.get('formats') or []),
+                'adaptive': len(response_streaming.get('adaptiveFormats') or [])
+            })
             for raw in source_raw:
                 key = (raw.get('itag'), raw.get('url') or raw.get('signatureCipher') or raw.get('cipher') or raw.get('mimeType'))
                 if key not in seen_raw:
@@ -483,7 +489,11 @@ class YouTubeLite:
                     raw['_client_name'] = (response or {}).get('_client_name')
                     raw['_client_ua'] = (response or {}).get('_client_ua')
                     raw_formats.append(raw)
-        debug_log('raw formats', {'sources': source_counts, 'total': len(raw_formats), 'sample_keys': sorted(list(raw_formats[0].keys())) if raw_formats else []})
+        debug_log('raw formats', {
+            'sources': source_counts,
+            'total': len(raw_formats),
+            'sample_keys': sorted(list(raw_formats[0].keys())) if raw_formats else []
+        })
         formats = []
         cipher_count = 0
         for raw in raw_formats:
@@ -492,7 +502,11 @@ class YouTubeLite:
             item = self._normalize_format(raw, player_url)
             if item and item.get('url'):
                 formats.append(item)
-        debug_log('normalized formats', {'count': len(formats), 'cipher_count': cipher_count, 'progressive': len([x for x in formats if x.get('vcodec') != 'none' and x.get('acodec') != 'none'])})
+        debug_log('normalized formats', {
+            'count': len(formats),
+            'cipher_count': cipher_count,
+            'progressive': len([x for x in formats if x.get('vcodec') != 'none' and x.get('acodec') != 'none'])
+        })
         if not formats:
             raise Exception('未获取到可用播放地址')
         data = {
@@ -502,7 +516,11 @@ class YouTubeLite:
             'formats': formats,
         }
         self.extract_cache[video_id] = {'data': data, 'expires': time.time() + self.extract_cache_ttl}
-        debug_log('extract complete', {'video_id': video_id, 'cost_ms': int((time.time() - extract_started) * 1000), 'formats': len(formats)})
+        debug_log('extract complete', {
+            'video_id': video_id,
+            'cost_ms': int((time.time() - extract_started) * 1000),
+            'formats': len(formats)
+        })
         return data
 
     @staticmethod
@@ -519,14 +537,8 @@ class YouTubeLite:
 
     def _client_name_id(self, client_name):
         return {
-            'WEB': 1,
-            'MWEB': 2,
-            'ANDROID': 3,
-            'IOS': 5,
-            'TVHTML5': 7,
-            'ANDROID_VR': 28,
-            'WEB_EMBEDDED_PLAYER': 56,
-            'WEB_REMIX': 67,
+            'WEB': 1, 'MWEB': 2, 'ANDROID': 3, 'IOS': 5, 'TVHTML5': 7,
+            'ANDROID_VR': 28, 'WEB_EMBEDDED_PLAYER': 56, 'WEB_REMIX': 67,
         }.get(client_name, 1)
 
     def _extract_visitor_data(self, ytcfg, player_response):
@@ -573,8 +585,6 @@ class YouTubeLite:
             candidates = all_videos
         if not candidates:
             return None
-        # 画质优先，编码顺序 VP9/HDR > H264 > AV1。保留 VP9 Profile 2 HDR，
-        # 只把 AV1 放到最后，避免默认选到 itag 701/702 的超大 AV1 分段。
         candidates.sort(key=lambda x: (
             self._video_codec_priority(x),
             int(x.get('height') or 0),
@@ -582,13 +592,9 @@ class YouTubeLite:
         ), reverse=True)
         selected = candidates[0]
         debug_log('video selected fast', {
-            'quality': quality,
-            'itag': selected.get('itag'),
-            'height': selected.get('height'),
-            'mime': selected.get('mimeType'),
-            'codec_priority': self._video_codec_priority(selected),
-            'candidates': len(candidates),
-            'probe_skipped': True,
+            'quality': quality, 'itag': selected.get('itag'), 'height': selected.get('height'),
+            'mime': selected.get('mimeType'), 'codec_priority': self._video_codec_priority(selected),
+            'candidates': len(candidates), 'probe_skipped': True,
         })
         return selected
 
@@ -639,7 +645,10 @@ class YouTubeLite:
                 item['track_name'] = 'HDR' if self._is_hdr_video(item) else 'SDR'
                 item['is_hdr'] = self._is_hdr_video(item)
                 tracks.append(item)
-        debug_log('video tracks selected', [{'name': x.get('track_name'), 'itag': x.get('itag'), 'height': x.get('height'), 'codecs': x.get('codecs')} for x in tracks])
+        debug_log('video tracks selected', [
+            {'name': x.get('track_name'), 'itag': x.get('itag'), 'height': x.get('height'), 'codecs': x.get('codecs')}
+            for x in tracks
+        ])
         return tracks
 
     def _is_hdr_video(self, item):
@@ -655,10 +664,8 @@ class YouTubeLite:
         candidates.sort(key=lambda x: (1 if x.get('ext') == 'mp4' else 0, int(x.get('bitrate') or 0)), reverse=True)
         selected = candidates[0]
         debug_log('audio selected fast', {
-            'itag': selected.get('itag'),
-            'mime': selected.get('mimeType'),
-            'bitrate': selected.get('bitrate'),
-            'probe_skipped': True,
+            'itag': selected.get('itag'), 'mime': selected.get('mimeType'),
+            'bitrate': selected.get('bitrate'), 'probe_skipped': True,
         })
         return selected
 
@@ -752,12 +759,15 @@ class YouTubeLite:
                 direct_video = [x for x in adaptive if (x.get('url') or x.get('signatureCipher') or x.get('cipher')) and str(x.get('mimeType') or '').startswith('video/')]
                 direct_any = [x for x in formats + adaptive if x.get('url') or x.get('signatureCipher') or x.get('cipher')]
                 has_streaming = bool(streaming)
-                debug_log('player api client', {'client': client_name, 'status': status, 'has_streaming': has_streaming, 'formats': len(formats), 'adaptive': len(adaptive), 'direct_any': len(direct_any), 'direct_video': len(direct_video)})
+                debug_log('player api client', {
+                    'client': client_name, 'status': status, 'has_streaming': has_streaming,
+                    'formats': len(formats), 'adaptive': len(adaptive),
+                    'direct_any': len(direct_any), 'direct_video': len(direct_video)
+                })
                 if has_streaming:
                     data['_client_name'] = client_name
                     data['_client_ua'] = client_ua
                     results.append(data)
-                    # VR 明文格式最完整，成功后立即返回，避免再串行请求 4 个客户端。
                     if client_name == 'ANDROID_VR' and direct_video:
                         debug_log('player api fast return', {'client': client_name, 'direct_video': len(direct_video)})
                         return results
@@ -822,7 +832,9 @@ class YouTubeLite:
             return ''
         if sig:
             decoded = self._decrypt_sig(sig, player_url)
-            debug_log('signature cipher', {'sp': sp, 'sig_len': len(sig), 'decoded_changed': decoded != sig, 'has_player': bool(player_url)})
+            debug_log('signature cipher', {
+                'sp': sp, 'sig_len': len(sig), 'decoded_changed': decoded != sig, 'has_player': bool(player_url)
+            })
             sep = '&' if '?' in media_url else '?'
             media_url = f'{media_url}{sep}{sp}={quote(decoded)}'
         return media_url
@@ -969,12 +981,12 @@ class YouTubeLite:
             for part in body.split(';'):
                 if 'reverse()' in part:
                     arr.reverse()
-                m = re.search(r'\.slice\((\d+)\)', part)
-                if m:
-                    arr = arr[int(m.group(1)):]
-                m = re.search(r'\.splice\(0,(\d+)\)', part)
-                if m:
-                    arr = arr[int(m.group(1)):]
+                m2 = re.search(r'\.slice\((\d+)\)', part)
+                if m2:
+                    arr = arr[int(m2.group(1)):]
+                m2 = re.search(r'\.splice\(0,(\d+)\)', part)
+                if m2:
+                    arr = arr[int(m2.group(1)):]
             return ''.join(arr) or value
         return transform
 
@@ -1081,6 +1093,7 @@ class YouTubeLite:
         m = re.search(pattern, text or '', re.S)
         return m.group(1) if m else default
 
+
 class Spider(Spider):
     def getName(self):
         return 'YouTube视频'
@@ -1104,7 +1117,8 @@ class Spider(Spider):
         self.header = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
             'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
-            'Referer': 'https://www.youtube.com/'
+            'Referer': 'https://www.youtube.com/',
+            'Cookie': 'CONSENT=YES+cb',
         }
         self.session.headers.update(self.header)
         self.yt = YouTubeLite(self.session, self.header, self.extendDict)
@@ -1124,12 +1138,16 @@ class Spider(Spider):
         page = int(page)
         filters = ext if isinstance(ext, dict) else {}
         query = self._build_category_keyword(cid, filters)
+        debug_log('categoryContent', {'cid': cid, 'filters': filters, 'query': query, 'page': page})
         videos, has_more = self._search_youtube_page(query, page)
+        debug_log('categoryContent result', {'count': len(videos), 'has_more': has_more})
         return {'list': videos, 'page': page, 'pagecount': page + 1 if has_more else page, 'limit': len(videos), 'total': len(videos)}
 
     def searchContent(self, key, quick, pg=1):
         page = int(pg)
+        debug_log('searchContent', {'key': key, 'page': page})
         videos, has_more = self._search_youtube_page(key, page)
+        debug_log('searchContent result', {'count': len(videos), 'has_more': has_more})
         return {'list': videos, 'page': page, 'pagecount': page + 1 if has_more else page, 'limit': len(videos), 'total': len(videos)}
 
     def detailContent(self, did):
@@ -1188,7 +1206,16 @@ class Spider(Spider):
                 video_tracks = [all_tracks[0]]
             if video_tracks:
                 audio = self.yt.choose_audio(data['formats'])
-                debug_log('selected track', {'requested': wanted_name, 'track': {'name': video_tracks[0].get('track_name'), 'itag': video_tracks[0].get('itag'), 'height': video_tracks[0].get('height'), 'mime': video_tracks[0].get('mimeType')}, 'audio': audio.get('itag') if audio else None})
+                debug_log('selected track', {
+                    'requested': wanted_name,
+                    'track': {
+                        'name': video_tracks[0].get('track_name'),
+                        'itag': video_tracks[0].get('itag'),
+                        'height': video_tracks[0].get('height'),
+                        'mime': video_tracks[0].get('mimeType')
+                    },
+                    'audio': audio.get('itag') if audio else None
+                })
                 if audio:
                     cache_key = f'yt_{video_id}_{quality}'
                     self.setCache(cache_key, {
@@ -1200,7 +1227,11 @@ class Spider(Spider):
                         'duration': data.get('duration') or 0,
                         'expires': time.time() + 300,
                     })
-                    return {'parse': 0, 'jx': 0, 'url': f'http://127.0.0.1:9978/proxy?do=py&type=mpd&vid={video_id}&quality={quality}', 'format': 'application/dash+xml'}
+                    return {
+                        'parse': 0, 'jx': 0,
+                        'url': f'http://127.0.0.1:9978/proxy?do=py&type=mpd&vid={video_id}&quality={quality}',
+                        'format': 'application/dash+xml'
+                    }
                 playable = video_tracks[0]
                 headers = self.header.copy()
                 headers.update(playable.get('headers') or {})
@@ -1240,7 +1271,10 @@ class Spider(Spider):
             headers['Range'] = range_header
         try:
             r = self.session.get(target_url, headers=headers, stream=True, timeout=30)
-            debug_log('proxy single response', {'status': r.status_code, 'content_type': r.headers.get('content-type'), 'content_length': r.headers.get('content-length'), 'content_range': r.headers.get('content-range')})
+            debug_log('proxy single response', {
+                'status': r.status_code, 'content_type': r.headers.get('content-type'),
+                'content_length': r.headers.get('content-length'), 'content_range': r.headers.get('content-range')
+            })
             content_type = r.headers.get('content-type', 'video/mp4')
             resp_headers = {
                 'Content-Type': content_type,
@@ -1297,7 +1331,11 @@ class Spider(Spider):
     </AdaptationSet>
 '''
         mpd += '  </Period>\n</MPD>'
-        debug_log('proxy mpd tracks', {'vid': vid, 'quality': quality, 'tracks': [{'name': x.get('track_name'), 'itag': x.get('itag')} for x in video_tracks], 'audio': audio_item.get('itag'), 'direct': direct_segments, 'duration': duration_pt})
+        debug_log('proxy mpd tracks', {
+            'vid': vid, 'quality': quality,
+            'tracks': [{'name': x.get('track_name'), 'itag': x.get('itag')} for x in video_tracks],
+            'audio': audio_item.get('itag'), 'direct': direct_segments, 'duration': duration_pt
+        })
         return [200, 'application/dash+xml', mpd]
 
     def _proxy_media(self, params):
@@ -1325,7 +1363,11 @@ class Spider(Spider):
         try:
             r = self.session.get(target_url, headers=headers, stream=True, timeout=30)
             content_type = r.headers.get('content-type', 'application/octet-stream')
-            debug_log('proxy media response', {'track': track, 'itag': media_item.get('itag'), 'track_name': media_item.get('track_name'), 'status': r.status_code, 'range': range_header, 'content_type': content_type, 'content_length': r.headers.get('content-length'), 'content_range': r.headers.get('content-range')})
+            debug_log('proxy media response', {
+                'track': track, 'itag': media_item.get('itag'), 'track_name': media_item.get('track_name'),
+                'status': r.status_code, 'range': range_header, 'content_type': content_type,
+                'content_length': r.headers.get('content-length'), 'content_range': r.headers.get('content-range')
+            })
             resp_headers = {'Content-Type': content_type, 'Accept-Ranges': 'bytes', 'Cache-Control': 'no-cache'}
             if r.headers.get('content-range'):
                 resp_headers['Content-Range'] = r.headers.get('content-range')
@@ -1353,10 +1395,15 @@ class Spider(Spider):
         if base:
             terms.append(base)
         if isinstance(filters, dict):
-            for value in filters.values():
-                term = self._normalize_filter_term(value)
-                if term:
-                    terms.append(term)
+            for fkey, value in filters.items():
+                if fkey == 'year':
+                    yr = str(value or '').strip()
+                    if yr:
+                        terms.append(yr)
+                else:
+                    term = self._normalize_filter_term(value)
+                    if term:
+                        terms.append(term)
         seen = set()
         output = []
         for term in terms:
@@ -1392,13 +1439,17 @@ class Spider(Spider):
 
     def _fetch_search_first_page(self, key):
         search_url = f'https://www.youtube.com/results?search_query={quote(str(key or ""))}'
+        debug_log('fetch search page', {'url': search_url, 'key': key})
         r = self.session.get(search_url, timeout=10)
         html_str = r.text
+        debug_log('search page response', {'status': r.status_code, 'length': len(html_str), 'has_ytInitialData': 'ytInitialData' in html_str})
         data = self.yt._extract_json_after(html_str, 'ytInitialData') or {}
         ytcfg = self.yt._extract_ytcfg(html_str) or {}
         api_key = ytcfg.get('INNERTUBE_API_KEY') or self.yt._search(r'"INNERTUBE_API_KEY":"([^"]+)"', html_str)
         context = ytcfg.get('INNERTUBE_CONTEXT') or {'client': {'clientName': 'WEB', 'clientVersion': '2.20240310.01.00', 'hl': 'zh-CN', 'gl': 'US'}}
         client = context.get('client') or {}
+        videos = self._extract_videos_from_api(data, 30)
+        debug_log('search page parsed', {'api_key': bool(api_key), 'videos': len(videos)})
         return {
             'key': key,
             'api_key': api_key,
@@ -1406,7 +1457,7 @@ class Spider(Spider):
             'client_name': client.get('clientName') or 'WEB',
             'client_version': client.get('clientVersion') or '2.20240310.01.00',
             'referer': search_url,
-            'pages': [self._extract_videos_from_api(data, 30)],
+            'pages': [videos],
             'next': self._extract_continuation_token(data),
         }
 
@@ -1493,7 +1544,12 @@ class Spider(Spider):
             title_obj = renderer.get('title') or renderer.get('headline') or {}
             title = title_obj.get('simpleText') or ''.join([x.get('text', '') for x in title_obj.get('runs', [])]) or 'YouTube Video'
             dur = (renderer.get('lengthText') or {}).get('simpleText') or 'YouTube'
-            return {'vod_id': vid, 'vod_name': html.unescape(title), 'vod_pic': f'https://img.youtube.com/vi/{vid}/hqdefault.jpg', 'vod_remarks': dur}
+            return {
+                'vod_id': vid,
+                'vod_name': html.unescape(title),
+                'vod_pic': f'https://img.youtube.com/vi/{vid}/hqdefault.jpg',
+                'vod_remarks': dur
+            }
         except Exception:
             return None
 
@@ -1527,3 +1583,16 @@ class Spider(Spider):
             self.session.close()
         except Exception:
             pass
+
+    def setCache(self, key, value):
+        if not hasattr(self, '_cache'):
+            self._cache = {}
+        self._cache[key] = value
+
+    def getCache(self, key):
+        if not hasattr(self, '_cache'):
+            self._cache = {}
+        data = self._cache.get(key)
+        if data and isinstance(data, dict) and data.get('expires', 0) > time.time():
+            return data
+        return None
