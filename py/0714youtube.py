@@ -698,10 +698,20 @@ class Spider(Spider):
         return 'YouTube视频'
 
     def init(self, extend):
-        try:
-            self.extendDict = json.loads(extend) if extend else {}
-        except Exception:
-            self.extendDict = {}
+        # ----- 更健壮的 extend 解析 -----
+        self.extendDict = {}
+        if extend:
+            if isinstance(extend, dict):
+                self.extendDict = extend
+            elif isinstance(extend, str):
+                try:
+                    self.extendDict = json.loads(extend)
+                except Exception:
+                    # 如果不是有效 JSON，尝试作为纯字符串处理，但这里直接忽略
+                    self.extendDict = {}
+            else:
+                self.extendDict = {}
+        # 代理设置
         self.session = requests.Session()
         self.proxy_str = None
         proxy_val = self.extendDict.get('proxy')
@@ -723,7 +733,7 @@ class Spider(Spider):
         self.config = {}
         self.search_page_cache = {}
 
-        # 加载 youtube.json 配置（从 /lib 目录）
+        # 加载 youtube.json 配置（支持 ext 中自定义路径）
         self.youtube_config = self._load_youtube_config()
         # 构建 type_id -> type_name 映射，用于生成搜索关键词
         self.type_name_map = {
@@ -733,20 +743,33 @@ class Spider(Spider):
         }
 
     def _load_youtube_config(self):
-        """加载上级目录下 /lib 中的 youtube.json 文件"""
-        # 当前脚本所在目录（假设为 /py）
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        # 上级目录（项目根目录）
-        parent_dir = os.path.dirname(current_dir)
-        # 目标路径：/lib/youtube.json
-        json_path = os.path.join(parent_dir, 'lib', 'youtube.json')
+        """加载 youtube.json 配置文件，优先使用 ext 中指定的 json 路径，否则使用默认路径 ../lib/youtube.json"""
+        # 获取当前脚本所在目录
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        # 默认路径：上级目录的 lib 子目录
+        default_path = os.path.join(os.path.dirname(script_dir), 'lib', 'youtube.json')
+
+        # 从 extendDict 中获取自定义路径
+        custom_path = self.extendDict.get('json')
+        if custom_path:
+            # 如果是相对路径（以 . 开头），相对于脚本目录
+            if custom_path.startswith('./') or custom_path.startswith('.\\'):
+                json_path = os.path.join(script_dir, custom_path[2:])
+            elif not os.path.isabs(custom_path):
+                # 其他相对路径，也相对于脚本目录
+                json_path = os.path.join(script_dir, custom_path)
+            else:
+                json_path = custom_path
+        else:
+            json_path = default_path
+
         try:
             with open(json_path, 'r', encoding='utf-8') as f:
                 config = json.load(f)
-            debug_log('Loaded youtube.json from /lib', {'path': json_path, 'keys': list(config.keys())})
+            debug_log('Loaded youtube.json', {'path': json_path, 'keys': list(config.keys())})
             return config
         except Exception as e:
-            debug_log('Failed to load youtube.json from /lib', repr(e))
+            debug_log('Failed to load youtube.json', {'path': json_path, 'error': repr(e)})
             raise RuntimeError(f'无法从 {json_path} 加载 youtube.json: {e}')
 
     def homeContent(self, filter):
