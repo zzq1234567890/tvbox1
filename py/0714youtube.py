@@ -708,7 +708,13 @@ class Spider(Spider):
                     self.extendDict = json.loads(extend)
                 except Exception as e:
                     debug_log('extend JSON parse error', repr(e))
-                    self.extendDict = {}
+                    # 尝试将字符串视为键值对（如 "json=./lib/youtube.json"）简单处理
+                    if '=' in extend:
+                        parts = extend.split('=', 1)
+                        if len(parts) == 2:
+                            self.extendDict = {parts[0].strip(): parts[1].strip()}
+                    else:
+                        self.extendDict = {}
             else:
                 self.extendDict = {}
         debug_log('init extendDict', self.extendDict)
@@ -735,7 +741,7 @@ class Spider(Spider):
         self.config = {}
         self.search_page_cache = {}
 
-        # 加载 youtube.json 配置（支持 ext 中自定义路径），若失败则设为空字典并记录日志
+        # 加载 youtube.json 配置（支持 ext 中自定义路径或远程URL）
         try:
             self.youtube_config = self._load_youtube_config()
             debug_log('youtube_config loaded', {'keys': list(self.youtube_config.keys())})
@@ -750,35 +756,43 @@ class Spider(Spider):
         }
 
     def _load_youtube_config(self):
-        """加载 youtube.json 配置文件，优先使用 ext 中指定的 json 路径，否则使用默认路径 ../lib/youtube.json"""
-        # 获取当前脚本所在目录
+        """加载 youtube.json 配置文件，支持本地路径和远程URL"""
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        # 默认路径：上级目录的 lib 子目录
         default_path = os.path.join(os.path.dirname(script_dir), 'lib', 'youtube.json')
 
-        # 从 extendDict 中获取自定义路径
         custom_path = self.extendDict.get('json')
         if custom_path:
-            # 如果是相对路径（以 . 开头），相对于脚本目录
-            if custom_path.startswith('./') or custom_path.startswith('.\\'):
+            # 如果是远程URL，直接通过HTTP获取
+            if custom_path.startswith('http://') or custom_path.startswith('https://'):
+                json_path = custom_path
+                try:
+                    debug_log('Loading youtube.json from remote URL', {'url': json_path})
+                    resp = requests.get(json_path, timeout=10)
+                    resp.raise_for_status()
+                    config = resp.json()
+                    debug_log('Loaded youtube.json from remote', {'keys': list(config.keys())})
+                    return config
+                except Exception as e:
+                    debug_log('Failed to load youtube.json from remote', {'url': json_path, 'error': repr(e)})
+                    raise RuntimeError(f'无法从远程 {json_path} 加载 youtube.json: {e}')
+            # 相对路径处理
+            elif custom_path.startswith('./') or custom_path.startswith('.\\'):
                 json_path = os.path.join(script_dir, custom_path[2:])
             elif not os.path.isabs(custom_path):
-                # 其他相对路径，也相对于脚本目录
                 json_path = os.path.join(script_dir, custom_path)
             else:
                 json_path = custom_path
         else:
             json_path = default_path
 
-        debug_log('Attempting to load youtube.json from', {'path': json_path, 'exists': os.path.exists(json_path)})
+        debug_log('Attempting to load youtube.json from local', {'path': json_path, 'exists': os.path.exists(json_path)})
         try:
             with open(json_path, 'r', encoding='utf-8') as f:
                 config = json.load(f)
-            debug_log('Loaded youtube.json', {'path': json_path, 'keys': list(config.keys())})
+            debug_log('Loaded youtube.json from local', {'path': json_path, 'keys': list(config.keys())})
             return config
         except Exception as e:
-            debug_log('Failed to load youtube.json', {'path': json_path, 'error': repr(e)})
-            # 抛出自定义异常，让上层捕获
+            debug_log('Failed to load youtube.json from local', {'path': json_path, 'error': repr(e)})
             raise RuntimeError(f'无法从 {json_path} 加载 youtube.json: {e}')
 
     def homeContent(self, filter):
