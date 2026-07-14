@@ -19,6 +19,7 @@ CATEGORY_ALIASES = {
     'movie': '电影', 'game': '科技', 'documentary': '纪录片', '新聞直播': '新闻直播',
     '動漫': '动漫', '綜藝': '综艺', '政論': '政论', '體育': '体育', '時尚潮流': '时尚潮流',
     '自媒體': '自媒体', '音樂': '音乐', '科普知識': '科普知识', '短劇': '短剧',
+    '國際新聞': '国际新闻',
 }
 
 def _filter_group(key, name, pairs):
@@ -154,7 +155,7 @@ class YouTubeLite:
             'title': details.get('title') or video_id,
             'duration': int(details.get('lengthSeconds') or 0),
             'formats': formats,
-            'live_manifest': live_manifest,  # 仅当有有效 manifest 时才非空
+            'live_manifest': live_manifest,
         }
         self.extract_cache[video_id] = {'data': data, 'expires': time.time() + self.extract_cache_ttl}
         debug_log('extract complete', {'video_id': video_id, 'cost_ms': int((time.time() - extract_started) * 1000),
@@ -230,8 +231,10 @@ class YouTubeLite:
         codecs = (item.get('codecs') or '').lower()
         return 'av01' in codecs
 
-    def choose_video_tracks(self, formats, quality=None):
+    def choose_video_tracks(self, formats, quality=None, codec_filter=None):
         videos = [x for x in formats if x.get('vcodec') != 'none' and x.get('acodec') == 'none']
+        if codec_filter:
+            videos = [x for x in videos if codec_filter in (x.get('codecs') or '').lower()]
         cap = 2160 if quality in ('best', '4k') else 1440 if quality == '2k' else 1080
         videos = [x for x in videos if int(x.get('height') or 0) <= cap] or videos
         vp9 = [x for x in videos if self._video_codec_priority(x) >= 3]
@@ -291,23 +294,20 @@ class YouTubeLite:
         r.raise_for_status()
         return r.json()
 
-    # ---- 修复后的 _call_player_api，根据 is_live 调整策略 ----
     def _call_player_api(self, video_id, api_key, context, referer, visitor_data=None, sts=None, is_live=False):
-        # 基础客户端（点播快速返回用）
         base_clients = [
             {'client': {'clientName': 'ANDROID_VR', 'clientVersion': '1.65.10', 'deviceMake': 'Oculus', 'deviceModel': 'Quest 3', 'androidSdkVersion': 32, 'userAgent': 'com.google.android.apps.youtube.vr.oculus/1.65.10 (Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip', 'osName': 'Android', 'osVersion': '12L', 'hl': 'en', 'gl': 'US'}},
             {'client': {'clientName': 'ANDROID', 'clientVersion': '21.02.35', 'androidSdkVersion': 30, 'userAgent': 'com.google.android.youtube/21.02.35 (Linux; U; Android 11) gzip', 'osName': 'Android', 'osVersion': '11', 'hl': 'en', 'gl': 'US'}},
             {'client': {'clientName': 'IOS', 'clientVersion': '21.02.3', 'deviceMake': 'Apple', 'deviceModel': 'iPhone16,2', 'userAgent': 'com.google.ios.youtube/21.02.3 (iPhone16,2; U; CPU iOS 18_3_2 like Mac OS X;)', 'osName': 'iPhone', 'osVersion': '18.3.2.22D82', 'hl': 'en', 'gl': 'US'}},
-            context,  # WEB
+            context,
             {'client': {'clientName': 'MWEB', 'clientVersion': '2.20260115.01.00', 'userAgent': 'Mozilla/5.0 (iPad; CPU OS 16_7_10 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1,gzip(gfe)', 'hl': 'en', 'gl': 'US'}},
         ]
-        # 直播时追加 TVHTML5
         if is_live:
             clients = base_clients + [
                 {'client': {'clientName': 'TVHTML5', 'clientVersion': '7.20240220.00.00', 'platform': 'TV', 'deviceMake': 'Google', 'deviceModel': 'Chromecast', 'hl': 'en', 'gl': 'US'}}
             ]
         else:
-            clients = base_clients  # 点播不用 TVHTML5
+            clients = base_clients
 
         results = []
         fallback = None
@@ -345,7 +345,6 @@ class YouTubeLite:
                 elif fallback is None:
                     fallback = data
 
-                # 点播：若 ANDROID_VR 返回直链视频则快速返回（与 0712 一致）
                 if not is_live and client_name == 'ANDROID_VR' and has_streaming:
                     formats = streaming.get('formats') or []
                     adaptive = streaming.get('adaptiveFormats') or []
@@ -658,7 +657,7 @@ class Spider(Spider):
         # ---- 加载 youtube.json 动态配置 ----
         self.classes = []
         self.filters = {}
-        self.search_map = {}   # type_id -> 搜索关键词
+        self.search_map = {}
         config_path = os.path.join(os.path.dirname(__file__), './lib/youtube.json')
         if os.path.exists(config_path):
             try:
@@ -682,6 +681,7 @@ class Spider(Spider):
     def _fallback_hardcoded(self):
         self.classes = [
             {'type_id': '新闻直播', 'type_name': '新闻直播'},
+            {'type_id': '国际新闻', 'type_name': '国际新闻'},
             {'type_id': '动漫', 'type_name': '动漫'},
             {'type_id': '综艺', 'type_name': '综艺'},
             {'type_id': '政论', 'type_name': '政论'},
@@ -704,7 +704,31 @@ class Spider(Spider):
             {'type_id': '音乐', 'type_name': '音乐'},
             {'type_id': '神秘', 'type_name': '神秘'},
         ]
-        self.search_map = {item['type_id']: item['type_name'] for item in self.classes}
+        self.search_map = {
+            '新闻直播': '新闻直播',
+            '国际新闻': 'BBC News Fox News Fox Business Bloomberg CNBC Sky News CNN',
+            '动漫': '动漫',
+            '综艺': '综艺',
+            '政论': '政论',
+            '短剧': '短剧',
+            '剧集': '剧集',
+            '4K': '4K',
+            'HDR': 'HDR',
+            '自然': '自然',
+            '动画片': '动画片',
+            '电影': '电影',
+            '纪录片': '纪录片',
+            '放松': '放松',
+            '16K HDR': '16K HDR',
+            '科技': '科技',
+            '解说': '解说',
+            '体育': '体育',
+            '时尚潮流': '时尚潮流',
+            '科普知识': '科普知识',
+            '自媒体': '自媒体',
+            '音乐': '音乐',
+            '神秘': '神秘',
+        }
 
     def setCache(self, key, value):
         self._cache[key] = value
@@ -741,25 +765,45 @@ class Spider(Spider):
         video_id = did[0]
         title = self._get_video_title(video_id)
         safe_title = self._safe_title(title)
-        play_sources = []
-        play_urls = []
         try:
             data = self.yt.extract(video_id)
-            tracks = self.yt.choose_video_tracks(data.get('formats') or [], 'best')
-            for track in tracks:
-                height = int(track.get('height') or 0)
-                kind = track.get('track_name') or ('HDR' if track.get('is_hdr') else 'SDR')
-                name = f'{height}p {kind}' if height else kind
-                quality = 'hdr' if kind == 'HDR' else 'best'
+            formats = data.get('formats', [])
+            codec_groups = {}
+            for fmt in formats:
+                if fmt.get('vcodec') == 'none':
+                    continue
+                codec = fmt.get('codecs', '').lower()
+                if 'avc' in codec or 'h264' in codec:
+                    codec_type = 'h264'
+                elif 'vp9' in codec or 'vp09' in codec:
+                    codec_type = 'vp9'
+                elif 'av01' in codec:
+                    codec_type = 'av1'
+                else:
+                    codec_type = 'other'
+                if codec_type not in codec_groups:
+                    codec_groups[codec_type] = []
+                codec_groups[codec_type].append(fmt)
+            
+            play_sources = []
+            play_urls = []
+            for codec_type, fmt_list in codec_groups.items():
+                fmt_list.sort(key=lambda x: int(x.get('height') or 0), reverse=True)
+                best = fmt_list[0]
+                height = int(best.get('height') or 0)
+                is_hdr = self.yt._is_hdr_video(best)
+                kind = 'HDR' if is_hdr else 'SDR'
+                codec_name = codec_type.upper()
+                name = f'{height}p {codec_name} {kind}' if height else f'{codec_name} {kind}'
+                quality = 'hdr' if is_hdr else 'best'
                 play_sources.append(name)
-                play_urls.append(f'{safe_title} {name}${video_id}@{quality}')
+                play_urls.append(f'{safe_title} {name}${video_id}@{quality}_{codec_type}')
         except Exception as e:
             debug_log('detail error', repr(e))
-        if not play_sources:
             play_sources = ['SDR', 'HDR']
             play_urls = [
-                f'{safe_title} SDR${video_id}@best',
-                f'{safe_title} HDR${video_id}@hdr',
+                f'{safe_title} SDR${video_id}@best_h264',
+                f'{safe_title} HDR${video_id}@hdr_h264',
             ]
         vod = {
             'vod_id': video_id,
@@ -770,22 +814,26 @@ class Spider(Spider):
         }
         return {'list': [vod]}
 
-    # ========== 核心修复：点播沿用 0712 逻辑，直播使用 manifest ==========
     def playerContent(self, flag, pid, vipFlags):
         raw_pid = pid.split('$')[-1]
         if '@' in raw_pid:
-            video_id, quality = raw_pid.rsplit('@', 1)
+            parts = raw_pid.rsplit('@', 1)
+            video_id, quality_codec = parts[0], parts[1]
+            if '_' in quality_codec:
+                quality, codec_type = quality_codec.split('_', 1)
+            else:
+                quality = quality_codec
+                codec_type = None
         else:
-            video_id, quality = raw_pid, '1080p'
+            video_id, quality = raw_pid, 'best'
+            codec_type = None
         if quality not in ('best', 'hdr', '4k', '2k', '1080p'):
             quality = 'best'
         try:
             data = self.yt.extract(video_id)
 
-            # ---- 如果有有效 manifest（hls 或 dash），则按直播处理 ----
             manifest = data.get('live_manifest')
             if manifest and (manifest.get('hls') or manifest.get('dash')):
-                # 直播：优先 HLS，其次 DASH
                 url = manifest.get('hls') or manifest.get('dash')
                 if url:
                     debug_log('直播 manifest 返回', {'url': url, 'protocol': 'HLS' if url.endswith('.m3u8') else 'DASH'})
@@ -798,13 +846,11 @@ class Spider(Spider):
                         fmt = ''
                     return {'parse': 0, 'jx': 0, 'url': url, 'header': headers, 'format': fmt}
                 else:
-                    # 极少情况：有 manifest 对象但无 URL，降级到点播逻辑
                     debug_log('manifest 无有效 URL，降级到点播逻辑')
-                    pass  # 继续执行点播逻辑
+                    pass
 
-            # ---- 点播处理（完全复用 0712 的逻辑） ----
-            debug_log('点播处理 (0712 逻辑)', {'video_id': video_id, 'quality': quality})
-            all_tracks = self.yt.choose_video_tracks(data['formats'], 'best')
+            debug_log('点播处理', {'video_id': video_id, 'quality': quality, 'codec': codec_type})
+            all_tracks = self.yt.choose_video_tracks(data['formats'], 'best', codec_filter=codec_type)
             wanted_name = 'HDR' if quality == 'hdr' else 'SDR'
             video_tracks = [x for x in all_tracks if x.get('track_name') == wanted_name]
             if not video_tracks and all_tracks:
@@ -812,7 +858,7 @@ class Spider(Spider):
             if video_tracks:
                 audio = self.yt.choose_audio(data['formats'])
                 if audio:
-                    cache_key = f'yt_{video_id}_{quality}'
+                    cache_key = f'yt_{video_id}_{quality}_{codec_type}'
                     self.setCache(cache_key, {
                         'video_tracks': video_tracks,
                         'video_url': video_tracks[0]['url'],
@@ -825,31 +871,26 @@ class Spider(Spider):
                     debug_log('点播使用 MPD 代理（分离音视频）', {
                         'video_itag': video_tracks[0].get('itag'),
                         'video_height': video_tracks[0].get('height'),
+                        'codec': codec_type,
                         'audio_itag': audio.get('itag')
                     })
                     return {
                         'parse': 0, 'jx': 0,
-                        'url': f'http://127.0.0.1:9978/proxy?do=py&type=mpd&vid={video_id}&quality={quality}',
+                        'url': f'http://127.0.0.1:9978/proxy?do=py&type=mpd&vid={video_id}&quality={quality}_{codec_type}',
                         'format': 'application/dash+xml'
                     }
                 else:
-                    # 无纯音频，直接播放视频轨（可能无声，但作为 fallback）
                     playable = video_tracks[0]
                     headers = self.header.copy()
                     headers.update(playable.get('headers') or {})
-                    debug_log('点播无音频，直接播放视频轨', {'itag': playable.get('itag'), 'height': playable.get('height')})
                     return {'parse': 0, 'jx': 0, 'url': playable['url'], 'header': headers}
-            # 如果无视频轨，则尝试 progressive
             progressives = [x for x in data['formats'] if x.get('vcodec') != 'none' and x.get('acodec') != 'none']
             if progressives:
                 progressives.sort(key=lambda x: (int(x.get('height') or 0), int(x.get('bitrate') or 0)), reverse=True)
                 playable = progressives[0]
                 headers = self.header.copy()
                 headers.update(playable.get('headers') or {})
-                debug_log('点播降级到 progressive 合流', {'itag': playable.get('itag'), 'height': playable.get('height')})
                 return {'parse': 0, 'jx': 0, 'url': playable['url'], 'header': headers}
-
-            # 最终 fallback
             playable = self.yt.choose_playable(data['formats'], 'best')
             if playable:
                 headers = self.header.copy()
@@ -904,15 +945,20 @@ class Spider(Spider):
 
     def _proxy_mpd(self, params):
         vid = params.get('vid')
-        quality = params.get('quality') or '1080p'
-        data = self.getCache(f'yt_{vid}_{quality}') if vid else None
+        quality_codec = params.get('quality') or '1080p_h264'
+        if '_' in quality_codec:
+            quality, codec_type = quality_codec.split('_', 1)
+        else:
+            quality = quality_codec
+            codec_type = None
+        data = self.getCache(f'yt_{vid}_{quality}_{codec_type}') if vid else None
         if not data:
             return [404, 'text/plain', '视频缓存已过期或不存在']
         audio_url = data.get('audio_url')
         duration = data.get('duration') or 0
         video_tracks = data.get('video_tracks') or [data.get('video_item') or {}]
         audio_item = data.get('audio_item') or {}
-        media_base = f'http://127.0.0.1:9978/proxy?do=py&type=media&vid={vid}&quality={quality}'
+        media_base = f'http://127.0.0.1:9978/proxy?do=py&type=media&vid={vid}&quality={quality}_{codec_type}'
         direct_segments = str(self.extendDict.get('seg') or 'proxy').lower() == 'direct'
         duration_pt = f"PT{int(duration or 0)}S"
         mpd = f'''<?xml version="1.0" encoding="UTF-8"?>
@@ -946,9 +992,14 @@ class Spider(Spider):
 
     def _proxy_media(self, params):
         vid = params.get('vid')
-        quality = params.get('quality') or '1080p'
+        quality_codec = params.get('quality') or '1080p_h264'
+        if '_' in quality_codec:
+            quality, codec_type = quality_codec.split('_', 1)
+        else:
+            quality = quality_codec
+            codec_type = None
         track = params.get('track')
-        data = self.getCache(f'yt_{vid}_{quality}') if vid else None
+        data = self.getCache(f'yt_{vid}_{quality}_{codec_type}') if vid else None
         if not data or track not in ('video', 'audio'):
             return [404, 'text/plain', '媒体不存在']
         if track == 'video':
