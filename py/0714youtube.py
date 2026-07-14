@@ -59,7 +59,6 @@ class YouTubeLite:
         player_url = self._extract_player_url(page)
         api_key = ytcfg.get('INNERTUBE_API_KEY') or self._search(r'"INNERTUBE_API_KEY":"([^"]+)"', page)
         visitor_data = self._extract_visitor_data(ytcfg, player_response)
-        # ANDROID_VR 返回明文 URL，不需要下载 base.js 提取 signatureTimestamp。
         sts = None
         debug_log('page parsed', {'has_ytcfg': bool(ytcfg), 'has_initial_pr': bool(player_response), 'initial_status': (player_response.get('playabilityStatus') or {}).get('status'), 'initial_has_streaming': bool(player_response.get('streamingData')), 'has_api_key': bool(api_key), 'has_visitor': bool(visitor_data), 'sts': sts, 'player_url': player_url})
         context = ytcfg.get('INNERTUBE_CONTEXT') or {
@@ -183,8 +182,6 @@ class YouTubeLite:
             candidates = all_videos
         if not candidates:
             return None
-        # 画质优先，编码顺序 VP9/HDR > H264 > AV1。保留 VP9 Profile 2 HDR，
-        # 只把 AV1 放到最后，避免默认选到 itag 701/702 的超大 AV1 分段。
         candidates.sort(key=lambda x: (
             self._video_codec_priority(x),
             int(x.get('height') or 0),
@@ -367,7 +364,6 @@ class YouTubeLite:
                     data['_client_name'] = client_name
                     data['_client_ua'] = client_ua
                     results.append(data)
-                    # VR 明文格式最完整，成功后立即返回，避免再串行请求 4 个客户端。
                     if client_name == 'ANDROID_VR' and direct_video:
                         debug_log('player api fast return', {'client': client_name, 'direct_video': len(direct_video)})
                         return results
@@ -698,7 +694,6 @@ class Spider(Spider):
         return 'YouTube视频'
 
     def init(self, extend):
-        # ----- 更健壮的 extend 解析 -----
         self.extendDict = {}
         if extend:
             if isinstance(extend, dict):
@@ -718,7 +713,6 @@ class Spider(Spider):
                 self.extendDict = {}
         debug_log('init extendDict', self.extendDict)
 
-        # 代理设置
         self.session = requests.Session()
         self.proxy_str = None
         proxy_val = self.extendDict.get('proxy')
@@ -740,14 +734,12 @@ class Spider(Spider):
         self.config = {}
         self.search_page_cache = {}
 
-        # 加载 youtube.json 配置（支持 ext 中自定义路径或远程URL）
         try:
             self.youtube_config = self._load_youtube_config()
             debug_log('youtube_config loaded', {'keys': list(self.youtube_config.keys())})
         except Exception as e:
             debug_log('Failed to load youtube_config, using empty dict', repr(e))
             self.youtube_config = {}
-        # 构建 type_id -> type_name 映射
         self.type_name_map = {
             item.get('type_id'): item.get('type_name', '')
             for item in self.youtube_config.get('class', [])
@@ -755,7 +747,6 @@ class Spider(Spider):
         }
 
     def _load_youtube_config(self):
-        """加载 youtube.json 配置文件，支持本地路径和远程URL"""
         script_dir = os.path.dirname(os.path.abspath(__file__))
         default_path = os.path.join(os.path.dirname(script_dir), 'lib', 'youtube.json')
 
@@ -1027,35 +1018,39 @@ class Spider(Spider):
     def _build_category_keyword(self, cid, filters=None):
         """
         构建搜索关键词：
-        - 若 cid 以 "LIST:" 开头，则去掉前缀，将逗号替换为空格，作为基础关键词
-        - 否则直接使用 cid 本身（如"短剧"、"电影"）
-        - 追加 type_name（若不同）作为补充
+        - 若 cid 以 "LIST:" 开头，取第一个逗号前的内容作为基础关键词（如"新闻 Live"），
+          并追加 type_name（若有且不重复）
+        - 否则直接使用 cid 本身
         - 最后拼接过滤条件
         """
         raw_cid = cid or ''
         base_keywords = ''
         if raw_cid.startswith('LIST:'):
-            # 提取 LIST: 后面的内容，逗号替换为空格
-            keywords_part = raw_cid[5:].strip()
-            base_keywords = keywords_part.replace(',', ' ').strip()
+            # 提取 LIST: 后面的内容，取第一个逗号前作为主关键词
+            rest = raw_cid[5:].strip()
+            if ',' in rest:
+                main_part = rest.split(',')[0].strip()
+            else:
+                main_part = rest.strip()
+            base_keywords = main_part
+            # 补充 type_name（如果 type_name 不在已有关键词中）
+            type_name = self.type_name_map.get(cid, '')
+            if type_name and type_name not in base_keywords:
+                base_keywords = base_keywords + ' ' + type_name
         else:
             base_keywords = raw_cid
-
-        # 补充 type_name（如果 type_name 不在已有关键词中）
-        type_name = self.type_name_map.get(cid, '')
-        if type_name and type_name not in base_keywords:
-            base_keywords = (base_keywords + ' ' + type_name).strip() if base_keywords else type_name
+            type_name = self.type_name_map.get(cid, '')
+            if type_name and type_name not in base_keywords:
+                base_keywords = base_keywords + ' ' + type_name
 
         terms = [base_keywords] if base_keywords else []
 
-        # 添加过滤条件
         if isinstance(filters, dict):
             for value in filters.values():
                 term = self._normalize_filter_term(value)
                 if term:
                     terms.append(term)
 
-        # 去重
         seen = set()
         output = []
         for term in terms:
