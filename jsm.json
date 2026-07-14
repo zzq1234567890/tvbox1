@@ -15,8 +15,8 @@
             }
         },      
  {
-      "key": "py_yt",
-      "name": "ytpy",
+      "key": "py_yt0714",
+      "name": "ytpy0714",
       "type": 3,
       "api": "./py/0714youtube.py",
 	 "searchable": 1,
@@ -31,7 +31,16 @@
                 "proxy": "noproxy"
             }
     },
-     
+      {
+      "key": "py_yt0712",
+      "name": "ytpy0712",
+      "type": 3,
+      "api": "./py/0712youtube.py",
+	 "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+	 
+    },
 		
 		  {
             "key": "Youtube",
