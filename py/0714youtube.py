@@ -770,7 +770,7 @@ class Spider(Spider):
         }
         return {'list': [vod]}
 
-    # ========== 修复后的 playerContent（同时修复直播和点播无声） ==========
+    # ========== 修复后的 playerContent（点播正常，直播优先 HLS 减少黑屏） ==========
     def playerContent(self, flag, pid, vipFlags):
         raw_pid = pid.split('$')[-1]
         if '@' in raw_pid:
@@ -785,9 +785,10 @@ class Spider(Spider):
             # ---- 直播处理 ----
             if data.get('live_manifest'):
                 manifest = data['live_manifest']
-                url = manifest.get('dash') or manifest.get('hls')
+                # 优先使用 HLS（通常更稳定），其次 DASH
+                url = manifest.get('hls') or manifest.get('dash')
                 if url:
-                    debug_log('直播 manifest 返回', {'url': url})
+                    debug_log('直播 manifest 返回', {'url': url, 'protocol': 'HLS' if url.endswith('.m3u8') else 'DASH'})
                     headers = self.header.copy()
                     if url.endswith('.m3u8') or '/live/' in url:
                         fmt = 'application/vnd.apple.mpegurl'
@@ -802,7 +803,6 @@ class Spider(Spider):
                     # 优先选择 progressive（含音视频）
                     progressives = [x for x in data['formats'] if x.get('vcodec') != 'none' and x.get('acodec') != 'none']
                     if progressives:
-                        # 按画质和码率排序，选择最佳
                         progressives.sort(key=lambda x: (int(x.get('height') or 0), int(x.get('bitrate') or 0)), reverse=True)
                         playable = progressives[0]
                         headers = self.header.copy()
@@ -813,7 +813,6 @@ class Spider(Spider):
                         audio = self.yt.choose_audio(data['formats'])
                         video = self.yt.choose_playable(data['formats'], 'best')
                         if video and audio:
-                            # 缓存并返回 MPD
                             cache_key = f'yt_{video_id}_live'
                             self.setCache(cache_key, {
                                 'video_tracks': [video],
@@ -855,7 +854,6 @@ class Spider(Spider):
                     return (score, height, bitrate)
                 progressives.sort(key=sort_key, reverse=True)
                 playable = progressives[0]
-                # 缓存到 single 代理（有效期 600 秒）
                 cache_key = f'yt_single_{video_id}'
                 self.setCache(cache_key, {
                     'url': playable['url'],
