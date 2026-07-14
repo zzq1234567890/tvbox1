@@ -706,11 +706,13 @@ class Spider(Spider):
             elif isinstance(extend, str):
                 try:
                     self.extendDict = json.loads(extend)
-                except Exception:
-                    # 如果不是有效 JSON，尝试作为纯字符串处理，但这里直接忽略
+                except Exception as e:
+                    debug_log('extend JSON parse error', repr(e))
                     self.extendDict = {}
             else:
                 self.extendDict = {}
+        debug_log('init extendDict', self.extendDict)
+
         # 代理设置
         self.session = requests.Session()
         self.proxy_str = None
@@ -733,9 +735,14 @@ class Spider(Spider):
         self.config = {}
         self.search_page_cache = {}
 
-        # 加载 youtube.json 配置（支持 ext 中自定义路径）
-        self.youtube_config = self._load_youtube_config()
-        # 构建 type_id -> type_name 映射，用于生成搜索关键词
+        # 加载 youtube.json 配置（支持 ext 中自定义路径），若失败则设为空字典并记录日志
+        try:
+            self.youtube_config = self._load_youtube_config()
+            debug_log('youtube_config loaded', {'keys': list(self.youtube_config.keys())})
+        except Exception as e:
+            debug_log('Failed to load youtube_config, using empty dict', repr(e))
+            self.youtube_config = {}
+        # 构建 type_id -> type_name 映射
         self.type_name_map = {
             item.get('type_id'): item.get('type_name', '')
             for item in self.youtube_config.get('class', [])
@@ -763,6 +770,7 @@ class Spider(Spider):
         else:
             json_path = default_path
 
+        debug_log('Attempting to load youtube.json from', {'path': json_path, 'exists': os.path.exists(json_path)})
         try:
             with open(json_path, 'r', encoding='utf-8') as f:
                 config = json.load(f)
@@ -770,9 +778,11 @@ class Spider(Spider):
             return config
         except Exception as e:
             debug_log('Failed to load youtube.json', {'path': json_path, 'error': repr(e)})
+            # 抛出自定义异常，让上层捕获
             raise RuntimeError(f'无法从 {json_path} 加载 youtube.json: {e}')
 
     def homeContent(self, filter):
+        # 即使配置为空，也返回空分类和空过滤器，避免崩溃
         result = {'class': self.youtube_config.get('class', [])}
         if filter:
             result['filters'] = self.youtube_config.get('filters', {})
