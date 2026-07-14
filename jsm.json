@@ -18,7 +18,7 @@
       "key": "py_yt",
       "name": "ytpy",
       "type": 3,
-      "api": "./py/0712youtube.py",
+      "api": "./py/0714youtube.py",
 	 "searchable": 1,
       "quickSearch": 1,
       "filterable": 0
