@@ -72,12 +72,14 @@ class YouTubeLite:
         visitor_data = self._extract_visitor_data(ytcfg, player_response)
         sts = None
 
-        # ---- 新增：判断是否直播 ----
+        # ---- 判断是否直播 ----
         is_live = False
+        duration = 0
         if player_response:
             details = player_response.get('videoDetails') or {}
             is_live = details.get('isLive') or details.get('isLiveContent') or False
-        debug_log('live detection', {'video_id': video_id, 'is_live': is_live})
+            duration = int(details.get('lengthSeconds') or 0)
+        debug_log('live detection', {'video_id': video_id, 'is_live': is_live, 'duration': duration})
 
         debug_log('page parsed', {'has_ytcfg': bool(ytcfg), 'has_initial_pr': bool(player_response),
                                   'initial_status': (player_response.get('playabilityStatus') or {}).get('status'),
@@ -94,21 +96,19 @@ class YouTubeLite:
                 api_responses = [api_responses] if api_responses else []
             responses.extend([x for x in api_responses if x])
 
-        # 合并响应后，检查直播 manifest
+        # 合并响应后，检查直播 manifest（仅当有实际 hls 或 dash 时才视为直播）
         live_manifest = None
         for resp in responses:
             streaming = resp.get('streamingData') or {}
             hls = streaming.get('hlsManifestUrl')
             dash = streaming.get('dashManifestUrl')
             if hls or dash:
-                live_manifest = {'hls': hls, 'dash': dash, 'is_live': True}
+                live_manifest = {'hls': hls, 'dash': dash}
                 debug_log('found live manifest', {'client': resp.get('_client_name'), 'hls': hls, 'dash': dash})
                 break
+        # 没有 manifest 就算 isLive 为 True 也视为点播
         if not live_manifest:
-            details = player_response.get('videoDetails') or {}
-            if details.get('isLive') or details.get('isLiveContent'):
-                live_manifest = {'is_live': True}
-                debug_log('live detected by isLive flag', {'video_id': video_id})
+            debug_log('无有效 manifest，视为点播', {'video_id': video_id})
 
         player_response = next((x for x in responses if (x.get('playabilityStatus') or {}).get('status') == 'OK'), player_response)
         status = (player_response.get('playabilityStatus') or {}).get('status')
@@ -154,7 +154,7 @@ class YouTubeLite:
             'title': details.get('title') or video_id,
             'duration': int(details.get('lengthSeconds') or 0),
             'formats': formats,
-            'live_manifest': live_manifest,
+            'live_manifest': live_manifest,  # 仅当有有效 manifest 时才非空
         }
         self.extract_cache[video_id] = {'data': data, 'expires': time.time() + self.extract_cache_ttl}
         debug_log('extract complete', {'video_id': video_id, 'cost_ms': int((time.time() - extract_started) * 1000),
@@ -770,7 +770,7 @@ class Spider(Spider):
         }
         return {'list': [vod]}
 
-    # ========== 修复后的 playerContent（点播正常，直播优先 HLS 减少黑屏） ==========
+    # ========== 核心修复：点播沿用 0712 逻辑，直播使用 manifest ==========
     def playerContent(self, flag, pid, vipFlags):
         raw_pid = pid.split('$')[-1]
         if '@' in raw_pid:
@@ -782,10 +782,10 @@ class Spider(Spider):
         try:
             data = self.yt.extract(video_id)
 
-            # ---- 直播处理 ----
-            if data.get('live_manifest'):
-                manifest = data['live_manifest']
-                # 优先使用 HLS（通常更稳定），其次 DASH
+            # ---- 如果有有效 manifest（hls 或 dash），则按直播处理 ----
+            manifest = data.get('live_manifest')
+            if manifest and (manifest.get('hls') or manifest.get('dash')):
+                # 直播：优先 HLS，其次 DASH
                 url = manifest.get('hls') or manifest.get('dash')
                 if url:
                     debug_log('直播 manifest 返回', {'url': url, 'protocol': 'HLS' if url.endswith('.m3u8') else 'DASH'})
@@ -798,79 +798,12 @@ class Spider(Spider):
                         fmt = ''
                     return {'parse': 0, 'jx': 0, 'url': url, 'header': headers, 'format': fmt}
                 else:
-                    # 无 manifest：从 formats 中选择含音频的 progressive 流，或分离音视频
-                    debug_log('直播无manifest，尝试从formats选流', {'formats_count': len(data.get('formats', []))})
-                    # 优先选择 progressive（含音视频）
-                    progressives = [x for x in data['formats'] if x.get('vcodec') != 'none' and x.get('acodec') != 'none']
-                    if progressives:
-                        progressives.sort(key=lambda x: (int(x.get('height') or 0), int(x.get('bitrate') or 0)), reverse=True)
-                        playable = progressives[0]
-                        headers = self.header.copy()
-                        headers.update(playable.get('headers') or {})
-                        return {'parse': 0, 'jx': 0, 'url': playable['url'], 'header': headers}
-                    else:
-                        # 无 progressive，分离音视频
-                        audio = self.yt.choose_audio(data['formats'])
-                        video = self.yt.choose_playable(data['formats'], 'best')
-                        if video and audio:
-                            cache_key = f'yt_{video_id}_live'
-                            self.setCache(cache_key, {
-                                'video_tracks': [video],
-                                'video_url': video['url'],
-                                'audio_url': audio['url'],
-                                'video_item': video,
-                                'audio_item': audio,
-                                'duration': 0,
-                                'expires': time.time() + 300,
-                            })
-                            return {
-                                'parse': 0, 'jx': 0,
-                                'url': f'http://127.0.0.1:9978/proxy?do=py&type=mpd&vid={video_id}&quality=live',
-                                'format': 'application/dash+xml'
-                            }
-                        elif video:
-                            headers = self.header.copy()
-                            headers.update(video.get('headers') or {})
-                            return {'parse': 0, 'jx': 0, 'url': video['url'], 'header': headers}
-                        else:
-                            raise Exception('直播流无可播放格式')
+                    # 极少情况：有 manifest 对象但无 URL，降级到点播逻辑
+                    debug_log('manifest 无有效 URL，降级到点播逻辑')
+                    pass  # 继续执行点播逻辑
 
-            # ---- 点播处理：强制使用 progressive 合流并通过 single 代理 ----
-            progressives = [x for x in data['formats'] if x.get('vcodec') != 'none' and x.get('acodec') != 'none']
-            if progressives:
-                # 优先选择 mp4 容器 + H.264/AAC，其次按画质和码率排序
-                def sort_key(x):
-                    mime = x.get('mimeType', '').lower()
-                    codecs = x.get('codecs', '').lower()
-                    score = 0
-                    if 'mp4' in mime:
-                        score += 100
-                    if 'avc' in codecs or 'h264' in codecs:
-                        score += 50
-                    if 'aac' in codecs or 'mp4a' in codecs:
-                        score += 20
-                    height = int(x.get('height') or 0)
-                    bitrate = int(x.get('bitrate') or 0)
-                    return (score, height, bitrate)
-                progressives.sort(key=sort_key, reverse=True)
-                playable = progressives[0]
-                cache_key = f'yt_single_{video_id}'
-                self.setCache(cache_key, {
-                    'url': playable['url'],
-                    'headers': playable.get('headers', {}),
-                    'expires': time.time() + 600,
-                })
-                proxy_url = f'http://127.0.0.1:9978/proxy?do=py&type=single&vid={video_id}'
-                debug_log('点播使用 progressive 并通过 single 代理', {
-                    'itag': playable.get('itag'),
-                    'height': playable.get('height'),
-                    'mime': playable.get('mimeType'),
-                    'codecs': playable.get('codecs'),
-                    'proxy_url': proxy_url
-                })
-                return {'parse': 0, 'jx': 0, 'url': proxy_url}
-
-            # ---- 如果没有 progressive（极少情况），回退到分离音视频 ----
+            # ---- 点播处理（完全复用 0712 的逻辑） ----
+            debug_log('点播处理 (0712 逻辑)', {'video_id': video_id, 'quality': quality})
             all_tracks = self.yt.choose_video_tracks(data['formats'], 'best')
             wanted_name = 'HDR' if quality == 'hdr' else 'SDR'
             video_tracks = [x for x in all_tracks if x.get('track_name') == wanted_name]
@@ -889,16 +822,39 @@ class Spider(Spider):
                         'duration': data.get('duration') or 0,
                         'expires': time.time() + 300,
                     })
+                    debug_log('点播使用 MPD 代理（分离音视频）', {
+                        'video_itag': video_tracks[0].get('itag'),
+                        'video_height': video_tracks[0].get('height'),
+                        'audio_itag': audio.get('itag')
+                    })
                     return {
                         'parse': 0, 'jx': 0,
                         'url': f'http://127.0.0.1:9978/proxy?do=py&type=mpd&vid={video_id}&quality={quality}',
                         'format': 'application/dash+xml'
                     }
                 else:
+                    # 无纯音频，直接播放视频轨（可能无声，但作为 fallback）
                     playable = video_tracks[0]
                     headers = self.header.copy()
                     headers.update(playable.get('headers') or {})
+                    debug_log('点播无音频，直接播放视频轨', {'itag': playable.get('itag'), 'height': playable.get('height')})
                     return {'parse': 0, 'jx': 0, 'url': playable['url'], 'header': headers}
+            # 如果无视频轨，则尝试 progressive
+            progressives = [x for x in data['formats'] if x.get('vcodec') != 'none' and x.get('acodec') != 'none']
+            if progressives:
+                progressives.sort(key=lambda x: (int(x.get('height') or 0), int(x.get('bitrate') or 0)), reverse=True)
+                playable = progressives[0]
+                headers = self.header.copy()
+                headers.update(playable.get('headers') or {})
+                debug_log('点播降级到 progressive 合流', {'itag': playable.get('itag'), 'height': playable.get('height')})
+                return {'parse': 0, 'jx': 0, 'url': playable['url'], 'header': headers}
+
+            # 最终 fallback
+            playable = self.yt.choose_playable(data['formats'], 'best')
+            if playable:
+                headers = self.header.copy()
+                headers.update(playable.get('headers') or {})
+                return {'parse': 0, 'jx': 0, 'url': playable['url'], 'header': headers}
             raise Exception('没有可播放的流')
         except Exception as e:
             debug_log('playerContent error', repr(e))
