@@ -13,45 +13,7 @@ sys.path.append('..')
 
 DEBUG_LOG = '/sdcard/Download/0714youtube_trace.log'
 
-# ================= 完整分类配置（保持不变） =================
-YOUTUBE_CLASSES = [
-    {'type_id': '新闻直播', 'type_name': '新闻直播'},
-    {'type_id': '动漫', 'type_name': '动漫'},
-    {'type_id': '综艺', 'type_name': '综艺'},
-    {'type_id': '政论', 'type_name': '政论'},
-    {'type_id': '动画片', 'type_name': '动画片'},
-    {'type_id': '短剧', 'type_name': '短剧'},
-    {'type_id': '剧集', 'type_name': '剧集'},
-    {'type_id': '电影', 'type_name': '电影'},
-    {'type_id': '纪录片', 'type_name': '纪录片'},
-    {'type_id': '4K', 'type_name': '4K'},
-    {'type_id': 'HDR', 'type_name': 'HDR'},
-    {'type_id': '自然', 'type_name': '自然'},
-    
-    {'type_id': '放松', 'type_name': '放松'},
-    {'type_id': '16K HDR', 'type_name': '16K HDR'},
-    {'type_id': '科技', 'type_name': '科技'},
-    {'type_id': '解说', 'type_name': '解说'},
-  
-    {'type_id': '体育', 'type_name': '体育'},
-    {'type_id': '时尚潮流', 'type_name': '时尚潮流'},
-    {'type_id': '科普知识', 'type_name': '科普知识'},
-    {'type_id': '自媒体', 'type_name': '自媒体'},
-    {'type_id': '音乐', 'type_name': '音乐'},
-    {'type_id': '神秘', 'type_name': '神秘'},
-]
-
-CATEGORY_QUERY = {
-    '动画片': '动画 国漫 anime cartoon', '短剧': '短剧', '剧集': '电视剧 剧集 drama',
-    '电影': '电影 movie', '纪录片': '纪录片 documentary', '放松': '放松 冥想 自然 音乐 relax meditation nature',
-    '4K': '4K video', 'HDR': 'HDR video', '自然': '大自然 风景 动物 世界 nature wildlife scenery',
-    '16K HDR': '16K HDR video', '科技': '科技 technology', '解说': '电影解说 故事解说',
-    '新闻直播': '新闻 Live 直播', '动漫': '动漫 国漫 anime', '综艺': '综艺 variety show',
-    '政论': '政论 观点', '体育': '体育 赛事 sports', '时尚潮流': '时尚 走秀 潮流',
-    '科普知识': '宇宙 科普 历史', '自媒体': '自媒体 We Media', '音乐': '华语音乐 MV 音乐',
-    '神秘': '神秘 未解之谜',
-}
-
+# 不再使用硬编码分类，全部从 youtube.json 加载
 CATEGORY_ALIASES = {
     '動畫片': '动画片', '劇集': '剧集', '電影': '电影', '紀錄片': '纪录片', '解說': '解说',
     'movie': '电影', 'game': '科技', 'documentary': '纪录片', '新聞直播': '新闻直播',
@@ -65,56 +27,6 @@ def _filter_group(key, name, pairs):
 def _with_year(*groups):
     years = [{'n': '全部', 'v': ''}] + [{'n': str(year), 'v': str(year)} for year in range(2026, 1957, -1)]
     return [{'key': 'year', 'name': '年份', 'value': years}] + list(groups)
-
-CATEGORY_FILTERS = {
-    '动画片': _with_year(
-        _filter_group('topic', '中文', [('国漫', '国漫 3D 动画'), ('儿童早教', '儿童早教'), ('宝宝巴士', '宝宝巴士')]),
-        _filter_group('channel', '频道', [('小猪佩奇', '@PeppaPigChineseOfficial 小猪佩奇 中文'), ('CoComelon', '@CoComelon')])
-    ),
-    '短剧': _with_year(
-        _filter_group('region', '地区', [('抖音', '抖音 短剧'), ('快手', '快手 短剧'), ('大陆', '大陆 短剧')]),
-        _filter_group('topic', '题材', [('都市', '都市 短剧'), ('复仇', '复仇 短剧'), ('穿越', '穿越 短剧')])
-    ),
-    '剧集': _with_year(
-        _filter_group('region', '中文', [('TVB', '@TVB'), ('大陆', '大陆 剧集'), ('腾讯', '腾讯 剧集'), ('爱奇艺', '爱奇艺 剧集'), ('Netflix', 'Netflix Full Episode')]),
-        _filter_group('platform', 'English', [('Drama', 'Full Episode drama'), ('Netflix', 'netflix Full Episode drama')])
-    ),
-    '电影': _with_year(
-        _filter_group('region', '中文', [('大陆', '大陆 电影'), ('腾讯', '腾讯 电影'), ('Netflix', 'netflix Full movie')]),
-        _filter_group('platform', 'English', [('movie', 'youtube movies Full movie'), ('US', 'us Full movie movie')])
-    ),
-    '纪录片': _with_year(
-        _filter_group('topic', '中文', [('CCTV纪录', '@CCTVDocumentary'), ('国家地理', '国家地理 纪录片'), ('历史', '历史 纪录片')]),
-        _filter_group('platform', 'English', [('默认', 'documentary'), ('National Geographic', '@natgeo')])
-    ),
-    '新闻直播': [
-        _filter_group('live', '中文直播', [('赛事', '直播 赛事'), ('CCTV', '直播 CCTV'), ('港台', '直播 港台')]),
-        _filter_group('news_eng', 'English News', [('News', 'News'), ('CNN', 'CNN news'), ('BBC', 'BBC news')])
-    ],
-    '综艺': _with_year(
-        _filter_group('region', '中文', [('大陆', '大陆 综艺'), ('芒果', '芒果 综艺'), ('腾讯', '腾讯 综艺')]),
-        _filter_group('comedy', '小品', [('春晚小品', '春晚小品'), ('德云社', '德云社'), ('郭德纲', '郭德纲')])
-    ),
-    '体育': _with_year(
-        _filter_group('topic', '中文', [('体育直播', '体育直播'), ('足球比赛', '足球賽事'), ('篮球比赛', '篮球賽事')]),
-        _filter_group('topic_eng', 'English', [('Live', 'live sports'), ('NBA', 'NBA')])
-    ),
-    '音乐': _with_year(
-        _filter_group('region', '地区', [('华语音乐', '華語音樂'), ('粤语', '粵語 音樂'), ('欧美', '欧美 音乐')]),
-        _filter_group('singer', '歌手', [('刀郎', '刀郎 演唱會 巡演 音樂'), ('凤凰传奇', '鳳凰傳奇 巡演 音樂')])
-    ),
-    '放松': [_filter_group('topic', '主题', [('冥想', '冥想 放松'), ('白噪音', '白噪音 放松'), ('雨声', '雨声 放松')])],
-    '4K': [_filter_group('topic', '主题', [('风景', '4K 风景 scenery'), ('城市', '4K 城市 city walk')])],
-    'HDR': [_filter_group('topic', '风景', [('风景', 'hdr 大自然'), ('动物世界', 'hdr Carnivorous Animals')])],
-    '自然': [_filter_group('topic', '主题', [('风景', '大自然 风景 nature scenery'), ('动物世界', '动物世界 wildlife')])],
-    '科技': [_filter_group('topic', '主题', [('AI', '人工智能 AI technology'), ('数码', '数码 科技 technology')])],
-    '解说': [_filter_group('channel', '频道主', [('宇哥侃故事', '@yuge'), ('零度解说', '@lingdujieshuo')])],
-    '政论': _with_year(_filter_group('topic', '中文', [('观点', '@觀點'), ('丰富', '@豐富')])),
-    '时尚潮流': [_filter_group('show', '时装秀', [('时尚走秀', 'T台走秀 fashion show'), ('模特', '模特 寫真 Car model')])],
-    '科普知识': [_filter_group('science', '科普知识', [('宇宙', '光年 黑洞 銀河系'), ('历史', '歷史 History')])],
-    '自媒体': [_filter_group('creator', '频道主', [('李子柒', '李子柒 Liziqi'), ('滇西小哥', '滇西小哥')])],
-    '神秘': [_filter_group('topic', '主题', [('未解之谜', '未解之谜 mystery'), ('UFO', 'UFO 外星人')])],
-}
 
 def debug_log(message, data=None):
     try:
@@ -170,7 +82,7 @@ class YouTubeLite:
                 api_responses = [api_responses] if api_responses else []
             responses.extend([x for x in api_responses if x])
         
-        # ---- 合并响应后，检查直播 manifest ----
+        # 合并响应后，检查直播 manifest
         live_manifest = None
         for resp in responses:
             streaming = resp.get('streamingData') or {}
@@ -180,11 +92,10 @@ class YouTubeLite:
                 live_manifest = {'hls': hls, 'dash': dash, 'is_live': True}
                 debug_log('found live manifest', {'client': resp.get('_client_name'), 'hls': hls, 'dash': dash})
                 break
-        # 如果还没有，检查 videoDetails 中的 isLive 标志（备用）
         if not live_manifest:
             details = player_response.get('videoDetails') or {}
             if details.get('isLive') or details.get('isLiveContent'):
-                live_manifest = {'is_live': True}  # 标记为直播，但无manifest，后续可能尝试直接播放
+                live_manifest = {'is_live': True}
                 debug_log('live detected by isLive flag', {'video_id': video_id})
 
         player_response = next((x for x in responses if (x.get('playabilityStatus') or {}).get('status') == 'OK'), player_response)
@@ -220,7 +131,6 @@ class YouTubeLite:
                 formats.append(item)
         debug_log('normalized formats', {'count': len(formats), 'cipher_count': cipher_count, 'progressive': len([x for x in formats if x.get('vcodec') != 'none' and x.get('acodec') != 'none'])})
 
-        # 如果既没有 formats 也没有直播 manifest，才抛出异常
         if not formats and not live_manifest:
             raise Exception('未获取到可用播放地址')
 
@@ -366,7 +276,6 @@ class YouTubeLite:
         return r.json()
 
     def _call_player_api(self, video_id, api_key, context, referer, visitor_data=None, sts=None):
-        # ---- 增强 TVHTML5 客户端参数 ----
         clients = [
             {'client': {'clientName': 'TVHTML5', 'clientVersion': '7.20240220.00.00', 'platform': 'TV', 'deviceMake': 'Google', 'deviceModel': 'Chromecast', 'hl': 'en', 'gl': 'US'}},
             {'client': {'clientName': 'ANDROID_VR', 'clientVersion': '1.65.10', 'deviceMake': 'Oculus', 'deviceModel': 'Quest 3', 'androidSdkVersion': 32, 'userAgent': 'com.google.android.apps.youtube.vr.oculus/1.65.10 (Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip', 'osName': 'Android', 'osVersion': '12L', 'hl': 'en', 'gl': 'US'}},
@@ -404,7 +313,6 @@ class YouTubeLite:
                     data['_client_name'] = client_name
                     data['_client_ua'] = client_ua
                     results.append(data)
-                    # 如果 TVHTML5 返回了 manifest，直接返回（优先）
                     if client_name == 'TVHTML5' and (streaming.get('hlsManifestUrl') or streaming.get('dashManifestUrl')):
                         debug_log('TVHTML5 returned manifest', {'hls': streaming.get('hlsManifestUrl'), 'dash': streaming.get('dashManifestUrl')})
                         return results
@@ -703,7 +611,7 @@ class Spider(Spider):
                 self.proxy_str = proxy_val.replace('http://', '').replace('https://', '')
                 proxy_url = f'http://{self.proxy_str}'
                 self.session.proxies = {'http': proxy_url, 'https': proxy_url}
-        
+
         self.header = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
             'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
@@ -716,6 +624,63 @@ class Spider(Spider):
         self.search_page_cache = {}
         self._cache = {}
 
+        # ---- 新增：加载 youtube.json 动态配置 ----
+        self.classes = []
+        self.filters = {}
+        self.search_map = {}   # type_id -> 搜索关键词
+        config_path = os.path.join(os.path.dirname(__file__), './lib/youtube.json')
+        if os.path.exists(config_path):
+            try:
+                with open(config_path, 'r', encoding='utf-8') as f:
+                    config = json.load(f)
+                self.classes = config.get('class', [])
+                self.filters = config.get('filters', {})
+                # 构建搜索映射：type_id -> type_name（去除可能的"LIST:"前缀，但保留原样以匹配）
+                for item in self.classes:
+                    tid = item.get('type_id')
+                    name = item.get('type_name')
+                    if tid and name:
+                        self.search_map[tid] = name
+                debug_log('加载 youtube.json 成功', {'class_count': len(self.classes), 'filter_count': len(self.filters)})
+            except Exception as e:
+                debug_log('加载 youtube.json 失败', repr(e))
+                # 回退到硬编码（仅当加载失败时）
+                self._fallback_hardcoded()
+        else:
+            debug_log('youtube.json 不存在，使用硬编码配置')
+            self._fallback_hardcoded()
+
+    def _fallback_hardcoded(self):
+        # 如果配置文件不存在，使用原有硬编码（仅作备选）
+        self.classes = [
+            {'type_id': '新闻直播', 'type_name': '新闻直播'},
+            {'type_id': '动漫', 'type_name': '动漫'},
+            {'type_id': '综艺', 'type_name': '综艺'},
+            {'type_id': '政论', 'type_name': '政论'},
+            {'type_id': '短剧', 'type_name': '短剧'},
+            {'type_id': '剧集', 'type_name': '剧集'},
+            {'type_id': '4K', 'type_name': '4K'},
+            {'type_id': 'HDR', 'type_name': 'HDR'},
+            {'type_id': '自然', 'type_name': '自然'},
+            {'type_id': '动画片', 'type_name': '动画片'},
+          
+            {'type_id': '电影', 'type_name': '电影'},
+            {'type_id': '纪录片', 'type_name': '纪录片'},
+            {'type_id': '放松', 'type_name': '放松'},
+            {'type_id': '16K HDR', 'type_name': '16K HDR'},
+            {'type_id': '科技', 'type_name': '科技'},
+            {'type_id': '解说', 'type_name': '解说'},
+    
+            {'type_id': '体育', 'type_name': '体育'},
+            {'type_id': '时尚潮流', 'type_name': '时尚潮流'},
+            {'type_id': '科普知识', 'type_name': '科普知识'},
+            {'type_id': '自媒体', 'type_name': '自媒体'},
+            {'type_id': '音乐', 'type_name': '音乐'},
+            {'type_id': '神秘', 'type_name': '神秘'},
+        ]
+        self.search_map = {item['type_id']: item['type_name'] for item in self.classes}
+        # 使用硬编码的 CATEGORY_FILTERS（原代码中的定义）保持兼容
+
     def setCache(self, key, value):
         self._cache[key] = value
 
@@ -726,9 +691,9 @@ class Spider(Spider):
         return None
 
     def homeContent(self, filter):
-        result = {'class': YOUTUBE_CLASSES}
-        if filter:
-            result['filters'] = CATEGORY_FILTERS
+        result = {'class': self.classes}
+        if filter and self.filters:
+            result['filters'] = self.filters
         return result
 
     def homeVideoContent(self):
@@ -798,7 +763,6 @@ class Spider(Spider):
                 if url:
                     debug_log('直播 manifest 返回', {'url': url})
                     headers = self.header.copy()
-                    # 根据 URL 后缀设置 format
                     if url.endswith('.m3u8') or '/live/' in url:
                         fmt = 'application/vnd.apple.mpegurl'
                     elif url.endswith('.mpd') or '/dash/' in url:
@@ -807,9 +771,7 @@ class Spider(Spider):
                         fmt = ''
                     return {'parse': 0, 'jx': 0, 'url': url, 'header': headers, 'format': fmt}
                 else:
-                    # 如果只标记为直播但没有 manifest，尝试从 formats 中选一个流直接播放（备用方案）
                     debug_log('直播无manifest，尝试从formats选流', {'formats_count': len(data.get('formats', []))})
-                    # 优先选包含音频的视频流（progressive），但直播通常没有
                     playable = self.yt.choose_playable(data['formats'], 'best')
                     if playable:
                         headers = self.header.copy()
@@ -983,7 +945,8 @@ class Spider(Spider):
     def _build_category_keyword(self, cid, filters=None):
         category_id = self._normalize_category_id(cid)
         terms = []
-        base = CATEGORY_QUERY.get(category_id) or CATEGORY_QUERY.get(str(cid or '').strip()) or category_id or str(cid or '').strip()
+        # 从动态 search_map 获取基础查询词（优先使用 type_name）
+        base = self.search_map.get(cid) or self.search_map.get(category_id) or category_id or str(cid or '').strip()
         if base:
             terms.append(base)
         if isinstance(filters, dict):
