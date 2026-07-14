@@ -708,7 +708,6 @@ class Spider(Spider):
                     self.extendDict = json.loads(extend)
                 except Exception as e:
                     debug_log('extend JSON parse error', repr(e))
-                    # 尝试将字符串视为键值对（如 "json=./lib/youtube.json"）简单处理
                     if '=' in extend:
                         parts = extend.split('=', 1)
                         if len(parts) == 2:
@@ -762,7 +761,6 @@ class Spider(Spider):
 
         custom_path = self.extendDict.get('json')
         if custom_path:
-            # 如果是远程URL，直接通过HTTP获取
             if custom_path.startswith('http://') or custom_path.startswith('https://'):
                 json_path = custom_path
                 try:
@@ -775,7 +773,6 @@ class Spider(Spider):
                 except Exception as e:
                     debug_log('Failed to load youtube.json from remote', {'url': json_path, 'error': repr(e)})
                     raise RuntimeError(f'无法从远程 {json_path} 加载 youtube.json: {e}')
-            # 相对路径处理
             elif custom_path.startswith('./') or custom_path.startswith('.\\'):
                 json_path = os.path.join(script_dir, custom_path[2:])
             elif not os.path.isabs(custom_path):
@@ -796,7 +793,6 @@ class Spider(Spider):
             raise RuntimeError(f'无法从 {json_path} 加载 youtube.json: {e}')
 
     def homeContent(self, filter):
-        # 即使配置为空，也返回空分类和空过滤器，避免崩溃
         result = {'class': self.youtube_config.get('class', [])}
         if filter:
             result['filters'] = self.youtube_config.get('filters', {})
@@ -809,6 +805,7 @@ class Spider(Spider):
         page = int(page)
         filters = ext if isinstance(ext, dict) else {}
         query = self._build_category_keyword(cid, filters)
+        debug_log('categoryContent query', {'cid': cid, 'query': query})
         videos, has_more = self._search_youtube_page(query, page)
         return {'list': videos, 'page': page, 'pagecount': page + 1 if has_more else page, 'limit': len(videos), 'total': len(videos)}
 
@@ -1028,14 +1025,36 @@ class Spider(Spider):
         return re.sub(r'\s+', ' ', str(value or '')).strip()[:180]
 
     def _build_category_keyword(self, cid, filters=None):
-        # 根据 cid 从 json 配置中获取分类名称作为基础搜索词
-        base = self.type_name_map.get(cid) or cid
-        terms = [base] if base else []
+        """
+        构建搜索关键词：
+        - 若 cid 以 "LIST:" 开头，则去掉前缀，将逗号替换为空格，作为基础关键词
+        - 否则直接使用 cid 本身（如"短剧"、"电影"）
+        - 追加 type_name（若不同）作为补充
+        - 最后拼接过滤条件
+        """
+        raw_cid = cid or ''
+        base_keywords = ''
+        if raw_cid.startswith('LIST:'):
+            # 提取 LIST: 后面的内容，逗号替换为空格
+            keywords_part = raw_cid[5:].strip()
+            base_keywords = keywords_part.replace(',', ' ').strip()
+        else:
+            base_keywords = raw_cid
+
+        # 补充 type_name（如果 type_name 不在已有关键词中）
+        type_name = self.type_name_map.get(cid, '')
+        if type_name and type_name not in base_keywords:
+            base_keywords = (base_keywords + ' ' + type_name).strip() if base_keywords else type_name
+
+        terms = [base_keywords] if base_keywords else []
+
+        # 添加过滤条件
         if isinstance(filters, dict):
             for value in filters.values():
                 term = self._normalize_filter_term(value)
                 if term:
                     terms.append(term)
+
         # 去重
         seen = set()
         output = []
@@ -1044,7 +1063,10 @@ class Spider(Spider):
             if term and term not in seen:
                 seen.add(term)
                 output.append(term)
-        return ' '.join(output)
+
+        final_query = ' '.join(output)
+        debug_log('Built search query', {'cid': cid, 'filters': filters, 'query': final_query})
+        return final_query
 
     def _search_cache_key(self, key):
         return re.sub(r'\s+', ' ', str(key or '')).strip().lower()
