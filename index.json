@@ -1,5 +1,8 @@
 {
   "urls": [
+   {"name":"海豚",
+   "url":" https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/ok海豚.json"
+   },
    {
     "name": "摸魚",
     "url":"http://www.小不点.com"
