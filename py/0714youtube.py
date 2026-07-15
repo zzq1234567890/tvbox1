@@ -16,7 +16,8 @@ DEBUG_LOG = '/sdcard/Download/0714youtube_trace.log'
 # 分类别名
 CATEGORY_ALIASES = {
     '動畫片': '动画片', '劇集': '剧集', '電影': '电影', '紀錄片': '纪录片', '解說': '解说',
-    'movie': '电影', 'game': '科技', 'documentary': '纪录片', '新聞直播': '新闻直播',
+    'movie': '电影', 'game': '科技', 'documentary': '纪录片', '新聞直播': '新闻直播','港劇': '港劇',
+
     '動漫': '动漫', '綜藝': '综艺', '政論': '政论', '體育': '体育', '時尚潮流': '时尚潮流',
     '自媒體': '自媒体', '音樂': '音乐', '科普知識': '科普知识', '短劇': '短剧',
     '國際新聞': '国际新闻',
@@ -683,16 +684,19 @@ class Spider(Spider):
             {'type_id': '新闻直播', 'type_name': '新闻直播'},
             {'type_id': '国际新闻', 'type_name': '国际新闻'},
             {'type_id': '动漫', 'type_name': '动漫'},
+           {'type_id': '动画片', 'type_name': '动画片'},
             {'type_id': '综艺', 'type_name': '综艺'},
             {'type_id': '政论', 'type_name': '政论'},
+            {'type_id': '港剧', 'type_name': '港剧'},
+            {'type_id': '纪录片', 'type_name': '纪录片'},
             {'type_id': '短剧', 'type_name': '短剧'},
             {'type_id': '剧集', 'type_name': '剧集'},
             {'type_id': '4K', 'type_name': '4K'},
             {'type_id': 'HDR', 'type_name': 'HDR'},
             {'type_id': '自然', 'type_name': '自然'},
-            {'type_id': '动画片', 'type_name': '动画片'},
+            
             {'type_id': '电影', 'type_name': '电影'},
-            {'type_id': '纪录片', 'type_name': '纪录片'},
+           
             {'type_id': '放松', 'type_name': '放松'},
             {'type_id': '16K HDR', 'type_name': '16K HDR'},
             {'type_id': '科技', 'type_name': '科技'},
@@ -712,12 +716,15 @@ class Spider(Spider):
             '政论': '政论',
             '短剧': '短剧',
             '剧集': '剧集',
+             '纪录片': '纪录片',
             '4K': '4K',
+             '动画片': '动画片',
+            '港剧': '港剧',
             'HDR': 'HDR',
             '自然': '自然',
-            '动画片': '动画片',
+            
             '电影': '电影',
-            '纪录片': '纪录片',
+           
             '放松': '放松',
             '16K HDR': '16K HDR',
             '科技': '科技',
