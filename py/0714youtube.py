@@ -969,7 +969,7 @@ class Spider(Spider):
         direct_segments = str(self.extendDict.get('seg') or 'proxy').lower() == 'direct'
         duration_pt = f"PT{int(duration or 0)}S"
         mpd = f'''<?xml version="1.0" encoding="UTF-8"?>
-<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" type="static" mediaPresentationDuration="{duration_pt}" minBufferTime="PT1.5S" profiles="urn:mpeg:dash:profile:isoff-on-demand:2011">
+<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" type="static" mediaPresentationDuration="{duration_pt}" minBufferTime="PT90S" profiles="urn:mpeg:dash:profile:isoff-on-demand:2011">
   <Period id="1" start="PT0S">
 '''
         for item in video_tracks:
