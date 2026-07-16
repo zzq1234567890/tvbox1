@@ -2,7 +2,7 @@
 	"recommend":"LIST:最新|推薦,官方頻道",
 	"class":[
 		{
-			"type_id":"LIST:新闻 Live,体育直播,赛事直播",
+			"type_id":"LIST:新闻 Live",
 			"type_name":"新聞直播"
 		},
 		{
@@ -414,7 +414,7 @@
 
 
 		
-		"LIST:新闻 Live,体育直播,赛事直播":[
+		"LIST:新闻 Live":[
 			{
 				"key":"tid",
 				"name":"中文",
@@ -456,7 +456,12 @@
 					{"n":"法治与社会","v":"法治 法制 社会 卖淫 淫秽 污蔑 赌博 毒品 裸聊 诈骗 拐卖 强奸 勒索"},
 					{"n":"News","v":"News"},
 					{"n":"CNN","v":"CNN news"},
-					{"n":"BBC","v":"BBC news"}
+					{"n":"BBC","v":"BBC news"},
+					{"n":"FOX News","v":"FOX News"},
+					{"n":"FOX Business News","v":"FOX Business News"}
+
+
+					
 				]
 			}
 		],
