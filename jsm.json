@@ -26,7 +26,7 @@
     },
     	 {
       "key": "py_db",
-      "name": 独播库py",
+      "name": "独播库py",
       "type": 3,
       "api": "./py/独播.py",
 	 "searchable": 1,
