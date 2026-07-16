@@ -2995,6 +2995,15 @@
 			"url": "https://raw.githubusercontent.com/zzq12345/epgtest/refs/heads/main/youtubeworld.m3u"
 		 },
 		{
+             "name": "yang1989",
+             "ua": "okhttp", 
+             "playerType": 2, 
+             "url": "https://iptv.yang-1989.xyz/playlist.m3u",
+
+             "epg": "https://epg.yang-1989.eu.org/epg.xml.gz",
+             "logo": "https://epg.112114.xyz/logo/{name}.png" 
+             },
+		{
             "name": "garyshare",
             "ua": "okhttp/3.0",
             "playerType": 2,
@@ -3013,7 +3022,7 @@
 			"epg": "https://epg.zsdc.eu.org/t.xml"
 		},
        {
-            "name": "對岸世界杯1",
+            "name": "對岸世界杯2",
             "ua": "okhttp/3.0",
             "playerType": 2,
 			"url":"http://82.156.243.185:33389/fwc.m3u",
@@ -3043,14 +3052,7 @@
             "playerType": 2,
             "url": "https://mgtv.ottiptv.cc/mglist.m3u?url=https://mgtv.ottiptv.cc"
 		},
-		   {
-            "name": "央視體育建議",
-            "ua": "okhttp/3.0",
-            "playerType": 2,
-            "url": "http://82.156.243.185:33389/fwc.m3u",
-			"epg": "https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz",
-            "logo": "https://epg.112114.xyz/logo/{name}.png"
-           },
+		 
 	
 	        {
             "name": "jacktv",
@@ -3070,14 +3072,7 @@
            "epg":"https://raw.githubusercontent.com/zzq1234567890/epg/refs/heads/main/twepg.xml",
             "logo": "https://epg.112114.xyz/logo/{name}.png"
            },
-           {
-            "name": "jacktv測試",
-            "ua": "okhttp/3.0",
-            "playerType": 2,
-            "url": "https://php.946985.filegear-sg.me/test.m3u",
-           "epg":"https://epg.946985.filegear-sg.me/t.xml.gz",
-            "logo":"https://epg.112114.xyz/logo/{name}.png"
-             },	
+           
               {
             "name": "中國台測試",
             "ua": "okhttp/3.0",
@@ -3086,15 +3081,7 @@
            "epg":"https://epg.946985.filegear-sg.me/t.xml.gz",
             "logo":"https://epg.112114.xyz/logo/{name}.png"
              },	
-             {
-             "name": "yang1989",
-             "ua": "okhttp", 
-             "playerType": 2, 
-             "url": "https://iptv.yang-1989.xyz/playlist.m3u",
-
-             "epg": "https://epg.yang-1989.eu.org/epg.xml.gz",
-             "logo": "https://epg.112114.xyz/logo/{name}.png" 
-             }, 
+             
 
 		       {
             "name": "1",
