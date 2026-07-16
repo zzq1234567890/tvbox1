@@ -2998,21 +2998,29 @@
             "name": "garyshare",
             "ua": "okhttp/3.0",
             "playerType": 2,
-			"url":"https://garyshare.sharewithyou.dpdns.org/garyshare_united.m3u",
+			"url":"https://garyshare.sharewithyou.dpdns.org/garyshare_goal.m3u",
 			
 			###"url":"https://garyshare.sharewithyou.dpdns.org/garyshare_rules.m3u",
            ### "url": "https://garyshare.sharewithyou.dpdns.org/garyshare.m3u?token=worldcup2026",
 			"epg": "https://github.com/iwinstar/epg_merge_filter/releases/download/latest/merged_epg.xml.gz"
 		},
 		{
-            "name": "對岸世界杯",
+            "name": "對岸世界杯1",
             "ua": "okhttp/3.0",
             "playerType": 2,
 			"url":"http://82.156.243.185:54321/other.m3u",
            ### "url": "https://garyshare.sharewithyou.dpdns.org/garyshare.m3u?token=worldcup2026",
 			"epg": "https://epg.zsdc.eu.org/t.xml"
 		},
-       
+       {
+            "name": "對岸世界杯1",
+            "ua": "okhttp/3.0",
+            "playerType": 2,
+			"url":"http://82.156.243.185:33389/fwc.m3u",
+           ### "url": "https://garyshare.sharewithyou.dpdns.org/garyshare.m3u?token=worldcup2026",
+			"epg": "https://epg.zsdc.eu.org/t.xml"
+		},
+		
 
 		{
             "name": "不知道誰",
