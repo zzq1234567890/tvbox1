@@ -710,7 +710,7 @@ class Spider(Spider):
         ]
         self.search_map = {
             '新闻直播': '新闻直播',
-            '国际新闻': 'BBC News Fox News Fox Business Bloomberg CNBC Sky News CNN',
+            '国际新闻': 'BBC News, Fox News ,Fox Business ,Bloomberg ,CNBC ,Sky News, CNN,france24 ,DW, Aljazeera,Asia news',
             '动漫': '动漫',
             '综艺': '综艺',
             '政论': '政论',
