@@ -11,13 +11,23 @@ import requests
 from base.spider import Spider
 sys.path.append('..')
 
-DEBUG_LOG = '/sdcard/Download/0714youtube_trace.log'
+# ====== 路径适配修改 ======
+# 原硬编码路径：'/sdcard/Download/0714youtube_trace.log'
+# 改为相对于脚本上级目录的 log 文件夹（自动创建）
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # 根目录（脚本在 /py/ 下）
+LOG_DIR = os.path.join(BASE_DIR, 'log')
+if not os.path.exists(LOG_DIR):
+    try:
+        os.makedirs(LOG_DIR)
+    except:
+        pass
+DEBUG_LOG = os.path.join(LOG_DIR, '0714youtube_trace.log')
+# ==========================
 
-# 分类别名
+# 分类别名（保持不变）
 CATEGORY_ALIASES = {
     '動畫片': '动画片', '劇集': '剧集', '電影': '电影', '紀錄片': '纪录片', '解說': '解说',
     'movie': '电影', 'game': '科技', 'documentary': '纪录片', '新聞直播': '新闻直播','港劇': '港劇',
-
     '動漫': '动漫', '綜藝': '综艺', '政論': '政论', '體育': '体育', '時尚潮流': '时尚潮流',
     '自媒體': '自媒体', '音樂': '音乐', '科普知識': '科普知识', '短劇': '短剧',
     '國際新聞': '国际新闻',
@@ -655,11 +665,15 @@ class Spider(Spider):
         self.search_page_cache = {}
         self._cache = {}
 
-        # ---- 加载 youtube.json 动态配置 ----
+        # ---- 加载 youtube.json 动态配置（路径已适配） ----
         self.classes = []
         self.filters = {}
         self.search_map = {}
-        config_path = os.path.join(os.path.dirname(__file__), './lib/youtube.json')
+        # ===== 修改 config_path =====
+        # 原：config_path = os.path.join(os.path.dirname(__file__), './lib/youtube.json')
+        # 改为：脚本在 /py/ 下，json 在根目录 /lib/ 下
+        config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'lib', 'youtube.json')
+        # =============================
         if os.path.exists(config_path):
             try:
                 with open(config_path, 'r', encoding='utf-8') as f:
