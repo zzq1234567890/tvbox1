@@ -11,23 +11,13 @@ import requests
 from base.spider import Spider
 sys.path.append('..')
 
-# ====== 路径适配修改 ======
-# 原硬编码路径：'/sdcard/Download/0714youtube_trace.log'
-# 改为相对于脚本上级目录的 log 文件夹（自动创建）
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # 根目录（脚本在 /py/ 下）
-LOG_DIR = os.path.join(BASE_DIR, 'log')
-if not os.path.exists(LOG_DIR):
-    try:
-        os.makedirs(LOG_DIR)
-    except:
-        pass
-DEBUG_LOG = os.path.join(LOG_DIR, '0714youtube_trace.log')
-# ==========================
+DEBUG_LOG = '/sdcard/Download/0714youtube_trace.log'
 
-# 分类别名（保持不变）
+# 分类别名
 CATEGORY_ALIASES = {
     '動畫片': '动画片', '劇集': '剧集', '電影': '电影', '紀錄片': '纪录片', '解說': '解说',
     'movie': '电影', 'game': '科技', 'documentary': '纪录片', '新聞直播': '新闻直播','港劇': '港劇',
+
     '動漫': '动漫', '綜藝': '综艺', '政論': '政论', '體育': '体育', '時尚潮流': '时尚潮流',
     '自媒體': '自媒体', '音樂': '音乐', '科普知識': '科普知识', '短劇': '短剧',
     '國際新聞': '国际新闻',
@@ -61,7 +51,8 @@ class YouTubeLite:
         self.player_cache = {}
         self.extract_cache = {}
         self.sig_plan_cache = {}
-        self.extract_cache_ttl = int(self.config.get('extract_cache_ttl') or 300)
+        # 修改默认缓存 TTL 为 3600 秒（1小时），配合刷新机制更稳定
+        self.extract_cache_ttl = int(self.config.get('extract_cache_ttl') or 3600)
 
     def extract(self, url_or_id):
         video_id = self.extract_video_id(url_or_id)
@@ -634,7 +625,7 @@ class YouTubeLite:
 
 class Spider(Spider):
     def getName(self):
-        return 'YouTube视频'
+        return 'YouTube'   # 修改：站点名称不再包含“视频”后缀，避免与文件名混淆
 
     def init(self, extend):
         try:
@@ -665,15 +656,11 @@ class Spider(Spider):
         self.search_page_cache = {}
         self._cache = {}
 
-        # ---- 加载 youtube.json 动态配置（路径已适配） ----
+        # ---- 加载 youtube.json 动态配置 ----
         self.classes = []
         self.filters = {}
         self.search_map = {}
-        # ===== 修改 config_path =====
-        # 原：config_path = os.path.join(os.path.dirname(__file__), './lib/youtube.json')
-        # 改为：脚本在 /py/ 下，json 在根目录 /lib/ 下
-        config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'lib', 'youtube.json')
-        # =============================
+        config_path = os.path.join(os.path.dirname(__file__), './lib/youtube.json')
         if os.path.exists(config_path):
             try:
                 with open(config_path, 'r', encoding='utf-8') as f:
@@ -964,6 +951,42 @@ class Spider(Spider):
         except Exception as e:
             return [500, 'text/plain', f'代理播放失败: {str(e)}']
 
+    # ========== 新增：缓存自动刷新方法 ==========
+    def _refresh_cache(self, vid, quality_codec):
+        """重新提取视频信息并更新缓存，返回新的缓存数据"""
+        try:
+            data = self.yt.extract(vid)
+            if '_' in quality_codec:
+                quality, codec_type = quality_codec.split('_', 1)
+            else:
+                quality = quality_codec
+                codec_type = None
+            all_tracks = self.yt.choose_video_tracks(data['formats'], 'best', codec_filter=codec_type)
+            wanted_name = 'HDR' if quality == 'hdr' else 'SDR'
+            video_tracks = [x for x in all_tracks if x.get('track_name') == wanted_name]
+            if not video_tracks and all_tracks:
+                video_tracks = [all_tracks[0]]
+            audio = self.yt.choose_audio(data['formats'])
+            if not video_tracks:
+                return None
+            cache_data = {
+                'video_tracks': video_tracks,
+                'video_url': video_tracks[0]['url'],
+                'audio_url': audio['url'] if audio else None,
+                'video_item': video_tracks[0],
+                'audio_item': audio or {},
+                'duration': data.get('duration') or 0,
+                'expires': time.time() + 300,   # 刷新后给予 5 分钟有效期
+            }
+            cache_key = f'yt_{vid}_{quality}_{codec_type}'
+            self.setCache(cache_key, cache_data)
+            debug_log('缓存刷新成功', {'vid': vid, 'quality': quality_codec})
+            return cache_data
+        except Exception as e:
+            debug_log('刷新缓存失败', repr(e))
+            return None
+
+    # ========== 修改 _proxy_mpd 增加刷新 ==========
     def _proxy_mpd(self, params):
         vid = params.get('vid')
         quality_codec = params.get('quality') or '1080p_h264'
@@ -974,7 +997,9 @@ class Spider(Spider):
             codec_type = None
         data = self.getCache(f'yt_{vid}_{quality}_{codec_type}') if vid else None
         if not data:
-            return [404, 'text/plain', '视频缓存已过期或不存在']
+            data = self._refresh_cache(vid, quality_codec)   # 尝试刷新
+        if not data:
+            return [404, 'text/plain', '视频缓存已过期且刷新失败']
         audio_url = data.get('audio_url')
         duration = data.get('duration') or 0
         video_tracks = data.get('video_tracks') or [data.get('video_item') or {}]
@@ -1011,6 +1036,7 @@ class Spider(Spider):
         mpd += '  </Period>\n</MPD>'
         return [200, 'application/dash+xml', mpd]
 
+    # ========== 修改 _proxy_media 增加刷新 ==========
     def _proxy_media(self, params):
         vid = params.get('vid')
         quality_codec = params.get('quality') or '1080p_h264'
@@ -1021,8 +1047,10 @@ class Spider(Spider):
             codec_type = None
         track = params.get('track')
         data = self.getCache(f'yt_{vid}_{quality}_{codec_type}') if vid else None
+        if not data:
+            data = self._refresh_cache(vid, quality_codec)
         if not data or track not in ('video', 'audio'):
-            return [404, 'text/plain', '媒体不存在']
+            return [404, 'text/plain', '媒体不存在或刷新失败']
         if track == 'video':
             wanted_itag = str(params.get('itag') or '')
             tracks = data.get('video_tracks') or [data.get('video_item') or {}]
@@ -1050,6 +1078,7 @@ class Spider(Spider):
         except Exception as e:
             return [500, 'text/plain', f'代理媒体失败: {str(e)}']
 
+    # ========== 以下为原有方法，未作改动 ==========
     def _normalize_category_id(self, cid):
         raw = str(cid or '').strip()
         return CATEGORY_ALIASES.get(raw, raw)
