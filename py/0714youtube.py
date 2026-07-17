@@ -51,7 +51,7 @@ class YouTubeLite:
         self.player_cache = {}
         self.extract_cache = {}
         self.sig_plan_cache = {}
-        # 修改默认缓存 TTL 为 3600 秒（1小时），配合刷新机制更稳定
+        # 默认缓存 TTL 3600 秒，配合刷新机制更稳定
         self.extract_cache_ttl = int(self.config.get('extract_cache_ttl') or 3600)
 
     def extract(self, url_or_id):
@@ -625,7 +625,7 @@ class YouTubeLite:
 
 class Spider(Spider):
     def getName(self):
-        return 'YouTube'   # 修改：站点名称不再包含“视频”后缀，避免与文件名混淆
+        return 'YouTube'
 
     def init(self, extend):
         try:
@@ -650,6 +650,12 @@ class Spider(Spider):
             'Referer': 'https://www.youtube.com/',
             'Cookie': 'CONSENT=YES+cb; SOCS=CAESEwgDEgk2MzgzMjY1MzkaAmVuIAEaBgiAo_CmBg',
         }
+        # 支持用户自定义 Cookie
+        cookie_val = self.extendDict.get('cookie')
+        if cookie_val:
+            self.header['Cookie'] = cookie_val
+            debug_log('使用自定义 Cookie')
+
         self.session.headers.update(self.header)
         self.yt = YouTubeLite(self.session, self.header, self.extendDict)
         self.config = {}
@@ -685,7 +691,7 @@ class Spider(Spider):
             {'type_id': '新闻直播', 'type_name': '新闻直播'},
             {'type_id': '国际新闻', 'type_name': '国际新闻'},
             {'type_id': '动漫', 'type_name': '动漫'},
-           {'type_id': '动画片', 'type_name': '动画片'},
+            {'type_id': '动画片', 'type_name': '动画片'},
             {'type_id': '综艺', 'type_name': '综艺'},
             {'type_id': '政论', 'type_name': '政论'},
             {'type_id': '港剧', 'type_name': '港剧'},
@@ -695,9 +701,7 @@ class Spider(Spider):
             {'type_id': '4K', 'type_name': '4K'},
             {'type_id': 'HDR', 'type_name': 'HDR'},
             {'type_id': '自然', 'type_name': '自然'},
-            
             {'type_id': '电影', 'type_name': '电影'},
-           
             {'type_id': '放松', 'type_name': '放松'},
             {'type_id': '16K HDR', 'type_name': '16K HDR'},
             {'type_id': '科技', 'type_name': '科技'},
@@ -710,22 +714,24 @@ class Spider(Spider):
             {'type_id': '神秘', 'type_name': '神秘'},
         ]
         self.search_map = {
-            '新闻直播': '新闻直播',
+           '新闻直播': '新闻直播',
             '国际新闻': 'BBC News, Fox News ,Fox Business ,Bloomberg ,CNBC ,Sky News, CNN,france24 ,DW, Aljazeera,Asia news',
-            '动漫': '动漫',
-            '综艺': '综艺',
-            '政论': '政论',
+            '动漫': '一号动漫社 Animation Club,蒼穹動漫社Animation Club,斗破动漫社 Animation,腾讯动漫,爱奇艺动漫,优酷动漫,芒果动漫,Ani-Mi動漫迷動畫頻道,3D国漫工厂,阅文动漫,卡通狂欢嘉会',
+            '综艺': '台視時光機,芒果综艺,腾讯综艺,爱奇艺综艺,优酷综艺,卫视综艺,超級夜總會',
+            '政论': '觀點,豐富,Yahoo風向,全球大視野,環球大戰線,郭正亮頻道,論政天下,岑永康',
             '短剧': '短剧',
-            '剧集': '剧集',
-             '纪录片': '纪录片',
+            '剧集': '腾讯剧集,爱奇艺剧集,优酷剧集,芒果剧集,八大劇樂部,民視戲劇,三立台劇,三立華劇,龍華戲劇,華視懷舊頻道,華視戲劇,中視經典戲劇',
+             '纪录片': '亞洲旅遊台,CCTV纪录,CCTV科教,公視+,National Geographic,Kevin_YOLO,Nat Geo Animals,BBC Earth,Top Travel,National Geographic India,BBC Earth Science,历史纪录片,自然纪录片,宇宙纪录片',
+            '港剧': 'TVB,亞視精選,ATV 亞洲電視',
             '4K': '4K',
              '动画片': '动画片',
+           
+             '4K': '4K',
+            '动画片': '动画片',
             '港剧': '港剧',
             'HDR': 'HDR',
             '自然': '自然',
-            
             '电影': '电影',
-           
             '放松': '放松',
             '16K HDR': '16K HDR',
             '科技': '科技',
@@ -845,17 +851,18 @@ class Spider(Spider):
                 url = manifest.get('hls') or manifest.get('dash')
                 if url:
                     debug_log('直播 manifest 返回', {'url': url, 'protocol': 'HLS' if url.endswith('.m3u8') else 'DASH'})
-                    headers = self.header.copy()
-                    if url.endswith('.m3u8') or '/live/' in url:
-                        fmt = 'application/vnd.apple.mpegurl'
-                    elif url.endswith('.mpd') or '/dash/' in url:
-                        fmt = 'application/dash+xml'
-                    else:
-                        fmt = ''
-                    return {'parse': 0, 'jx': 0, 'url': url, 'header': headers, 'format': fmt}
-                else:
-                    debug_log('manifest 无有效 URL，降级到点播逻辑')
-                    pass
+                    # 直播也通过代理，避免前端处理 cookie
+                    cache_key = f'yt_live_{video_id}'
+                    self.setCache(cache_key, {
+                        'url': url,
+                        'headers': self.header.copy(),
+                        'expires': time.time() + 300,
+                    })
+                    return {
+                        'parse': 0, 'jx': 0,
+                        'url': f'http://127.0.0.1:9978/proxy?do=py&type=single&vid={video_id}&quality=live',
+                        'format': 'application/vnd.apple.mpegurl' if url.endswith('.m3u8') else 'application/dash+xml'
+                    }
 
             debug_log('点播处理', {'video_id': video_id, 'quality': quality, 'codec': codec_type})
             all_tracks = self.yt.choose_video_tracks(data['formats'], 'best', codec_filter=codec_type)
@@ -888,25 +895,37 @@ class Spider(Spider):
                         'format': 'application/dash+xml'
                     }
                 else:
+                    # 只有视频无音频 → 单文件代理
                     playable = video_tracks[0]
-                    headers = self.header.copy()
-                    headers.update(playable.get('headers') or {})
-                    return {'parse': 0, 'jx': 0, 'url': playable['url'], 'header': headers}
+                    cache_key = f'yt_single_{video_id}_{quality}_{codec_type}'
+                    self.setCache(cache_key, {
+                        'url': playable['url'],
+                        'headers': playable.get('headers', {}),
+                        'expires': time.time() + 300,
+                    })
+                    return {
+                        'parse': 0, 'jx': 0,
+                        'url': f'http://127.0.0.1:9978/proxy?do=py&type=single&vid={video_id}&quality={quality}_{codec_type}',
+                    }
+            # 若没有 video_tracks，则取渐进式
             progressives = [x for x in data['formats'] if x.get('vcodec') != 'none' and x.get('acodec') != 'none']
             if progressives:
                 progressives.sort(key=lambda x: (int(x.get('height') or 0), int(x.get('bitrate') or 0)), reverse=True)
                 playable = progressives[0]
-                headers = self.header.copy()
-                headers.update(playable.get('headers') or {})
-                return {'parse': 0, 'jx': 0, 'url': playable['url'], 'header': headers}
-            playable = self.yt.choose_playable(data['formats'], 'best')
-            if playable:
-                headers = self.header.copy()
-                headers.update(playable.get('headers') or {})
-                return {'parse': 0, 'jx': 0, 'url': playable['url'], 'header': headers}
+                cache_key = f'yt_single_{video_id}_{quality}_{codec_type}'
+                self.setCache(cache_key, {
+                    'url': playable['url'],
+                    'headers': playable.get('headers', {}),
+                    'expires': time.time() + 300,
+                })
+                return {
+                    'parse': 0, 'jx': 0,
+                    'url': f'http://127.0.0.1:9978/proxy?do=py&type=single&vid={video_id}&quality={quality}_{codec_type}',
+                }
             raise Exception('没有可播放的流')
         except Exception as e:
             debug_log('playerContent error', repr(e))
+            # 降级为嵌入页面（仍可能要求 cookie，但作为备选）
             res = {'parse': 1, 'url': f'https://www.youtube.com/embed/{video_id}?autoplay=1', 'header': json.dumps(self.header)}
             if self.proxy_str:
                 res['proxy'] = self.proxy_str
@@ -923,37 +942,9 @@ class Spider(Spider):
             return self._proxy_single(params)
         return None
 
-    def _proxy_single(self, params):
-        vid = params.get('vid')
-        data = self.getCache(f'yt_single_{vid}') if vid else None
-        if not data:
-            return [404, 'text/plain', '播放缓存已过期或不存在']
-        target_url = data.get('url')
-        if not target_url:
-            return [404, 'text/plain', '播放地址不存在']
-        headers = (data.get('headers') or self.header).copy()
-        range_header = params.get('range') or params.get('Range')
-        if range_header:
-            headers['Range'] = range_header
-        try:
-            r = self.session.get(target_url, headers=headers, stream=True, timeout=30)
-            content_type = r.headers.get('content-type', 'video/mp4')
-            resp_headers = {
-                'Content-Type': content_type,
-                'Accept-Ranges': 'bytes',
-                'Cache-Control': 'no-cache',
-            }
-            if r.headers.get('content-range'):
-                resp_headers['Content-Range'] = r.headers.get('content-range')
-            if r.headers.get('content-length'):
-                resp_headers['Content-Length'] = r.headers.get('content-length')
-            return [r.status_code, content_type, r.content, resp_headers]
-        except Exception as e:
-            return [500, 'text/plain', f'代理播放失败: {str(e)}']
-
-    # ========== 新增：缓存自动刷新方法 ==========
+    # ---------- 缓存刷新方法 ----------
     def _refresh_cache(self, vid, quality_codec):
-        """重新提取视频信息并更新缓存，返回新的缓存数据"""
+        """重新提取视频信息并更新缓存（MPD 用）"""
         try:
             data = self.yt.extract(vid)
             if '_' in quality_codec:
@@ -976,17 +967,109 @@ class Spider(Spider):
                 'video_item': video_tracks[0],
                 'audio_item': audio or {},
                 'duration': data.get('duration') or 0,
-                'expires': time.time() + 300,   # 刷新后给予 5 分钟有效期
+                'expires': time.time() + 300,
             }
             cache_key = f'yt_{vid}_{quality}_{codec_type}'
             self.setCache(cache_key, cache_data)
-            debug_log('缓存刷新成功', {'vid': vid, 'quality': quality_codec})
+            debug_log('MPD缓存刷新成功', {'vid': vid, 'quality': quality_codec})
             return cache_data
         except Exception as e:
-            debug_log('刷新缓存失败', repr(e))
+            debug_log('刷新MPD缓存失败', repr(e))
             return None
 
-    # ========== 修改 _proxy_mpd 增加刷新 ==========
+    def _refresh_single_cache(self, vid, quality_codec):
+        """重新提取视频信息并更新单文件缓存"""
+        try:
+            data = self.yt.extract(vid)
+            # 优先取渐进式
+            progressives = [x for x in data['formats'] if x.get('vcodec') != 'none' and x.get('acodec') != 'none']
+            if progressives:
+                progressives.sort(key=lambda x: (int(x.get('height') or 0), int(x.get('bitrate') or 0)), reverse=True)
+                playable = progressives[0]
+            else:
+                # 无渐进式，取视频 track 中第一个
+                tracks = self.yt.choose_video_tracks(data['formats'], 'best')
+                if not tracks:
+                    return None
+                playable = tracks[0]
+            cache_data = {
+                'url': playable['url'],
+                'headers': playable.get('headers', {}),
+                'expires': time.time() + 300,
+            }
+            cache_key = f'yt_single_{vid}_{quality_codec}'
+            self.setCache(cache_key, cache_data)
+            debug_log('单文件缓存刷新成功', {'vid': vid, 'quality': quality_codec})
+            return cache_data
+        except Exception as e:
+            debug_log('刷新单文件缓存失败', repr(e))
+            return None
+
+    # ---------- 代理实现 ----------
+    def _proxy_single(self, params):
+        vid = params.get('vid')
+        quality_codec = params.get('quality') or 'best_h264'
+        # 如果是直播，尝试从缓存获取
+        if quality_codec == 'live':
+            cache_key = f'yt_live_{vid}'
+            data = self.getCache(cache_key)
+            if not data:
+                return [404, 'text/plain', '直播缓存不存在']
+            target_url = data.get('url')
+            headers = self.header.copy()
+            headers.pop('Cookie', None)  # 由 session 携带
+            range_header = params.get('range') or params.get('Range')
+            if range_header:
+                headers['Range'] = range_header
+            try:
+                r = self.session.get(target_url, headers=headers, stream=True, timeout=30)
+                content_type = r.headers.get('content-type', 'application/vnd.apple.mpegurl')
+                resp_headers = {
+                    'Content-Type': content_type,
+                    'Accept-Ranges': 'bytes',
+                    'Cache-Control': 'no-cache',
+                }
+                if r.headers.get('content-range'):
+                    resp_headers['Content-Range'] = r.headers.get('content-range')
+                if r.headers.get('content-length'):
+                    resp_headers['Content-Length'] = r.headers.get('content-length')
+                return [r.status_code, content_type, r.content, resp_headers]
+            except Exception as e:
+                return [500, 'text/plain', f'直播代理失败: {str(e)}']
+
+        # 普通点播单文件
+        cache_key = f'yt_single_{vid}_{quality_codec}'
+        data = self.getCache(cache_key)
+        if not data:
+            data = self._refresh_single_cache(vid, quality_codec)
+        if not data:
+            return [404, 'text/plain', '播放缓存已过期且刷新失败']
+        target_url = data.get('url')
+        if not target_url:
+            return [404, 'text/plain', '播放地址不存在']
+        headers = self.header.copy()
+        headers.pop('Cookie', None)  # session 自带
+        if data.get('headers'):
+            headers.update(data['headers'])
+        range_header = params.get('range') or params.get('Range')
+        if range_header:
+            headers['Range'] = range_header
+        try:
+            r = self.session.get(target_url, headers=headers, stream=True, timeout=30)
+            content_type = r.headers.get('content-type', 'video/mp4')
+            resp_headers = {
+                'Content-Type': content_type,
+                'Accept-Ranges': 'bytes',
+                'Cache-Control': 'no-cache',
+            }
+            if r.headers.get('content-range'):
+                resp_headers['Content-Range'] = r.headers.get('content-range')
+            if r.headers.get('content-length'):
+                resp_headers['Content-Length'] = r.headers.get('content-length')
+            return [r.status_code, content_type, r.content, resp_headers]
+        except Exception as e:
+            return [500, 'text/plain', f'代理播放失败: {str(e)}']
+
     def _proxy_mpd(self, params):
         vid = params.get('vid')
         quality_codec = params.get('quality') or '1080p_h264'
@@ -997,7 +1080,7 @@ class Spider(Spider):
             codec_type = None
         data = self.getCache(f'yt_{vid}_{quality}_{codec_type}') if vid else None
         if not data:
-            data = self._refresh_cache(vid, quality_codec)   # 尝试刷新
+            data = self._refresh_cache(vid, quality_codec)
         if not data:
             return [404, 'text/plain', '视频缓存已过期且刷新失败']
         audio_url = data.get('audio_url')
@@ -1036,7 +1119,6 @@ class Spider(Spider):
         mpd += '  </Period>\n</MPD>'
         return [200, 'application/dash+xml', mpd]
 
-    # ========== 修改 _proxy_media 增加刷新 ==========
     def _proxy_media(self, params):
         vid = params.get('vid')
         quality_codec = params.get('quality') or '1080p_h264'
@@ -1062,7 +1144,8 @@ class Spider(Spider):
         if not target_url:
             return [404, 'text/plain', f'{track} 流不存在']
         headers = self.header.copy()
-        headers.update((media_item or {}).get('headers') or {})
+        headers.pop('Cookie', None)
+        headers.update(media_item.get('headers') or {})
         range_header = params.get('range') or params.get('Range')
         if range_header:
             headers['Range'] = range_header
@@ -1078,7 +1161,7 @@ class Spider(Spider):
         except Exception as e:
             return [500, 'text/plain', f'代理媒体失败: {str(e)}']
 
-    # ========== 以下为原有方法，未作改动 ==========
+    # ---------- 搜索相关（未改动） ----------
     def _normalize_category_id(self, cid):
         raw = str(cid or '').strip()
         return CATEGORY_ALIASES.get(raw, raw)
