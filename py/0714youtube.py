@@ -686,6 +686,10 @@ class Spider(Spider):
             debug_log('youtube.json 不存在，使用硬编码配置')
             self._fallback_hardcoded()
 
+        # ---------- 强制增加直播相关关键词，提高命中率 ----------
+        self.search_map['新闻直播'] = 'CCTV-4 直播 凤凰卫视 直播 中文台 直播 东方卫视 直播 深圳卫视 直播 新闻直播 直播'
+        self.search_map['国际新闻'] = 'BBC News live CNN live Fox News live Al Jazeera live Sky News live France 24 live DW live 国际新闻 live'
+
     def _fallback_hardcoded(self):
         self.classes = [
             {'type_id': '新闻直播', 'type_name': '新闻直播'},
@@ -768,6 +772,14 @@ class Spider(Spider):
         query = self._build_category_keyword(cid, filters)
         debug_log('categoryContent', {'cid': cid, 'query': query, 'page': page})
         videos, has_more = self._search_youtube_page(query, page)
+
+        # 若为新闻直播或国际新闻，则只保留直播视频
+        if cid in ('新闻直播', '国际新闻'):
+            videos = [v for v in videos if v.get('is_live', False)]
+            # 若过滤后为空，则没有更多页
+            if not videos:
+                has_more = False
+
         return {'list': videos, 'page': page, 'pagecount': page + 1 if has_more else page, 'limit': len(videos), 'total': len(videos)}
 
     def searchContent(self, key, quick, pg=1):
@@ -1161,7 +1173,7 @@ class Spider(Spider):
         except Exception as e:
             return [500, 'text/plain', f'代理媒体失败: {str(e)}']
 
-    # ---------- 搜索相关（未改动） ----------
+    # ---------- 搜索相关 ----------
     def _normalize_category_id(self, cid):
         raw = str(cid or '').strip()
         return CATEGORY_ALIASES.get(raw, raw)
@@ -1313,11 +1325,24 @@ class Spider(Spider):
             title_obj = renderer.get('title') or renderer.get('headline') or {}
             title = title_obj.get('simpleText') or ''.join([x.get('text', '') for x in title_obj.get('runs', [])]) or 'YouTube Video'
             dur = (renderer.get('lengthText') or {}).get('simpleText') or 'YouTube'
+
+            # 检测是否为直播
+            is_live = False
+            badges = renderer.get('badges') or []
+            for badge in badges:
+                badge_renderer = badge.get('metadataBadgeRenderer') or {}
+                style = badge_renderer.get('style', '')
+                label = badge_renderer.get('label', '')
+                if 'LIVE' in style or 'LIVE' in label.upper():
+                    is_live = True
+                    break
+
             return {
                 'vod_id': vid,
                 'vod_name': html.unescape(title),
                 'vod_pic': f'https://img.youtube.com/vi/{vid}/hqdefault.jpg',
-                'vod_remarks': dur
+                'vod_remarks': dur,
+                'is_live': is_live   # 新增直播标记
             }
         except Exception:
             return None
