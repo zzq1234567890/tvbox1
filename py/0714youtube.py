@@ -681,30 +681,23 @@ class Spider(Spider):
             debug_log('youtube.json 不存在，使用硬编码配置')
             self._fallback_hardcoded()
 
-        # ---------- 新闻直播关键词：央视主要频道 + 台湾全部新闻台 ----------
+        # ---------- 中文新闻直播关键词（基于m3u文件提取） ----------
         self.news_keywords = (
-            # 大陆（仅央视几个主要频道）
-            'CCTV-4 直播 CCTV-13 新闻直播 CCTV-2 财经直播 CCTV-1 综合直播 '
-            # 台湾全部新闻台（尽可能全）
-            '东森新闻 直播 三立新闻 直播 民视新闻 直播 公视 直播 中天新闻 直播 TVBS新闻 直播 '
-            '华视新闻 直播 台视新闻 直播 中视新闻 直播 寰宇新闻 直播 非凡新闻 直播 年代新闻 直播 '
-            '壹电视新闻 直播 东森财经新闻 直播 三立iNEWS 直播 中天亚洲台 直播 民视台湾新闻 直播 '
-            '公视台语新闻 直播 台湾新闻台 直播 台视财经台 直播 中视新闻台 直播 华视新闻资讯台 直播 '
-            '寰宇台湾新闻 直播 东森新闻台 直播 三立新闻台 直播 民视新闻台 直播 '
-            # 通用泛化词（提高直播命中率）
-            '新闻直播 24小时新闻 实时新闻 突发新闻 头条新闻 即时新闻 新闻直播间 整点新闻 新闻联播'
+            'TVBS NEWS 直播 東森新聞 直播 中天新聞 直播 民視新聞 直播 三立新聞 直播 '
+            '台視新聞 直播 中視新聞 直播 華視新聞 直播 公視 直播 公視台語台 直播 '
+            '寰宇新聞 直播 鏡新聞 直播 大愛 直播 非凡財經 直播 東森財經 直播 '
+            '三立財經iNEWS 直播 鳳凰衛視 直播 CCTV中文国际 直播 '
+            '新闻直播 24小时新闻 实时新闻 突发新闻 头条新闻 即时新闻 新闻直播间'
         )
 
-        # ---------- 国际新闻关键词（保持不变，已足够丰富） ----------
+        # ---------- 国际新闻直播关键词（基于m3u文件提取） ----------
         self.intl_news_keywords = (
-            'BBC News live CNN live Fox News live Al Jazeera live Sky News live '
+            'Al Jazeera English live BBC News live CNN live Sky News live '
             'France 24 live DW live ABC News live CBS News live NBC News live '
-            'PBS News live RT live TRT World live Euronews live NDTV live '
-            'CGTN live Arirang live NHK live CNA live '
-            'Sky News Australia live CBC News live ABC Australia live SBS News live '
-            'RTE News live Rai News live TVE 24h live France 2 live ZDF live ARD live '
-            'Bloomberg live CNBC live Fox Business live '
-            '24/7 live news live news channel breaking news live'
+            'NHK live Arirang live CNA live Bloomberg live CNBC live Fox News live '
+            'Euronews live RT live TRT World live NDTV live India Today live WION live '
+            'CGTN live Al Arabiya live '
+            '24/7 live news breaking news live live news channel'
         )
 
     def _fallback_hardcoded(self):
