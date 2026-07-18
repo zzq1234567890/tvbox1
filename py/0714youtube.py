@@ -681,25 +681,20 @@ class Spider(Spider):
             debug_log('youtube.json 不存在，使用硬编码配置')
             self._fallback_hardcoded()
 
-        # ---------- 根据用户语言设置新闻关键词 ----------
-        self.lang = self.extendDict.get('lang', 'zh-CN')  # 支持 zh-CN, zh-TW, 其他
-        # 新闻直播关键词（根据语言切换）
-        if self.lang == 'zh-TW':
-            self.news_keywords = (
-                '新聞直播 直播 中天新聞 直播 TVBS新聞 直播 東森新聞 直播 三立新聞 直播 '
-                '民視新聞 直播 公視 直播 華視新聞 直播 CCTV-4 直播 東方衛視 直播 深圳衛視 直播'
-            )
-        else:  # 默认简体
-            self.news_keywords = (
-                '新闻直播 直播 CCTV-4 直播 东方卫视 直播 深圳卫视 直播 东森新闻 直播 '
-                '三立新闻 直播 民视新闻 直播 公视 直播 中天新闻 直播 TVBS新闻 直播 华视新闻 直播'
-            )
-        # 国际新闻关键词（固定，包含多语言主流媒体）
+        # ---------- 新闻直播关键词：同时包含简体、繁体及财经 ----------
+        self.news_keywords = (
+            'CCTV-4 直播 东方卫视 直播 深圳卫视 直播 东森新闻 直播 三立新闻 直播 民视新闻 直播 '
+            '公视 直播 中天新闻 直播 TVBS新闻 直播 华视新闻 直播 '
+            '新聞直播 直播 中天新聞 直播 TVBS新聞 直播 東森新聞 直播 三立新聞 直播 民視新聞 直播 '
+            '公視 直播 華視新聞 直播 财经新闻 直播 财经直播 新闻直播'
+        )
+        # ---------- 国际新闻关键词：增加财经媒体 ----------
         self.intl_news_keywords = (
             'BBC News live CNN live Fox News live Al Jazeera live Sky News live '
             'France 24 live DW live ABC News live CBS News live NBC News live '
             'PBS News live RT live TRT World live Euronews live NDTV live '
-            'CGTN live Arirang live NHK live CNA live 国际新闻 live'
+            'CGTN live Arirang live NHK live CNA live '
+            'Bloomberg live CNBC live 财经新闻 live 国际新闻 live'
         )
 
     def _fallback_hardcoded(self):
@@ -783,7 +778,7 @@ class Spider(Spider):
         debug_log('categoryContent', {'cid': cid, 'query': query, 'page': page})
         videos, has_more = self._search_youtube_page(query, page)
 
-        # 直播优先排序（适用于所有分类）
+        # 直播优先排序（直播在前，点播在后）
         videos.sort(key=lambda x: x.get('is_live', False), reverse=True)
 
         return {'list': videos, 'page': page, 'pagecount': page + 1 if has_more else page, 'limit': len(videos), 'total': len(videos)}
