@@ -51,7 +51,6 @@ class YouTubeLite:
         self.player_cache = {}
         self.extract_cache = {}
         self.sig_plan_cache = {}
-        # 默认缓存 TTL 3600 秒，配合刷新机制更稳定
         self.extract_cache_ttl = int(self.config.get('extract_cache_ttl') or 3600)
 
     def extract(self, url_or_id):
@@ -75,7 +74,6 @@ class YouTubeLite:
         visitor_data = self._extract_visitor_data(ytcfg, player_response)
         sts = None
 
-        # ---- 判断是否直播 ----
         is_live = False
         duration = 0
         if player_response:
@@ -99,7 +97,6 @@ class YouTubeLite:
                 api_responses = [api_responses] if api_responses else []
             responses.extend([x for x in api_responses if x])
 
-        # 合并响应后，检查直播 manifest（仅当有实际 hls 或 dash 时才视为直播）
         live_manifest = None
         for resp in responses:
             streaming = resp.get('streamingData') or {}
@@ -109,7 +106,6 @@ class YouTubeLite:
                 live_manifest = {'hls': hls, 'dash': dash}
                 debug_log('found live manifest', {'client': resp.get('_client_name'), 'hls': hls, 'dash': dash})
                 break
-        # 没有 manifest 就算 isLive 为 True 也视为点播
         if not live_manifest:
             debug_log('无有效 manifest，视为点播', {'video_id': video_id})
 
@@ -650,7 +646,6 @@ class Spider(Spider):
             'Referer': 'https://www.youtube.com/',
             'Cookie': 'CONSENT=YES+cb; SOCS=CAESEwgDEgk2MzgzMjY1MzkaAmVuIAEaBgiAo_CmBg',
         }
-        # 支持用户自定义 Cookie
         cookie_val = self.extendDict.get('cookie')
         if cookie_val:
             self.header['Cookie'] = cookie_val
@@ -686,9 +681,20 @@ class Spider(Spider):
             debug_log('youtube.json 不存在，使用硬编码配置')
             self._fallback_hardcoded()
 
-        # ---------- 强制增加直播相关关键词，提高命中率 ----------
-        self.search_map['新闻直播'] = 'CCTV-4 直播 凤凰卫视 直播 中文台 直播 东方卫视 直播 深圳卫视 直播 新闻直播 直播'
-        self.search_map['国际新闻'] = 'BBC News live CNN live Fox News live Al Jazeera live Sky News live France 24 live DW live 国际新闻 live'
+        # ---------- 扩展直播关键词 ----------
+        # 新闻直播：增加更多中文台
+        self.search_map['新闻直播'] = (
+            'CCTV-4 直播 凤凰卫视 直播 中文台 直播 东方卫视 直播 深圳卫视 直播 '
+            '东森新闻 直播 三立新闻 直播 民视新闻 直播 公视 直播 中天新闻 直播 '
+            'TVBS新闻 直播 华视新闻 直播 新闻直播 直播'
+        )
+        # 国际新闻：增加更多英文台
+        self.search_map['国际新闻'] = (
+            'BBC News live CNN live Fox News live Al Jazeera live Sky News live '
+            'France 24 live DW live ABC News live CBS News live NBC News live '
+            'PBS News live RT live TRT World live Euronews live NDTV live '
+            'CGTN live 国际新闻 live'
+        )
 
     def _fallback_hardcoded(self):
         self.classes = [
@@ -717,6 +723,7 @@ class Spider(Spider):
             {'type_id': '音乐', 'type_name': '音乐'},
             {'type_id': '神秘', 'type_name': '神秘'},
         ]
+        # 硬编码映射（会被上面的强制覆盖，但保留以防万一）
         self.search_map = {
            '新闻直播': '新闻直播,新闻直播，新聞直播',
             '国际新闻': 'engkish news living,BBC News, Fox News ,Fox Business ,Bloomberg ,CNBC ,Sky News, CNN,france24 ,DW, Aljazeera,Asia news',
@@ -729,8 +736,6 @@ class Spider(Spider):
             '港剧': 'TVB,亞視精選,ATV 亞洲電視',
             '4K': '4K',
              '动画片': '动画片',
-           
-             '4K': '4K',
             '动画片': '动画片',
             '港剧': '港剧',
             'HDR': 'HDR',
@@ -773,18 +778,16 @@ class Spider(Spider):
         debug_log('categoryContent', {'cid': cid, 'query': query, 'page': page})
         videos, has_more = self._search_youtube_page(query, page)
 
-        # 若为新闻直播或国际新闻，则只保留直播视频
-        if cid in ('新闻直播', '国际新闻'):
-            videos = [v for v in videos if v.get('is_live', False)]
-            # 若过滤后为空，则没有更多页
-            if not videos:
-                has_more = False
+        # 直播优先排序（适用于所有分类）
+        videos.sort(key=lambda x: x.get('is_live', False), reverse=True)
 
         return {'list': videos, 'page': page, 'pagecount': page + 1 if has_more else page, 'limit': len(videos), 'total': len(videos)}
 
     def searchContent(self, key, quick, pg=1):
         page = int(pg)
         videos, has_more = self._search_youtube_page(key, page)
+        # 同样按直播优先排序
+        videos.sort(key=lambda x: x.get('is_live', False), reverse=True)
         return {'list': videos, 'page': page, 'pagecount': page + 1 if has_more else page, 'limit': len(videos), 'total': len(videos)}
 
     def detailContent(self, did):
@@ -863,7 +866,6 @@ class Spider(Spider):
                 url = manifest.get('hls') or manifest.get('dash')
                 if url:
                     debug_log('直播 manifest 返回', {'url': url, 'protocol': 'HLS' if url.endswith('.m3u8') else 'DASH'})
-                    # 直播也通过代理，避免前端处理 cookie
                     cache_key = f'yt_live_{video_id}'
                     self.setCache(cache_key, {
                         'url': url,
@@ -907,7 +909,6 @@ class Spider(Spider):
                         'format': 'application/dash+xml'
                     }
                 else:
-                    # 只有视频无音频 → 单文件代理
                     playable = video_tracks[0]
                     cache_key = f'yt_single_{video_id}_{quality}_{codec_type}'
                     self.setCache(cache_key, {
@@ -919,7 +920,6 @@ class Spider(Spider):
                         'parse': 0, 'jx': 0,
                         'url': f'http://127.0.0.1:9978/proxy?do=py&type=single&vid={video_id}&quality={quality}_{codec_type}',
                     }
-            # 若没有 video_tracks，则取渐进式
             progressives = [x for x in data['formats'] if x.get('vcodec') != 'none' and x.get('acodec') != 'none']
             if progressives:
                 progressives.sort(key=lambda x: (int(x.get('height') or 0), int(x.get('bitrate') or 0)), reverse=True)
@@ -937,7 +937,6 @@ class Spider(Spider):
             raise Exception('没有可播放的流')
         except Exception as e:
             debug_log('playerContent error', repr(e))
-            # 降级为嵌入页面，不再传递 header 以避免百度 Cookie 格式错误
             res = {'parse': 1, 'url': f'https://www.youtube.com/embed/{video_id}?autoplay=1'}
             if self.proxy_str:
                 res['proxy'] = self.proxy_str
@@ -956,7 +955,6 @@ class Spider(Spider):
 
     # ---------- 缓存刷新方法 ----------
     def _refresh_cache(self, vid, quality_codec):
-        """重新提取视频信息并更新缓存（MPD 用）"""
         try:
             data = self.yt.extract(vid)
             if '_' in quality_codec:
@@ -990,16 +988,13 @@ class Spider(Spider):
             return None
 
     def _refresh_single_cache(self, vid, quality_codec):
-        """重新提取视频信息并更新单文件缓存"""
         try:
             data = self.yt.extract(vid)
-            # 优先取渐进式
             progressives = [x for x in data['formats'] if x.get('vcodec') != 'none' and x.get('acodec') != 'none']
             if progressives:
                 progressives.sort(key=lambda x: (int(x.get('height') or 0), int(x.get('bitrate') or 0)), reverse=True)
                 playable = progressives[0]
             else:
-                # 无渐进式，取视频 track 中第一个
                 tracks = self.yt.choose_video_tracks(data['formats'], 'best')
                 if not tracks:
                     return None
@@ -1021,7 +1016,6 @@ class Spider(Spider):
     def _proxy_single(self, params):
         vid = params.get('vid')
         quality_codec = params.get('quality') or 'best_h264'
-        # 如果是直播，尝试从缓存获取
         if quality_codec == 'live':
             cache_key = f'yt_live_{vid}'
             data = self.getCache(cache_key)
@@ -1029,7 +1023,7 @@ class Spider(Spider):
                 return [404, 'text/plain', '直播缓存不存在']
             target_url = data.get('url')
             headers = self.header.copy()
-            headers.pop('Cookie', None)  # 由 session 携带
+            headers.pop('Cookie', None)
             range_header = params.get('range') or params.get('Range')
             if range_header:
                 headers['Range'] = range_header
@@ -1049,7 +1043,6 @@ class Spider(Spider):
             except Exception as e:
                 return [500, 'text/plain', f'直播代理失败: {str(e)}']
 
-        # 普通点播单文件
         cache_key = f'yt_single_{vid}_{quality_codec}'
         data = self.getCache(cache_key)
         if not data:
@@ -1060,7 +1053,7 @@ class Spider(Spider):
         if not target_url:
             return [404, 'text/plain', '播放地址不存在']
         headers = self.header.copy()
-        headers.pop('Cookie', None)  # session 自带
+        headers.pop('Cookie', None)
         if data.get('headers'):
             headers.update(data['headers'])
         range_header = params.get('range') or params.get('Range')
@@ -1342,7 +1335,7 @@ class Spider(Spider):
                 'vod_name': html.unescape(title),
                 'vod_pic': f'https://img.youtube.com/vi/{vid}/hqdefault.jpg',
                 'vod_remarks': dur,
-                'is_live': is_live   # 新增直播标记
+                'is_live': is_live
             }
         except Exception:
             return None
