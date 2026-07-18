@@ -714,8 +714,8 @@ class Spider(Spider):
             {'type_id': '神秘', 'type_name': '神秘'},
         ]
         self.search_map = {
-           '新闻直播': '新闻直播',
-            '国际新闻': 'BBC News, Fox News ,Fox Business ,Bloomberg ,CNBC ,Sky News, CNN,france24 ,DW, Aljazeera,Asia news',
+           '新闻直播': '新闻直播,新闻直播，新聞直播',
+            '国际新闻': 'engkish news living,BBC News, Fox News ,Fox Business ,Bloomberg ,CNBC ,Sky News, CNN,france24 ,DW, Aljazeera,Asia news',
             '动漫': '一号动漫社 Animation Club,蒼穹動漫社Animation Club,斗破动漫社 Animation,腾讯动漫,爱奇艺动漫,优酷动漫,芒果动漫,Ani-Mi動漫迷動畫頻道,3D国漫工厂,阅文动漫,卡通狂欢嘉会',
             '综艺': '台視時光機,芒果综艺,腾讯综艺,爱奇艺综艺,优酷综艺,卫视综艺,超級夜總會',
             '政论': '觀點,豐富,Yahoo風向,全球大視野,環球大戰線,郭正亮頻道,論政天下,岑永康',
