@@ -681,29 +681,36 @@ class Spider(Spider):
             debug_log('youtube.json 不存在，使用硬编码配置')
             self._fallback_hardcoded()
 
-        # ---------- 扩展新闻直播关键词（中文台 20+） ----------
+        # ---------- 大幅扩展中文新闻直播关键词（涵盖央视、卫视、港澳台及泛化词） ----------
         self.news_keywords = (
-            # 中国大陆及港澳台主要新闻频道
-            'CCTV-4 直播 东方卫视 直播 深圳卫视 直播 广东卫视 直播 浙江卫视 直播 江苏卫视 直播 北京卫视 直播 湖南卫视 新闻 直播 '
-            '凤凰卫视 直播 凤凰资讯台 直播 东森新闻 直播 三立新闻 直播 民视新闻 直播 公视 直播 中天新闻 直播 TVBS新闻 直播 华视新闻 直播 '
-            'TVB新闻 直播 澳广视 直播 寰宇新闻 直播 中视新闻 直播 台视新闻 直播 '
-            # 通用词
-            '新闻直播 24小时新闻直播 实时新闻 新闻频道 直播'
+            # 央视系列
+            'CCTV-4 直播 CCTV-13 新闻直播 CCTV-2 财经直播 CCTV-1 综合直播 CCTV-7 军事农业直播 CCTV-10 科教直播 CCTV-12 社会与法直播 '
+            # 大陆主要卫视
+            '东方卫视 直播 深圳卫视 直播 广东卫视 直播 浙江卫视 直播 江苏卫视 直播 北京卫视 直播 湖南卫视 新闻 直播 厦门卫视 直播 '
+            '东南卫视 直播 云南卫视 直播 贵州卫视 直播 四川卫视 直播 重庆卫视 直播 河南卫视 直播 湖北卫视 直播 安徽卫视 直播 '
+            '山东卫视 直播 辽宁卫视 直播 吉林卫视 直播 黑龙江卫视 直播 内蒙古卫视 直播 新疆卫视 直播 西藏卫视 直播 青海卫视 直播 '
+            '甘肃卫视 直播 宁夏卫视 直播 陕西卫视 直播 山西卫视 直播 河北卫视 直播 天津卫视 直播 上海新闻综合 直播 看看新闻 直播 '
+            '澎湃新闻 直播 '
+            # 港澳台及海外华语
+            '凤凰卫视 直播 凤凰资讯台 直播 东森新闻 直播 三立新闻 直播 民视新闻 直播 公视 直播 中天新闻 直播 TVBS新闻 直播 '
+            '华视新闻 直播 TVB新闻 直播 澳广视 直播 寰宇新闻 直播 中视新闻 直播 台视新闻 直播 香港无线新闻台 直播 香港有线新闻 直播 '
+            '香港now新闻台 直播 澳门莲花卫视 直播 '
+            # 财经新闻
+            '财经新闻 直播 财联社 直播 第一财经 直播 '
+            # 通用泛化词
+            '新闻直播 24小时新闻直播 实时新闻 新闻频道 直播 突发新闻 直播 头条新闻 直播 即时新闻 直播 '
+            'Chinese news live 新闻台 直播'
         )
 
-        # ---------- 扩展国际新闻关键词（国际台 20+） ----------
+        # ---------- 国际新闻关键词（保留原有，已经超过20个） ----------
         self.intl_news_keywords = (
-            # 欧美主流
             'BBC News live CNN live Fox News live Al Jazeera live Sky News live '
             'France 24 live DW live ABC News live CBS News live NBC News live '
             'PBS News live RT live TRT World live Euronews live NDTV live '
-            # 亚太及其他
             'CGTN live Arirang live NHK live CNA live '
             'Sky News Australia live CBC News live ABC Australia live SBS News live '
             'RTE News live Rai News live TVE 24h live France 2 live ZDF live ARD live '
-            # 财经
             'Bloomberg live CNBC live Fox Business live '
-            # 通用
             '24/7 live news live news channel breaking news live'
         )
 
