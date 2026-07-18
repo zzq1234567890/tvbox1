@@ -681,20 +681,30 @@ class Spider(Spider):
             debug_log('youtube.json 不存在，使用硬编码配置')
             self._fallback_hardcoded()
 
-        # ---------- 新闻直播关键词：同时包含简体、繁体及财经 ----------
+        # ---------- 扩展新闻直播关键词（中文台 20+） ----------
         self.news_keywords = (
-            'CCTV-4 直播 东方卫视 直播 深圳卫视 直播 东森新闻 直播 三立新闻 直播 民视新闻 直播 '
-            '公视 直播 中天新闻 直播 TVBS新闻 直播 华视新闻 直播 '
-            '新聞直播 直播 中天新聞 直播 TVBS新聞 直播 東森新聞 直播 三立新聞 直播 民視新聞 直播 '
-            '公視 直播 華視新聞 直播 财经新闻 直播 财经直播 新闻直播'
+            # 中国大陆及港澳台主要新闻频道
+            'CCTV-4 直播 东方卫视 直播 深圳卫视 直播 广东卫视 直播 浙江卫视 直播 江苏卫视 直播 北京卫视 直播 湖南卫视 新闻 直播 '
+            '凤凰卫视 直播 凤凰资讯台 直播 东森新闻 直播 三立新闻 直播 民视新闻 直播 公视 直播 中天新闻 直播 TVBS新闻 直播 华视新闻 直播 '
+            'TVB新闻 直播 澳广视 直播 寰宇新闻 直播 中视新闻 直播 台视新闻 直播 '
+            # 通用词
+            '新闻直播 24小时新闻直播 实时新闻 新闻频道 直播'
         )
-        # ---------- 国际新闻关键词：增加财经媒体 ----------
+
+        # ---------- 扩展国际新闻关键词（国际台 20+） ----------
         self.intl_news_keywords = (
+            # 欧美主流
             'BBC News live CNN live Fox News live Al Jazeera live Sky News live '
             'France 24 live DW live ABC News live CBS News live NBC News live '
             'PBS News live RT live TRT World live Euronews live NDTV live '
+            # 亚太及其他
             'CGTN live Arirang live NHK live CNA live '
-            'Bloomberg live CNBC live 财经新闻 live 国际新闻 live'
+            'Sky News Australia live CBC News live ABC Australia live SBS News live '
+            'RTE News live Rai News live TVE 24h live France 2 live ZDF live ARD live '
+            # 财经
+            'Bloomberg live CNBC live Fox Business live '
+            # 通用
+            '24/7 live news live news channel breaking news live'
         )
 
     def _fallback_hardcoded(self):
