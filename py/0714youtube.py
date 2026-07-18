@@ -681,19 +681,25 @@ class Spider(Spider):
             debug_log('youtube.json 不存在，使用硬编码配置')
             self._fallback_hardcoded()
 
-        # ---------- 扩展直播关键词 ----------
-        # 新闻直播：增加更多中文台
-        self.search_map['新闻直播'] = (
-            'CCTV-4 直播 凤凰卫视 直播 中文台 直播 东方卫视 直播 深圳卫视 直播 '
-            '东森新闻 直播 三立新闻 直播 民视新闻 直播 公视 直播 中天新闻 直播 '
-            'TVBS新闻 直播 华视新闻 直播 新闻直播 直播'
-        )
-        # 国际新闻：增加更多英文台
-        self.search_map['国际新闻'] = (
+        # ---------- 根据用户语言设置新闻关键词 ----------
+        self.lang = self.extendDict.get('lang', 'zh-CN')  # 支持 zh-CN, zh-TW, 其他
+        # 新闻直播关键词（根据语言切换）
+        if self.lang == 'zh-TW':
+            self.news_keywords = (
+                '新聞直播 直播 中天新聞 直播 TVBS新聞 直播 東森新聞 直播 三立新聞 直播 '
+                '民視新聞 直播 公視 直播 華視新聞 直播 CCTV-4 直播 東方衛視 直播 深圳衛視 直播'
+            )
+        else:  # 默认简体
+            self.news_keywords = (
+                '新闻直播 直播 CCTV-4 直播 东方卫视 直播 深圳卫视 直播 东森新闻 直播 '
+                '三立新闻 直播 民视新闻 直播 公视 直播 中天新闻 直播 TVBS新闻 直播 华视新闻 直播'
+            )
+        # 国际新闻关键词（固定，包含多语言主流媒体）
+        self.intl_news_keywords = (
             'BBC News live CNN live Fox News live Al Jazeera live Sky News live '
             'France 24 live DW live ABC News live CBS News live NBC News live '
             'PBS News live RT live TRT World live Euronews live NDTV live '
-            'CGTN live 国际新闻 live'
+            'CGTN live Arirang live NHK live CNA live 国际新闻 live'
         )
 
     def _fallback_hardcoded(self):
@@ -723,7 +729,6 @@ class Spider(Spider):
             {'type_id': '音乐', 'type_name': '音乐'},
             {'type_id': '神秘', 'type_name': '神秘'},
         ]
-        # 硬编码映射（会被上面的强制覆盖，但保留以防万一）
         self.search_map = {
            '新闻直播': '新闻直播,新闻直播，新聞直播',
             '国际新闻': 'engkish news living,BBC News, Fox News ,Fox Business ,Bloomberg ,CNBC ,Sky News, CNN,france24 ,DW, Aljazeera,Asia news',
@@ -1181,9 +1186,19 @@ class Spider(Spider):
     def _build_category_keyword(self, cid, filters=None):
         category_id = self._normalize_category_id(cid)
         terms = []
-        base = self.search_map.get(cid) or self.search_map.get(category_id) or category_id or str(cid or '').strip()
+
+        # 根据分类 ID 选择关键词来源
+        if category_id == '新闻直播':
+            base = self.news_keywords
+        elif category_id == '国际新闻':
+            base = self.intl_news_keywords
+        else:
+            base = self.search_map.get(cid) or self.search_map.get(category_id) or category_id or str(cid or '').strip()
+
         if base:
             terms.append(base)
+
+        # 处理 filters（如年份等）
         if isinstance(filters, dict):
             for fkey, value in filters.items():
                 if fkey == 'year':
@@ -1194,6 +1209,8 @@ class Spider(Spider):
                     term = self._normalize_filter_term(value)
                     if term:
                         terms.append(term)
+
+        # 去重合并
         seen = set()
         output = []
         for term in terms:
