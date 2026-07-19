@@ -3016,7 +3016,7 @@
 			"epg": "https://github.com/iwinstar/epg_merge_filter/releases/download/latest/merged_epg.xml.gz"
 		},
 		{
-            "name": "對岸世界杯1",
+            "name": "F1",
             "ua": "okhttp/3.0",
             "playerType": 2,
 			"url":"http://82.156.243.185:54321/other.m3u",
@@ -3024,7 +3024,7 @@
 			"epg": "https://epg.zsdc.eu.org/t.xml"
 		},
        {
-            "name": "對岸世界杯2",
+            "name": "對岸世界杯",
             "ua": "okhttp/3.0",
             "playerType": 2,
 			"url":"http://82.156.243.185:33389/fwc.m3u",
