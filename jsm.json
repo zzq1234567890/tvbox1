@@ -262,7 +262,8 @@
             "name": "B站 | Bili[jar]",
             "type": 3,
             "api": "csp_Bili",
-			"jar":"./so0604.jar",
+			  "jar":"./pg20260413.jar",
+			###"jar":"./so0604.jar",
             "searchable": 1,
             "quickSearch": 1,
             "style": {
