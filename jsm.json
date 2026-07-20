@@ -18,7 +18,7 @@
         },      
  {
       "key": "py_yt0714",
-      "name": "ytpy0714",
+      "name": "youtube網站",
       "type": 3,
       "api": "./py/0714youtube.py",
 	 "searchable": 1,
