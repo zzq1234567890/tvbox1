@@ -179,6 +179,10 @@ http://127.0.0.1:8081/baodaowenhua.php
 
 #EXTINF:-1      tvg-logo="" tvg-id="""   tvg-name="""    group-title="world news",cgtn俄語CGTN Discovering China
 https://amg01314-amg01314c8-distrotv-us-10218.playouts.now.amagi.tv/playlist/amg01314-cgtn-cgtndiscoveringchina-distrotvus/playlist.m3u8
+#EXTINF:-1      tvg-id=""     tvg-name=""      tvg-logo=""        group-title="world news",CNN Headlines: 24/7 Live News youtube
+http://127.0.0.1:8081/cnnyoutube.php
+
+
 #EXTINF:-1      tvg-id=""     tvg-name=""      tvg-logo=""        group-title="world news",NewsNOW from FOX
 http://127.0.0.1:8081/foxnewsnow1.php?
 
