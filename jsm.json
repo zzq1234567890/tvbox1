@@ -5,7 +5,7 @@
 		{
             "key": "网盘配置",
             "name": "youtube和网盘配置",
-			"jar":"pg20260413.pg",
+			"jar":"./pg20260413.pg",
             "type": 3,
             "api": "csp_Config",
             "searchable": 0,
