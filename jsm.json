@@ -3000,7 +3000,7 @@
 		 },
 		{
              "name": "yang1989",
-             "ua": "okhttp", 
+            ### "ua": "okhttp", 
              "playerType": 2, 
             "url":" https://iptv.1989.click/playlist.m3u",
              "epg": "https://epg.yang-1989.eu.org/epg.xml.gz",
