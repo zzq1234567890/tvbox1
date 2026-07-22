@@ -3002,8 +3002,8 @@
              "name": "yang1989",
              "ua": "okhttp", 
              "playerType": 2, 
-             "url": "https://iptv.yang-1989.xyz/playlist.m3u",
-
+             ###"url": "https://iptv.yang-1989.xyz/playlist.m3u",
+            "url":" https://iptv.1989.click/playlist.m3u",
              "epg": "https://epg.yang-1989.eu.org/epg.xml.gz",
              "logo": "https://epg.112114.xyz/logo/{name}.png" 
              },
