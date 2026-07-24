@@ -5,17 +5,11 @@ import urllib.parse
 import json
 import time
 
-# ---------- 原代理配置 ----------
-host = "https://mov.cenguigui.cn"
-base_url = host + "/duanju/api.php"
-quality_host = "https://mov.cenguigui.cn"
+SITE = "https://hongguoduanju.com"
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36'
 }
-timeout = 10
-
-# ---------- 新增：官方站点配置 ----------
-SITE = "https://hongguoduanju.com"
+timeout = 15
 CATEGORY_MAP = {
     "热门": "sort_type=1",
     "最新": "sort_type=2",
@@ -35,6 +29,183 @@ _cache = {}
 class Spider(Spider):
     def getName(self):
         return "小心儿悠悠"
+
+    def init(self, extend):
+        pass
+
+    def isVideoFormat(self, url):
+        pass
+
+    def manualVideoCheck(self):
+        pass
+
+    def _get(self, url):
+        response = requests.get(url, headers=headers, timeout=timeout)
+        response.raise_for_status()
+        response.encoding = "utf-8"
+        return response.text
+
+    def _router_data(self, url):
+        cached = _cache.get(url)
+        if cached and time.time() - cached[0] < 300:
+            return cached[1]
+        html = self._get(url)
+        match = re.search(
+            r"window\._ROUTER_DATA\s*=\s*(\{.*?\})\s*</script>",
+            html,
+            re.S,
+        )
+        if not match:
+            raise RuntimeError("未找到 _ROUTER_DATA")
+        data = json.loads(match.group(1))
+        _cache[url] = (time.time(), data)
+        return data
+
+    @staticmethod
+    def _vod(item):
+        tags = item.get("tags") or []
+        if isinstance(tags, list):
+            tags = " · ".join(str(x) for x in tags[:3])
+        count = item.get("episode_cnt") or len(item.get("vid_list") or [])
+        remark = ("全%s集" % count) if count else str(tags or "")
+        return {
+            "vod_id": f"series_id={item.get('series_id', '')}",
+            "vod_name": str(item.get("series_name") or ""),
+            "vod_pic": str(item.get("series_cover") or ""),
+            "vod_remarks": remark,
+        }
+
+    def _category_items(self, query):
+        url = SITE + "/category?" + query
+        data = self._router_data(url)
+        page = data.get("loaderData", {}).get("category_page", {})
+        items = page.get("recommendList") or []
+        if not items:
+            items = page.get("categoryData", {}).get("recommendList") or []
+        seen = set()
+        result = []
+        for item in items:
+            sid = str(item.get("series_id") or "")
+            if sid and sid not in seen:
+                seen.add(sid)
+                result.append(item)
+        return result
+
+    def _search_items(self, keyword, page=1):
+        url = SITE + "/search?keyword=" + urllib.parse.quote(keyword) + "&page=" + str(page)
+        data = self._router_data(url)
+        search_page = data.get("loaderData", {}).get("search_page", {})
+        return search_page.get("searchResult") or []
+
+    def homeContent(self, filter):
+        classes = [{"type_id": query, "type_name": name} for name, query in CATEGORY_MAP.items()]
+        home_list = []
+        try:
+            items = self._category_items("sort_type=1")[:30]
+            home_list = [self._vod(x) for x in items]
+        except Exception as e:
+            print("首页推荐加载失败:", e)
+        return {"class": classes, "list": home_list}
+
+    def homeVideoContent(self):
+        return {'list': []}
+
+    def categoryContent(self, cid, pg, filter, ext):
+        page = int(pg) if pg else 1
+        per_page = 30
+        try:
+            items = self._category_items(str(cid))
+            start = (page - 1) * per_page
+            chunk = items[start:start + per_page]
+            total = len(items)
+            page_count = max(1, (total + per_page - 1) // per_page) if total else 1
+            videos = [self._vod(x) for x in chunk]
+            return {
+                'list': videos,
+                'page': page,
+                'pagecount': page_count,
+                'limit': per_page,
+                'total': total
+            }
+        except Exception as e:
+            print(f"分类加载失败: {e}")
+            return {'list': [], 'page': page, 'pagecount': 1}
+
+    def detailContent(self, ids):
+        series_id = ids[0].split('=')[1] if '=' in ids[0] else ids[0]
+        url = SITE + "/detail?series_id=" + urllib.parse.quote(series_id)
+        try:
+            data = self._router_data(url)
+            detail = data.get("loaderData", {}).get("detail_page", {})
+            series = detail.get("seriesDetail") or {}
+            vids = series.get("vid_list") or []
+            episodes = []
+            for idx, vid in enumerate(vids):
+                episodes.append(f"第{idx+1}集${vid}")
+            tags = series.get("tags") or []
+            if isinstance(tags, list):
+                tags = ",".join(str(x) for x in tags)
+            vod = {
+                "vod_id": series_id,
+                "vod_name": str(series.get("series_name") or ""),
+                "vod_pic": str(series.get("series_cover") or ""),
+                "type_name": str(tags),
+                "vod_remarks": f"全{len(vids)}集",
+                "vod_content": str(series.get("series_intro") or ""),
+                "vod_play_from": "红果",
+                "vod_play_url": "#".join(episodes)
+            }
+            return {"list": [vod]}
+        except Exception as e:
+            print("详情获取失败:", e)
+            return {"list": []}
+
+    def playerContent(self, flag, pid, vipFlags):
+        # 尝试官方播放接口（需抓包确认，此处为常见猜测）
+        play_api = SITE + "/api/play?vid=" + urllib.parse.quote(str(pid))
+        try:
+            resp = requests.get(play_api, headers=headers, timeout=timeout)
+            if resp.status_code == 200:
+                data = resp.json()
+                play_url = data.get('url') or data.get('play_url') or data.get('data', {}).get('url')
+                if play_url:
+                    return {
+                        "parse": 0,
+                        "playUrl": "",
+                        "url": play_url,
+                        "header": headers
+                    }
+        except Exception as e:
+            print("获取播放地址失败:", e)
+        # 备用（仅示例，不一定有效）
+        fallback_url = SITE + "/video/" + str(pid) + ".m3u8"
+        return {
+            "parse": 0,
+            "playUrl": "",
+            "url": fallback_url,
+            "header": headers
+        }
+
+    def searchContent(self, key, quick, pg=1):
+        page = int(pg) if pg else 1
+        per_page = 30
+        try:
+            items = self._search_items(key, page)
+            start = (page - 1) * per_page
+            chunk = items[start:start + per_page]
+            total = len(items)
+            page_count = max(1, (total + per_page - 1) // per_page) if total else 1
+            videos = [self._vod(x) for x in chunk]
+            return {
+                'list': videos,
+                'page': page,
+                'pagecount': page_count,
+                'limit': per_page,
+                'total': total
+            }
+        except Exception as e:
+            print("搜索失败:", e)
+            return {'list': [], 'page': page, 'pagecount': 1}        return "小心儿悠悠"
 
     def init(self, extend):
         pass
