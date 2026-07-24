@@ -26,11 +26,22 @@
       "filterable": 0
 	 
     },
-    	 {
-      "key": "py_db",
-      "name": "独播py",
+    	{
+      "key": "py_yt0714",
+      "name": "youtube網站",
       "type": 3,
-      "api": "./py/独播.py",
+      "api": "./py/0714youtube.py",
+	 "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+	 
+    },
+		
+		{
+      "key": "py_4gtv",
+      "name": "4gtvpy",
+      "type": 3,
+      "api": "./py/4GTV.py",
 	 "searchable": 1,
       "quickSearch": 1,
       "filterable": 0
