@@ -1,40 +1,320 @@
-# -*- coding: utf-8 -*-
-"""
-红果短剧 TVBox Python 源（修复搜索版）
-- 数据源：https://hongguoduanju.com
-- 搜索改为调用官方搜索接口，解决搜不到节目问题
-- 支持 extend 自定义播放桥（JSON 或纯 URL）
-"""
-import json
-import re
-import sys
-import time
-from urllib.parse import quote, urlencode
-
+from base.spider import Spider
 import requests
+import re
+import urllib.parse
+import json
+import time
 
-sys.path.append("../../")
-try:
-    from base.spider import Spider
-except ImportError:
-    class Spider:
-        pass
+# ---------- 原代理配置 ----------
+host = "https://mov.cenguigui.cn"
+base_url = host + "/duanju/api.php"
+quality_host = "https://mov.cenguigui.cn"
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36'
+}
+timeout = 10
 
+# ---------- 新增：官方站点配置 ----------
+SITE = "https://hongguoduanju.com"
+CATEGORY_MAP = {
+    "热门": "sort_type=1",
+    "最新": "sort_type=2",
+    "都市": "background=cate_1",
+    "现代": "background=cate_757",
+    "古代": "background=cate_758",
+    "乡村": "background=cate_11",
+    "职场": "background=cate_127",
+    "校园": "background=cate_4",
+    "悬疑": "topic=cate_165",
+    "喜剧": "topic=cate_303",
+    "重生": "setting=cate_36",
+    "穿越": "setting=cate_37",
+}
+_cache = {}
 
 class Spider(Spider):
-    site = "https://hongguoduanju.com"
-    headers = {
-        "User-Agent": (
-            "Mozilla/5.0 (Linux; Android 12; TV) AppleWebKit/537.36 "
-            "(KHTML, like Gecko) Chrome/126.0 Safari/537.36"
-        ),
-        "Accept-Language": "zh-CN,zh;q=0.9",
-    }
-    category_map = {
-        "热门": "sort_type=1",
-        "最新": "sort_type=2",
-        "都市": "background=cate_1",
-        "现代": "background=cate_757",
+    def getName(self):
+        return "小心儿悠悠"
+
+    def init(self, extend):
+        pass
+
+    def isVideoFormat(self, url):
+        pass
+
+    def manualVideoCheck(self):
+        pass
+
+    # ---------- 辅助函数：从官方页面提取数据 ----------
+    def _get(self, url):
+        response = requests.get(url, headers=headers, timeout=timeout)
+        response.raise_for_status()
+        response.encoding = "utf-8"
+        return response.text
+
+    def _router_data(self, url):
+        cached = _cache.get(url)
+        if cached and time.time() - cached[0] < 300:
+            return cached[1]
+        html = self._get(url)
+        match = re.search(
+            r"window\._ROUTER_DATA\s*=\s*(\{.*?\})\s*</script>",
+            html,
+            re.S,
+        )
+        if not match:
+            raise RuntimeError("页面数据格式已变化")
+        data = json.loads(match.group(1))
+        _cache[url] = (time.time(), data)
+        return data
+
+    @staticmethod
+    def _vod(item):
+        """将官方数据项转换为统一的vod格式"""
+        tags = item.get("tags") or []
+        if isinstance(tags, list):
+            tags = " · ".join(str(x) for x in tags[:3])
+        count = item.get("episode_cnt") or len(item.get("vid_list") or [])
+        remark = ("全%s集" % count) if count else str(tags or "")
+        return {
+            "vod_id": f"series_id={item.get('series_id', '')}",   # 使用 series_id
+            "vod_name": str(item.get("series_name") or ""),
+            "vod_pic": str(item.get("series_cover") or ""),
+            "vod_remarks": remark,
+        }
+
+    def _category_items(self, query):
+        """获取分类下的剧集列表"""
+        url = SITE + "/category?" + query
+        data = self._router_data(url)
+        page = data.get("loaderData", {}).get("category_page", {})
+        items = page.get("recommendList") or []
+        if not items:
+            items = page.get("categoryData", {}).get("recommendList") or []
+        seen = set()
+        result = []
+        for item in items:
+            sid = str(item.get("series_id") or "")
+            if sid and sid not in seen:
+                seen.add(sid)
+                result.append(item)
+        return result
+
+    def _search_items(self, keyword, page=1):
+        """从官方搜索页面获取结果"""
+        url = SITE + "/search?keyword=" + urllib.parse.quote(keyword) + "&page=" + str(page)
+        data = self._router_data(url)
+        search_page = data.get("loaderData", {}).get("search_page", {})
+        items = search_page.get("searchResult") or []
+        return items
+
+    # ---------- 主页分类 ----------
+    def homeContent(self, filter):
+        classes = []
+        for name, query in CATEGORY_MAP.items():
+            classes.append({"type_id": query, "type_name": name})
+        # 首页推荐（可选）
+        try:
+            items = self._category_items("sort_type=1")[:30]
+            home_list = [self._vod(x) for x in items]
+        except:
+            home_list = []
+        return {
+            "class": classes,
+            "list": home_list
+        }
+
+    def homeVideoContent(self):
+        # 已在 homeContent 中返回 list，此处保留空实现
+        return {'list': []}
+
+    # ---------- 分类内容 ----------
+    def categoryContent(self, cid, pg, filter, ext):
+        page = int(pg) if pg else 1
+        per_page = 30
+        try:
+            items = self._category_items(str(cid))
+            start = (page - 1) * per_page
+            chunk = items[start:start + per_page]
+            total = len(items)
+            page_count = max(1, (total + per_page - 1) // per_page)
+            videos = [self._vod(x) for x in chunk]
+            return {
+                'list': videos,
+                'page': page,
+                'pagecount': page_count,
+                'limit': per_page,
+                'total': total
+            }
+        except Exception as e:
+            print("分类加载失败:", e)
+            return {'list': [], 'page': page, 'pagecount': 1}
+
+    # ---------- 详情（适配 series_id） ----------
+    def detailContent(self, ids):
+        did = ids[0]
+        
+        # 解析参数
+        params = {}
+        if '?' in did:
+            queryString = did.split('?')[1]
+        else:
+            queryString = did
+        pairs = queryString.split('&')
+        for pair in pairs:
+            if '=' in pair:
+                k, v = pair.split('=', 1)
+                params[k] = v
+        
+        # 优先使用 series_id
+        series_id = params.get('series_id', '')
+        book_id = params.get('book_id', '')
+        actor = params.get('actor', '')
+        fullType = params.get('type', '')
+        
+        # 如果没有 series_id 但有 book_id，则原样处理
+        if not series_id and not book_id:
+            # 尝试从 did 中提取 book_id（兼容旧格式）
+            match = re.search(r'book_id=([^&]*)', did)
+            if match:
+                book_id = match.group(1)
+        
+        # 调用代理 API（优先使用 series_id，否则用 book_id）
+        api_params = ""
+        if series_id:
+            api_params = f"series_id={series_id}"
+        elif book_id:
+            api_params = f"book_id={book_id}"
+        else:
+            return {'list': []}
+        
+        apiUrl = f"{base_url}?{api_params}"
+        try:
+            response = requests.get(url=apiUrl, headers=headers, timeout=timeout)
+            if response.status_code != 200:
+                return {'list': []}
+            
+            data = response.json()
+            if data.get('code') != 200 or not data.get('data'):
+                return {'list': []}
+            
+            vod_list = data['data']
+            
+            # 构建播放源（按清晰度）
+            play_from = []
+            play_url = []
+            quality_options = [
+                ("超清", "2160p"),
+                ("高清", "1080p"), 
+                ("标清", "720p"),
+                ("低清", "480p"),
+                ("流畅", "360p")
+            ]
+            for quality_name, quality_value in quality_options:
+                urls = []
+                for item in vod_list:
+                    chapterName = item.get('title', '')
+                    videoId = item.get('video_id', '')
+                    playUrl = f"{quality_host}/duanju/api.php?video_id={videoId}&type=json&level={quality_value}"
+                    urls.append(f"{chapterName}${playUrl}")
+                play_from.append(quality_name)
+                play_url.append("#".join(urls))
+            
+            # 演员信息（复用原逻辑）
+            actors = []
+            try:
+                actor_api_url = f"{base_url}?series_id={series_id or book_id}&showRawParams=false"
+                actor_response = requests.get(url=actor_api_url, headers=headers, timeout=timeout)
+                if actor_response.status_code == 200:
+                    actor_data = actor_response.json()
+                    if actor_data.get('code') == 200 and 'celebrities' in actor_data:
+                        celebrities = actor_data['celebrities']
+                        if isinstance(celebrities, list):
+                            for celeb in celebrities:
+                                actor_name = celeb.get('user_name') or celeb.get('name') or celeb.get('actor_name') or ''
+                                if actor_name and actor_name.strip() and actor_name not in actors:
+                                    actors.append(actor_name)
+            except Exception as e:
+                print(f"获取演员信息失败: {e}")
+                if actor:
+                    actors = [actor]
+            actor_str = ", ".join(actors) if actors else (actor or "")
+            
+            # 分类
+            categories = []
+            if 'category_names' in data and isinstance(data['category_names'], list):
+                categories = data['category_names'][:3]
+            elif 'category' in data:
+                categories = [data['category']]
+            type_str = ", ".join(categories) if categories else fullType
+            
+            VOD = {
+                "vod_id": did,
+                "vod_name": data.get('book_name', ''),
+                "vod_pic": data.get('book_pic', ''),
+                "vod_actor": actor_str,
+                "type_name": type_str,
+                "vod_remarks": f"共{len(vod_list)}集",
+                "vod_content": data.get('desc', ''),
+                "vod_play_from": "$$$".join(play_from),
+                "vod_play_url": "$$$".join(play_url)
+            }
+            return {'list': [VOD]}
+        except Exception as e:
+            print(f"获取详情失败: {e}")
+            return {'list': []}
+
+    # ---------- 播放（保持不变） ----------
+    def playerContent(self, flag, id, vipFlags):
+        max_retries = 3
+        for i in range(max_retries):
+            try:
+                response = requests.get(url=id, headers=headers, timeout=timeout)
+                if response.status_code == 200:
+                    data = response.json()
+                    if data.get('code') == 200 and data.get('data'):
+                        play_url = data['data'].get('url', '')
+                        if play_url:
+                            return {
+                                "parse": 0,
+                                "playUrl": '',
+                                "url": play_url,
+                                "header": headers
+                            }
+                    break
+            except:
+                if i < max_retries - 1:
+                    continue
+                else:
+                    break
+        return {
+            "parse": 0,
+            "playUrl": '',
+            "url": 'about:blank',
+            "header": headers
+        }
+
+    # ---------- 搜索（使用官方页面） ----------
+    def searchContent(self, key, quick, pg=1):
+        page = int(pg) if pg else 1
+        per_page = 30
+        try:
+            items = self._search_items(key, page)
+            start = (page - 1) * per_page
+            chunk = items[start:start + per_page]
+            total = len(items)
+            page_count = max(1, (total + per_page - 1) // per_page) if total else 1
+            videos = [self._vod(x) for x in chunk]
+            return {
+                'list': videos,
+                'page': page,
+                'pagecount': page_count,
+                'limit': per_page,
+                'total': total
+            }
+        except Exception as e:
+            print("搜索失败:", e)
+            return {'list': [], 'page': page, 'pagecount': 1}        "现代": "background=cate_757",
         "古代": "background=cate_758",
         "乡村": "background=cate_11",
         "职场": "background=cate_127",
