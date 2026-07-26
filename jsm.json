@@ -38,9 +38,9 @@
     },
 		{
       "key": "py_4gtvfongmi",
-      "name": "4gtvfongmipy",
+      "name": "4gfongmipy",
       "type": 3,
-      "api": "./py/4gtvfongmi.py",
+      "api": "./py/4gfongmi.py",
 	 "searchable": 1,
       "quickSearch": 1,
       "filterable": 0
