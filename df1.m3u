@@ -88,7 +88,7 @@ http://127.0.0.1:8081/minshinews.php
 http://127.0.0.1:8081/sanlinewsweb.php
 #EXTINF:-1   tvg-id="三立iNEWS HD"   tvg-name="三立iNEWS HD"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/SETInews.png" group-title="中文新聞",三立財經新聞台
 http://127.0.0.1:8081/sanliinewsweb.php
-#EXTINF:-1   tvg-id="非凡新聞HD"   tvg-name="非凡新聞HD"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/EFTV.png"    group-title="中文新聞",非凡新聞HD
+#EXTINF:-1   tvg-id="非凡新聞"   tvg-name="非凡新聞"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/EFTV.png"    group-title="中文新聞",非凡新聞
 http://127.0.0.1:8081/feifannews.php
 #EXTINF:-1   tvg-id="非凡商業台"   tvg-name="非凡商業台"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/EFTV.png"    group-title="中文新聞",非凡商業台
 http://127.0.0.1:8081/feifanfinance.php
