@@ -2577,6 +2577,8 @@ http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv075
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv152
 #EXTINF:-1 tvg-id="華視新聞" tvg-name="華視新聞" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv052_mobile.png" group-title="4gtv",華視新聞
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv052
+ #EXTINF:-1   tvg-id="中天新聞台"   tvg-name="中天新聞台"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/CtiNews.png"    group-title="中文新聞",中天新聞2
+http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live409
 #EXTINF:-1 tvg-id="民視新聞台" tvg-name="民視新聞台" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_litv-ftv13_mobile.png" group-title="4gtv",民視新聞台
 http://127.0.0.1:8081/4gtvapp.php?id=litv-ftv13
 #EXTINF:-1 tvg-id="三立新聞iNEWS" tvg-name="三立新聞iNEWS" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-live089_mobile.png" group-title="4gtv",三立新聞iNEWS
