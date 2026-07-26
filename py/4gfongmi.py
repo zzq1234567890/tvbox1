@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# 4GTV - 兼容蜂蜜影视 5.6 和 OK影视 5.1.6
+# 4GTV - 蜂蜜影视 5.6 优化版（优先网页抓取）
 
 import sys
 sys.path.append('..')
@@ -103,14 +103,17 @@ class Spider(Spider):
             print('4GTV请求失败:', url, e)
             return {}
 
-    def _request_text(self, url):
+    def _request_text(self, url, referer=None):
         headers = {
             'User-Agent': ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                            'AppleWebKit/537.36 (KHTML, like Gecko) '
                            'Chrome/150.0.0.0 Safari/537.36'),
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Referer': self.web + '/channel',
         }
+        if referer:
+            headers['Referer'] = referer
+        else:
+            headers['Referer'] = self.web + '/channel'
         try:
             resp = self.fetch(url, headers=headers, timeout=12)
             text = getattr(resp, 'text', '') or getattr(resp, 'content', b'')
@@ -238,7 +241,7 @@ class Spider(Spider):
         return {'list': [self._vod(x) for x in rows], 'page': 1, 'pagecount': 1,
                 'limit': len(rows), 'total': len(rows)}
 
-    # ---------- 播放地址获取核心逻辑 ----------
+    # ---------- 播放地址获取核心（优先网页） ----------
     def _play_urls(self, api, cid, asset, device='tv'):
         payload = {
             'fnCHANNEL_ID': int(cid),
@@ -251,10 +254,10 @@ class Spider(Spider):
         urls = data.get('flstURLs') if isinstance(data, dict) else None
         return urls if isinstance(urls, list) else []
 
-    def _select_url(self, urls, asset, api2=False, cid=0):
+    def _select_url(self, urls, asset):
         if not urls:
             return ''
-        # 优先选择高码率或特定域名
+        # 优先选择 1080p 或 high，其次 mozai 域名
         preferred = []
         for u in urls:
             if isinstance(u, str) and u.startswith('http'):
@@ -266,8 +269,8 @@ class Spider(Spider):
             url = preferred[0]
         else:
             url = urls[0] if isinstance(urls[0], str) else ''
-        # 针对 api2 的某些频道强制改码率
-        if api2 and 'live' in asset and 'index.m3u8' in url:
+        # 某些频道强制高码率
+        if 'live' in asset and 'index.m3u8' in url:
             url = url.replace('index.m3u8', '1080.m3u8')
         return url
 
@@ -279,11 +282,13 @@ class Spider(Spider):
             return value.replace('\\/', '/').replace('\\u0026', '&')
 
     def _web_play_url(self, cid, asset, set_id='1'):
-        page = '%s/channel/%s?set=%s&ch=%s' % (self.web, asset, set_id or '1', cid)
-        text = self._request_text(page)
+        """从官网页面抓取播放地址（最稳定）"""
+        page_url = '%s/channel/%s?set=%s&ch=%s' % (self.web, asset, set_id or '1', cid)
+        text = self._request_text(page_url, referer='https://www.4gtv.tv/')
         if not text:
             return ''
 
+        # 检查是否成功
         success = re.search(r'resultsSuccess\s*=\s*true', text, re.I)
         if not success:
             err = re.search(r'resultsErrMessage\s*=\s*[\'\"]([^\'\"]+)', text, re.I)
@@ -291,6 +296,7 @@ class Spider(Spider):
                 print('4GTV网页播放受限, code:', err.group(1))
             return ''
 
+        # 多种方式提取 flstURLs
         patterns = [
             r'flstURLs\s*=\s*[\'\"](.*?)[\'\"]\s*;',
             r'[\'\"]flstURLs[\'\"]\s*:\s*[\'\"](.*?)[\'\"]',
@@ -303,44 +309,55 @@ class Spider(Spider):
                 raw = self._decode_js_string(m.group(1).strip())
                 break
         if not raw:
+            # 尝试从 video 标签直接提取
             vid_src = re.search(r'<video[^>]+src=[\'\"]([^\'\"]+\.m3u8[^\'\"]*)[\'\"]', text, re.I)
             if vid_src:
                 raw = vid_src.group(1)
         if not raw:
             return ''
+
+        # 解析多个 url（可能用逗号或空格分隔）
         urls = [x.strip() for x in re.split(r'[\s,]+', raw) if x.strip().startswith('http')]
-        return self._select_url(urls, asset, False, cid)
+        return self._select_url(urls, asset)
 
     def _get_play_url(self, cid, asset, set_id='1'):
-        """获取播放地址，带缓存"""
+        """获取播放地址，带缓存，优先网页抓取"""
         cache_key = cid + '|' + asset + '|' + set_id
         cache = self.play_cache.get(cache_key)
         if cache and time.time() < cache[1]:
             return cache[0]
 
         target = ''
-        # 优先使用 App 接口（适配移动设备）
-        urls = self._play_urls(self.api2, cid, asset, device='android')
-        target = self._select_url(urls, asset, True, cid)
-        if not target:
-            # 其次使用 TV 接口
-            urls = self._play_urls(self.api1, cid, asset, device='tv')
-            target = self._select_url(urls, asset, False, cid)
-        if not target:
-            # 最后尝试网页抓取
-            target = self._web_play_url(cid, asset, set_id)
-
+        # 1. 优先使用网页抓取（通常最可靠）
+        target = self._web_play_url(cid, asset, set_id)
         if target:
-            ttl = 600 if asset.startswith('fast-') else 1800
-            self.play_cache[cache_key] = (target, time.time() + ttl)
-        return target
+            self.play_cache[cache_key] = (target, time.time() + 1800)
+            return target
+
+        # 2. 尝试 API（app 接口）
+        for device in ('android', 'tv', 'phone'):
+            urls = self._play_urls(self.api2, cid, asset, device=device)
+            target = self._select_url(urls, asset)
+            if target:
+                break
+        if target:
+            self.play_cache[cache_key] = (target, time.time() + 1800)
+            return target
+
+        # 3. 最后尝试 TV 接口
+        urls = self._play_urls(self.api1, cid, asset, device='tv')
+        target = self._select_url(urls, asset)
+        if target:
+            self.play_cache[cache_key] = (target, time.time() + 1800)
+            return target
+
+        return ''
 
     # ---------- 详情与播放 ----------
     def detailContent(self, ids):
         play_id = str(ids[0] if isinstance(ids, list) else ids)
         self._load_channels()
         parts = play_id.split('|')
-        # 查找频道信息
         ch = None
         if len(parts) >= 2:
             ch = next((x for x in self.channels if x['id'] == parts[0] and x['asset'] == parts[1]), None)
@@ -361,7 +378,7 @@ class Spider(Spider):
                     'vod_remarks': '直播',
                     'vod_content': '4GTV直播频道',
                     'vod_play_from': '4GTV',
-                    'vod_play_url': '4GTV$' + url,   # 直接返回播放地址
+                    'vod_play_url': url,   # 直接返回地址（不加前缀，蜂蜜影视可直接播放）
                 }
                 return {'list': [vod]}
 
