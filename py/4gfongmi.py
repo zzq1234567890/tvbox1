@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# 4GTV - 蜂蜜影视 5.6 适配版
+# 4GTV - 兼容蜂蜜影视 5.6 和 OK影视 5.1.6
 
 import sys
 sys.path.append('..')
@@ -238,25 +238,7 @@ class Spider(Spider):
         return {'list': [self._vod(x) for x in rows], 'page': 1, 'pagecount': 1,
                 'limit': len(rows), 'total': len(rows)}
 
-    def detailContent(self, ids):
-        play_id = str(ids[0] if isinstance(ids, list) else ids)
-        self._load_channels()
-        parts = play_id.split('|')
-        ch = next((x for x in self.channels if len(parts) >= 2 and
-                   x['id'] == parts[0] and x['asset'] == parts[1]), None)
-        name = ch['name'] if ch else '4GTV直播'
-        pic = ch.get('pic', '') if ch else ''
-        vod = {
-            'vod_id': play_id,
-            'vod_name': name,
-            'vod_pic': pic,
-            'vod_remarks': '直播',
-            'vod_content': '4GTV直播频道',
-            'vod_play_from': '4GTV',
-            'vod_play_url': '直播$' + play_id,
-        }
-        return {'list': [vod]}
-
+    # ---------- 播放地址获取核心逻辑 ----------
     def _play_urls(self, api, cid, asset, device='tv'):
         payload = {
             'fnCHANNEL_ID': int(cid),
@@ -302,7 +284,6 @@ class Spider(Spider):
         if not text:
             return ''
 
-        # 检查是否成功
         success = re.search(r'resultsSuccess\s*=\s*true', text, re.I)
         if not success:
             err = re.search(r'resultsErrMessage\s*=\s*[\'\"]([^\'\"]+)', text, re.I)
@@ -310,11 +291,10 @@ class Spider(Spider):
                 print('4GTV网页播放受限, code:', err.group(1))
             return ''
 
-        # 多种正则匹配 flstURLs
         patterns = [
             r'flstURLs\s*=\s*[\'\"](.*?)[\'\"]\s*;',
             r'[\'\"]flstURLs[\'\"]\s*:\s*[\'\"](.*?)[\'\"]',
-            r'flstURLs\s*=\s*([^;]+);',  # 可能没有引号
+            r'flstURLs\s*=\s*([^;]+);',
         ]
         raw = ''
         for pattern in patterns:
@@ -323,7 +303,6 @@ class Spider(Spider):
                 raw = self._decode_js_string(m.group(1).strip())
                 break
         if not raw:
-            # 尝试从 video 标签提取
             vid_src = re.search(r'<video[^>]+src=[\'\"]([^\'\"]+\.m3u8[^\'\"]*)[\'\"]', text, re.I)
             if vid_src:
                 raw = vid_src.group(1)
@@ -331,6 +310,72 @@ class Spider(Spider):
             return ''
         urls = [x.strip() for x in re.split(r'[\s,]+', raw) if x.strip().startswith('http')]
         return self._select_url(urls, asset, False, cid)
+
+    def _get_play_url(self, cid, asset, set_id='1'):
+        """获取播放地址，带缓存"""
+        cache_key = cid + '|' + asset + '|' + set_id
+        cache = self.play_cache.get(cache_key)
+        if cache and time.time() < cache[1]:
+            return cache[0]
+
+        target = ''
+        # 优先使用 App 接口（适配移动设备）
+        urls = self._play_urls(self.api2, cid, asset, device='android')
+        target = self._select_url(urls, asset, True, cid)
+        if not target:
+            # 其次使用 TV 接口
+            urls = self._play_urls(self.api1, cid, asset, device='tv')
+            target = self._select_url(urls, asset, False, cid)
+        if not target:
+            # 最后尝试网页抓取
+            target = self._web_play_url(cid, asset, set_id)
+
+        if target:
+            ttl = 600 if asset.startswith('fast-') else 1800
+            self.play_cache[cache_key] = (target, time.time() + ttl)
+        return target
+
+    # ---------- 详情与播放 ----------
+    def detailContent(self, ids):
+        play_id = str(ids[0] if isinstance(ids, list) else ids)
+        self._load_channels()
+        parts = play_id.split('|')
+        # 查找频道信息
+        ch = None
+        if len(parts) >= 2:
+            ch = next((x for x in self.channels if x['id'] == parts[0] and x['asset'] == parts[1]), None)
+        name = ch['name'] if ch else '4GTV直播'
+        pic = ch.get('pic', '') if ch else ''
+
+        # 尝试获取直接播放地址
+        if ch and len(parts) >= 2:
+            cid = parts[0]
+            asset = parts[1]
+            set_id = parts[2] if len(parts) > 2 else '1'
+            url = self._get_play_url(cid, asset, set_id)
+            if url:
+                vod = {
+                    'vod_id': play_id,
+                    'vod_name': name,
+                    'vod_pic': pic,
+                    'vod_remarks': '直播',
+                    'vod_content': '4GTV直播频道',
+                    'vod_play_from': '4GTV',
+                    'vod_play_url': '4GTV$' + url,   # 直接返回播放地址
+                }
+                return {'list': [vod]}
+
+        # 若获取失败，回退为标识形式（OK影视可通过 playerContent 解析）
+        vod = {
+            'vod_id': play_id,
+            'vod_name': name,
+            'vod_pic': pic,
+            'vod_remarks': '直播',
+            'vod_content': '4GTV直播频道',
+            'vod_play_from': '4GTV',
+            'vod_play_url': '直播$' + play_id,
+        }
+        return {'list': [vod]}
 
     def playerContent(self, flag, id, vipFlags):
         play_id = str(id or '')
@@ -340,27 +385,7 @@ class Spider(Spider):
         cid = parts[0]
         asset = parts[1] if len(parts) > 1 else ''
         set_id = parts[2] if len(parts) > 2 else '1'
-
-        cache = self.play_cache.get(play_id)
-        if cache and time.time() < cache[1]:
-            target = cache[0]
-        else:
-            target = ''
-            # 策略调整：优先 App 接口（api2）因为更稳定，且适应移动设备
-            urls = self._play_urls(self.api2, cid, asset, device='android')
-            target = self._select_url(urls, asset, True, cid)
-            if not target:
-                # 其次尝试网页接口
-                target = self._web_play_url(cid, asset, set_id)
-            if not target:
-                # 最后尝试 TV 接口（api1）
-                urls = self._play_urls(self.api1, cid, asset, device='tv')
-                target = self._select_url(urls, asset, False, cid)
-            if target:
-                # 缓存时间根据是否 fast 动态调整
-                ttl = 600 if asset.startswith('fast-') else 1800
-                self.play_cache[play_id] = (target, time.time() + ttl)
-
+        target = self._get_play_url(cid, asset, set_id)
         return {
             'parse': 0,
             'jx': 0,
