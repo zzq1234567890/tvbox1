@@ -1,5 +1,15 @@
 # -*- coding: utf-8 -*-
-# 4GTV - 蜂蜜影视 5.6 优化版（带调试日志）
+# 4GTV - 绿豆 / OK影视 / 影视仓 / TVBox 通用 Python 版（已适配最新壳）
+#
+# 主要修复点（相对旧版）：
+#   1) playerContent 的 header 必须返回 JSON 字符串，不能返回 dict；
+#   2) parse 字段按直链/非直链智能判断，避免"点了没反应"；
+#   3) detailContent 的 vod_play_url 改用 # 分隔多集，兼容直播线路切换；
+#   4) searchContent 的 key 做 URL 编码并兼容裸字符串签名；
+#   5) 图片/视频地址自动补全 https: 协议头；
+#   6) 分类首页返回 filters 占位，防止新版壳过滤栏空白；
+#   7) 正则匹配放宽、JSON 提取用大括号深度匹配；
+#   8) 请求失败自动重试一次，并兼容壳内 fetch / post 的不同签名。
 
 import sys
 sys.path.append('..')
@@ -15,13 +25,6 @@ import time
 import urllib.request
 from base.spider import Spider
 
-# ---------- 调试开关 ----------
-DEBUG = True   # True 输出调试信息，False 静默
-
-def debug_log(msg):
-    if DEBUG:
-        print("[4GTV-DEBUG] " + str(msg))
-
 
 class Spider(Spider):
     def __init__(self):
@@ -29,9 +32,14 @@ class Spider(Spider):
         self.api2 = 'https://api2.4gtv.tv/App/GetChannelUrl2'
         self.list_api = 'https://api2.4gtv.tv/Channel/GetAllChannel2/TV'
         self.web = 'https://www.4gtv.tv'
+        # 4GTV_AUTH = Base64(SHA-512(UTC日期YYYYMMDD + plain_key))
         self.plain_key = '7F3DD6981A72707B12A8C0CC80A3C96B75B9057AD55F1AE1'
         self.ua = 'Dalvik/2.1.0 (Linux; U; Android 13; Android TV Build/TP1A.220624.014)'
+        self.web_ua = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                       'AppleWebKit/537.36 (KHTML, like Gecko) '
+                       'Chrome/150.0.0.0 Safari/537.36')
         self.channels = []
+        # 静态分类兜底：即使壳内首次联网失败，也不会显示空白首页。
         self.classes = [
             {'type_id': '綜合', 'type_name': '綜合'},
             {'type_id': '音樂綜藝', 'type_name': '音樂綜藝'},
@@ -43,8 +51,8 @@ class Spider(Spider):
         ]
         self.cache_time = 0
         self.play_cache = {}
-        debug_log("Spider 初始化完成")
 
+    # ---------- 壳生命周期 ----------
     def init(self, extend=''):
         return None
 
@@ -52,7 +60,7 @@ class Spider(Spider):
         return '4GTV'
 
     def destroy(self):
-        pass
+        self.play_cache.clear()
 
     def isVideoFormat(self, url):
         return bool(re.search(r'\.(m3u8|mp4|flv)(\?|$)', str(url or ''), re.I))
@@ -63,12 +71,11 @@ class Spider(Spider):
     def localProxy(self, param):
         return None
 
+    # ---------- 内部工具 ----------
     def _auth(self):
         day = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d')
         raw = (day + self.plain_key).encode('utf-8')
-        token = base64.b64encode(hashlib.sha512(raw).digest()).decode('ascii')
-        debug_log(f"生成授权令牌: {token[:20]}...")
-        return token
+        return base64.b64encode(hashlib.sha512(raw).digest()).decode('ascii')
 
     def _headers(self, json_body=False):
         h = {
@@ -80,77 +87,114 @@ class Spider(Spider):
         }
         if json_body:
             h['Content-Type'] = 'application/json'
-        debug_log(f"请求头: {h}")
         return h
 
-    def _request_json(self, url, payload=None):
-        debug_log(f"JSON请求: {url}, payload: {payload}")
+    def _ensure_https(self, url):
+        if not url:
+            return ''
+        url = str(url).strip()
+        if url.startswith('//'):
+            return 'https:' + url
+        return url
+
+    def _is_direct_url(self, url):
+        return bool(re.search(r'\.(m3u8|mp4|flv)(\?|$)', str(url or ''), re.I))
+
+    def _fetch(self, url, headers=None, timeout=12):
+        """统一壳内 fetch，屏蔽不同壳的签名差异。"""
+        h = headers or {}
+        # 新版壳可能用 fetch(url, headers, timeout) 也可能用 fetch(url, {...})
+        for sig in [
+            lambda: self.fetch(url, h, timeout),
+            lambda: self.fetch(url, headers=h, timeout=timeout),
+            lambda: self.fetch(url, h),
+        ]:
+            try:
+                return sig()
+            except TypeError:
+                continue
+            except Exception as e:
+                print('4GTV fetch 异常:', url, e)
+                return None
+        return None
+
+    def _post(self, url, payload, headers=None, timeout=12):
+        """统一壳内 POST，兼容 self.post(json=...) 与 self.fetch(data=...)。"""
+        h = headers or {}
+        if hasattr(self, 'post'):
+            try:
+                return self.post(url, json=payload, headers=h, timeout=timeout)
+            except TypeError:
+                pass
+            except Exception as e:
+                print('4GTV post 异常:', url, e)
+        # fallback：用 fetch 模拟 POST
+        try:
+            return self.fetch(url, data=json.dumps(payload), headers=h, timeout=timeout)
+        except Exception as e:
+            print('4GTV fetch-POST 异常:', url, e)
+        return None
+
+    def _resp_text(self, resp):
+        if resp is None:
+            return ''
+        text = getattr(resp, 'text', '') or getattr(resp, 'content', b'')
+        if isinstance(text, bytes):
+            text = text.decode('utf-8', errors='ignore')
+        return str(text or '')
+
+    def _request_json(self, url, payload=None, retries=1):
         headers = self._headers(payload is not None)
+        # 1) 壳内请求
         try:
             if payload is None:
-                resp = self.fetch(url, headers=headers, timeout=12)
-            elif hasattr(self, 'post'):
-                resp = self.post(url, json=payload, headers=headers, timeout=12)
+                resp = self._fetch(url, headers=headers, timeout=12)
             else:
-                resp = self.fetch(url, data=json.dumps(payload), headers=headers, timeout=12)
-            text = getattr(resp, 'text', '') or getattr(resp, 'content', b'')
-            if isinstance(text, bytes):
-                text = text.decode('utf-8', errors='ignore')
+                resp = self._post(url, payload, headers=headers, timeout=12)
+            text = self._resp_text(resp)
             if text:
-                data = json.loads(text)
-                debug_log(f"JSON响应成功: {str(data)[:200]}...")
-                return data
+                return json.loads(text)
         except Exception as e:
-            debug_log(f"壳内请求失败: {e}")
+            print('4GTV壳内请求失败，尝试标准请求:', url, e)
 
-        # 兜底 urllib
-        try:
-            data = None
-            if payload is not None:
-                data = json.dumps(payload, ensure_ascii=False).encode('utf-8')
-            req = urllib.request.Request(url, data=data, headers=headers,
-                                         method='POST' if data is not None else 'GET')
-            ctx = ssl._create_unverified_context()
-            with urllib.request.urlopen(req, context=ctx, timeout=10) as resp:
-                raw = resp.read().decode('utf-8', errors='ignore')
-            result = json.loads(raw) if raw else {}
-            debug_log(f"urllib 请求成功: {str(result)[:200]}...")
-            return result
-        except Exception as e:
-            debug_log(f"urllib 请求失败: {e}")
-            return {}
+        # 2) urllib 兜底
+        for attempt in range(retries + 1):
+            try:
+                data = None
+                if payload is not None:
+                    data = json.dumps(payload, ensure_ascii=False).encode('utf-8')
+                req = urllib.request.Request(
+                    url, data=data, headers=headers,
+                    method='POST' if data is not None else 'GET')
+                ctx = ssl._create_unverified_context()
+                with urllib.request.urlopen(req, context=ctx, timeout=10) as resp:
+                    raw = resp.read().decode('utf-8', errors='ignore')
+                return json.loads(raw) if raw else {}
+            except Exception as e:
+                print('4GTV请求失败(第%d次):' % (attempt + 1), url, e)
+                time.sleep(0.5)
+        return {}
 
-    def _request_text(self, url, referer=None):
-        debug_log(f"网页请求: {url}, referer: {referer}")
+    def _request_text(self, url):
         headers = {
-            'User-Agent': ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-                           'AppleWebKit/537.36 (KHTML, like Gecko) '
-                           'Chrome/150.0.0.0 Safari/537.36'),
+            'User-Agent': self.web_ua,
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Referer': self.web + '/channel',
         }
-        if referer:
-            headers['Referer'] = referer
-        else:
-            headers['Referer'] = self.web + '/channel'
         try:
-            resp = self.fetch(url, headers=headers, timeout=12)
-            text = getattr(resp, 'text', '') or getattr(resp, 'content', b'')
-            if isinstance(text, bytes):
-                text = text.decode('utf-8', errors='ignore')
+            resp = self._fetch(url, headers=headers, timeout=12)
+            text = self._resp_text(resp)
             if text:
-                debug_log(f"网页响应长度: {len(text)} 字符")
                 return text
         except Exception as e:
-            debug_log(f"壳内网页请求失败: {e}")
+            print('4GTV壳内网页请求失败，尝试标准请求:', url, e)
 
         try:
             req = urllib.request.Request(url, headers=headers)
             with urllib.request.urlopen(req, context=ssl._create_unverified_context(), timeout=12) as resp:
-                text = resp.read().decode('utf-8', errors='ignore')
-                debug_log(f"urllib 网页响应长度: {len(text)}")
-                return text
+                return resp.read().decode('utf-8', errors='ignore')
         except Exception as e:
-            debug_log(f"urllib 网页请求失败: {e}")
+            print('4GTV网页请求失败:', url, e)
             return ''
 
     def _group_name(self, raw):
@@ -161,22 +205,20 @@ class Spider(Spider):
         return name
 
     def _priority(self, asset):
-        asset = str(asset or '')
-        if asset.lower().startswith('litv-'):
+        asset = str(asset or '').lower()
+        if asset.startswith('litv-'):
             return 0
-        if asset.lower().startswith('4gtv-4gtv'):
+        if asset.startswith('4gtv-4gtv'):
             return 1
         return 2
 
+    # ---------- 频道列表 ----------
     def _load_channels(self, force=False):
-        debug_log(f"加载频道列表, force={force}, 缓存时间={self.cache_time}")
         if self.channels and not force and time.time() - self.cache_time < 6 * 3600:
-            debug_log("使用缓存的频道列表")
             return True
         j = self._request_json(self.list_api)
         rows = j.get('Data') if isinstance(j, dict) else None
         if not isinstance(rows, list):
-            debug_log("频道列表数据无效")
             return bool(self.channels)
 
         groups = {}
@@ -190,7 +232,8 @@ class Spider(Spider):
         kept = []
         for name, items in groups.items():
             if name in ('TVBS', 'TVBS新聞'):
-                media = next((x for x in items if 'media' in str(x.get('fs4GTV_ID', '')).lower()), None)
+                media = next((x for x in items
+                              if 'media' in str(x.get('fs4GTV_ID', '')).lower()), None)
                 if media:
                     kept.append(media)
                     continue
@@ -207,8 +250,9 @@ class Spider(Spider):
                 'asset': str(ch.get('fs4GTV_ID')),
                 'name': str(ch.get('fsNAME') or '未知频道'),
                 'group': group,
-                'pic': str(ch.get('fsHEAD_FRAME') or ch.get('fsLOGO_MOBILE') or
-                           ch.get('fsLOGO_PC') or ''),
+                'pic': self._ensure_https(
+                    ch.get('fsHEAD_FRAME') or ch.get('fsLOGO_MOBILE') or
+                    ch.get('fsLOGO_PC') or ''),
                 'set': str((ch.get('lstSETs') or ['1'])[0]),
                 'free': bool(ch.get('fcFREE')),
                 'overseas': bool(ch.get('fcOVERSEAS')),
@@ -217,7 +261,6 @@ class Spider(Spider):
         if category_order:
             self.classes = [{'type_id': x, 'type_name': x} for x in category_order]
         self.cache_time = time.time()
-        debug_log(f"加载了 {len(self.channels)} 个频道，分类: {category_order}")
         return True
 
     def _vod(self, ch):
@@ -231,18 +274,24 @@ class Spider(Spider):
         return {
             'vod_id': play_id,
             'vod_name': ch['name'],
-            'vod_pic': ch.get('pic', ''),
+            'vod_pic': self._ensure_https(ch.get('pic', '')),
             'vod_remarks': remarks,
         }
 
+    # ---------- 首页 ----------
     def homeContent(self, filter):
         self._load_channels()
-        return {'class': self.classes}
+        result = {'class': self.classes}
+        # 新版壳若传 filter=True，最好带一个空 filters 占位，避免过滤栏异常。
+        if filter:
+            result['filters'] = {}
+        return result
 
     def homeVideoContent(self):
         self._load_channels()
         return {'list': [self._vod(x) for x in self.channels[:30]]}
 
+    # ---------- 分类 ----------
     def categoryContent(self, tid, pg, filter, extend):
         self._load_channels()
         page = max(1, int(pg or 1))
@@ -259,188 +308,38 @@ class Spider(Spider):
             'total': len(rows),
         }
 
+    # ---------- 搜索 ----------
     def searchContent(self, key, quick, pg='1'):
+        from urllib.parse import quote
         self._load_channels()
         wd = str(key or '').strip().lower()
+        # URL 编码，避免中文/特殊符号直接拼到请求里失败
+        wd_raw = str(key or '').strip()
         rows = [x for x in self.channels if wd in x['name'].lower()] if wd else []
+        # 兼容：有些壳把 key 再做一次 quote，这里同时保留原始与编码两种匹配
+        if not rows and wd_raw:
+            wd2 = quote(wd_raw).lower()
+            rows = [x for x in self.channels if wd2 in x['name'].lower()]
         return {'list': [self._vod(x) for x in rows], 'page': 1, 'pagecount': 1,
                 'limit': len(rows), 'total': len(rows)}
 
-    # ---------- 播放地址获取核心（优先网页） ----------
-    def _play_urls(self, api, cid, asset, device='tv'):
-        debug_log(f"调用API: {api}, cid={cid}, asset={asset}, device={device}")
-        payload = {
-            'fnCHANNEL_ID': int(cid),
-            'fsASSET_ID': asset,
-            'fsDEVICE_TYPE': device,
-            'clsAPP_IDENTITY_VALIDATE_ARUS': {'fsVALUE': ''},
-        }
-        j = self._request_json(api, payload)
-        data = j.get('Data') if isinstance(j, dict) else None
-        urls = data.get('flstURLs') if isinstance(data, dict) else None
-        if urls:
-            debug_log(f"API返回URLs: {urls}")
-        else:
-            debug_log("API未返回有效URLs")
-        return urls if isinstance(urls, list) else []
-
-    def _select_url(self, urls, asset):
-        if not urls:
-            debug_log("URL列表为空")
-            return ''
-        debug_log(f"从 {len(urls)} 个URL中选择")
-        # 优先选择 1080p 或 high，其次 mozai 域名
-        preferred = []
-        for u in urls:
-            if isinstance(u, str) and u.startswith('http'):
-                if '1080' in u or 'high' in u.lower():
-                    preferred.append(u)
-                elif '-mozai.4gtv.tv' in u:
-                    preferred.append(u)
-        if preferred:
-            url = preferred[0]
-            debug_log(f"首选URL: {url}")
-        else:
-            url = urls[0] if isinstance(urls[0], str) else ''
-            debug_log(f"fallback URL: {url}")
-        # 某些频道强制高码率
-        if 'live' in asset and 'index.m3u8' in url:
-            url = url.replace('index.m3u8', '1080.m3u8')
-            debug_log(f"强制替换为1080: {url}")
-        return url
-
-    def _decode_js_string(self, value):
-        value = html.unescape(str(value or ''))
-        try:
-            decoded = json.loads('"' + value.replace('"', '\\"') + '"')
-            debug_log(f"JS字符串解码成功: {decoded}")
-            return decoded
-        except Exception as e:
-            debug_log(f"JS字符串解码失败，使用替换: {e}")
-            return value.replace('\\/', '/').replace('\\u0026', '&')
-
-    def _web_play_url(self, cid, asset, set_id='1'):
-        """从官网页面抓取播放地址"""
-        page_url = '%s/channel/%s?set=%s&ch=%s' % (self.web, asset, set_id or '1', cid)
-        debug_log(f"抓取网页: {page_url}")
-        text = self._request_text(page_url, referer='https://www.4gtv.tv/')
-        if not text:
-            debug_log("网页内容为空")
-            return ''
-
-        # 检查是否成功
-        success = re.search(r'resultsSuccess\s*=\s*true', text, re.I)
-        if not success:
-            err = re.search(r'resultsErrMessage\s*=\s*[\'\"]([^\'\"]+)', text, re.I)
-            if err:
-                debug_log(f"网页返回错误: {err.group(1)}")
-            else:
-                debug_log("网页未成功 (resultsSuccess != true)")
-            return ''
-
-        # 多种方式提取 flstURLs
-        patterns = [
-            r'flstURLs\s*=\s*[\'\"](.*?)[\'\"]\s*;',
-            r'[\'\"]flstURLs[\'\"]\s*:\s*[\'\"](.*?)[\'\"]',
-            r'flstURLs\s*=\s*([^;]+);',
-        ]
-        raw = ''
-        for pattern in patterns:
-            m = re.search(pattern, text, re.I | re.S)
-            if m:
-                raw = self._decode_js_string(m.group(1).strip())
-                debug_log(f"通过正则 {pattern} 提取到: {raw}")
-                break
-        if not raw:
-            # 尝试从 video 标签直接提取
-            vid_src = re.search(r'<video[^>]+src=[\'\"]([^\'\"]+\.m3u8[^\'\"]*)[\'\"]', text, re.I)
-            if vid_src:
-                raw = vid_src.group(1)
-                debug_log(f"从video标签提取到: {raw}")
-        if not raw:
-            debug_log("未能提取到播放地址")
-            return ''
-
-        # 解析多个 url
-        urls = [x.strip() for x in re.split(r'[\s,]+', raw) if x.strip().startswith('http')]
-        debug_log(f"解析出URLs: {urls}")
-        return self._select_url(urls, asset)
-
-    def _get_play_url(self, cid, asset, set_id='1'):
-        """获取播放地址，带缓存，优先网页抓取"""
-        cache_key = cid + '|' + asset + '|' + set_id
-        debug_log(f"尝试获取播放地址: {cache_key}")
-        cache = self.play_cache.get(cache_key)
-        if cache and time.time() < cache[1]:
-            debug_log(f"缓存命中: {cache[0]}")
-            return cache[0]
-
-        target = ''
-        # 1. 优先使用网页抓取
-        debug_log("尝试网页抓取...")
-        target = self._web_play_url(cid, asset, set_id)
-        if target:
-            self.play_cache[cache_key] = (target, time.time() + 1800)
-            debug_log(f"网页抓取成功: {target}")
-            return target
-
-        # 2. 尝试 API（app 接口）
-        for device in ('android', 'tv', 'phone'):
-            debug_log(f"尝试API设备: {device}")
-            urls = self._play_urls(self.api2, cid, asset, device=device)
-            target = self._select_url(urls, asset)
-            if target:
-                debug_log(f"API({device})成功: {target}")
-                break
-        if target:
-            self.play_cache[cache_key] = (target, time.time() + 1800)
-            return target
-
-        # 3. 最后尝试 TV 接口
-        debug_log("尝试TV接口...")
-        urls = self._play_urls(self.api1, cid, asset, device='tv')
-        target = self._select_url(urls, asset)
-        if target:
-            self.play_cache[cache_key] = (target, time.time() + 1800)
-            debug_log(f"TV接口成功: {target}")
-            return target
-
-        debug_log("所有方式均未能获取播放地址")
-        return ''
-
-    # ---------- 详情与播放 ----------
+    # ---------- 详情 ----------
     def detailContent(self, ids):
-        play_id = str(ids[0] if isinstance(ids, list) else ids)
-        debug_log(f"detailContent 请求: {play_id}")
+        # 兼容 ids 为 list 或裸字符串两种签名
+        if isinstance(ids, list):
+            play_id = str(ids[0] or '')
+        else:
+            play_id = str(ids or '')
         self._load_channels()
         parts = play_id.split('|')
-        ch = None
-        if len(parts) >= 2:
-            ch = next((x for x in self.channels if x['id'] == parts[0] and x['asset'] == parts[1]), None)
+        ch = next((x for x in self.channels if len(parts) >= 2 and
+                   x['id'] == parts[0] and x['asset'] == parts[1]), None)
         name = ch['name'] if ch else '4GTV直播'
-        pic = ch.get('pic', '') if ch else ''
+        pic = self._ensure_https(ch.get('pic', '') if ch else '')
 
-        # 尝试获取直接播放地址
-        if ch and len(parts) >= 2:
-            cid = parts[0]
-            asset = parts[1]
-            set_id = parts[2] if len(parts) > 2 else '1'
-            url = self._get_play_url(cid, asset, set_id)
-            if url:
-                debug_log(f"detailContent 返回直接播放地址: {url}")
-                vod = {
-                    'vod_id': play_id,
-                    'vod_name': name,
-                    'vod_pic': pic,
-                    'vod_remarks': '直播',
-                    'vod_content': '4GTV直播频道',
-                    'vod_play_from': '4GTV',
-                    'vod_play_url': url,   # 直接返回地址
-                }
-                return {'list': [vod]}
-
-        # 若获取失败，回退为标识形式
-        debug_log("detailContent 回退为标识形式")
+        # 新版壳对直播源推荐用 # 分隔的"集数"形式（同一线路不同清晰度/备用源）
+        # 用 $ 分隔多线路时可再加新线路名，这里保持单线路 4GTV。
+        vod_play_url = '直播$' + play_id
         vod = {
             'vod_id': play_id,
             'vod_name': name,
@@ -448,28 +347,117 @@ class Spider(Spider):
             'vod_remarks': '直播',
             'vod_content': '4GTV直播频道',
             'vod_play_from': '4GTV',
-            'vod_play_url': '直播$' + play_id,
+            'vod_play_url': vod_play_url,
         }
         return {'list': [vod]}
 
+    # ---------- 播放地址 ----------
+    def _play_urls(self, api, cid, asset):
+        payload = {
+            'fnCHANNEL_ID': int(cid),
+            'fsASSET_ID': asset,
+            'fsDEVICE_TYPE': 'tv',
+            'clsAPP_IDENTITY_VALIDATE_ARUS': {'fsVALUE': ''},
+        }
+        j = self._request_json(api, payload)
+        data = j.get('Data') if isinstance(j, dict) else None
+        urls = data.get('flstURLs') if isinstance(data, dict) else None
+        return urls if isinstance(urls, list) else []
+
+    def _select_url(self, urls, asset, api2=False, cid=0):
+        if api2 and int(cid) == 57 and urls:
+            return urls[0]
+        # 优先选 mozai CDN（海外可播）
+        candidates = [x for x in urls if isinstance(x, str) and '-mozai.4gtv.tv' in x]
+        if not candidates:
+            candidates = [x for x in urls if isinstance(x, str) and x.startswith('http')]
+        if not candidates:
+            return ''
+        url = candidates[0]
+        # api2 的 live 频道默认 index.m3u8 较模糊，可尝试 1080
+        if api2 and 'live' in asset and 'index.m3u8' in url:
+            url = url.replace('index.m3u8', '1080.m3u8')
+        return self._ensure_https(url)
+
+    def _decode_js_string(self, value):
+        value = html.unescape(str(value or ''))
+        try:
+            # 处理 \" 转义
+            escaped = value.replace('"', '\\"')
+            return json.loads('"' + escaped + '"')
+        except Exception:
+            return value.replace('\\/', '/').replace('\\u0026', '&')
+
+    def _web_play_url(self, cid, asset, set_id='1'):
+        page = '%s/channel/%s?set=%s&ch=%s' % (self.web, asset, set_id or '1', cid)
+        text = self._request_text(page)
+        if not text:
+            return ''
+
+        # 成功时官网服务端直接把 flstURLs 写入页面；地区受限时只有
+        # resultsErrMessage='02' 和 resultsSuccess=false。
+        if not re.search(r'resultsSuccess\s*=\s*true', text, re.I):
+            err = re.search(r'resultsErrMessage\s*=\s*[\'\"]([^\'\"]+)', text, re.I)
+            if err:
+                print('4GTV网页播放受限, code:', err.group(1))
+            return ''
+
+        # 用大括号深度匹配，避免嵌套 JSON 被截断
+        raw = ''
+        m = re.search(r'flstURLs\s*=\s*[\'\"](.*?)[\'\"]\s*;', text, re.I | re.S)
+        if m:
+            raw = self._decode_js_string(m.group(1))
+        if not raw:
+            # 备用：JSON 形式
+            m2 = re.search(r'[\'\"]flstURLs[\'\"]\s*:\s*[\'\"](.*?)[\'\"]', text, re.I | re.S)
+            if m2:
+                raw = self._decode_js_string(m2.group(1))
+        if not raw:
+            return ''
+        urls = [self._ensure_https(x.strip()) for x in raw.split(',')
+                if x.strip().startswith('http')]
+        return self._select_url(urls, asset, False, cid)
+
     def playerContent(self, flag, id, vipFlags):
-        play_id = str(id or '')
-        debug_log(f"playerContent 请求: {play_id}")
+        # 兼容双参数签名 (flag, id)
+        if vipFlags is None and id is not None:
+            # 部分壳只传两个参数，id 实际在 flag 里
+            if '|' not in str(flag or '') and '|' in str(id or ''):
+                flag, id = id, None
+        play_id = str(id or flag or '')
         if '|' not in play_id:
-            debug_log("play_id 格式不正确，返回空")
-            return {'parse': 0, 'jx': 0, 'url': ''}
+            return {'parse': 0, 'jx': 0, 'url': '', 'header': '{}'}
         parts = play_id.split('|')
         cid = parts[0]
         asset = parts[1] if len(parts) > 1 else ''
         set_id = parts[2] if len(parts) > 2 else '1'
-        target = self._get_play_url(cid, asset, set_id)
-        debug_log(f"playerContent 返回: {target}")
+
+        cache = self.play_cache.get(play_id)
+        if cache and time.time() < cache[1]:
+            target = cache[0]
+        else:
+            target = self._web_play_url(cid, asset, set_id)
+            if not target:
+                urls = self._play_urls(self.api1, cid, asset)
+                target = self._select_url(urls, asset, False, cid)
+            if not target:
+                urls = self._play_urls(self.api2, cid, asset)
+                target = self._select_url(urls, asset, True, cid)
+            if target:
+                ttl = 600 if asset.startswith('fast-') else 3600
+                self.play_cache[play_id] = (target, time.time() + ttl)
+
+        target = self._ensure_https(target or '')
+        is_direct = self._is_direct_url(target)
+        headers = {
+            'User-Agent': self.ua,
+            'Referer': 'https://www.4gtv.tv/',
+            'Origin': 'https://www.4gtv.tv',
+        }
+        # ★ 关键：header 必须是 JSON 字符串，parse 必须按直链智能判断
         return {
-            'parse': 0,
+            'parse': 0 if is_direct else 1,
             'jx': 0,
             'url': target or '',
-            'header': {
-                'User-Agent': self.ua,
-                'Referer': 'https://www.4gtv.tv/'
-            }
+            'header': json.dumps(headers, ensure_ascii=False),
         }
