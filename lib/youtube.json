@@ -5,6 +5,10 @@
 			"type_id":"LIST:新闻 Live",
 			"type_name":"新聞直播"
 		},
+                {
+			"type_id":"國際新闻 Live",
+			"type_name":"國際新聞直播"
+		}, 
 		{
 			"type_id":"LIST:剧集,腾讯剧集,爱奇艺剧集,优酷剧集,芒果剧集,TVB,亞視精選,ATV 亞洲電視,八大劇樂部,民視戲劇,三立台劇,三立華劇,龍華戲劇,華視懷舊頻道,華視戲劇,中視經典戲劇",
 			"type_name":"劇集"
@@ -466,6 +470,47 @@
 			}
 		],
 
+                 
+		"國際新闻 Live":[
+			
+			{
+				"key":"tid",
+				"name":"English",
+				"value":[
+					{"n":"Live","v":"live"},
+					{"n":"CNA","v":"@channelnewsasia"},
+					{"n":"SkyNews","v":"@SkyNews"},
+					{"n":"Al Jazeera English","v":"@aljazeeraenglish"},
+					{"n":"CNN","v":"@CNN"},
+{"n":"BBCNews","v":"@BBCNews"},
+{"n":"ABCNews","v":"@ABCNews"},
+{"n":"FoxNews","v":"@FoxNews"},
+{"n":"CBSNews","v":"@CBSNews"},
+{"n":"NBCNews","v":"@NBCNews"},
+
+{"n":"i24NEWS_EN","v":"@i24NEWS_EN"},
+{"n":"YahooFinance","v":"@YahooFinance"},
+{"n":"Bloomberg Television","v":"@markets"},
+{"n":"BBCWorldNews","v":"@BBCWorldService"},
+{"n":"CNBCtelevision","v":"@CNBCtelevision"},
+{"n":"bloomberght","v":"@bloomberght"},
+{"n":"FoxBusiness","v":"@FoxBusiness"},
+
+
+
+{"n":"TimesNow","v":"@TimesNow"},
+{"n":"dwnews","v":"@dwnews"},
+{"n":"GBNews","v":"@GBNewsOnline"},
+{"n":"WION","v":"@WION"},
+{"n":"trtworld","v":"@trtworld"},
+{"n":"France24_en","v":"@France24_en"},
+{"n":"abcnewsaustralia","v":"@abcnewsaustralia"},
+
+				]
+			}
+			
+			
+		],
 
 		
 		"LIST:剧集,腾讯剧集,爱奇艺剧集,优酷剧集,芒果剧集,TVB,亞視精選,ATV 亞洲電視,八大劇樂部,民視劇集,三立華劇,三立台劇,龍華戲劇,華視懷舊頻道,華視戲劇,龍華電視,中視經典戲劇":[
