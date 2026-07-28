@@ -6,8 +6,8 @@
 			"type_name":"新聞直播"
 		},
 		{
-			"type_id":"國際新闻 Live",
-			"type_name":"國際新聞直播"
+			"type_id":"world news Live",
+			"type_name":"world news Live"
 		},
 		
 		{
@@ -456,7 +456,7 @@
 				]
 			}
 		],
-		"國際新闻 Live":[
+		"world news Live":[
 			{
 				"key":"time",
 				"name":"時間",
