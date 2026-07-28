@@ -53,7 +53,7 @@
             "type": 3,
             "api": "csp_Youtube",
             "ua": "19.29.1 (iPhone16,2; U; CPU iOS 17_5_1 like Mac OS X;)",
-          #### "jar":"./pg20260413.jar",
+           "jar":"./pg20260413.jar",
 			"playerType": 2,
             "searchable": 1,
             "quickSearch": 0,
