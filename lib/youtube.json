@@ -5,10 +5,11 @@
 			"type_id":"LIST:新闻 Live",
 			"type_name":"新聞直播"
 		},
-                {
+		{
 			"type_id":"國際新闻 Live",
 			"type_name":"國際新聞直播"
-		}, 
+		},
+		
 		{
 			"type_id":"LIST:剧集,腾讯剧集,爱奇艺剧集,优酷剧集,芒果剧集,TVB,亞視精選,ATV 亞洲電視,八大劇樂部,民視戲劇,三立台劇,三立華劇,龍華戲劇,華視懷舊頻道,華視戲劇,中視經典戲劇",
 			"type_name":"劇集"
@@ -29,18 +30,14 @@
 			"type_id":"LIST:综艺,台視時光機,芒果综艺,腾讯综艺,爱奇艺综艺,优酷综艺,卫视综艺,超級夜總會",
 			"type_name":"綜藝"
 		},
-		
-				
 		{
 			"type_id":"電影",
 			"type_name":"電影"
 		},
-                {
+		{
 			"type_id":"LIST:政論,觀點,豐富,Yahoo風向,全球大視野,環球大戰線,郭正亮頻道,論政天下,岑永康",
 			"type_name":"政論"
 		},
-				
-		
 		{
 			"type_id":"體育",
 			"type_name":"體育"
@@ -316,14 +313,10 @@
 					{"n":"合集","v":"Anime ENG SUB 合集"},
 					
 					{"n":"爱奇艺","v":"@iQIYIAnime 爱奇艺动漫"}
-                                      
-
-					
 				]
 			}
 		],
-
-                "政論":[
+		"政論":[
 			{
 				"key":"time",
 				"name":"時間",
@@ -415,9 +408,6 @@
 				]
 			}
 		],
-
-
-		
 		"LIST:新闻 Live":[
 			{
 				"key":"tid",
@@ -463,14 +453,9 @@
 					{"n":"BBC","v":"BBC news"},
 					{"n":"FOX News","v":"FOX News"},
 					{"n":"FOX Business News","v":"FOX Business News"}
-
-
-					
 				]
 			}
 		],
-
-                 
 		"國際新闻 Live":[
 			{
 				"key":"time",
@@ -555,38 +540,28 @@
 					{"n":"SkyNews","v":"@SkyNews"},
 					{"n":"Al Jazeera English","v":"@aljazeeraenglish"},
 					{"n":"CNN","v":"@CNN"},
-                                       {"n":"BBCNews","v":"@BBCNews"},
-                                      {"n":"ABCNews","v":"@ABCNews"},
-{"n":"FoxNews","v":"@FoxNews"},
-{"n":"CBSNews","v":"@CBSNews"},
-{"n":"NBCNews","v":"@NBCNews"},
-
-{"n":"i24NEWS_EN","v":"@i24NEWS_EN"},
-{"n":"YahooFinance","v":"@YahooFinance"},
-{"n":"Bloomberg Television","v":"@markets"},
-{"n":"BBCWorldNews","v":"@BBCWorldService"},
-{"n":"CNBCtelevision","v":"@CNBCtelevision"},
-{"n":"bloomberght","v":"@bloomberght"},
-{"n":"FoxBusiness","v":"@FoxBusiness"},
-
-
-
-{"n":"TimesNow","v":"@TimesNow"},
-{"n":"dwnews","v":"@dwnews"},
-{"n":"GBNews","v":"@GBNewsOnline"},
-{"n":"WION","v":"@WION"},
-{"n":"trtworld","v":"@trtworld"},
-{"n":"France24_en","v":"@France24_en"},
-{"n":"abcnewsaustralia","v":"@abcnewsaustralia"}
-
+					{"n":"BBCNews","v":"@BBCNews"},
+					{"n":"ABCNews","v":"@ABCNews"},
+					{"n":"FoxNews","v":"@FoxNews"},
+					{"n":"CBSNews","v":"@CBSNews"},
+					{"n":"NBCNews","v":"@NBCNews"},
+					{"n":"i24NEWS_EN","v":"@i24NEWS_EN"},
+					{"n":"YahooFinance","v":"@YahooFinance"},
+					{"n":"Bloomberg Television","v":"@markets"},
+					{"n":"BBCWorldNews","v":"@BBCWorldService"},
+					{"n":"CNBCtelevision","v":"@CNBCtelevision"},
+					{"n":"bloomberght","v":"@bloomberght"},
+					{"n":"FoxBusiness","v":"@FoxBusiness"},
+					{"n":"TimesNow","v":"@TimesNow"},
+					{"n":"dwnews","v":"@dwnews"},
+					{"n":"GBNews","v":"@GBNewsOnline"},
+					{"n":"WION","v":"@WION"},
+					{"n":"trtworld","v":"@trtworld"},
+					{"n":"France24_en","v":"@France24_en"},
+					{"n":"abcnewsaustralia","v":"@abcnewsaustralia"}
 				]
 			}
-			
-			
 		],
-
-
-		
 		"LIST:剧集,腾讯剧集,爱奇艺剧集,优酷剧集,芒果剧集,TVB,亞視精選,ATV 亞洲電視,八大劇樂部,民視劇集,三立華劇,三立台劇,龍華戲劇,華視懷舊頻道,華視戲劇,龍華電視,中視經典戲劇":[
 			{
 				"key":"time",
@@ -670,13 +645,13 @@
 					{"n":"華語熱播電視劇官方頻道","v":"華語熱播電視劇官方頻道"},
 					{"n":"粵劇","v":"粵劇 劇集"},
 					{"n":"TVB","v":"@TVB"},
-                    {"n":"亞視精選","v":"@drama_asia"},          
-                    {"n":"ATV 亞洲電視","v":"@atvhongkong"},
+					{"n":"亞視精選","v":"@drama_asia"},
+					{"n":"ATV 亞洲電視","v":"@atvhongkong"},
 					{"n":"民視劇集","v":"@FTVDRAMA"},
 					{"n":"八大劇樂部","v":"@gtv-drama"},
 					{"n":"三立華劇","v":"@SETdrama"},
 					{"n":"華視懷舊頻道","v":"@cts_arch"},
-                    {"n":"三立台劇","v":"@setdramatw"},                                          
+					{"n":"三立台劇","v":"@setdramatw"},
 					{"n":"華視戲劇","v":"@cts_drama"},
 					{"n":"龍華電視","v":"@ltv_tw"},
 					{"n":"中視經典戲劇","v":"@ctvdrama_classic"},
@@ -717,7 +692,7 @@
 				]
 			}
 		],
-                "LIST:動漫,一号动漫社 Animation Club,蒼穹動漫社Animation Club,斗破动漫社 Animation,腾讯动漫,爱奇艺动漫,优酷动漫,芒果动漫,Ani-Mi動漫迷動畫頻道,3D国漫工厂,阅文动漫":[
+		"LIST:動漫,一号动漫社 Animation Club,蒼穹動漫社Animation Club,斗破动漫社 Animation,腾讯动漫,爱奇艺动漫,优酷动漫,芒果动漫,Ani-Mi動漫迷動畫頻道,3D国漫工厂,阅文动漫":[
 			{
 				"key":"time",
 				"name":"時間",
@@ -797,7 +772,8 @@
 				"name":"中文",
 				"value":[
 					{"n":"默認","v":""},
-                    {"n":"腾讯视频 - 动漫","v":"@TencentVideoAnimation  腾讯视频 - 动漫"},                                                                    {"n":"一号动漫社 Animation Club","v":"@animationclub-gq5vr  一号动漫社 Animation Club"},
+					{"n":"腾讯视频 - 动漫","v":"@TencentVideoAnimation  腾讯视频 - 动漫"},
+					{"n":"一号动漫社 Animation Club","v":"@animationclub-gq5vr  一号动漫社 Animation Club"},
 					{"n":"蒼穹動漫社Animation Club","v":"@animationclub3747  蒼穹動漫社Animation Club"},
 					{"n":"斗破动漫社 Animation","v":" @doupo   斗破动漫社 Animation"},
 					{"n":"卡通狂欢嘉会","v":"@CartoonGala-r8  卡通狂欢嘉会"},
@@ -845,7 +821,6 @@
 				]
 			}
 		],
-		
 		"電影":[
 			{
 				"key":"time",
@@ -1176,18 +1151,17 @@
 				"name":"中文",
 				"value":[
 					{"n":"地區🎶排序","v":"歷史記錄片 地球記錄片 宇宙記錄片 海洋記錄片 戰爭記錄片 大自然生存記錄片"},
-					
 					{"n":"亞洲旅遊台","v":"@asiatravel-tv"},
 					{"n":"CCTV纪录","v":"@CCTVDocumentary"},
 					{"n":"CCTV科教","v":"@cctvscienceandeducation"},
 					{"n":"Top Travel","v":"@toptravel_yt"},
 					{"n":"公視+","v":"@ptsplus"},
 					{"n":"National Geographic","v":"@natgeo"},
-                    {"n":"Kevin_YOLO","v":"@@kevin_YOLO"},
-                    {"n":"Nat Geo Animals","v":"@natgeoanimals"},
-                    {"n":"BBC Earth","v":"@bbcearth"},
-                    {"n":"National Geographic India","v":"@natgeoindia"},
-                    {"n":"BBC Earth Science","v":"@bbcearthscience"},
+					{"n":"Kevin_YOLO","v":"@@kevin_YOLO"},
+					{"n":"Nat Geo Animals","v":"@natgeoanimals"},
+					{"n":"BBC Earth","v":"@bbcearth"},
+					{"n":"National Geographic India","v":"@natgeoindia"},
+					{"n":"BBC Earth Science","v":"@bbcearthscience"},
 					{"n":"BBC纪录片","v":"BBC 纪录片"},
 					{"n":"国家地理","v":"国家地理 纪录片"},
 					{"n":"Netflix纪录片","v":"netflix 纪录片"},
