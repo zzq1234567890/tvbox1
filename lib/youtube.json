@@ -533,7 +533,7 @@
 			},
 			{
 				"key":"tid",
-				"name":"中文",
+				"name":"English",
 				"value":[
 					{"n":"Live","v":"live"},
 					{"n":"CNA","v":"@channelnewsasia"},
