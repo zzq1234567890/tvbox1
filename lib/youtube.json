@@ -7,7 +7,7 @@
 		},
                 {
 			"type_id":"world news Live",
-			"type_name":"world news "
+			"type_name":"world news Live "
 		}, 
 		{
 			"type_id":"LIST:剧集,腾讯剧集,爱奇艺剧集,优酷剧集,芒果剧集,TVB,亞視精選,ATV 亞洲電視,八大劇樂部,民視戲劇,三立台劇,三立華劇,龍華戲劇,華視懷舊頻道,華視戲劇,中視經典戲劇",
@@ -471,7 +471,7 @@
 		],
 
                  
-		"world news live":[
+		"world news Live":[
 			{
 				"key":"time",
 				"name":"時間",
