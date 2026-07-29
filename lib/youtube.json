@@ -534,10 +534,7 @@
 			{
 				"key":"tid",
 				"name":"English",
-				"value":[{
-					"n":"默认","v":"fully YouTube  English News Live"},
-					
-					{"n":"Live","v":"live"},
+				"value":[
 					{"n":"CNA","v":"@channelnewsasia"},
 					{"n":"SkyNews","v":"@SkyNews"},
 					{"n":"Al Jazeera English","v":"@aljazeeraenglish"},
