@@ -7,6 +7,12 @@
 
 https://live1-ott.izzigo.tv/12/out/u/dash/AYM-SPORTS-6-HD/default.mpd
 
+#EXTINF:-1  group-title="中文新聞",AYM SPORTS 5
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=631a52dca90f831983db77ddb86aec94:3ef6b0202e6251c072da34644a22f2ed
+
+https://live1-ott.izzigo.tv/12/out/u/dash/AYM-SPORTS-5-HD/default.mpd
 
 
 #EXTINF:-1   tvg-id="鳳凰資訊"   tvg-name="鳳凰資訊"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/fenghuangzixun.png"     group-title="中文新聞",鳳凰資訊
