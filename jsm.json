@@ -26,7 +26,19 @@
       "filterable": 0
 	 
     },
-    	
+    	{
+   "key": "py_xlys",
+   "name": "雪落影视[py]",
+   "type": 3,
+   "api": "./py/xlys.py",
+   "searchable": 1,
+   "quickSearch": 1,
+   "filterable": 1,
+   "ext": {
+    "host": "https://v.xl.in.ua",
+    "pageFmt": ""
+   }
+		},
 		{
       "key": "py_4gtvfongmi",
       "name": "4gfongmipy",
