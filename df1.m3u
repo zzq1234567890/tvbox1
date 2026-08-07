@@ -2529,6 +2529,7 @@ http://127.0.0.1:8081/myvideoapp.php?id=06
 #EXTINF:-1 tvg-id="民視" tvg-name="民視" tvg-logo="https://cdn.jsdelivr.net/gh/wanglindl/TVlogo@main/img/FTV.png" group-title="4gtv",民視HD
 http://127.0.0.1:8081/myvideoapp.php?id=09
 
+
 #EXTINF:-1 tvg-id="民視第一台" tvg-name="民視第一台" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv003_mobile.png" group-title="4gtv",民視第一台
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv003
 #EXTINF:-1 tvg-id="民視台灣台" tvg-name="民視台灣台" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv001_mobile.png" group-title="4gtv",民視台灣台
@@ -2589,8 +2590,6 @@ http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv075
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv152
 #EXTINF:-1 tvg-id="華視新聞" tvg-name="華視新聞" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv052_mobile.png" group-title="4gtv",華視新聞
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv052
- #EXTINF:-1   tvg-id="中天新聞台"   tvg-name="中天新聞台"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/CtiNews.png"    group-title="中文新聞",中天新聞2
-http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live409
 #EXTINF:-1 tvg-id="民視新聞台" tvg-name="民視新聞台" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_litv-ftv13_mobile.png" group-title="4gtv",民視新聞台
 http://127.0.0.1:8081/4gtvapp.php?id=litv-ftv13
 #EXTINF:-1 tvg-id="三立新聞iNEWS" tvg-name="三立新聞iNEWS" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-live089_mobile.png" group-title="4gtv",三立新聞iNEWS
@@ -2601,8 +2600,6 @@ http://127.0.0.1:8081/4gtvapp.php?id=media-live072
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv153
 #EXTINF:-1 tvg-id="中視新聞" tvg-name="中視新聞" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv074_mobile.png" group-title="4gtv",中視新聞
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv074
-#EXTINF:-1 tvg-id="中天新聞台" tvg-name="中天新聞台" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv009_mobile.png" group-title="4gtv",中天新聞台
-http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv009
 #EXTINF:-1 tvg-id="Bloomberg TV" tvg-name="Bloomberg TV" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-live0_mobile.png" group-title="4gtv",Bloomberg TV
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live059
 #EXTINF:-1 tvg-id="寰宇新聞台" tvg-name="寰宇新聞台" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_litv-longturn14_mobile.png" group-title="4gtv",寰宇新聞台
@@ -2721,12 +2718,16 @@ http://127.0.0.1:8081/4gtvapp.php?id=litv-ftv15
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live144
 #EXTINF:-1 tvg-id="ROCK Action" tvg-name="ROCK Action" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/live138_mobile.png" group-title="4gtv",ROCK Action
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live138
+#EXTINF:-1 tvg-id="OUTtv" tvg-name="OUTtv" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv-live140.png" group-title="4gtv",OUTtv
+http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live140
 #EXTINF:-1 tvg-id="采昌影劇台" tvg-name="采昌影劇台" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv049_mobile.png" group-title="4gtv",采昌影劇台
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv049
 #EXTINF:-1 tvg-id="靖天映畫" tvg-name="靖天映畫" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv055_mobile.png" group-title="4gtv",靖天映畫
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv055
 #EXTINF:-1 tvg-id="靖天電影台" tvg-name="靖天電影台" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv061_mobile.png" group-title="4gtv",靖天電影台
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv061
+#EXTINF:-1 tvg-id="wedotv Movies" tvg-name="wedotv Movies" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv-live148.png" group-title="4gtv",wedotv Movies
+http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live148
 #EXTINF:-1 tvg-id="影迷數位電影台" tvg-name="影迷數位電影台" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv011_mobile-1.png" group-title="4gtv",影迷數位電影台
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv011
 #EXTINF:-1 tvg-id="amc電影台" tvg-name="amc電影台" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv017new_mobile.png" group-title="4gtv",amc電影台
@@ -2763,6 +2764,9 @@ http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv085
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live021
 #EXTINF:-1 tvg-id="經典卡通台" tvg-name="經典卡通台" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-live022_mobile.png" group-title="4gtv",經典卡通台
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live022
+#EXTINF:-1 tvg-id="精選動漫台" tvg-name="精選動漫台" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-live024_mobile.png" group-title="4gtv",精選動漫台
+http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live024
+
 #EXTINF:-1 tvg-id="精選動漫台" tvg-name="精選動漫台" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-live024_mobile.png" group-title="4gtv",精選動漫台
 #EXTINF:-1 tvg-id="市井豪門-FastTV飛速看" tvg-name="市井豪門-FastTV飛速看" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/fast-live001.png" group-title="4gtv",市井豪門-FastTV飛速看
 http://127.0.0.1:8081/4gtvapp.php?id=fast-live001
