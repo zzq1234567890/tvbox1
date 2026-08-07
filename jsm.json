@@ -26,6 +26,14 @@
       "filterable": 0
 	 
     },
+		{
+	"key":"yangguang",
+	"name":"阳光影视",
+	"type":3,
+	"api":"./py/yangguang.py",
+	"searchable":0,
+	"quickSearch":0
+},
     	{
    "key": "py_xlys",
    "name": "雪落影视[py]",
