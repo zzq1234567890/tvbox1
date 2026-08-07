@@ -2718,7 +2718,7 @@ http://127.0.0.1:8081/4gtvapp.php?id=litv-ftv15
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live144
 #EXTINF:-1 tvg-id="ROCK Action" tvg-name="ROCK Action" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/live138_mobile.png" group-title="4gtv",ROCK Action
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live138
-#EXTINF:-1 tvg-id="OUTtv" tvg-name="OUTtv" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv-live140.png" group-title="4gtv",OUTtv
+#EXTINF:-1 tvg-id="OUTtv HD" tvg-name="OUTtv HD" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv-live140.png" group-title="4gtv",OUTtv
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live140
 #EXTINF:-1 tvg-id="采昌影劇台" tvg-name="采昌影劇台" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv049_mobile.png" group-title="4gtv",采昌影劇台
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv049
