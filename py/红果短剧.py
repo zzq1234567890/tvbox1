@@ -10,7 +10,7 @@ class Spider(Spider):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36'
     }
-    timeout = 15
+    timeout = 8  # 缩短超时
     category_map = {
         "热门": "sort_type=1",
         "最新": "sort_type=2",
@@ -27,7 +27,9 @@ class Spider(Spider):
     }
 
     def __init__(self):
-        self.bridge = "http://192.168.1.4:9979"  # 可根据实际代理地址修改
+        self.bridge = ""  # 默认不使用代理
+        self.session = requests.Session()  # 复用连接
+        self.session.headers.update(self.headers)
         self._cache = {}
 
     def getName(self):
@@ -35,15 +37,20 @@ class Spider(Spider):
 
     def init(self, extend=""):
         if isinstance(extend, dict):
-            self.bridge = str(extend.get("bridge") or self.bridge).rstrip("/")
+            self.bridge = str(extend.get("bridge") or "").rstrip("/")
+            # 允许传入自定义解析地址
+            self.parse_api = extend.get("parse_api", "")
         elif extend:
             text = str(extend).strip()
             try:
                 data = json.loads(text)
-                self.bridge = str(data.get("bridge") or self.bridge).rstrip("/")
+                self.bridge = str(data.get("bridge") or "").rstrip("/")
+                self.parse_api = data.get("parse_api", "")
             except Exception:
                 if text.startswith("http"):
                     self.bridge = text.rstrip("/")
+        if not hasattr(self, 'parse_api'):
+            self.parse_api = ""
 
     def isVideoFormat(self, url):
         return False
@@ -52,20 +59,22 @@ class Spider(Spider):
         return False
 
     def destroy(self):
+        self.session.close()
         return
 
     def _get(self, url):
-        response = requests.get(url, headers=self.headers, timeout=self.timeout)
+        # 使用 session 复用连接
+        response = self.session.get(url, timeout=self.timeout)
         response.raise_for_status()
         response.encoding = "utf-8"
         return response.text
 
     def _router_data(self, url):
         cached = self._cache.get(url)
-        if cached and time.time() - cached[0] < 300:
+        if cached and time.time() - cached[0] < 60:  # 缩短缓存到60秒
             return cached[1]
         html = self._get(url)
-        # 尝试匹配 _ROUTER_DATA，若失败则尝试 __NEXT_DATA__
+        # 匹配 _ROUTER_DATA 或 __NEXT_DATA__
         match = re.search(r"window\._ROUTER_DATA\s*=\s*(\{.*?\})\s*</script>", html, re.S)
         if not match:
             match = re.search(r"<script id=\"__NEXT_DATA__\"[^>]*>(\{.*?\})</script>", html, re.S)
@@ -96,7 +105,6 @@ class Spider(Spider):
         items = page.get("recommendList") or []
         if not items:
             items = page.get("categoryData", {}).get("recommendList") or []
-        # 去重
         seen = set()
         result = []
         for item in items:
@@ -174,12 +182,10 @@ class Spider(Spider):
             return {"list": []}
 
     def _search_items(self, keyword, page=1):
-        """从搜索页面获取结果列表"""
         url = self.site + "/search?keyword=" + quote(keyword) + "&page=" + str(page)
         data = self._router_data(url)
         search_page = data.get("loaderData", {}).get("search_page", {})
         items = search_page.get("searchResult") or []
-        # 若未取到，尝试其它可能字段
         if not items:
             items = search_page.get("list") or search_page.get("data") or []
         return items
@@ -208,17 +214,54 @@ class Spider(Spider):
         return self.searchContent(key, quick, pg)
 
     def playerContent(self, flag, pid, vipFlags):
-        # 通过本地代理获取播放地址
-        url = self.bridge + "/play?" + urlencode({"vid": str(pid)})
+        """
+        获取播放地址，按优先级尝试：
+        1. 自定义解析接口（通过 init 传入 parse_api）
+        2. 官方 /api/play 接口
+        3. 直接构造 m3u8 链接（需 Referer）
+        """
+        vid = str(pid)
+        # 1. 如果配置了自定义解析 API
+        if hasattr(self, 'parse_api') and self.parse_api:
+            try:
+                resp = self.session.get(self.parse_api + "?vid=" + quote(vid), timeout=self.timeout)
+                if resp.status_code == 200:
+                    data = resp.json()
+                    play_url = data.get('url') or data.get('play_url') or data.get('data', {}).get('url')
+                    if play_url:
+                        return self._build_play_result(play_url)
+            except Exception as e:
+                print("自定义解析失败:", e)
+
+        # 2. 尝试官方播放接口
+        try:
+            api_url = self.site + "/api/play?vid=" + quote(vid)
+            resp = self.session.get(api_url, timeout=self.timeout)
+            if resp.status_code == 200:
+                data = resp.json()
+                play_url = data.get('url') or data.get('play_url') or data.get('data', {}).get('url')
+                if play_url:
+                    return self._build_play_result(play_url)
+        except Exception as e:
+            print("官方API获取播放地址失败:", e)
+
+        # 3. 备选：构造 m3u8 链接（需带上 Referer）
+        fallback_url = self.site + "/video/" + vid + ".m3u8"
+        return self._build_play_result(fallback_url, need_referer=True)
+
+    def _build_play_result(self, url, need_referer=False):
+        header = {
+            "User-Agent": self.headers["User-Agent"]
+        }
+        if need_referer:
+            header["Referer"] = self.site + "/"
         return {
             "parse": 0,
             "playUrl": "",
             "url": url,
-            "header": {
-                "User-Agent": self.headers["User-Agent"],
-                "Referer": self.site + "/",
-            },
+            "header": header
         }
 
     def localProxy(self, params):
+        # 如果保留了 bridge 代理，可在此实现，但默认不使用
         return None
