@@ -33,6 +33,11 @@
       "filterable": 0
     },
 {
+	"key":"yangguang",
+	"name":"阳光影视","type":3,"api":"./py/yangguang.py","searchable":0,"quickSearch":0},
+
+	  
+{
       "key": "随客影视",
       "name": "🎥｜随客｜補全",
       "type": 3,
