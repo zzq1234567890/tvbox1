@@ -1,11 +1,10 @@
 {
   "urls": [
-{
-  "name":"唐三",
-    "url":"https://9280.kstore.vip/cat/index.js.md5"
-},
+
+  
     
-   {"name":"海豚",
+   {
+     "name":"海豚",
    "url":" https://raw.githubusercontent.com/FGBLH/HKL/refs/heads/main/ok海豚.json"
    },
    {
