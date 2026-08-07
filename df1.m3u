@@ -2726,7 +2726,7 @@ http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv049
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv055
 #EXTINF:-1 tvg-id="靖天電影台" tvg-name="靖天電影台" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv061_mobile.png" group-title="4gtv",靖天電影台
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv061
-#EXTINF:-1 tvg-id="wedotv Movies" tvg-name="wedotv Movies" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv-live148.png" group-title="4gtv",wedotv Movies
+#EXTINF:-1 tvg-id="wedotv Movies HD" tvg-name="wedotv Movies HD" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv-live148.png" group-title="4gtv",wedotv Movies
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-live148
 #EXTINF:-1 tvg-id="影迷數位電影台" tvg-name="影迷數位電影台" tvg-logo="https://4gtvimg2.4gtv.tv/4gtv-Image/Channel/mobile/logo_4gtv_4gtv-4gtv011_mobile-1.png" group-title="4gtv",影迷數位電影台
 http://127.0.0.1:8081/4gtvapp.php?id=4gtv-4gtv011
