@@ -1232,7 +1232,7 @@ http://127.0.0.1:8081/mytv.php?url=https://168.sryze.cc/163189/hxws
 http://127.0.0.1:8081/mytv.php?url=https://10.fast.hidns.vip/163189/xinghe/
 #EXTINF:-1 tvg-name="天映頻道新加坡" group-title="mytv",天映新加坡
 http://127.0.0.1:8081/mytv.php?url=https://10.fast.hidns.vip/163189/typd/
-#EXTINF:-1 tvg-name="天映經典新加坡" group-title="mytv",天映經典
+#EXTINF:-1 tvg-name="天映經典新加坡" group-title="mytv",天映經典新加坡
 http://127.0.0.1:8081/mytv.php?url=https://10.fast.hidns.vip/163189/ccm/
 #EXTINF:-1 tvg-name="TVB Jade HD" group-title="mytv",華麗翡翠台
 http://127.0.0.1:8081/mytv.php?url=https://cdn3.indevs.in/stream/live/hlt/
@@ -1250,10 +1250,11 @@ http://127.0.0.1:8081/mytv.php?url=https://cdn3.indevs.in/stream/live/qj/
 http://127.0.0.1:8081/mytv.php?url=https://cdn3.indevs.in/stream/live/hxt/
 #EXTINF:-1 tvg-name="iQIYI" group-title="mytv",愛奇藝
 http://127.0.0.1:8081/mytv.php?url=https://cdn3.indevs.in/stream/live/iqiyi/
-#EXTINF:-1 tvg-name="天映頻道馬來西亞" group-title="mytv",天映頻道
+#EXTINF:-1 tvg-name="天映頻道馬來西亞" group-title="mytv",天映頻道馬來西亞
 http://127.0.0.1:8081/mytv.php?url=https://cdn3.indevs.in/stream/live/typd/
-#EXTINF:-1 tvg-name="天映經典馬來西亞" group-title="mytv",天映經典
+#EXTINF:-1 tvg-name="天映經典馬來西亞" group-title="mytv",天映經典馬來西亞
 http://127.0.0.1:8081/mytv.php?url=https://cdn3.indevs.in/stream/live/ccm/
+
 #EXTINF:-1 tvg-name="TVB星河" group-title="mytv",TVB星河
 http://127.0.0.1:8081/mytv.php?url=https://cdn3.indevs.in/stream/live/tvbxh/
 #EXTINF:-1 tvg-name="千禧經典台" group-title="mytv",千禧經典台
