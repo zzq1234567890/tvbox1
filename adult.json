@@ -34,7 +34,12 @@
     },
 {
 	"key":"yangguang",
-	"name":"阳光影视","type":3,"api":"./py/yangguang.py","searchable":0,"quickSearch":0},
+	"name":"阳光影视",
+	"type":3,
+	"api":"./py/yangguang.py",
+	"searchable":0,
+	"quickSearch":0
+},
 
 	  
 {
