@@ -215,6 +215,8 @@ http://127.0.0.1:8081/foxnewsnow.php?id=2
 http://127.0.0.1:8081/abcnewsyoutube.php
 #EXTINF:-1      tvg-logo="" tvg-id=" "   tvg-name=" "    group-title="world news",cbsnewsyoutube
 http://127.0.0.1:8081/cbsnewsyoutube.php
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="world news",美國CBN News youtube
+http://127.0.0.1:8081/cbnnewsyb.php
 
 
 #EXTINF:-1      tvg-logo="" tvg-id=" "   tvg-name=" "    group-title="world news",上海eye
