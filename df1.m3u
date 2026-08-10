@@ -1,4 +1,11 @@
 #EXTM3U url-tvg="https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz"
+#EXTINF:-1 group-title="中文新聞",Unitel SCZ
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=9acc9a3594cb74761b7f4258e4f1e5b4:14296068a18ebf7a880d40246f82c3eb
+https://cdn.sensa.com.ar/live/eds/UnitelSCZ/live_dash_cld/UnitelSCZ.mpd
+
+
 #EXTINF:-1 group-title="中文新聞",Fox Mexico
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
 #KODIPROP:inputstream.adaptive.license_type=clearkey
