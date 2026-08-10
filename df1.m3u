@@ -3742,36 +3742,7 @@ http://127.0.0.1:8081/hebei.php?id=5
 #EXTINF:-1   tvg-id="河北三農"   tvg-name="河北三農"    tvg-logo=""    group-title="地方",河北三農
 http://127.0.0.1:8081/hebei.php?id=6
 
-#EXTINF:-1   tvg-id=""    tvg-logo=""   tvg-name=""    group-title="地方",高邑融媒
-http://127.0.0.1:8081/hebeidifang.php?id=gy1
-#EXTINF:-1   tvg-id=""    tvg-logo=""   tvg-name=""    group-title="地方",鹿泉綜合
-http://127.0.0.1:8081/hebeidifang.php?id=lq1
-#EXTINF:-1   tvg-id=""    tvg-logo=""   tvg-name=""    group-title="地方",鹿泉電視台
-http://127.0.0.1:8081/hebeidifang.php?id=lq2
-#EXTINF:-1   tvg-id="保定新聞綜合"    tvg-logo="保定新聞綜合"   tvg-name=""    group-title="地方",保定新聞綜合
-http://127.0.0.1:8081/hebeidifang.php?id=bd1
-#EXTINF:-1   tvg-id="保定公共頻道"    tvg-logo="保定公共頻道"   tvg-name=""    group-title="地方",保定公共頻道
-http://127.0.0.1:8081/hebeidifang.php?id=bd2
-#EXTINF:-1   tvg-id="保定生活健康"    tvg-logo="保定生活健康"   tvg-name=""    group-title="地方",保定生活健康
-http://127.0.0.1:8081/hebeidifang.php?id=bd3
-#EXTINF:-1   tvg-id=""    tvg-logo=""   tvg-name=""    group-title="地方",定州新聞綜合
-http://127.0.0.1:8081/hebeidifang.php?id=dz1
-#EXTINF:-1   tvg-id=""    tvg-logo=""   tvg-name=""    group-title="地方",定州生活
-http://127.0.0.1:8081/hebeidifang.php?id=dz2
-#EXTINF:-1   tvg-id=""    tvg-logo=""   tvg-name=""    group-title="地方",定州國學影視
-http://127.0.0.1:8081/hebeidifang.php?id=dz3
-#EXTINF:-1   tvg-id=""    tvg-logo=""   tvg-name=""    group-title="地方",淶水綜合
-http://127.0.0.1:8081/hebeidifang.php?id=ls1
-#EXTINF:-1   tvg-id=""    tvg-logo=""   tvg-name=""    group-title="地方",淶源綜合
-http://127.0.0.1:8081/hebeidifang.php?id=ly1
-#EXTINF:-1   tvg-id=""    tvg-logo=""   tvg-name=""    group-title="地方",清苑新聞
-http://127.0.0.1:8081/hebeidifang.php?id=qy1
-#EXTINF:-1   tvg-id=""    tvg-logo=""   tvg-name=""    group-title="地方",清苑生活
-http://127.0.0.1:8081/hebeidifang.php?id=qy2
-#EXTINF:-1   tvg-id=""    tvg-logo=""   tvg-name=""    group-title="地方",望都TV1套
-http://127.0.0.1:8081/hebeidifang.php?id=wd1
-#EXTINF:-1   tvg-id=""    tvg-logo=""   tvg-name=""    group-title="地方",徐水TV1套
-http://127.0.0.1:8081/hebeidifang.php?id=xs1
+
 
 #EXTINF:-1   tvg-id="上海教育"    tvg-logo="http://www.setv.sh.cn/images/logo.png"   tvg-name="上海教育"    group-title="地方",上海教育
 http://127.0.0.1:8081/shanghaijiaoyu.php?id=setv
@@ -4017,28 +3988,6 @@ http://127.0.0.1:8081/zjtv.php?id=zjjl
 
 
 
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",杭州綜合
-http://l.cztvcloud.com/channels/lantian/sxchannel01/1080p.m3u8
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方", 寧波綜合
-http://l.cztvcloud.com/channels/lantian/sxchannel02/1080p.m3u8
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方", 溫州綜合
-http://l.cztvcloud.com/channels/lantian/sxchannel03/1080p.m3u8
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方", 紹興綜合
-http://l.cztvcloud.com/channels/lantian/sxchannel04/1080p.m3u8
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方", 湖州綜合
-http://l.cztvcloud.com/channels/lantian/sxchannel05/1080p.m3u8
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方", 嘉興綜合
-http://l.cztvcloud.com/channels/lantian/sxchannel06/1080p.m3u8
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方", 金華綜合
-http://l.cztvcloud.com/channels/lantian/sxchannel07/1080p.m3u8
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方", 衢州綜合
-http://l.cztvcloud.com/channels/lantian/sxchannel08/1080p.m3u8
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方", 麗水綜合
-http://l.cztvcloud.com/channels/lantian/sxchannel09/1080p.m3u8
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方", 台州綜合
-http://l.cztvcloud.com/channels/lantian/sxchannel10/1080p.m3u8
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方", 舟山綜合
-http://l.cztvcloud.com/channels/lantian/sxchannel11/1080p.m3u8
 
 #EXTINF:-1   tvg-id="江蘇衛視"   tvg-name="江蘇衛視"    tvg-logo=""    group-title="地方",江蘇衛視4K
 http://127.0.0.1:8081/jiangsuapp.php?id=jsws4kpro
