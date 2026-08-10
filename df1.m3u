@@ -1,4 +1,10 @@
 #EXTM3U url-tvg="https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz"
+#EXTINF:-1 group-title="中文新聞",Fox Mexico
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=8ec2e6248abe2e10e16e439c9b85ffd8:f121b015c2a5197828355fb6a874c297
+https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/worucjnctz/out/v1/20ac5ecdc9b848dc92e7f1188bdf6ff6/cenc.mpd
+
 #EXTINF:-1   tvg-id="鳳凰資訊"   tvg-name="鳳凰資訊"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/fenghuangzixun.png"     group-title="中文新聞",鳳凰資訊
 http://127.0.0.1:8081/fenghuangyoutube.php
 #EXTINF:-1   tvg-id="CCTV-4美洲頻道"   tvg-name="CCTV-4美洲頻道"    tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV4.png"    group-title="中文新聞",CCTV-4美洲頻道
