@@ -1,4 +1,11 @@
 #EXTM3U url-tvg="https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz"
+#EXTINF:-1 group-title="中文新聞",Leagues Cup
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"ac41aeb4f8f93e089468b91ee7c2dc2e": "7e7faa32109116adc0fb1cdadf3b60f0", "e4c6a0fa25733f88b342475632db584a": "5ebdae6573678782b8a68a06c73c1832"}
+https://linear.tv.apple.com/v1/hls/playlist.m3u8?serviceId=tvs.vds.5072&referenceId=umc.cmr.mls.sp.2bfek0ubu41yadouv8xpqnas6
+
+
 #EXTINF:-1 group-title="中文新聞",Deportes
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
 #KODIPROP:inputstream.adaptive.license_type=clearkey
