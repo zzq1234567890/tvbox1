@@ -1,4 +1,15 @@
 #EXTM3U url-tvg="https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz"
+#EXTINF:-1 group-title="中文新聞",RTE Two
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=5490781a77572107ec251237e94e3b53:cee5fc45b70040ffea2b2576fb5abda5
+https://live.rte.ie/live/a/channel2/channel2.isml/.mpd?dvr_window_length=30&available=1786193100&expiry=1786226105&ip=194.125.28.8&filter=systemBitrate%3C%3D7000000&token1=dda98dffb43c6024eaacc3e6cfb09ae841d3828ad7d51cf93bb92a5377d440e4
+
+#EXTINF:-1 group-title="中文新聞",FSBL
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=0ad4080cdff8c60b1233b22087f0b340:285f129c5eca01dd08a5d5a14ad801c8
+https://otte.live.fly.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/ssdefyhkkr/out/v1/cf01290cb7f64525bdf861580a016ca8/cenc.mpd
 
 #EXTINF:-1 group-title="中文新聞",Tnt sports 2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
