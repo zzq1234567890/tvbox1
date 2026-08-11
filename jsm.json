@@ -17,6 +17,28 @@
             }
         },    
 		{
+            "key": "枫叶4k影院",
+            "name": "🍁枫叶┃PY",
+            "type": 3,
+            "api": "./py/枫叶影院.py",
+            "ext": {
+                "sites": [
+                    "https://www.cd-zj.com",
+                    "https://www.gzwlr.com",
+                    "https://maihaolian.com",
+                    "https://zzztool.com"
+                ],
+                "sitesIndex": 0,
+                "host": "https://www.cd-zj.com",
+                "cookie": "",
+                "fyck": "",
+                "debug": false
+            },
+            "quickSearch": 1,
+            "changeable": 1,
+            "filterable": 1
+        },
+		{
       "key": "腾爱优b站.js",
       "name": "腾爱优b站.js",
       "type": 3,
