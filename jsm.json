@@ -15,7 +15,14 @@
                 "type": "rect",
                 "ratio": 1.5
             }
-        },      
+        },    
+		{
+      "key": "腾爱优b站.js",
+      "name": "腾爱优b站.js",
+      "type": 3,
+      "api": "./js/腾爱优b站.js",
+      "changeable": 0
+    },
  {
       "key": "py_yt0714",
       "name": "youtube網站",
