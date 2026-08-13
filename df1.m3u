@@ -4029,7 +4029,7 @@ http://127.0.0.1:8081/zjtv.php?id=zjjl
 
 
 
-#EXTINF:-1   tvg-id="江蘇衛視4K超高清"   tvg-name="江蘇衛視4K超高清"    tvg-logo=""    group-title="地方",江蘇衛視4K超高清
+#EXTINF:-1   tvg-id="江蘇衛視4K超高畫質"   tvg-name="江蘇衛視4K超高畫質"    tvg-logo=""    group-title="地方",江蘇衛視4K超高清
 http://127.0.0.1:8081/jiangsuapp.php?id=jsws4kpro
 #EXTINF:-1   tvg-id="江蘇衛視"   tvg-name="江蘇衛視"    tvg-logo=""    group-title="地方",江蘇衛視
 http://127.0.0.1:8081/jiangsuapp.php?id=jswspro
@@ -4051,7 +4051,7 @@ http://127.0.0.1:8081/jiangsuapp.php?id=jsgjpro
 http://127.0.0.1:8081/jiangsuapp.php?id=jsjypro
 
 
-#EXTINF:-1   tvg-id="江蘇衛視4K超高清"   tvg-name="江蘇衛視4K超高清"    tvg-logo=""    group-title="地方",江蘇衛視4K超高清
+#EXTINF:-1   tvg-id="江蘇衛視4K超高畫質"   tvg-name="江蘇衛視4K超高畫質"    tvg-logo=""    group-title="地方",江蘇衛視4K超高清
 http://127.0.0.1:8081/jiangsuweb.php?id=jsws4kpro
 #EXTINF:-1   tvg-id="江蘇衛視"   tvg-name="江蘇衛視"    tvg-logo=""    group-title="地方",江蘇衛視
 http://127.0.0.1:8081/jiangsuweb.php?id=jswspro
