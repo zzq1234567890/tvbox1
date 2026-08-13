@@ -4044,11 +4044,35 @@ http://127.0.0.1:8081/jiangsuapp.php?id=jsxwpro
  #EXTINF:-1   tvg-id="江蘇體育休閒頻道"   tvg-name="江蘇體育休閒頻道"    tvg-logo=""    group-title="地方",江蘇體育
 http://127.0.0.1:8081/jiangsuapp.php?id=jsxxpro
 #EXTINF:-1   tvg-id="優漫卡通頻道"   tvg-name="優漫卡通頻道"    tvg-logo=""    group-title="地方",優漫卡通
-http://127.0.0.1:8081/jiangsu1.php?id=ymkt
-#EXTINF:-1   tvg-id="江蘇國際"   tvg-name="江蘇國際"    tvg-logo=""    group-title="地方",江蘇國際
 http://127.0.0.1:8081/jiangsuapp.php?id=ymktpro
+#EXTINF:-1   tvg-id="江蘇國際"   tvg-name="江蘇國際"    tvg-logo=""    group-title="地方",江蘇國際
+http://127.0.0.1:8081/jiangsuapp.php?id=jsgjpro
 #EXTINF:-1   tvg-id="江蘇教育"   tvg-name="江蘇教育"    tvg-logo="江蘇國際"    group-title="地方",江蘇教育
 http://127.0.0.1:8081/jiangsuapp.php?id=jsjypro
+
+
+#EXTINF:-1   tvg-id="江蘇衛視4K超高清"   tvg-name="江蘇衛視4K超高清"    tvg-logo=""    group-title="地方",江蘇衛視4K超高清
+http://127.0.0.1:8081/jiangsuweb.php?id=jsws4kpro
+#EXTINF:-1   tvg-id="江蘇衛視"   tvg-name="江蘇衛視"    tvg-logo=""    group-title="地方",江蘇衛視
+http://127.0.0.1:8081/jiangsuweb.php?id=jswspro
+#EXTINF:-1   tvg-id="江蘇城市"   tvg-name="江蘇城市"    tvg-logo=""    group-title="地方",江蘇城市
+http://127.0.0.1:8081/jiangsuweb.php?id=jscspro
+#EXTINF:-1   tvg-id="江蘇綜藝"   tvg-name="江蘇綜藝"    tvg-logo=""    group-title="地方",江蘇綜藝
+http://127.0.0.1:8081/jiangsuweb.php?id=jszypro
+#EXTINF:-1   tvg-id="江蘇影視"   tvg-name="江蘇影視"    tvg-logo=""    group-title="地方",江蘇影視
+http://127.0.0.1:8081/jiangsuweb.php?id=jsyspro
+#EXTINF:-1   tvg-id="江蘇新聞"   tvg-name="江蘇"    tvg-logo=""    group-title="地方",江蘇新聞
+http://127.0.0.1:8081/jiangsuweb.php?id=jsxwpro
+ #EXTINF:-1   tvg-id="江蘇體育休閒頻道"   tvg-name="江蘇體育休閒頻道"    tvg-logo=""    group-title="地方",江蘇體育
+http://127.0.0.1:8081/jiangsuweb.php?id=jsxxpro
+#EXTINF:-1   tvg-id="優漫卡通頻道"   tvg-name="優漫卡通頻道"    tvg-logo=""    group-title="地方",優漫卡通
+http://127.0.0.1:8081/jiangsuweb.php?id=ymktpro
+#EXTINF:-1   tvg-id="江蘇國際"   tvg-name="江蘇國際"    tvg-logo=""    group-title="地方",江蘇國際
+http://127.0.0.1:8081/jiangsuweb.php?id=jsgjpro
+#EXTINF:-1   tvg-id="江蘇教育"   tvg-name="江蘇教育"    tvg-logo="江蘇國際"    group-title="地方",江蘇教育
+http://127.0.0.1:8081/jiangsuweb.php?id=jsjypro
+
+
 
 
 
