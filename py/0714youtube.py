@@ -2,9 +2,7 @@
 #!/usr/bin/python
 """
 YouTube 插件 - 基于 yt-dlp 核心逻辑重构
-修复: 直接下发直链，去除冗余的本地媒体中转
-优化: 默认最高画质（自动），支持HDR/SDR切换
-安全启动: 异常捕获，防止崩溃
+修复: 直接下发直链，去除冗余的本地媒体中转，解决点播“没有解析”及无限转圈问题
 """
 import re
 import os
@@ -15,11 +13,19 @@ import time
 import hashlib
 from urllib.parse import quote, unquote, parse_qs, urlparse, urlunparse, urlencode
 import requests
-from base.spider import Spider as BaseSpider
-
+from base.spider import Spider
 sys.path.append('..')
 
 DEBUG_LOG = '/sdcard/Download/0714youtube_trace.log'
+
+# ========== 全局辅助 ==========
+CATEGORY_ALIASES = {
+    '動畫片': '动画片', '劇集': '剧集', '電影': '电影', '紀錄片': '纪录片', '解說': '解说',
+    'movie': '电影', 'game': '科技', 'documentary': '纪录片', '新聞直播': '新闻直播','港劇': '港劇',
+    '動漫': '动漫', '綜藝': '综艺', '政論': '政论', '體育': '体育', '時尚潮流': '时尚潮流',
+    '自媒體': '自媒体', '音樂': '音乐', '科普知識': '科普知识', '短劇': '短剧',
+    '國際新聞': '国际新闻',
+}
 
 def debug_log(message, data=None):
     try:
@@ -539,7 +545,7 @@ class YouTubeIE:
         return 'vp9.2' in mime or 'vp09.02' in codecs or fmt.get('colorInfo', {}).get('hdrMetadataInfo')
 
 # ========== TVbox 适配层 ==========
-class Spider(BaseSpider):
+class Spider(Spider):
     def getName(self):
         return 'YouTube'
 
@@ -550,17 +556,14 @@ class Spider(BaseSpider):
             self.extendDict = {}
         self.session = requests.Session()
         self.proxy_str = None
-        try:
-            proxy_val = self.extendDict.get('proxy')
-            if proxy_val:
-                if isinstance(proxy_val, dict):
-                    self.session.proxies = proxy_val
-                    self.proxy_str = (proxy_val.get('http') or proxy_val.get('https') or '').replace('http://', '').replace('https://', '')
-                elif isinstance(proxy_val, str):
-                    self.proxy_str = proxy_val.replace('http://', '').replace('https://', '')
-                    self.session.proxies = {'http': f'http://{self.proxy_str}', 'https': f'http://{self.proxy_str}'}
-        except Exception as e:
-            debug_log('init proxy error', repr(e))
+        proxy_val = self.extendDict.get('proxy')
+        if proxy_val:
+            if isinstance(proxy_val, dict):
+                self.session.proxies = proxy_val
+                self.proxy_str = (proxy_val.get('http') or proxy_val.get('https') or '').replace('http://', '').replace('https://', '')
+            elif isinstance(proxy_val, str):
+                self.proxy_str = proxy_val.replace('http://', '').replace('https://', '')
+                self.session.proxies = {'http': f'http://{self.proxy_str}', 'https': f'http://{self.proxy_str}'}
 
         self.header = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -568,39 +571,30 @@ class Spider(BaseSpider):
             'Referer': 'https://www.youtube.com/',
             'Cookie': 'CONSENT=YES+cb; SOCS=CAESEwgDEgk2MzgzMjY1MzkaAmVuIAEaBgiAo_CmBg',
         }
-        try:
-            cookie_val = self.extendDict.get('cookie')
-            if cookie_val:
-                self.header['Cookie'] = cookie_val
-            self.session.headers.update(self.header)
-        except Exception as e:
-            debug_log('init cookie error', repr(e))
+        cookie_val = self.extendDict.get('cookie')
+        if cookie_val:
+            self.header['Cookie'] = cookie_val
+        self.session.headers.update(self.header)
 
-        try:
-            self.yt = YouTubeIE(self.session, self.header, self.extendDict)
-        except Exception as e:
-            debug_log('init YouTubeIE error', repr(e))
-            self.yt = None
-
+        self.yt = YouTubeIE(self.session, self.header, self.extendDict)
         self._cache = {}
         self.search_cache = {}
         self.classes = []
         self.filters = {}
         self.search_map = {}
         
-        try:
-            config_path = os.path.join(os.path.dirname(__file__), './lib/youtube.json')
-            if os.path.exists(config_path):
+        config_path = os.path.join(os.path.dirname(__file__), './lib/youtube.json')
+        if os.path.exists(config_path):
+            try:
                 with open(config_path, 'r', encoding='utf-8') as f:
                     config = json.load(f)
                 self.classes = config.get('class', [])
                 self.filters = config.get('filters', {})
                 for item in self.classes:
                     self.search_map[item.get('type_id')] = item.get('type_name')
-            else:
+            except:
                 self._fallback_hardcoded()
-        except Exception as e:
-            debug_log('init config error', repr(e))
+        else:
             self._fallback_hardcoded()
 
         self.news_keywords = (
@@ -668,26 +662,9 @@ class Spider(BaseSpider):
         video_id = did[0]
         title = self._get_video_title(video_id)
         safe_title = self._safe_title(title)
-        play_sources = []
-        play_urls = []
         try:
-            if not self.yt:
-                raise Exception('YouTubeIE not initialized')
             data = self.yt.extract(video_id)
             formats = data['formats']
-
-            # 全局最高画质
-            all_video = [f for f in formats if f.get('vcodec') != 'none']
-            if all_video:
-                all_video.sort(key=lambda f: (int(f.get('height', 0)), int(f.get('bitrate', 0))), reverse=True)
-                best = all_video[0]
-                h = int(best.get('height', 0))
-                is_hdr = self.yt._is_hdr(best)
-                label = f'最高画质 {h}p {"HDR" if is_hdr else "SDR"}'
-                play_sources.append(label)
-                play_urls.append(f'{safe_title} {label}${video_id}@best_auto')
-
-            # 按编解码分组
             codec_groups = {}
             for fmt in formats:
                 if fmt.get('vcodec') == 'none':
@@ -702,7 +679,8 @@ class Spider(BaseSpider):
                 else:
                     ct = 'other'
                 codec_groups.setdefault(ct, []).append(fmt)
-
+            play_sources = []
+            play_urls = []
             for ct, fmts in codec_groups.items():
                 fmts.sort(key=lambda f: int(f.get('height', 0)), reverse=True)
                 best = fmts[0]
@@ -712,11 +690,9 @@ class Spider(BaseSpider):
                 quality = 'hdr' if is_hdr else 'best'
                 play_sources.append(label)
                 play_urls.append(f'{safe_title} {label}${video_id}@{quality}_{ct}')
-        except Exception as e:
-            debug_log('detailContent error', repr(e))
-            play_sources = ['最高画质', '兼容模式']
-            play_urls = [f'{safe_title} 最高画质${video_id}@best_auto', f'{safe_title} 兼容模式${video_id}@best_h264']
-
+        except Exception:
+            play_sources = ['SDR', 'HDR']
+            play_urls = [f'{safe_title} SDR${video_id}@best_h264', f'{safe_title} HDR${video_id}@hdr_h264']
         vod = {
             'vod_id': video_id,
             'vod_name': title,
@@ -726,6 +702,7 @@ class Spider(BaseSpider):
         }
         return {'list': [vod]}
 
+    # ---------- 修复核心: 播放下发逻辑 (直接返回资源，不走缓存代理阻塞) ----------
     def playerContent(self, flag, pid, vipFlags):
         raw = pid.split('$')[-1]
         if '@' in raw:
@@ -735,19 +712,15 @@ class Spider(BaseSpider):
                 quality, codec_type = qc.split('_', 1)
             else:
                 quality, codec_type = qc, None
-            if codec_type == 'auto':
-                codec_type = None
         else:
             video_id, quality, codec_type = raw, 'best', None
         if quality not in ('best', 'hdr', '4k', '2k', '1080p'):
             quality = 'best'
 
         try:
-            if not self.yt:
-                raise Exception('YouTubeIE not initialized')
             data = self.yt.extract(video_id)
             
-            # 直播流
+            # 第一层：直播流 (优先下发 HLS m3u8 直链给播放器)
             manifest = data.get('live_manifest')
             if manifest:
                 url = manifest.get('hls') or manifest.get('dash')
@@ -761,7 +734,7 @@ class Spider(BaseSpider):
                         'format': 'application/vnd.apple.mpegurl' if url.endswith('.m3u8') else 'application/dash+xml'
                     }
 
-            # 点播
+            # 第二层：点播 - 高画质音视频分离 (生成极简 MPD 给播放器，内部数据全走直链)
             all_tracks = self.yt.choose_video_tracks(data['formats'], 'best', codec_filter=codec_type)
             wanted = 'HDR' if quality == 'hdr' else 'SDR'
             video_tracks = [t for t in all_tracks if t.get('track_name') == wanted]
@@ -786,6 +759,7 @@ class Spider(BaseSpider):
                         'header': self.header
                     }
                 else:
+                    # 只有视频轨
                     playable = video_tracks[0]
                     return {
                         'parse': 0,
@@ -794,7 +768,7 @@ class Spider(BaseSpider):
                         'header': playable.get('headers', self.header)
                     }
 
-            # 兜底
+            # 第三层：兜底方案 - 单文件 Progressive 流 (直连 MP4，坚决不走本地代理)
             progressive = [f for f in data['formats'] if f.get('vcodec') != 'none' and f.get('acodec') != 'none']
             if progressive:
                 progressive.sort(key=lambda f: (int(f.get('height', 0)), int(f.get('bitrate', 0))), reverse=True)
@@ -815,6 +789,7 @@ class Spider(BaseSpider):
                 'proxy': self.proxy_str
             }
 
+    # ---------- 本地代理仅用于生成极轻量的 MPD 配置清单文件 ----------
     def localProxy(self, params):
         if params.get('do') != 'py':
             return None
@@ -838,6 +813,7 @@ class Spider(BaseSpider):
         duration = data.get('duration', 0)
         duration_pt = f"PT{int(duration)}S" if duration else "PT0S"
         
+        # 强制使用直链做 BaseURL，不通过本地 Python 代理下载，解除内存堵塞
         mpd = f'''<?xml version="1.0" encoding="UTF-8"?>
 <MPD xmlns="urn:mpeg:dash:schema:mpd:2011" type="static" mediaPresentationDuration="{duration_pt}" minBufferTime="PT2S" profiles="urn:mpeg:dash:profile:isoff-on-demand:2011">
   <Period id="1" start="PT0S">
@@ -845,7 +821,7 @@ class Spider(BaseSpider):
         for item in video_tracks:
             init = item.get('initRange', {})
             idx = item.get('indexRange', {})
-            base_url = item.get('url')
+            base_url = item.get('url') # 直链
             mpd += f'''    <AdaptationSet mimeType="{html.escape(item.get('mimeType', 'video/mp4').split(';')[0])}" startWithSAP="1" segmentAlignment="true" scanType="progressive">
       <Representation id="v{item.get('itag', 1)}" bandwidth="{item.get('bitrate', 1000000)}" codecs="{html.escape(item.get('codecs', ''))}" height="{item.get('height', 0)}" width="{item.get('width', 0)}">
         <BaseURL>{html.escape(base_url)}</BaseURL>
@@ -856,7 +832,7 @@ class Spider(BaseSpider):
         if audio_track:
             init = audio_track.get('initRange', {})
             idx = audio_track.get('indexRange', {})
-            base_url = audio_track.get('url')
+            base_url = audio_track.get('url') # 直链
             mpd += f'''    <AdaptationSet mimeType="{html.escape(audio_track.get('mimeType', 'audio/mp4').split(';')[0])}" startWithSAP="1" segmentAlignment="true" lang="und">
       <Representation id="audio" bandwidth="{audio_track.get('bitrate', 128000)}" codecs="{html.escape(audio_track.get('codecs', ''))}" audioSamplingRate="44100">
         <BaseURL>{html.escape(base_url)}</BaseURL>
@@ -874,12 +850,8 @@ class Spider(BaseSpider):
 
     def _refresh_mpd(self, vid, qc):
         try:
-            if not self.yt:
-                return None
             data = self.yt.extract(vid)
             quality, codec_type = qc.split('_') if '_' in qc else (qc, None)
-            if codec_type == 'auto':
-                codec_type = None
             all_tracks = self.yt.choose_video_tracks(data['formats'], 'best', codec_filter=codec_type)
             wanted = 'HDR' if quality == 'hdr' else 'SDR'
             video_tracks = [t for t in all_tracks if t.get('track_name') == wanted]
