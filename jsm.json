@@ -15,7 +15,16 @@
                 "type": "rect",
                 "ratio": 1.5
             }
-        },    
+        },   
+		{
+      "key": "youtube",
+      "name": "YouTube視頻",
+	"jar":"./custom_spider-4.jar",
+      "type": 3,
+      "api": "csp_YouTube",
+      "searchable": 1,
+      "changeable": 0
+    },
 		{
             "key": "枫叶4k影院",
             "name": "🍁枫叶┃PY",
