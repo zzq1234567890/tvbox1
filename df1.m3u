@@ -5,6 +5,13 @@
 #KODIPROP:inputstream.adaptive.license_key=2c2c9e3431b6ba6c84a46c4ec22e3bb9:ddd890065343463f45cfc569584fec64
 https://nog-live1-ott.izzigo.tv/6/out/u/dash/MOSAICO-HBO-HD/default.mpd
 
+
+#EXTINF:-1 group-title="中文新聞",Sky Bundesliga 1
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"43b45dd48dfb51ad88b9c8370aa8a8f0": "30fae3093a8053d16eef4641a7a9c335", "a19e093a75f75a2f9cc4b93df23026e4": "9ce155ddddb95d32b1a295fc62967f5d"}
+https://at-live-4.tentcdn.eu/bpk-tv/Sky_Bundesliga_HD_1/default/index.mpd
+
 #EXTINF:-1 group-title="中文新聞",Eurosport 2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
 #KODIPROP:inputstream.adaptive.license_type=clearkey
