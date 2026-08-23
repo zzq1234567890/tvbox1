@@ -1,6 +1,31 @@
 #EXTM3U url-tvg="https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz"
 
 
+#EXTINF:-1 group-title="中文新聞", F1 APPLE TV+ FEED
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=c0a9d1e7eaf683120499b4017314a518:990018b9907cf9b5ae4c3dd9eb948255
+https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/bloqv62cg8/out/v1/0f6b2626aef2496e97bce1b5998b49b5/cenc.mpd
+
+#EXTINF:-1 group-title="中文新聞", F1 SKY FEED
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=6dd170459b9d19e43bc554e783570a2b:1a86def14df85af755c5f26d7457fcea
+https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/1y6zgazim1/out/v1/489690bfe676484e8034f5db55b454fd/cenc.mpd
+
+#EXTINF:-1 group-title="中文新聞", TSN SPORTS
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=385ceb9714b75e0cef61254f80b31002:18dce92a2891fee68d21ede5173230f8
+https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/cscevwljkq/out/v1/972185041b244140860b7d56398e9aaf/cenc.mpd
+
+
+#EXTINF:-1 group-title="中文新聞", FANCODE ENGLISH
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=90672900d427457684f8e68ec14c90ef:8a4617cc8dcb8846d055d495f275f06d
+https://in-mc-flive.fancode.com/mumbai/139481_english_dash_83495_1drmta-di_h264/index.mpd
+
 
 #EXTINF:-1 group-title="中文新聞",Dsports
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
