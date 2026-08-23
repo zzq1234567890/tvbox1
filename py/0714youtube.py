@@ -1,8 +1,8 @@
 #coding=utf-8
 #!/usr/bin/python
 """
-YouTube 插件 - 基于 yt-dlp 核心逻辑重构
-修复: 直接下发直链，去除冗余的本地媒体中转，解决点播“没有解析”及无限转圈问题
+YouTube 插件 - 基于 yt-dlp 核心逻辑重构（2026修复版）
+修复: 更新客户端版本、API Key、增加tv嵌入客户端、优化nsig解密
 """
 import re
 import os
@@ -18,7 +18,6 @@ sys.path.append('..')
 
 DEBUG_LOG = '/sdcard/Download/0714youtube_trace.log'
 
-# ========== 全局辅助 ==========
 CATEGORY_ALIASES = {
     '動畫片': '动画片', '劇集': '剧集', '電影': '电影', '紀錄片': '纪录片', '解說': '解说',
     'movie': '电影', 'game': '科技', 'documentary': '纪录片', '新聞直播': '新闻直播','港劇': '港劇',
@@ -40,7 +39,7 @@ def debug_log(message, data=None):
     except Exception:
         pass
 
-# ========== 增强 JS 解释器 ==========
+# ========== JS 解释器（增强版） ==========
 class JSInterpreter:
     def __init__(self, code, func_name):
         self.code = code
@@ -194,7 +193,7 @@ class JSInterpreter:
             return env[expr]
         return expr
 
-# ========== YouTube 提取核心 ==========
+# ========== YouTube 提取核心（2026修复版） ==========
 class YouTubeIE:
     def __init__(self, session, headers, config):
         self.session = session
@@ -211,52 +210,73 @@ class YouTubeIE:
             debug_log('extract cache hit', {'video_id': video_id})
             return cached['data']
 
-        watch_url = f'https://www.youtube.com/watch?v={video_id}'
-        page = self._fetch_page(watch_url)
-        ytcfg, player_response, player_url = self._parse_page(page)
-        api_key = ytcfg.get('INNERTUBE_API_KEY')
-        visitor_data = ytcfg.get('VISITOR_DATA')
+        try:
+            watch_url = f'https://www.youtube.com/watch?v={video_id}'
+            page = self._fetch_page(watch_url)
+            ytcfg, player_response, player_url = self._parse_page(page)
+            
+            # 从ytcfg中提取API Key（使用最新的key）
+            api_key = ytcfg.get('INNERTUBE_API_KEY') or 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8'
+            visitor_data = ytcfg.get('VISITOR_DATA')
+            context = ytcfg.get('INNERTUBE_CONTEXT')
 
-        is_live = False
-        if player_response:
-            video_details = player_response.get('videoDetails', {})
-            is_live = video_details.get('isLive') or video_details.get('isLiveContent') or False
+            is_live = False
+            if player_response:
+                video_details = player_response.get('videoDetails', {})
+                is_live = video_details.get('isLive') or video_details.get('isLiveContent') or False
 
-        responses = [player_response] if player_response else []
-        if api_key:
-            api_responses = self._call_player_api(video_id, api_key, ytcfg.get('INNERTUBE_CONTEXT'), watch_url, visitor_data, is_live)
-            responses.extend(api_responses)
+            responses = [player_response] if player_response else []
 
-        live_manifest = None
-        formats = []
-        for resp in responses:
-            streaming = resp.get('streamingData', {})
-            hls = streaming.get('hlsManifestUrl')
-            dash = streaming.get('dashManifestUrl')
-            if hls or dash:
-                live_manifest = {'hls': hls, 'dash': dash}
-            raw_formats = streaming.get('formats', []) + streaming.get('adaptiveFormats', [])
-            for fmt in raw_formats:
-                norm = self._normalize_format(fmt, player_url)
-                if norm and norm.get('url'):
-                    if not any(f.get('itag') == norm.get('itag') for f in formats):
-                        formats.append(norm)
+            # 调用 API（使用更新后的客户端列表）
+            if api_key:
+                api_responses = self._call_player_api(video_id, api_key, context, watch_url, visitor_data, is_live)
+                responses.extend(api_responses)
 
-        if not formats and not live_manifest:
-            raise Exception('No stream found')
+            # 备用接口：尝试多个el参数
+            if not any(r.get('streamingData') for r in responses):
+                debug_log('Fallback to get_video_info for', video_id)
+                for el in ['embedded', 'detailpage', 'vevo', '']:
+                    fallback = self._fetch_get_video_info(video_id, el)
+                    if fallback and fallback.get('streamingData'):
+                        responses.append(fallback)
+                        break
 
-        video_title = player_response.get('videoDetails', {}).get('title', video_id) if player_response else video_id
-        duration = int(player_response.get('videoDetails', {}).get('lengthSeconds', 0)) if player_response else 0
-        data = {
-            'id': video_id,
-            'title': video_title,
-            'duration': duration,
-            'formats': formats,
-            'live_manifest': live_manifest,
-            'is_live': is_live,
-        }
-        self.extract_cache[cache_key] = {'data': data, 'expires': now + 3600}
-        return data
+            if not any(r.get('streamingData') for r in responses):
+                raise Exception('No stream found')
+
+            live_manifest = None
+            formats = []
+            for resp in responses:
+                streaming = resp.get('streamingData', {})
+                hls = streaming.get('hlsManifestUrl')
+                dash = streaming.get('dashManifestUrl')
+                if hls or dash:
+                    live_manifest = {'hls': hls, 'dash': dash}
+                raw_formats = streaming.get('formats', []) + streaming.get('adaptiveFormats', [])
+                for fmt in raw_formats:
+                    norm = self._normalize_format(fmt, player_url)
+                    if norm and norm.get('url'):
+                        if not any(f.get('itag') == norm.get('itag') for f in formats):
+                            formats.append(norm)
+
+            if not formats and not live_manifest:
+                raise Exception('No stream found')
+
+            video_title = player_response.get('videoDetails', {}).get('title', video_id) if player_response else video_id
+            duration = int(player_response.get('videoDetails', {}).get('lengthSeconds', 0)) if player_response else 0
+            data = {
+                'id': video_id,
+                'title': video_title,
+                'duration': duration,
+                'formats': formats,
+                'live_manifest': live_manifest,
+                'is_live': is_live,
+            }
+            self.extract_cache[cache_key] = {'data': data, 'expires': now + 3600}
+            return data
+        except Exception as e:
+            debug_log('extract error', repr(e))
+            raise
 
     def _fetch_page(self, url):
         r = self.session.get(url, headers=self.headers, timeout=15)
@@ -317,6 +337,7 @@ class YouTubeIE:
             r'"jsUrl":"([^"]+)"',
             r'"PLAYER_JS_URL":"([^"]+)"',
             r'(/s/player/[^"\\]+/base\.js)',
+            r'(/s/player/[^"\\]+/tv\.js)',  # 新增tv.js匹配
         ]
         for p in patterns:
             m = re.search(p, html)
@@ -324,15 +345,42 @@ class YouTubeIE:
                 return m.group(1).replace('\\/', '/')
         return ''
 
+    def _fetch_get_video_info(self, video_id, el='embedded'):
+        """备用接口：旧版get_video_info，支持多种el参数"""
+        if el:
+            url = f'https://www.youtube.com/get_video_info?video_id={video_id}&el={el}&ps=default&eurl='
+        else:
+            url = f'https://www.youtube.com/get_video_info?video_id={video_id}&ps=default&eurl='
+        try:
+            r = self.session.get(url, headers=self.headers, timeout=10)
+            r.raise_for_status()
+            params = parse_qs(r.text)
+            if 'player_response' in params:
+                return json.loads(params['player_response'][0])
+        except:
+            pass
+        return None
+
     def _call_player_api(self, video_id, api_key, context, referer, visitor_data, is_live):
+        # 更新客户端列表 - 参考yt-dlp 2026年实现[reference:2][reference:3]
         clients = [
-            {'name': 'ANDROID_VR', 'version': '1.65.10', 'ua': 'com.google.android.apps.youtube.vr.oculus/1.65.10 (Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip'},
-            {'name': 'ANDROID', 'version': '21.02.35', 'ua': 'com.google.android.youtube/21.02.35 (Linux; U; Android 11) gzip'},
+            # tv客户端是首选[reference:4]
+            {'name': 'TV', 'version': '1.20260120.00.00', 'ua': 'Mozilla/5.0 (Chromecast)'},
+            {'name': 'TVHTML5', 'version': '7.20240220.00.00', 'ua': 'Mozilla/5.0 (Chromecast)'},
+            # ios和android作为备选
             {'name': 'IOS', 'version': '21.02.3', 'ua': 'com.google.ios.youtube/21.02.3 (iPhone16,2; U; CPU iOS 18_3_2 like Mac OS X)'},
+            {'name': 'ANDROID', 'version': '21.02.35', 'ua': 'com.google.android.youtube/21.02.35 (Linux; U; Android 11) gzip'},
+            {'name': 'ANDROID_VR', 'version': '1.65.10', 'ua': 'com.google.android.apps.youtube.vr.oculus/1.65.10 (Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip'},
             {'name': 'MWEB', 'version': '2.20260115.01.00', 'ua': 'Mozilla/5.0 (iPad; CPU OS 16_7_10 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1,gzip(gfe)'},
+            {'name': 'WEB', 'version': '2.20260121.09.00', 'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'},
+            {'name': 'WEB_EMBEDDED_PLAYER', 'version': '1.20260120.00.00', 'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'},
+            {'name': 'WEB_REMIX', 'version': '1.20260120.00.00', 'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'},
+            # tv_downgraded作为最后备选[reference:5]
+            {'name': 'TV_DOWNGRADED', 'version': '1.20260120.00.00', 'ua': 'Mozilla/5.0 (Chromecast)'},
         ]
         if is_live:
-            clients.append({'name': 'TVHTML5', 'version': '7.20240220.00.00', 'ua': 'Mozilla/5.0 (Chromecast)'})
+            clients.insert(0, {'name': 'TV', 'version': '1.20260120.00.00', 'ua': 'Mozilla/5.0 (Chromecast)'})
+            clients.insert(1, {'name': 'TVHTML5', 'version': '7.20240220.00.00', 'ua': 'Mozilla/5.0 (Chromecast)'})
 
         results = []
         for client in clients:
@@ -367,7 +415,9 @@ class YouTubeIE:
                 if data.get('streamingData'):
                     data['_client_name'] = client['name']
                     results.append(data)
+                    debug_log(f'API client {client["name"]} success')
             except Exception as e:
+                debug_log(f'API client {client["name"]} failed', str(e))
                 continue
         return results
 
@@ -375,6 +425,7 @@ class YouTubeIE:
         mapping = {
             'WEB': 1, 'MWEB': 2, 'ANDROID': 3, 'IOS': 5, 'TVHTML5': 7,
             'ANDROID_VR': 28, 'WEB_EMBEDDED_PLAYER': 56, 'WEB_REMIX': 67,
+            'TV': 85, 'TV_DOWNGRADED': 86,
         }
         return mapping.get(name, 1)
 
@@ -455,30 +506,32 @@ class YouTubeIE:
         n = query.get('n', [None])[0]
         if not n:
             return url
-        
+
         js_code = self._get_player_code(player_url)
         if not js_code:
             query.pop('n', None)
             new_parsed = parsed._replace(query=urlencode(query, doseq=True))
             return urlunparse(new_parsed)
-        
+
         func_name = None
         patterns = [
             r'\b([a-zA-Z0-9_$]+)\s*=\s*function\s*\(a\)\s*\{.*?\.n\s*=',
             r'"n",\s*([a-zA-Z0-9_$]+)\(',
             r'function\s+([a-zA-Z0-9_$]+)\s*\(a\)\s*\{.*?\.n\s*=',
+            r'\.n\s*=\s*([a-zA-Z0-9_$]+)\(',
+            r'\b([a-zA-Z0-9_$]+)\([a-zA-Z0-9_$]+\)\.n\s*=',  # 新增模式
         ]
         for p in patterns:
             m = re.search(p, js_code, re.S)
             if m:
                 func_name = m.group(1)
                 break
-                
+
         if not func_name:
             query.pop('n', None)
             new_parsed = parsed._replace(query=urlencode(query, doseq=True))
             return urlunparse(new_parsed)
-            
+
         try:
             interp = JSInterpreter(js_code, func_name)
             decoded = interp.call(func_name, [n])
@@ -486,9 +539,10 @@ class YouTubeIE:
                 query['n'] = [decoded]
             else:
                 query.pop('n', None)
-        except Exception:
+        except Exception as e:
+            debug_log('n-sig decryption failed', str(e))
             query.pop('n', None)
-            
+
         new_parsed = parsed._replace(query=urlencode(query, doseq=True))
         return urlunparse(new_parsed)
 
@@ -702,7 +756,6 @@ class Spider(Spider):
         }
         return {'list': [vod]}
 
-    # ---------- 修复核心: 播放下发逻辑 (直接返回资源，不走缓存代理阻塞) ----------
     def playerContent(self, flag, pid, vipFlags):
         raw = pid.split('$')[-1]
         if '@' in raw:
@@ -720,7 +773,6 @@ class Spider(Spider):
         try:
             data = self.yt.extract(video_id)
             
-            # 第一层：直播流 (优先下发 HLS m3u8 直链给播放器)
             manifest = data.get('live_manifest')
             if manifest:
                 url = manifest.get('hls') or manifest.get('dash')
@@ -734,7 +786,6 @@ class Spider(Spider):
                         'format': 'application/vnd.apple.mpegurl' if url.endswith('.m3u8') else 'application/dash+xml'
                     }
 
-            # 第二层：点播 - 高画质音视频分离 (生成极简 MPD 给播放器，内部数据全走直链)
             all_tracks = self.yt.choose_video_tracks(data['formats'], 'best', codec_filter=codec_type)
             wanted = 'HDR' if quality == 'hdr' else 'SDR'
             video_tracks = [t for t in all_tracks if t.get('track_name') == wanted]
@@ -759,7 +810,6 @@ class Spider(Spider):
                         'header': self.header
                     }
                 else:
-                    # 只有视频轨
                     playable = video_tracks[0]
                     return {
                         'parse': 0,
@@ -768,7 +818,6 @@ class Spider(Spider):
                         'header': playable.get('headers', self.header)
                     }
 
-            # 第三层：兜底方案 - 单文件 Progressive 流 (直连 MP4，坚决不走本地代理)
             progressive = [f for f in data['formats'] if f.get('vcodec') != 'none' and f.get('acodec') != 'none']
             if progressive:
                 progressive.sort(key=lambda f: (int(f.get('height', 0)), int(f.get('bitrate', 0))), reverse=True)
@@ -789,7 +838,6 @@ class Spider(Spider):
                 'proxy': self.proxy_str
             }
 
-    # ---------- 本地代理仅用于生成极轻量的 MPD 配置清单文件 ----------
     def localProxy(self, params):
         if params.get('do') != 'py':
             return None
@@ -813,7 +861,6 @@ class Spider(Spider):
         duration = data.get('duration', 0)
         duration_pt = f"PT{int(duration)}S" if duration else "PT0S"
         
-        # 强制使用直链做 BaseURL，不通过本地 Python 代理下载，解除内存堵塞
         mpd = f'''<?xml version="1.0" encoding="UTF-8"?>
 <MPD xmlns="urn:mpeg:dash:schema:mpd:2011" type="static" mediaPresentationDuration="{duration_pt}" minBufferTime="PT2S" profiles="urn:mpeg:dash:profile:isoff-on-demand:2011">
   <Period id="1" start="PT0S">
@@ -821,7 +868,7 @@ class Spider(Spider):
         for item in video_tracks:
             init = item.get('initRange', {})
             idx = item.get('indexRange', {})
-            base_url = item.get('url') # 直链
+            base_url = item.get('url')
             mpd += f'''    <AdaptationSet mimeType="{html.escape(item.get('mimeType', 'video/mp4').split(';')[0])}" startWithSAP="1" segmentAlignment="true" scanType="progressive">
       <Representation id="v{item.get('itag', 1)}" bandwidth="{item.get('bitrate', 1000000)}" codecs="{html.escape(item.get('codecs', ''))}" height="{item.get('height', 0)}" width="{item.get('width', 0)}">
         <BaseURL>{html.escape(base_url)}</BaseURL>
@@ -832,7 +879,7 @@ class Spider(Spider):
         if audio_track:
             init = audio_track.get('initRange', {})
             idx = audio_track.get('indexRange', {})
-            base_url = audio_track.get('url') # 直链
+            base_url = audio_track.get('url')
             mpd += f'''    <AdaptationSet mimeType="{html.escape(audio_track.get('mimeType', 'audio/mp4').split(';')[0])}" startWithSAP="1" segmentAlignment="true" lang="und">
       <Representation id="audio" bandwidth="{audio_track.get('bitrate', 128000)}" codecs="{html.escape(audio_track.get('codecs', ''))}" audioSamplingRate="44100">
         <BaseURL>{html.escape(base_url)}</BaseURL>
