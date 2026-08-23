@@ -1,5 +1,9 @@
 #EXTM3U url-tvg="https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz"
-
+#EXTINF:-1 group-title="中文新聞",HBO MOSAICO IZZIGO
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=2c2c9e3431b6ba6c84a46c4ec22e3bb9:ddd890065343463f45cfc569584fec64
+https://nog-live1-ott.izzigo.tv/6/out/u/dash/MOSAICO-HBO-HD/default.mpd
 
 #EXTINF:-1 group-title="中文新聞",Eurosport 2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
