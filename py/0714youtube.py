@@ -534,7 +534,7 @@ class Spider(Spider):
 
     def _fallback_hardcoded(self):
         self.classes = [
-            {'type_id': '新闻直播', 'type_name': '新闻直播'},
+           {'type_id': '新闻直播', 'type_name': '新闻直播'},
             {'type_id': '国际新闻', 'type_name': '国际新闻'},
             {'type_id': '动漫', 'type_name': '动漫'},
             {'type_id': '动画片', 'type_name': '动画片'},
@@ -546,7 +546,6 @@ class Spider(Spider):
   {'type_id': '电影', 'type_name': '电影'},
    
             {'type_id': '体育', 'type_name': '体育'},
-
 
         ]
         self.search_map = {'新闻直播': '新闻直播'}
