@@ -165,7 +165,7 @@ http://127.0.0.1:8081/cctv4.php?id=1
 #EXTINF:-1   tvg-id="cctv13"   tvg-name="cctv13"    tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV13.png"    group-title="中文新聞",CCTV-13
 http://127.0.0.1:8081/cctv13youtube.php
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="中文新聞",8tvworld
-http://127.0.0.1:8081/8tvworld.php
+#http://127.0.0.1:8081/8tvworld.php
 #EXTINF:-1   tvg-id="第一財經"   tvg-name="第一財經"    tvg-logo="http://epg.51zmt.top:8000/tb1/qt/diyicaijing.png"    group-title="中文新聞",第一財經
 http://127.0.0.1:8081/diyicaijing.php
 #EXTINF:-1   tvg-id="第一財經"   tvg-name="第一財經"    tvg-logo="http://epg.51zmt.top:8000/tb1/qt/diyicaijing.png"    group-title="中文新聞",第一財經
@@ -1130,13 +1130,13 @@ https://d43tg978oium5.cloudfront.net/out/v1/873c24d3946048f68e459250f1d2fd98/ind
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=98a5480e7cb53fe7922477f76acba548:ad0076dfd98433a75312bb5e4f14525b
 #EXTINF:-1  tvg-id="Dubai One" tvg-name="Dubai One"  group-title="mytvsuper",Dubai One
-http://127.0.0.1:8081/dubaione3.php
+#http://127.0.0.1:8081/dubaione3.php
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=e3ce77324a3d4fa2a913b26cc1976052:17774f82a3b9e33ea7a149596acbb20f
 #EXTINF:-1 tvg-id="mbc action" tvg-name="mbc action" tvg-logo="" group-title="mytvsuper",mbc action
-https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-action/8ea6ca1108d03e03da5e61372354f5c8/index.mpd
+#https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-action/8ea6ca1108d03e03da5e61372354f5c8/index.mpd
 
 
 
@@ -1146,14 +1146,14 @@ https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-action/8ea6ca1108d03e03da
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=e3ce77324a3d4fa2a913b26cc1976052:17774f82a3b9e33ea7a149596acbb20f
 #EXTINF:-1 tvg-id="mbc 2" tvg-name="mbc 2" tvg-logo="" group-title="mytvsuper",mbc 2
-https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-2/51db9d7fa48a27d051f1eecb68069151/index.mpd
+#https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-2/51db9d7fa48a27d051f1eecb68069151/index.mpd
 
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=e3ce77324a3d4fa2a913b26cc1976052:17774f82a3b9e33ea7a149596acbb20f
 #EXTINF:-1 tvg-id="mbc max" tvg-name="mbc max" tvg-logo="" group-title="mytvsuper",mbc max
 #https://neacdnpop3-edge02.aws.playco.com/live/eds/MBC_Max_HD/DASH/MBC_Max_HD.mpd
-https://shd-gcp-live.akamaized.net/live/bitmovin-mbc-max/b628d2bbaee0431a17859963edf2975f/index.mpd
+#https://shd-gcp-live.akamaized.net/live/bitmovin-mbc-max/b628d2bbaee0431a17859963edf2975f/index.mpd
 
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
@@ -1161,34 +1161,34 @@ https://shd-gcp-live.akamaized.net/live/bitmovin-mbc-max/b628d2bbaee0431a1785996
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=ab081a704aad41829b1123b09b6ecafd:dd51609092fff15e68b91debf5d591f9
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="mytvsuper",ssc1
-http://127.0.0.1:8081/ssc_sport.php?id=ssc1
+#http://127.0.0.1:8081/ssc_sport.php?id=ssc1
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=50a7f3afc00a40b38face4db639d0e4c:ad7000691326064706281a700b7d6714
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="mytvsuper",ssc2
-http://127.0.0.1:8081/ssc_sport.php?id=ssc2
+#http://127.0.0.1:8081/ssc_sport.php?id=ssc2
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=2b6f6b340aa8467785e4e82f9320fb5a:8889701d704078c4d910ed1409413d9b
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="mytvsuper",ssc3
-http://127.0.0.1:8081/ssc_sport.php?id=ssc3
+#http://127.0.0.1:8081/ssc_sport.php?id=ssc3
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=6477160076644679af1028534f03f67e:1267f99705113a62c7782c4d5281a7eb
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="mytvsuper",ssc4
-http://127.0.0.1:8081/ssc_sport.php?id=ssc4
+#http://127.0.0.1:8081/ssc_sport.php?id=ssc4
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=e2df3c205b674360bc6f364ba1090e70:93da2c77bc812bc05a6e20ad8d35ea78
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="mytvsuper",ssc_5
-http://127.0.0.1:8081/ssc_sport.php?id=ssc_5
+#http://127.0.0.1:8081/ssc_sport.php?id=ssc_5
 
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
@@ -1196,20 +1196,20 @@ http://127.0.0.1:8081/ssc_sport.php?id=ssc_5
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=ecbc9e6fe6b145efb6658fb5cf7427f8:03c17e28911f71221acbc0b11f900401
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="mytvsuper",ssc_extra1
-http://127.0.0.1:8081/ssc_sport.php?id=ssc_extra1
+#http://127.0.0.1:8081/ssc_sport.php?id=ssc_extra1
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=4d89249bd4ca4ebc9e70443265f9507d:cf074ffd2646c9c2f8513b47fa57bc30
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="mytvsuper",ssc_extra2
-http://127.0.0.1:8081/ssc_sport.php?id=ssc_extra2
+#http://127.0.0.1:8081/ssc_sport.php?id=ssc_extra2
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=98cfd6fd4812497fb24dc75f7545f2ee:d3006ee69e77b25939728ebf30d3180a
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="mytvsuper",ssc_extra3
-http://127.0.0.1:8081/ssc_sport.php?id=ssc_extra3
+#http://127.0.0.1:8081/ssc_sport.php?id=ssc_extra3
 
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
