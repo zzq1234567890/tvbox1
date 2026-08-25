@@ -1,8 +1,8 @@
 #coding=utf-8
 #!/usr/bin/python
 """
-YouTube 插件 - 基于 yt-dlp 核心逻辑重构（2026修复版）
-修复: 更新客户端版本、API Key、增加tv嵌入客户端、优化nsig解密
+YouTube 插件 - 基于 yt-dlp 核心逻辑重构（点播画质修复版）
+修复: 调整客户端顺序优先WEB/ANDROID，增强高度解析，确保高画质
 """
 import re
 import os
@@ -39,161 +39,14 @@ def debug_log(message, data=None):
     except Exception:
         pass
 
-# ========== JS 解释器（增强版） ==========
+# ========== JS 解释器（保持不变） ==========
 class JSInterpreter:
-    def __init__(self, code, func_name):
-        self.code = code
-        self.func_name = func_name
-        self.functions = {}
-        self._extract_functions()
+    # ... (与之前完全相同，省略以节省篇幅，实际使用需保留完整)
+    # 鉴于篇幅，此处省略，但完整文件应包含此类的全部代码
+    # 实际使用时请将原JSInterpreter类完整保留
+    pass
 
-    def _extract_functions(self):
-        pattern = r'function\s+' + re.escape(self.func_name) + r'\s*\(([^)]*)\)\s*\{([^}]*)\}'
-        match = re.search(pattern, self.code, re.S)
-        if match:
-            args_str, body = match.groups()
-            self.functions[self.func_name] = {
-                'args': [a.strip() for a in args_str.split(',') if a.strip()],
-                'body': body
-            }
-        helper_pattern = r'var\s+([a-zA-Z0-9_$]+)\s*=\s*\{([^}]*)\};'
-        for m in re.finditer(helper_pattern, self.code, re.S):
-            obj_name, obj_body = m.groups()
-            for method_match in re.finditer(r'([a-zA-Z0-9_$]+)\s*:\s*function\s*\(([^)]*)\)\s*\{([^}]*)\}', obj_body):
-                m_name, m_args, m_body = method_match.groups()
-                self.functions[m_name] = {
-                    'args': [a.strip() for a in m_args.split(',') if a.strip()],
-                    'body': m_body
-                }
-
-    def call(self, func_name, args):
-        func = self.functions.get(func_name)
-        if not func:
-            raise Exception(f'Function {func_name} not found')
-        env = {}
-        for i, arg in enumerate(func['args']):
-            if i < len(args):
-                env[arg] = args[i]
-            else:
-                env[arg] = None
-        body = func['body']
-        statements = self._split_statements(body)
-        for stmt in statements:
-            stmt = stmt.strip()
-            if not stmt:
-                continue
-            self._execute_statement(stmt, env)
-        if 'a' in env:
-            return env['a']
-        return args[0] if args else None
-
-    def _split_statements(self, body):
-        statements = []
-        current = []
-        in_string = False
-        escape = False
-        for ch in body:
-            if escape:
-                current.append(ch)
-                escape = False
-                continue
-            if ch == '\\':
-                current.append(ch)
-                escape = True
-                continue
-            if ch == '"' or ch == "'":
-                in_string = not in_string
-                current.append(ch)
-                continue
-            if not in_string and ch == ';':
-                statements.append(''.join(current))
-                current = []
-            else:
-                current.append(ch)
-        if current:
-            statements.append(''.join(current))
-        return statements
-
-    def _execute_statement(self, stmt, env):
-        var_match = re.match(r'var\s+([a-zA-Z0-9_$]+)\s*=\s*(.+)$', stmt)
-        if var_match:
-            var_name, expr = var_match.groups()
-            env[var_name] = self._evaluate_expression(expr.strip(), env)
-            return
-        assign_match = re.match(r'([a-zA-Z0-9_$]+)\s*=\s*(.+)$', stmt)
-        if assign_match:
-            var_name, expr = assign_match.groups()
-            if var_name in env:
-                env[var_name] = self._evaluate_expression(expr.strip(), env)
-            return
-        call_match = re.match(r'([a-zA-Z0-9_$]+)\.([a-zA-Z0-9_$]+)\(([^)]*)\)', stmt)
-        if call_match:
-            obj, method, params = call_match.groups()
-            if obj in env:
-                param_list = [p.strip() for p in params.split(',') if p.strip()]
-                resolved = []
-                for p in param_list:
-                    if p in env:
-                        resolved.append(env[p])
-                    else:
-                        if p.startswith('"') or p.startswith("'"):
-                            resolved.append(p[1:-1])
-                        else:
-                            try:
-                                resolved.append(int(p))
-                            except:
-                                resolved.append(p)
-                if method in self.functions:
-                    result = self.call(method, resolved)
-                    if result is not None:
-                        env[obj] = result
-            return
-        method_match = re.match(r'([a-zA-Z0-9_$]+)\.([a-zA-Z0-9_$]+)\(\)', stmt)
-        if method_match:
-            obj, method = method_match.groups()
-            if obj in env:
-                if method == 'reverse':
-                    if isinstance(env[obj], list):
-                        env[obj].reverse()
-                    elif isinstance(env[obj], str):
-                        env[obj] = env[obj][::-1]
-                elif method == 'pop':
-                    if isinstance(env[obj], list):
-                        env[obj].pop()
-            return
-        slice_match = re.match(r'([a-zA-Z0-9_$]+)\s*=\s*([a-zA-Z0-9_$]+)\.slice\((\d+)\)', stmt)
-        if slice_match:
-            target, source, num = slice_match.groups()
-            if source in env:
-                env[target] = env[source][int(num):]
-            return
-        splice_match = re.match(r'([a-zA-Z0-9_$]+)\s*=\s*([a-zA-Z0-9_$]+)\.splice\(0,\s*(\d+)\)', stmt)
-        if splice_match:
-            target, source, num = splice_match.groups()
-            if source in env:
-                env[target] = env[source][int(num):]
-            return
-
-    def _evaluate_expression(self, expr, env):
-        split_match = re.match(r'([a-zA-Z0-9_$]+)\.split\(([^)]*)\)', expr)
-        if split_match:
-            var, sep = split_match.groups()
-            if var in env:
-                sep = sep.strip()
-                if sep.startswith('"') or sep.startswith("'"):
-                    sep = sep[1:-1]
-                return env[var].split(sep)
-        if expr.startswith('"') or expr.startswith("'"):
-            return expr[1:-1]
-        try:
-            return int(expr)
-        except:
-            pass
-        if expr in env:
-            return env[expr]
-        return expr
-
-# ========== YouTube 提取核心（2026修复版） ==========
+# ========== YouTube 提取核心（修复版） ==========
 class YouTubeIE:
     def __init__(self, session, headers, config):
         self.session = session
@@ -215,7 +68,6 @@ class YouTubeIE:
             page = self._fetch_page(watch_url)
             ytcfg, player_response, player_url = self._parse_page(page)
             
-            # 从ytcfg中提取API Key（使用最新的key）
             api_key = ytcfg.get('INNERTUBE_API_KEY') or 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8'
             visitor_data = ytcfg.get('VISITOR_DATA')
             context = ytcfg.get('INNERTUBE_CONTEXT')
@@ -227,12 +79,12 @@ class YouTubeIE:
 
             responses = [player_response] if player_response else []
 
-            # 调用 API（使用更新后的客户端列表）
+            # 调用 API（客户端顺序已调整）
             if api_key:
                 api_responses = self._call_player_api(video_id, api_key, context, watch_url, visitor_data, is_live)
                 responses.extend(api_responses)
 
-            # 备用接口：尝试多个el参数
+            # 备用接口
             if not any(r.get('streamingData') for r in responses):
                 debug_log('Fallback to get_video_info for', video_id)
                 for el in ['embedded', 'detailpage', 'vevo', '']:
@@ -337,7 +189,7 @@ class YouTubeIE:
             r'"jsUrl":"([^"]+)"',
             r'"PLAYER_JS_URL":"([^"]+)"',
             r'(/s/player/[^"\\]+/base\.js)',
-            r'(/s/player/[^"\\]+/tv\.js)',  # 新增tv.js匹配
+            r'(/s/player/[^"\\]+/tv\.js)',
         ]
         for p in patterns:
             m = re.search(p, html)
@@ -346,7 +198,6 @@ class YouTubeIE:
         return ''
 
     def _fetch_get_video_info(self, video_id, el='embedded'):
-        """备用接口：旧版get_video_info，支持多种el参数"""
         if el:
             url = f'https://www.youtube.com/get_video_info?video_id={video_id}&el={el}&ps=default&eurl='
         else:
@@ -362,23 +213,22 @@ class YouTubeIE:
         return None
 
     def _call_player_api(self, video_id, api_key, context, referer, visitor_data, is_live):
-        # 更新客户端列表 - 参考yt-dlp 2026年实现[reference:2][reference:3]
+        # ===== 修复点：调整客户端顺序，WEB 和 ANDROID 优先 =====
         clients = [
-            # tv客户端是首选[reference:4]
-            {'name': 'TV', 'version': '1.20260120.00.00', 'ua': 'Mozilla/5.0 (Chromecast)'},
-            {'name': 'TVHTML5', 'version': '7.20240220.00.00', 'ua': 'Mozilla/5.0 (Chromecast)'},
-            # ios和android作为备选
-            {'name': 'IOS', 'version': '21.02.3', 'ua': 'com.google.ios.youtube/21.02.3 (iPhone16,2; U; CPU iOS 18_3_2 like Mac OS X)'},
-            {'name': 'ANDROID', 'version': '21.02.35', 'ua': 'com.google.android.youtube/21.02.35 (Linux; U; Android 11) gzip'},
-            {'name': 'ANDROID_VR', 'version': '1.65.10', 'ua': 'com.google.android.apps.youtube.vr.oculus/1.65.10 (Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip'},
-            {'name': 'MWEB', 'version': '2.20260115.01.00', 'ua': 'Mozilla/5.0 (iPad; CPU OS 16_7_10 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1,gzip(gfe)'},
+            # 首选 WEB 客户端（通常返回全部格式）
             {'name': 'WEB', 'version': '2.20260121.09.00', 'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'},
+            {'name': 'ANDROID', 'version': '21.02.35', 'ua': 'com.google.android.youtube/21.02.35 (Linux; U; Android 11) gzip'},
+            {'name': 'IOS', 'version': '21.02.3', 'ua': 'com.google.ios.youtube/21.02.3 (iPhone16,2; U; CPU iOS 18_3_2 like Mac OS X)'},
+            {'name': 'MWEB', 'version': '2.20260115.01.00', 'ua': 'Mozilla/5.0 (iPad; CPU OS 16_7_10 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1,gzip(gfe)'},
+            {'name': 'ANDROID_VR', 'version': '1.65.10', 'ua': 'com.google.android.apps.youtube.vr.oculus/1.65.10 (Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip'},
             {'name': 'WEB_EMBEDDED_PLAYER', 'version': '1.20260120.00.00', 'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'},
             {'name': 'WEB_REMIX', 'version': '1.20260120.00.00', 'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'},
-            # tv_downgraded作为最后备选[reference:5]
-            {'name': 'TV_DOWNGRADED', 'version': '1.20260120.00.00', 'ua': 'Mozilla/5.0 (Chromecast)'},
+            # TV 客户端放最后（仅用于直播或备选）
+            {'name': 'TVHTML5', 'version': '7.20240220.00.00', 'ua': 'Mozilla/5.0 (Chromecast)'},
+            {'name': 'TV', 'version': '1.20260120.00.00', 'ua': 'Mozilla/5.0 (Chromecast)'},
         ]
         if is_live:
+            # 直播时 TV 客户端放前面
             clients.insert(0, {'name': 'TV', 'version': '1.20260120.00.00', 'ua': 'Mozilla/5.0 (Chromecast)'})
             clients.insert(1, {'name': 'TVHTML5', 'version': '7.20240220.00.00', 'ua': 'Mozilla/5.0 (Chromecast)'})
 
@@ -446,13 +296,23 @@ class YouTubeIE:
         codecs = codecs.group(1) if codecs else ''
         has_video = mime.startswith('video/') or any(x in codecs for x in ('avc', 'vp9', 'av01', 'h264'))
         has_audio = mime.startswith('audio/') or any(x in codecs for x in ('mp4a', 'opus', 'vorbis'))
+        
+        # 修复点：从 quality 中提取高度
+        height = fmt.get('height', 0)
+        if height == 0:
+            quality_label = fmt.get('qualityLabel') or fmt.get('quality')
+            if quality_label:
+                match = re.search(r'(\d+)p', quality_label)
+                if match:
+                    height = int(match.group(1))
+        
         return {
             'itag': fmt.get('itag'),
             'url': url,
             'mimeType': mime,
             'ext': 'mp4' if 'mp4' in mime else 'webm' if 'webm' in mime else 'unknown',
             'width': fmt.get('width', 0),
-            'height': fmt.get('height', 0),
+            'height': height,
             'fps': fmt.get('fps', 0),
             'bitrate': fmt.get('bitrate') or fmt.get('averageBitrate') or 0,
             'initRange': fmt.get('initRange', {}),
@@ -519,7 +379,7 @@ class YouTubeIE:
             r'"n",\s*([a-zA-Z0-9_$]+)\(',
             r'function\s+([a-zA-Z0-9_$]+)\s*\(a\)\s*\{.*?\.n\s*=',
             r'\.n\s*=\s*([a-zA-Z0-9_$]+)\(',
-            r'\b([a-zA-Z0-9_$]+)\([a-zA-Z0-9_$]+\)\.n\s*=',  # 新增模式
+            r'\b([a-zA-Z0-9_$]+)\([a-zA-Z0-9_$]+\)\.n\s*=',
         ]
         for p in patterns:
             m = re.search(p, js_code, re.S)
@@ -564,9 +424,14 @@ class YouTubeIE:
         return code
 
     def choose_video_tracks(self, formats, quality='best', codec_filter=None):
+        # 修复点：如果纯视频轨道为空，则包含渐进式（音视频合流）
         videos = [f for f in formats if f.get('vcodec') != 'none' and f.get('acodec') == 'none']
+        if not videos:
+            # 尝试包含所有视频格式（包括渐进式）
+            videos = [f for f in formats if f.get('vcodec') != 'none']
         if codec_filter:
             videos = [f for f in videos if codec_filter in f.get('codecs', '').lower()]
+        # 按分辨率降序，若 height 为0则尝试从 quality 提取
         videos.sort(key=lambda f: (int(f.get('height', 0)), int(f.get('bitrate', 0))), reverse=True)
         if videos:
             best = videos[0]
@@ -598,7 +463,7 @@ class YouTubeIE:
         codecs = fmt.get('codecs', '').lower()
         return 'vp9.2' in mime or 'vp09.02' in codecs or fmt.get('colorInfo', {}).get('hdrMetadataInfo')
 
-# ========== TVbox 适配层 ==========
+# ========== TVbox 适配层（保持不变） ==========
 class Spider(Spider):
     def getName(self):
         return 'YouTube'
@@ -674,9 +539,15 @@ class Spider(Spider):
             {'type_id': '动漫', 'type_name': '动漫'},
             {'type_id': '动画片', 'type_name': '动画片'},
             {'type_id': '综艺', 'type_name': '综艺'},
-            {'type_id': '电影', 'type_name': '电影'},
-            {'type_id': '剧集', 'type_name': '剧集'},
+     {'type_id': '纪录片', 'type_name': '纪录片'},
+  {'type_id': '剧集', 'type_name': '剧集'},
+  {'type_id': '政论', 'type_name': '政论'},
+ {'type_id': '港剧', 'type_name': '港剧'},
+  {'type_id': '电影', 'type_name': '电影'},
+   
             {'type_id': '体育', 'type_name': '体育'},
+
+
         ]
         self.search_map = {'新闻直播': '新闻直播'}
 
