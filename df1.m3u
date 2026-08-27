@@ -142,6 +142,8 @@ https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/worucjnctz/
 
 #EXTINF:-1   tvg-id="鳳凰資訊"   tvg-name="鳳凰資訊"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/fenghuangzixun.png"     group-title="中文新聞",鳳凰資訊
 http://127.0.0.1:8081/fenghuangyoutube.php
+#EXTINF:-1   tvg-id="鳳凰美洲"   tvg-name="鳳凰美洲"    tvg-logo="http://epg.51zmt.top:8000/tb1/gt/fenghuangzixun.png"     group-title="中文新聞",鳳凰美洲
+https://live-s.italkdd.com/cds160/hls/tv501/480.m3u8?hdntl=exp=1787740866~acl=/*~data=hdntl~hmac=15f41277ce5d682ff138361f3030f351594e0fcceb45ba5fbcafaf6de2da3638&
 #EXTINF:-1   tvg-id="CCTV-4美洲頻道"   tvg-name="CCTV-4美洲頻道"    tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV4.png"    group-title="中文新聞",CCTV-4美洲頻道
 http://127.0.0.1:8081/cctv4.php?id=2
 #EXTINF:-1   tvg-id="cctv4亞洲"   tvg-name="cctv4亞洲"    tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV4.png"    group-title="中文新聞",cctv-4亞洲
