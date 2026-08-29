@@ -3,6 +3,7 @@
     "sites": [    
   {
       "name": "央视频",
+	  "key": "py_ysp",
 	  "api": "./py/live_ysp.py",
       "type": 3,
 	  "searchable": 0,
@@ -106,7 +107,19 @@
       "quickSearch": 1,
       "filterable": 0
     },
-		
+		  {
+      "name": "央视频",
+	  "api": "./py/live_ysp.py",
+      "type": 3,
+	  "searchable": 0,
+      "changeable": 0,
+      "epg": "https://epg.tv.darwinchow.com/epg.xml.gz",
+      "catchup": {
+        "type": "append",
+        "source": "&playseek=${(b)yyyyMMddHHmmss}-${(e)yyyyMMddHHmmss}"
+      }
+      
+    },
 		{
       "key": "py_4gtv",
       "name": "4gtvpy",
