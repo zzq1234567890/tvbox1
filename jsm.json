@@ -1,7 +1,16 @@
 {
     "spider": "./pg.jar",
     "sites": [    
-  
+  {
+      "name": "央视频",
+      "type": 3,
+      "epg": "https://epg.tv.darwinchow.com/epg.xml.gz",
+      "catchup": {
+        "type": "append",
+        "source": "&playseek=${(b)yyyyMMddHHmmss}-${(e)yyyyMMddHHmmss}"
+      },
+      "api": "./py/live_ysp.py"
+    },
 		{
             "key": "网盘配置",
             "name": "youtube和网盘配置",
