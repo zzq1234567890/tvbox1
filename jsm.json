@@ -3,13 +3,16 @@
     "sites": [    
   {
       "name": "央视频",
+	  "api": "./py/live_ysp.py",
       "type": 3,
+	  "searchable": 0,
+      "changeable": 0,
       "epg": "https://epg.tv.darwinchow.com/epg.xml.gz",
       "catchup": {
         "type": "append",
         "source": "&playseek=${(b)yyyyMMddHHmmss}-${(e)yyyyMMddHHmmss}"
-      },
-      "api": "./py/live_ysp.py"
+      }
+      
     },
 		{
             "key": "网盘配置",
