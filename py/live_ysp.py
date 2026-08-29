@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 央视频直播代理插件（支持直播+7天回看）
-- 修复回看降级逻辑（回看失败直接报错，不伪造）
-- 增强 playseek 解析容错
-- 更新版本参数，提高兼容性
-- 完整包含所有频道数据与加密算法
+- 完全移除 requests 依赖，使用 urllib + self.fetch
+- 与 4GTV.py 同架构，兼容 TVBox 环境
+- 支持直播和回看（需 TVBox 传递 playseek 参数）
 """
 
 import sys
@@ -16,66 +15,26 @@ import struct
 import binascii
 import hashlib
 import base64
-import requests
-import logging
+import urllib.request
+import urllib.error
+import ssl
 import traceback
 from datetime import datetime
-from urllib.parse import urlparse, urljoin
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
-from urllib3.exceptions import InsecureRequestWarning
+from urllib.parse import urlparse, urljoin, urlencode
 
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+# ==================== 日志控制 ====================
+DEBUG = os.environ.get('CCTV_DEBUG', '0') == '1'
 
-# ==================== 日志路径 ====================
-def get_log_path():
-    candidates = [
-        '/sdcard/Download/cctv.log',
-        '/storage/emulated/0/Download/cctv.log',
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cctv.log')
-    ]
-    for path in candidates:
-        try:
-            dirname = os.path.dirname(path)
-            if not os.path.exists(dirname):
-                os.makedirs(dirname, exist_ok=True)
-            with open(path, 'a', encoding='utf-8') as f:
-                f.write('')
-            return path
-        except:
-            continue
-    return os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cctv.log')
-
-LOG_FILE = get_log_path()
-
-# ---------- 静默控制 ----------
-SILENT = os.environ.get('CCTV_SILENT', '0') == '1'
-
-if SILENT:
-    logging.disable(logging.CRITICAL)
-    logger = logging.getLogger("CCTV_Proxy")
-    logger.addHandler(logging.NullHandler())
-else:
-    DEBUG = os.environ.get('CCTV_DEBUG', '0') == '1'
-    log_level = logging.DEBUG if DEBUG else logging.INFO
-
-    logging.basicConfig(
-        level=log_level,
-        format='%(asctime)s [%(levelname)s] %(message)s',
-        handlers=[
-            logging.FileHandler(LOG_FILE, mode='w', encoding='utf-8'),
-            logging.StreamHandler(sys.stdout)
-        ]
-    )
-    logger = logging.getLogger("CCTV_Proxy")
-    logger.info(f"日志文件: {LOG_FILE}, 调试模式: {DEBUG}")
+def log(msg, level='INFO'):
+    if DEBUG or level == 'ERROR':
+        print(f'[CCTV] {level}: {msg}')
 
 # ==================== 基础 Spider 兼容 ====================
 try:
     from base.spider import Spider as BaseSpider
-    logger.info("成功导入 BaseSpider")
+    log("成功导入 BaseSpider")
 except ImportError as e:
-    logger.error(f"导入 BaseSpider 失败: {e}")
+    log(f"导入 BaseSpider 失败: {e}", 'ERROR')
     class BaseSpider:
         def getProxyUrl(self):
             return "http://127.0.0.1:9978/proxy?do=py&"
@@ -162,7 +121,6 @@ CHANNELS = {
     'xjws':      {'name': '新疆卫视',       'cnlid': '2019927403', 'livepid': '600152138', 'defn': 'fhd'}
 }
 
-# ==================== 频道分组配置 ====================
 CHANNEL_GROUPS = {
     '央视': [
         'cctv1', 'cctv2', 'cctv3', 'cctv4', 'cctv5', 'cctv5p', 'cctv6', 'cctv7',
@@ -184,13 +142,12 @@ CHANNEL_GROUPS = {
     ]
 }
 
-# ==================== 缓存配置 ====================
 CACHE_TTL = 1800
 CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cache')
 if not os.path.exists(CACHE_DIR):
     os.makedirs(CACHE_DIR, 0o755, True)
 
-# ==================== CKeyManager（完整加密类） ====================
+# ==================== CKeyManager（完整加密，仅修改网络请求） ====================
 class CKeyManager:
     DELTA = 0x9e3779b9
     ROUNDS = 16
@@ -573,7 +530,7 @@ class CKeyManager:
         return self.send_http_request(request_params)
 
     def make_playback_request(self, cnlid, livepid, defn, playback_timestamp):
-        """回看请求 - 修复：移除不可靠的降级逻辑"""
+        """回看请求"""
         self.generate_guid()
         ckey_result = self.generate_ckey(cnlid)
         ckey = ckey_result['ckey']
@@ -625,34 +582,35 @@ class CKeyManager:
             "flowid": flowid,
             "playbacktime": str(playback_timestamp)
         }
-        
-        # 直接返回接口结果，不做降级处理（避免伪造回看地址导致播放错误）
         return self.send_http_request(request_params)
 
+    # ---------- 核心网络请求（使用 urllib，无 requests） ----------
     def send_http_request(self, params):
         url = "https://bkliveinfo.ysp.cctv.cn"
+        # 构建 GET 参数
+        query = urlencode(params)
+        full_url = f"{url}?{query}"
         headers = {
             'User-Agent': 'qqlive',
             'Connection': 'Keep-Alive',
             'Accept': 'application/json'
         }
+
         try:
-            logger.debug(f"请求 bkliveinfo URL: {url}")
-            resp = requests.get(url, params=params, headers=headers, timeout=15, verify=False)
-            if resp.status_code == 200:
-                data = resp.json()
+            log(f"请求 bkliveinfo: {full_url[:200]}...", 'DEBUG')
+            req = urllib.request.Request(full_url, headers=headers, method='GET')
+            ctx = ssl._create_unverified_context()
+            with urllib.request.urlopen(req, context=ctx, timeout=15) as resp:
+                data = json.loads(resp.read().decode('utf-8'))
                 if data.get('iretcode') == 0:
                     playurl = data.get('playurl')
-                    logger.info(f"获取 playurl 成功: {playurl}")
+                    log(f"获取 playurl 成功: {playurl}")
                     return {'success': True, 'playurl': playurl}
                 else:
-                    logger.error(f"接口返回错误 iretcode={data.get('iretcode')}, msg={data.get('msg', '')}")
+                    log(f"接口返回错误 iretcode={data.get('iretcode')}, msg={data.get('msg', '')}", 'ERROR')
                     return {'success': False, 'iretcode': data.get('iretcode')}
-            else:
-                logger.error(f"HTTP 错误码: {resp.status_code}")
-                return {'success': False, 'http_code': resp.status_code}
         except Exception as e:
-            logger.error(f"请求异常: {e}")
+            log(f"请求异常: {e}", 'ERROR')
             return {'success': False, 'error': str(e)}
 
     def get_play_url(self, cnlid, livepid, defn, playback_timestamp=None):
@@ -660,7 +618,6 @@ class CKeyManager:
             result = self.make_playback_request(cnlid, livepid, defn, playback_timestamp)
         else:
             result = self.make_live_request(cnlid, livepid, defn)
-        
         if result.get('success') and result.get('playurl'):
             return result['playurl']
         return None
@@ -670,24 +627,42 @@ class CKeyManager:
 class Spider(BaseSpider):
     def __init__(self):
         super().__init__()
-        logger.info("Spider.__init__ 被调用")
-        self.session = None
-        self._init_session()
-
-    def _init_session(self):
-        self.session = requests.Session()
-        adapter = HTTPAdapter(pool_connections=3, pool_maxsize=5,
-                              max_retries=Retry(total=2, backoff_factor=0.5,
-                                                status_forcelist=[429, 500, 502, 503, 504],
-                                                allowed_methods=["GET"]))
-        self.session.mount("https://", adapter)
-        self.session.mount("http://", adapter)
+        log("Spider.__init__ 被调用")
+        # 不再需要 session
 
     def getName(self):
         return "央视频（直播+回看）"
 
     def init(self, extend):
-        logger.info("Spider.init 被调用，extend=%s", extend)
+        log(f"Spider.init 被调用，extend={extend}")
+
+    # ---------- 通用 HTTP GET 请求（优先使用 self.fetch，降级 urllib） ----------
+    def _http_get(self, url, headers=None, timeout=20):
+        """发送 GET 请求，返回响应文本或 None"""
+        if headers is None:
+            headers = {}
+        try:
+            # 尝试使用 TVBox 提供的 fetch 方法
+            if hasattr(self, 'fetch'):
+                resp = self.fetch(url, headers=headers, timeout=timeout)
+                if hasattr(resp, 'text'):
+                    return resp.text
+                elif hasattr(resp, 'content'):
+                    return resp.content.decode('utf-8', errors='ignore')
+                else:
+                    return str(resp) if resp else None
+        except Exception as e:
+            log(f"self.fetch 失败，降级 urllib: {e}", 'DEBUG')
+
+        # 降级使用 urllib
+        try:
+            req = urllib.request.Request(url, headers=headers, method='GET')
+            ctx = ssl._create_unverified_context()
+            with urllib.request.urlopen(req, context=ctx, timeout=timeout) as resp:
+                return resp.read().decode('utf-8', errors='ignore')
+        except Exception as e:
+            log(f"urllib 请求失败: {e}", 'ERROR')
+            return None
 
     # ---------- 文件缓存 ----------
     def _cache_path(self, channel_id):
@@ -702,12 +677,12 @@ class Spider(BaseSpider):
                     if isinstance(data, dict) and 'url' in data and 'time' in data:
                         age = time.time() - data['time']
                         if age < CACHE_TTL:
-                            logger.info(f"缓存命中 playurl: {channel_id}, 年龄={age:.0f}s")
+                            log(f"缓存命中 playurl: {channel_id}, 年龄={age:.0f}s")
                             return data['url'], True
                         else:
-                            logger.info(f"缓存过期 playurl: {channel_id}, 年龄={age:.0f}s")
+                            log(f"缓存过期 playurl: {channel_id}, 年龄={age:.0f}s")
             except Exception as e:
-                logger.warning(f"读取缓存失败: {e}")
+                log(f"读取缓存失败: {e}", 'ERROR')
         return None, False
 
     def _set_cached_playurl(self, channel_id, playurl):
@@ -715,14 +690,14 @@ class Spider(BaseSpider):
         try:
             with open(cache_file, 'w', encoding='utf-8') as f:
                 json.dump({'url': playurl, 'time': int(time.time())}, f)
-            logger.info(f"已缓存 playurl: {channel_id}")
+            log(f"已缓存 playurl: {channel_id}")
         except Exception as e:
-            logger.warning(f"写入缓存失败: {e}")
+            log(f"写入缓存失败: {e}", 'ERROR')
 
     # ---------- M3U8 获取与补全 ----------
     def _fetch_and_fix_m3u8(self, play_url):
         try:
-            logger.info(f"开始获取 M3U8")
+            log(f"开始获取 M3U8")
             headers = {
                 'User-Agent': 'qqlive',
                 'Referer': 'https://ysp.cctv.cn/',
@@ -731,14 +706,15 @@ class Spider(BaseSpider):
                 'Accept-Encoding': 'gzip, deflate',
                 'Connection': 'keep-alive'
             }
-            resp = self.session.get(play_url, headers=headers, timeout=20, verify=False)
-            if resp.status_code != 200:
-                logger.error(f"M3U8 获取失败 HTTP {resp.status_code}")
+            content = self._http_get(play_url, headers=headers, timeout=20)
+            if content is None:
+                log("M3U8 获取失败 (返回空)", 'ERROR')
                 return None
-            content = resp.text
+
             if '#EXTM3U' not in content:
-                logger.error("原始 M3U8 不包含 #EXTM3U 头")
+                log("原始 M3U8 不包含 #EXTM3U 头", 'ERROR')
                 return None
+
             parsed = urlparse(play_url)
             base = f"{parsed.scheme}://{parsed.netloc}{parsed.path[:parsed.path.rfind('/')+1]}"
             fixed_lines = []
@@ -753,15 +729,15 @@ class Spider(BaseSpider):
                 else:
                     fixed_lines.append(line)
             result = '\n'.join(fixed_lines)
-            logger.info(f"成功获取并补全 M3U8，长度 {len(result)} 字符")
+            log(f"成功获取并补全 M3U8，长度 {len(result)} 字符")
             return result
         except Exception as e:
-            logger.error(f"获取/补全 M3U8 异常: {e}")
+            log(f"获取/补全 M3U8 异常: {e}", 'ERROR')
             return None
 
     # ---------- TVBox 接口 ----------
     def localProxy(self, params):
-        logger.info(f"*** 进入 localProxy *** params={params}")
+        log(f"*** 进入 localProxy *** params={params}")
         try:
             fun = params.get('fun')
             if fun == 'cctv':
@@ -774,44 +750,43 @@ class Spider(BaseSpider):
 
                 playseek = params.get('playseek')
                 if playseek:
-                    logger.info(f"回看请求: {channel_id} ({ch['name']}), playseek={playseek}")
+                    log(f"回看请求: {channel_id} ({ch['name']}), playseek={playseek}")
                     try:
-                        # 增强容错：只取第一部分作为开始时间
                         parts = playseek.split('-')
                         if len(parts) < 1 or not parts[0]:
                             return self._error_response("回看参数格式错误")
                         start_str = parts[0]
                         start_dt = datetime.strptime(start_str, '%Y%m%d%H%M%S')
                         playback_timestamp = int(start_dt.timestamp())
-                        
+
                         manager = CKeyManager()
                         playurl = manager.get_play_url(
-                            ch['cnlid'], 
-                            ch['livepid'], 
-                            ch['defn'], 
+                            ch['cnlid'],
+                            ch['livepid'],
+                            ch['defn'],
                             playback_timestamp
                         )
                         if not playurl:
-                            logger.error("获取回看 playurl 失败")
+                            log("获取回看 playurl 失败", 'ERROR')
                             return self._error_response("获取回看地址失败，该频道可能不支持回看")
-                            
+
                         m3u8_content = self._fetch_and_fix_m3u8(playurl)
                         if not m3u8_content:
                             return self._error_response("获取回看M3U8内容失败")
-                            
-                        logger.info(f"成功返回回看 M3U8 内容，长度 {len(m3u8_content)}")
+
+                        log(f"成功返回回看 M3U8 内容，长度 {len(m3u8_content)}")
                         return [200, "application/vnd.apple.mpegurl", m3u8_content]
                     except ValueError:
                         return self._error_response("回看时间格式错误，请检查日期时间")
                     except Exception as e:
-                        logger.error(f"回看处理异常: {e}")
+                        log(f"回看处理异常: {e}", 'ERROR')
                         return self._error_response("回看处理失败")
                 else:
                     # 正常直播
-                    logger.info(f"直播请求: {channel_id} ({ch['name']})")
+                    log(f"直播请求: {channel_id} ({ch['name']})")
                     playurl, valid = self._get_cached_playurl(channel_id)
                     if not valid:
-                        logger.info("缓存失效，请求 playurl")
+                        log("缓存失效，请求 playurl")
                         manager = CKeyManager()
                         playurl = manager.get_play_url(ch['cnlid'], ch['livepid'], ch['defn'])
                         if not playurl:
@@ -820,7 +795,7 @@ class Spider(BaseSpider):
 
                     m3u8_content = self._fetch_and_fix_m3u8(playurl)
                     if not m3u8_content:
-                        logger.warning("首次获取失败，重试")
+                        log("首次获取失败，重试")
                         manager = CKeyManager()
                         playurl2 = manager.get_play_url(ch['cnlid'], ch['livepid'], ch['defn'])
                         if not playurl2:
@@ -829,13 +804,13 @@ class Spider(BaseSpider):
                         m3u8_content = self._fetch_and_fix_m3u8(playurl2)
                         if not m3u8_content:
                             return self._error_response("重试获取M3U8内容失败")
-                            
-                    logger.info(f"成功返回直播 M3U8，长度 {len(m3u8_content)}")
+
+                    log(f"成功返回直播 M3U8，长度 {len(m3u8_content)}")
                     return [200, "application/vnd.apple.mpegurl", m3u8_content]
 
             return self._error_response("未知请求")
         except Exception as e:
-            logger.error(f"localProxy 异常: {e}\n{traceback.format_exc()}")
+            log(f"localProxy 异常: {e}\n{traceback.format_exc()}", 'ERROR')
             return self._error_response("内部错误")
 
     def liveContent(self, url):
@@ -851,7 +826,7 @@ class Spider(BaseSpider):
                     lines.append(f'#EXTINF:-1 tvg-id="{info["name"]}" tvg-name="{info["name"]}" group-title="{group_name}",{info["name"]}')
                     proxy_url = base_proxy + f'fun=cctv&id={pid}'
                     lines.append(proxy_url)
-        logger.info(f"生成直播列表，共 {len(CHANNELS)} 个频道")
+        log(f"生成直播列表，共 {len(CHANNELS)} 个频道")
         return '\n'.join(lines)
 
     def _error_response(self, msg):
@@ -860,18 +835,17 @@ class Spider(BaseSpider):
             "#EXT-X-TARGETDURATION:10\n#EXTINF:10.0,\nerror.ts\n"
             f"#EXT-X-ENDLIST\n# {msg}"
         )
-        logger.error(f"返回错误: {msg}")
+        log(f"返回错误: {msg}", 'ERROR')
         return [500, "application/vnd.apple.mpegurl", error_m3u]
 
     def destroy(self):
-        if self.session:
-            self.session.close()
-            self.session = None
-        logger.info("Spider 销毁")
+        log("Spider 销毁")
+        pass
 
 
 if __name__ == '__main__':
-    logger.info("开始独立测试")
+    # 独立测试模式
+    print("开始独立测试")
     spider = Spider()
     print("=== 测试生成列表 ===")
     m3u = spider.liveContent("")
@@ -884,4 +858,3 @@ if __name__ == '__main__':
     else:
         print("❌ 失败:", result[2])
     spider.destroy()
-    print(f"\n日志已写入: {LOG_FILE}")
