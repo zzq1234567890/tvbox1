@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-央视频直播代理（稳定版）
-- 完全兼容 TVBox Python 环境，无外部依赖
-- 使用 self.fetch / urllib 发送请求
-- 支持直播和 7 天回看（需 playseek 参数）
-- 详细错误输出到控制台，便于调试
+央视频（点播+直播，稳定版）
+- 采用 PHP 版成功逻辑：直播短时缓存（80s）
+- playerContent 返回播放 URL，而非 M3U8 内容
+- 完整加密算法，与 PHP 版一致
 """
 
 import sys
@@ -18,23 +17,25 @@ import hashlib
 import base64
 import ssl
 import urllib.request
-import urllib.error
 from datetime import datetime
 from urllib.parse import urlparse, urljoin, urlencode
 
-# ========== 日志（仅输出到控制台，不写文件，避免权限问题） ==========
-def log(msg, level='INFO'):
+# ========== 日志 ==========
+LOG_FILE = '/sdcard/Download/cctv.log'
+def log(msg):
     try:
-        print(f'[CCTV] {level}: {msg}')
+        with open(LOG_FILE, 'a', encoding='utf-8') as f:
+            f.write(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} {msg}\n')
     except:
         pass
+    print(f'[CCTV] {msg}')
 
 # ========== 导入 BaseSpider ==========
 try:
     from base.spider import Spider as BaseSpider
     log("成功导入 BaseSpider")
 except Exception as e:
-    log(f"导入 BaseSpider 失败，使用兜底类: {e}", 'ERROR')
+    log(f"导入 BaseSpider 失败: {e}")
     class BaseSpider:
         def getProxyUrl(self):
             return "http://127.0.0.1:9978/proxy?do=py&"
@@ -136,14 +137,14 @@ CHANNEL_GROUPS = {
                 'cctvystq','cctvdszn','cctvwsjk','gxpd']
 }
 
-CACHE_TTL = 1800
 CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cache')
 try:
     os.makedirs(CACHE_DIR, 0o755, True)
 except:
     pass
+CACHE_LIVE_TIMEOUT = 80  # 秒
 
-# ========== 加密类（完整，只保留核心加密方法） ==========
+# ========== 加密类（与 PHP 版完全一致） ==========
 class CKeyManager:
     DELTA = 0x9e3779b9
     ROUNDS = 16
@@ -471,7 +472,6 @@ class CKeyManager:
         ckey = self.encrypt_data_to_ckey(buffer)
         return {'ckey': ckey, 'params': params}
 
-    # ----- 生成请求参数（不再包含网络请求） -----
     def build_live_params(self, cnlid, livepid, defn):
         self.generate_guid()
         ckey_result = self.generate_ckey(cnlid)
@@ -529,11 +529,9 @@ class CKeyManager:
         params['playbacktime'] = str(playback_timestamp)
         return params
 
-
-# ========== Spider 主类 ==========
+# ========== Spider 类 ==========
 class Spider(BaseSpider):
     def __init__(self):
-        super().__init__()
         log("Spider 实例化成功")
 
     def getName(self):
@@ -542,11 +540,10 @@ class Spider(BaseSpider):
     def init(self, extend):
         log(f"init 被调用，extend={extend}")
 
-    # ---------- 通用请求（优先 self.fetch，降级 urllib） ----------
+    # ---------- 网络请求（优先 self.fetch） ----------
     def _http_get(self, url, headers=None, timeout=15):
         if headers is None:
             headers = {}
-        # 尝试 TVBox 自带的 fetch
         try:
             if hasattr(self, 'fetch'):
                 resp = self.fetch(url, headers=headers, timeout=timeout)
@@ -557,205 +554,185 @@ class Spider(BaseSpider):
                 elif resp is not None:
                     return str(resp)
         except Exception as e:
-            log(f"self.fetch 失败: {e}", 'DEBUG')
-        # 降级 urllib
+            log(f"self.fetch 失败: {e}")
         try:
             req = urllib.request.Request(url, headers=headers, method='GET')
             ctx = ssl._create_unverified_context()
             with urllib.request.urlopen(req, context=ctx, timeout=timeout) as resp:
                 return resp.read().decode('utf-8', errors='ignore')
         except Exception as e:
-            log(f"urllib 请求失败: {e}", 'ERROR')
+            log(f"urllib 请求失败: {e}")
             return None
 
-    # ---------- 请求央视频接口 ----------
-    def _request_cctv(self, params):
+    # ---------- 获取播放地址 ----------
+    def _get_play_url(self, ch, playseek=None):
+        """
+        获取播放地址，直播时缓存（80秒），回看不缓存
+        返回播放 URL（M3U8 地址），供 TVBox 播放器直接请求
+        """
+        is_live = (playseek is None or playseek == '')
+        cache_file = os.path.join(CACHE_DIR, hashlib.md5(ch['cnlid'].encode()).hexdigest() + '.cache')
+
+        if is_live:
+            # 尝试从缓存读取
+            if os.path.exists(cache_file):
+                try:
+                    with open(cache_file, 'r') as f:
+                        data = json.load(f)
+                        if time.time() - data['time'] <= CACHE_LIVE_TIMEOUT:
+                            log(f"缓存命中: {ch['name']}")
+                            return data['url']
+                except:
+                    pass
+            log(f"缓存未命中或过期: {ch['name']}")
+
+        # 获取新地址
+        manager = CKeyManager()
+        if is_live:
+            params = manager.build_live_params(ch['cnlid'], ch['livepid'], ch['defn'])
+        else:
+            try:
+                parts = playseek.split('-')
+                if len(parts) < 1:
+                    log(f"回看参数错误: {playseek}")
+                    return None
+                start_dt = datetime.strptime(parts[0], '%Y%m%d%H%M%S')
+                timestamp = int(start_dt.timestamp())
+                params = manager.build_playback_params(ch['cnlid'], ch['livepid'], ch['defn'], timestamp)
+            except Exception as e:
+                log(f"回看时间解析失败: {e}")
+                return None
+
         url = "https://bkliveinfo.ysp.cctv.cn?" + urlencode(params)
-        headers = {'User-Agent': 'qqlive', 'Accept': 'application/json'}
+        headers = {'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15',
+                   'Accept': 'application/json'}
         text = self._http_get(url, headers, timeout=15)
-        if text is None:
+        if not text:
+            log("获取接口返回空")
             return None
         try:
             data = json.loads(text)
             if data.get('iretcode') == 0:
-                return data.get('playurl')
+                playurl = data.get('playurl')
+                if playurl:
+                    log(f"获取播放地址成功: {ch['name']}")
+                    # 直播时缓存地址
+                    if is_live:
+                        try:
+                            with open(cache_file, 'w') as f:
+                                json.dump({'url': playurl, 'time': time.time()}, f)
+                        except:
+                            pass
+                    return playurl
             else:
-                log(f"接口错误: iretcode={data.get('iretcode')}, msg={data.get('msg')}", 'ERROR')
-                return None
+                log(f"接口错误: iretcode={data.get('iretcode')}, msg={data.get('msg')}")
         except Exception as e:
-            log(f"解析响应失败: {e}", 'ERROR')
-            return None
+            log(f"解析响应失败: {e}")
+        return None
 
-    # ---------- 缓存 ----------
-    def _cache_path(self, channel_id):
-        return os.path.join(CACHE_DIR, hashlib.md5(channel_id.encode()).hexdigest() + '.cache')
+    # ========== 点播接口 ==========
+    def homeContent(self, filter):
+        log("homeContent 被调用")
+        classes = [{'type_id': g, 'type_name': g} for g in CHANNEL_GROUPS.keys()]
+        return {'class': classes}
 
-    def _get_cached_playurl(self, channel_id):
-        cache_file = self._cache_path(channel_id)
-        if os.path.exists(cache_file):
-            try:
-                with open(cache_file, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                    if isinstance(data, dict) and 'url' in data and 'time' in data:
-                        age = time.time() - data['time']
-                        if age < CACHE_TTL:
-                            log(f"缓存命中: {channel_id}")
-                            return data['url'], True
-                        else:
-                            log(f"缓存过期: {channel_id}")
-            except Exception as e:
-                log(f"读取缓存失败: {e}", 'ERROR')
-        return None, False
+    def categoryContent(self, tid, pg, filter, extend):
+        log(f"categoryContent: tid={tid}, pg={pg}")
+        pg = int(pg) if pg else 1
+        size = 50
+        ids = CHANNEL_GROUPS.get(tid, [])
+        total = len(ids)
+        start = (pg - 1) * size
+        end = min(start + size, total)
+        videos = []
+        for pid in ids[start:end]:
+            ch = CHANNELS.get(pid)
+            if ch:
+                videos.append({
+                    'vod_id': pid,
+                    'vod_name': ch['name'],
+                    'vod_pic': '',
+                    'vod_remarks': '直播'
+                })
+        return {
+            'list': videos,
+            'page': pg,
+            'pagecount': (total + size - 1) // size,
+            'limit': size,
+            'total': total
+        }
 
-    def _set_cached_playurl(self, channel_id, playurl):
-        cache_file = self._cache_path(channel_id)
-        try:
-            with open(cache_file, 'w', encoding='utf-8') as f:
-                json.dump({'url': playurl, 'time': int(time.time())}, f)
-            log(f"已缓存: {channel_id}")
-        except Exception as e:
-            log(f"写入缓存失败: {e}", 'ERROR')
-
-    # ---------- 获取并补全 M3U8 ----------
-    def _fetch_and_fix_m3u8(self, play_url):
-        try:
-            headers = {
-                'User-Agent': 'qqlive',
-                'Referer': 'https://ysp.cctv.cn/',
-                'Accept': 'application/vnd.apple.mpegurl, */*'
+    def detailContent(self, ids):
+        pid = ids[0] if ids else ''
+        ch = CHANNELS.get(pid)
+        if ch:
+            return {
+                'list': [{
+                    'vod_id': pid,
+                    'vod_name': ch['name'],
+                    'vod_pic': '',
+                    'vod_remarks': '直播',
+                    'vod_content': '央视频直播',
+                    'vod_play_from': '央视频',
+                    'vod_play_url': '播放$' + pid
+                }]
             }
-            content = self._http_get(play_url, headers, timeout=20)
-            if not content:
-                log("获取 M3U8 返回空", 'ERROR')
-                return None
-            if '#EXTM3U' not in content:
-                log("M3U8 缺少 #EXTM3U 头", 'ERROR')
-                return None
-            parsed = urlparse(play_url)
-            base = f"{parsed.scheme}://{parsed.netloc}{parsed.path[:parsed.path.rfind('/')+1]}"
-            lines = []
-            for line in content.splitlines():
-                stripped = line.strip()
-                if stripped and not stripped.startswith('#') and '.ts' in stripped:
-                    if not stripped.startswith(('http://', 'https://')):
-                        lines.append(urljoin(base, stripped))
-                    else:
-                        lines.append(stripped)
-                else:
-                    lines.append(line)
-            result = '\n'.join(lines)
-            log(f"M3U8 获取成功，长度 {len(result)}")
-            return result
-        except Exception as e:
-            log(f"获取 M3U8 异常: {e}", 'ERROR')
-            return None
+        return {'list': []}
 
-    # ---------- TVBox 接口 ----------
-    def localProxy(self, params):
-        log(f"localProxy 调用: {params}")
-        try:
-            fun = params.get('fun')
-            if fun != 'cctv':
-                return self._error_response("未知请求")
-            channel_id = params.get('id')
-            if not channel_id:
-                return self._error_response("缺少频道ID")
-            ch = CHANNELS.get(channel_id)
-            if not ch:
-                return self._error_response(f"频道 {channel_id} 不存在")
+    def playerContent(self, flag, id, vipFlags):
+        log(f"playerContent: flag={flag}, id={id}")
+        ch = CHANNELS.get(id)
+        if not ch:
+            log(f"频道不存在: {id}")
+            return {'url': '', 'parse': 0, 'jx': 0}
 
-            playseek = params.get('playseek')
-            if playseek:
-                # 回看
-                log(f"回看请求: {channel_id}, playseek={playseek}")
-                try:
-                    parts = playseek.split('-')
-                    if len(parts) < 1 or not parts[0]:
-                        return self._error_response("回看参数错误")
-                    start_dt = datetime.strptime(parts[0], '%Y%m%d%H%M%S')
-                    timestamp = int(start_dt.timestamp())
-                    manager = CKeyManager()
-                    req_params = manager.build_playback_params(ch['cnlid'], ch['livepid'], ch['defn'], timestamp)
-                    playurl = self._request_cctv(req_params)
-                    if not playurl:
-                        return self._error_response("获取回看地址失败")
-                    m3u8 = self._fetch_and_fix_m3u8(playurl)
-                    if not m3u8:
-                        return self._error_response("获取回看 M3U8 失败")
-                    return [200, "application/vnd.apple.mpegurl", m3u8]
-                except Exception as e:
-                    log(f"回看异常: {e}", 'ERROR')
-                    return self._error_response("回看处理失败")
-            else:
-                # 直播
-                log(f"直播请求: {channel_id}")
-                playurl, valid = self._get_cached_playurl(channel_id)
-                if not valid:
-                    manager = CKeyManager()
-                    req_params = manager.build_live_params(ch['cnlid'], ch['livepid'], ch['defn'])
-                    playurl = self._request_cctv(req_params)
-                    if not playurl:
-                        return self._error_response("获取直播地址失败")
-                    self._set_cached_playurl(channel_id, playurl)
-                m3u8 = self._fetch_and_fix_m3u8(playurl)
-                if not m3u8:
-                    # 重试一次
-                    log("首次 M3U8 失败，重试")
-                    manager = CKeyManager()
-                    req_params = manager.build_live_params(ch['cnlid'], ch['livepid'], ch['defn'])
-                    playurl2 = self._request_cctv(req_params)
-                    if not playurl2:
-                        return self._error_response("重试获取地址失败")
-                    self._set_cached_playurl(channel_id, playurl2)
-                    m3u8 = self._fetch_and_fix_m3u8(playurl2)
-                    if not m3u8:
-                        return self._error_response("重试获取 M3U8 失败")
-                return [200, "application/vnd.apple.mpegurl", m3u8]
-        except Exception as e:
-            log(f"localProxy 异常: {e}", 'ERROR')
-            return self._error_response("内部错误")
+        # 直接获取播放 URL，让 TVBox 播放器自行请求 M3U8
+        play_url = self._get_play_url(ch, playseek=None)
+        if play_url:
+            log(f"返回播放 URL: {play_url[:80]}...")
+            return {
+                'parse': 0,
+                'jx': 0,
+                'url': play_url,
+                'header': {
+                    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15',
+                    'Referer': 'https://ysp.cctv.cn/'
+                }
+            }
+        else:
+            log("获取播放 URL 失败")
+            return {'url': '', 'parse': 0, 'jx': 0}
 
-    # ---------- 生成直播列表 ----------
+    # ========== 直播模式（备用） ==========
     def liveContent(self, url):
-        log("liveContent 被调用")
+        log("liveContent 被调用（备用）")
         try:
             lines = ['#EXTM3U']
             base_proxy = self.getProxyUrl()
             if not base_proxy.endswith(('?', '&')):
                 base_proxy += '&'
-            for group_name, channel_ids in CHANNEL_GROUPS.items():
+            for group_name, ids in CHANNEL_GROUPS.items():
                 lines.append(f'\n#  {group_name}\n')
-                for pid in channel_ids:
+                for pid in ids:
                     if pid in CHANNELS:
-                        info = CHANNELS[pid]
-                        lines.append(f'#EXTINF:-1 tvg-id="{info["name"]}" tvg-name="{info["name"]}" group-title="{group_name}",{info["name"]}')
+                        ch = CHANNELS[pid]
+                        lines.append(f'#EXTINF:-1 tvg-id="{ch["name"]}" tvg-name="{ch["name"]}" group-title="{group_name}",{ch["name"]}')
                         lines.append(base_proxy + f'fun=cctv&id={pid}')
-            result = '\n'.join(lines)
-            log(f"生成列表成功，共 {len(CHANNELS)} 个频道")
-            return result
+            return '\n'.join(lines)
         except Exception as e:
-            log(f"liveContent 异常: {e}", 'ERROR')
+            log(f"liveContent 异常: {e}")
             return "#EXTM3U\n#EXTINF:-1,加载失败\nhttp://127.0.0.1/error.m3u8"
 
-    # ---------- 错误响应 ----------
-    def _error_response(self, msg):
-        log(f"返回错误: {msg}", 'ERROR')
-        return [500, "application/vnd.apple.mpegurl",
-                "#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-MEDIA-SEQUENCE:0\n"
-                "#EXT-X-TARGETDURATION:10\n#EXTINF:10.0,\nerror.ts\n"
-                "#EXT-X-ENDLIST\n# " + msg]
+    def localProxy(self, params):
+        return [500, "application/vnd.apple.mpegurl", "#EXTM3U\n#EXT-X-ENDLIST"]
 
     def destroy(self):
         log("Spider 销毁")
         pass
 
-# ========== 独立测试 ==========
+# ========== 测试 ==========
 if __name__ == '__main__':
-    print("=== 央视频独立测试 ===")
+    print("测试央视频稳定版（返回 URL）")
     spider = Spider()
-    print("生成列表:")
-    print(spider.liveContent("")[:500])
-    print("\n测试直播 cctv1:")
-    result = spider.localProxy({'fun':'cctv','id':'cctv1'})
-    print(result[0], len(result[2]) if result[0]==200 else result[2])
+    print("分类:", spider.homeContent(False))
     spider.destroy()
