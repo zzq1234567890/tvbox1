@@ -2,12 +2,15 @@
     "spider": "./pg.jar",
     "sites": [    
   {
-      "name": "央视频",
+   
 	  "key": "py_ysp",
-	  "api": "./py/live_ysp.py",
+          "name": "央视频",
+	 
       "type": 3,
-	  "searchable": 0,
-      "changeable": 0,
+     "api": "./py/live_ysp.py",
+	  "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
       "epg": "https://epg.tv.darwinchow.com/epg.xml.gz",
       "catchup": {
         "type": "append",
@@ -15,6 +18,7 @@
       }
       
     },
+
 		{
             "key": "网盘配置",
             "name": "youtube和网盘配置",
