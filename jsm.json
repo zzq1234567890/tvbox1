@@ -3090,8 +3090,8 @@
 		{
             "name": "yang_1989",
             "type": 3,
-            "url": "https://iptv.1989.click/playlist.m3u",
-            "epg":"https://material.1989.click/epg.xml.gz",
+            "url": "https://iptv.yang-1989.xyz/playlist.m3u",
+            "epg":"https://iptv.yang-1989.xyz/epg.xml.gz",
             "ua": "okhttp/3.8.1",
              "timeout": 10,
             "playerType": 2
@@ -3107,7 +3107,7 @@
       {
           "name": "yang_myTV「香港」",
           "type": 3,
-          "url": "https://iptv.1989.click/myTV/playlist.m3u",
+          "url": "https://iptv.yang-1989.xyz/myTV/playlist.m3u",
           "epg":"https://material.1989.click/epg.xml.gz",
           "ua": "okhttp/3.8.1",
           "timeout": 10,
@@ -3116,7 +3116,7 @@
     {
          "name": "yang_Sport「体育」",
          "type": 3,
-         "url": "https://iptv.1989.click/sprt/playlist.m3u",
+         "url": "https://iptv.yang-1989.xyz/sprt/playlist.m3u",
          "epg":"https://material.1989.click/epg.xml.gz",
           "ua": "okhttp/3.8.1",
          "timeout": 10,
