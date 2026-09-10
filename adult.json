@@ -24,51 +24,11 @@
   ],
   "sites": [
 	  	 {
-      "key": "py_51xg",
-      "name": "红果短剧py",
-      "type": 3,
-      "api": "./py/51吸瓜.py",
-	 "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0
-    },
-{
-	"key":"yangguang",
-	"name":"阳光影视",
-	"type":3,
-	"api":"./py/yangguang.py",
-	"searchable":0,
-	"quickSearch":0
-},
-
-	  
-{
-      "key": "随客影视",
-      "name": "🎥｜随客｜補全",
-      "type": 3,
-      ##"jar": "./pq.jar",
-      "jar": "./lib/XBPQ.jar",
-      "api": "csp_XBPQ",
-      "ext": {
-          "请求头": "User-Agent$MOBILE_UA",
-          "编码": "UTF-8",
-          "数组": "lazyload\"&&</a",
-          "图片": "data-original=\"&&\"",
-          "标题": "title=\"&&\"",
-          "副标题": "right\">&&</span>",
-          "链接": "href=\"&&\"",
-          "播放数组": "stui-content__playlist column8 clearfix\">&&</ul>",
-          "播放列表": "<a&&a>",
-          "播放链接": "href=\"&&\"",
-          "播放标题": ">&&</",
-          "跳转播放链接":"var player =*source\":\"&&\"",
-          "线路数组": "stui-pannel__head bottom-line active clearfix\">&&</div",
-          "线路标题": "title\">&&</h3",
-          "分类url": "https://www.suike100.com/l-{cateId}-{catePg}--{by}-{year}-{area}--0.html",
-          "分类": "电影$1#电视$2#综艺$3#动漫$4#短剧$28",
-          "类型": "动作片$5#喜剧片$6#爱情片$7#科幻片$8#恐怖片$9#剧情片$10#战争片$11#动画片$15#其他片$19||国剧$20#美剧$21#韩剧$22#日剧$23#港剧$24#台剧$25#泰剧$26#外剧$27#短劇$28||空||空||空",
-          "地区": "大陆&香港&台湾&日本&韩国&泰国&美国&法国&英国&德国&印度&其他"
-        }
+            "name": "AV-155资源",
+            "api": "https://155api.com/api.php/provide/vod",
+            "detail": "https://155api.com",
+            "bz": "0",
+            "paichu": ""
         },
         {
             "key": "采集全集",
@@ -82,6 +42,253 @@
             "ext": "0",
             "changeable": 1
         },
+ {
+            "name": "AV-91麻豆",
+            "api": "https://91md.me/api.php/provide/vod",
+            "detail": "https://91md.me",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-AIvin",
+            "api": "http://lbapiby.com/api.php/provide/vod",
+            "detail": "",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-JKUN资源",
+            "api": "https://jkunzyapi.com/api.php/provide/vod",
+            "detail": "https://jkunzyapi.com",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-souav资源",
+            "api": "https://api.souavzy.vip/api.php/provide/vod",
+            "detail": "https://api.souavzy.vip",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-乐播资源",
+            "api": "https://lbapi9.com/api.php/provide/vod",
+            "detail": "",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-奥斯卡资源",
+            "api": "https://aosikazy.com/api.php/provide/vod",
+            "detail": "https://aosikazy.com",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-奶香香",
+            "api": "https://Naixxzy.com/api.php/provide/vod",
+            "detail": "https://Naixxzy.com",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-森林资源",
+            "api": "https://slapibf.com/api.php/provide/vod",
+            "detail": "https://slapibf.com",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-淫水机资源",
+            "api": "https://www.xrbsp.com/api/json.php",
+            "detail": "https://www.xrbsp.com",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-玉兔资源",
+            "api": "https://apiyutu.com/api.php/provide/vod",
+            "detail": "https://apiyutu.com",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-番号资源",
+            "api": "http://fhapi9.com/api.php/provide/vod",
+            "detail": "",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-白嫖资源",
+            "api": "https://www.kxgav.com/api/json.php",
+            "detail": "https://www.kxgav.com",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-精品资源",
+            "api": "https://www.jingpinx.com/api.php/provide/vod",
+            "detail": "https://www.jingpinx.com",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-美少女资源",
+            "api": "https://www.msnii.com/api/json.php",
+            "detail": "https://www.msnii.com",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-老色逼资源",
+            "api": "https://apilsbzy1.com/api.php/provide/vod",
+            "detail": "https://apilsbzy1.com",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-色南国",
+            "api": "https://api.sexnguon.com/api.php/provide/vod",
+            "detail": "https://api.sexnguon.com",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-色猫资源",
+            "api": "https://api.maozyapi.com/inc/apijson_vod.php",
+            "detail": "https://api.maozyapi.com",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-辣椒资源",
+            "api": "https://apilj.com/api.php/provide/vod",
+            "detail": "https://apilj.com",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-香奶儿资源",
+            "api": "https://www.gdlsp.com/api/json.php",
+            "detail": "https://www.gdlsp.com",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-鲨鱼资源",
+            "api": "https://shayuapi.com/api.php/provide/vod",
+            "detail": "https://shayuapi.com",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-黄AV资源",
+            "api": "https://www.pgxdy.com/api/json.php",
+            "detail": "https://www.pgxdy.com",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "TV-极速资源",
+            "api": "https://jszyapi.com/api.php/provide/vod",
+            "detail": "https://jszyapi.com",
+            "bz": "0",
+            "paichu": "1,2,17,27"
+        },
+        {
+            "name": "TV-魔爪资源",
+            "api": "https://mozhuazy.com/api.php/provide/vod",
+            "detail": "",
+            "bz": "0",
+            "paichu": "1,25,34,40"
+        },
+        {
+            "name": "TV-魔都资源",
+            "api": "https://www.mdzyapi.com/api.php/provide/vod",
+            "bz": "0",
+            "detail": "",
+            "paichu": ""
+        },
+        {
+            "name": "AV-杏吧资源",
+            "api": "https://xingba111.com/api.php/provide/vod",
+            "detail": "",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "TV-量子资源",
+            "api": "https://cj.lziapi.com/api.php/provide/vod",
+            "detail": "",
+            "bz": "0",
+            "paichu": "1,2,3,4"
+        },
+        {
+            "name": "森林资源",
+            "api": "https://slapibf.com/api.php/provide/vod",
+            "detail": "",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "TV-红牛资源",
+            "api": "https://www.hongniuzy3.com/api.php/provide/vod",
+            "detail": "",
+            "bz": "0",
+            "paichu": "1,2"
+        },
+        {
+            "name": "TV-鸭鸭资源",
+            "api": "https://cj.yayazy.net/api.php/provide/vod",
+            "detail": "",
+            "bz": "0",
+            "paichu": "1,2,3,4"
+        },
+        {
+            "name": "TV-海洋资源",
+            "api": "http://www.seacms.org/api.php/provide/vod",
+            "detail": "",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-黄色资源啊啊",
+            "api": "https://hsckzy888.com/api.php/provide/vod",
+            "detail": "",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-小鸡资源",
+            "api": "https://api.xiaojizy.live/provide/vod",
+            "detail": "",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "TV-新浪资源阿",
+            "api": "https://api.xinlangapi.com/xinlangapi.php/provide/vod",
+            "detail": "",
+            "bz": "0",
+            "paichu": "1,2"
+        },
+        {
+            "name": "AV-辣椒资源黄黄",
+            "api": "https://apilj.com/api.php/provide",
+            "detail": "",
+            "bz": "0",
+            "paichu": ""
+        },
+        {
+            "name": "AV-细胞采集黄色",
+            "api": "https://www.xxibaozyw.com/api.php/provide/vod",
+            "detail": "",
+            "bz": "0",
+            "paichu": ""
+        },
+
+	  
 	  {
             "key": "avdb",
             "name": "avdb",
