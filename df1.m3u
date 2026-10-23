@@ -4755,14 +4755,14 @@ http://127.0.0.1:8081/hami.php?id=1816
 #EXTINF:-1    tvg-id="NHK新聞資訊台"   tvg-name="NHK新聞資訊台"     group-title="hami",NHK新聞資訊台(免費)
 http://127.0.0.1:8081/hami.php?id=1974
 #EXTINF:-1    tvg-id="DreamWorks(免費)"   tvg-name="DreamWorks(免費)"     group-title="hami",DreamWorks(免費)
-http://127.0.0.1:8081/hami.php?id=2108
+http://127.0.0.1:8081/hami.php?id=1773
 #EXTINF:-1    tvg-id="CARTOONITO(免費)"   tvg-name="CARTOONITO(免費)"     group-title="hami",CARTOONITO(免費)
-http://127.0.0.1:8081/hami.php?id=2122
+http://127.0.0.1:8081/hami.php?id=2131
 #EXTINF:-1    tvg-id="罪案偵緝頻道(免費)"   tvg-name="罪案偵緝頻道(免費)"     group-title="hami",罪案偵緝頻道(免費)
-http://127.0.0.1:8081/hami.php?id=2123
+http://127.0.0.1:8081/hami.php?id=2132
 
 #EXTINF:-1    tvg-id="八大精彩台"   tvg-name="八大精彩台"     group-title="hami",八大精彩台(免費)
-#http://127.0.0.1:8081/hami.php?id=2120
+http://127.0.0.1:8081/hami.php?id=1969
 #EXTINF:-1    tvg-id="PET CLUB TV"   tvg-name="PET CLUB TV"     group-title="hami",PET CLUB TV(免費)
 #http://127.0.0.1:8081/hami.php?id=1905
 #EXTINF:-1    tvg-id="達文西頻道"   tvg-name="達文西頻道"   tvg-logo="https://cdn.jsdelivr.net/gh/wanglindl/TVlogo@main/img/FTV2.png"    group-title="hami",達文西頻道(免費)
