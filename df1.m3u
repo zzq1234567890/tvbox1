@@ -1,6 +1,10 @@
 #EXTM3U url-tvg="https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz"
 
-
+#EXTINF:-1 group-title="中文新聞",SKY LIVE EVENT 1 HD H265
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=5bd392c41950c683745625ead341fcb0:622ef4857cf11f77df432ae9aec37962
+https://zap-live4-ott.izzigo.tv/6/out/u/dash/SKY-LIVE-EVENT-1-HD-H265/default.mpd
 #EXTINF:-1 group-title="中文新聞",FOX Sports
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
 #KODIPROP:inputstream.adaptive.license_type=clearkey
