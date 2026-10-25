@@ -1,7 +1,10 @@
 {
   "urls": [
 
-  
+  {
+      "name":"摸鱼1",
+      "url":"./moyu.json"
+    },
     {
       "name":"艾文",
       "url":"./aiwen.json"
