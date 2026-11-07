@@ -50,7 +50,28 @@
       "api": "./js/独播库.js",
       "changeable": 0
     },  
+{
+      "key": "枫叶4k.js",
+      "name": "枫叶4k.js",
+      "type": 3,
+      "api": "./js/枫叶4k.js",
+      "ext": {
+        "baseUrl":"https://maihaolian.com",
+        "cookie": "./config/枫叶ck.txt"
+      },
+      "changeable": 0
+    },
 
+       {
+      "key": "枫叶api版.js",
+      "name": "枫叶api版.js",
+      "type": 3,
+      "api": "./js/枫叶api版.js",
+      "ext": {
+        "baseUrl": "https://maihaolian.com"
+      },
+      "changeable": 0
+    },  
 		{
             "key": "网盘配置",
             "name": "youtube和网盘配置",
