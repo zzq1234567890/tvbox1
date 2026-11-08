@@ -2781,13 +2781,15 @@ http://127.0.0.1:8081/tvbnewsweb.php?channel=F
 https://rthktv31-vos-live.akamaized.net/Content/DASH/Live/channel(rthk_ch31)/master.mpd
 
 
+#EXTINF:-1 tvg-id="香港電台32" tvg-name="香港電台32" tvg-logo="" group-title="港澳台",香港電台32
+https://hkg2-node-01.mediatech-ssc.net/rthk_rthk32_ci_fc92cc61-9ba8-4f6b-911e-b271cdf35769/multivariant.m3u8?authToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVsSWQiOiJydGhrX3J0aGszMl9jaV9mYzkyY2M2MS05YmE4LTRmNmItOTExZS1iMjcxY2RmMzU3NjkiLCJleHAiOjE3OTQyMzM0NTV9.yrOHZaAnJQHrmK7Cy-Z_LTxH36Xh_tsqFpgpkVFpL_E
+
+
 #EXTINF:-1 tvg-id="香港電台31" tvg-name="香港電台31" tvg-logo="" group-title="港澳台",香港電台31
 https://rthktv31-live.akamaized.net/hls/live/2036818/RTHKTV31/stream5/streamPlaylist.m3u8
 
 #EXTINF:-1 tvg-id="香港電台32" tvg-name="香港電台32" tvg-logo="" group-title="港澳台",香港電台32
-https://rthktv32-live.akamaized.net/hls/live/2036819/RTHKTV32/stream5/streamPlaylist.m3u8
-
-
+https://hkg2-node-01.mediatech-ssc.net/rthk_rthk32_ci_fc92cc61-9ba8-4f6b-911e-b271cdf35769/multivariant.m3u8?authToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVsSWQiOiJydGhrX3J0aGszMl9jaV9mYzkyY2M2MS05YmE4LTRmNmItOTExZS1iMjcxY2RmMzU3NjkiLCJleHAiOjE3OTQyMzM0NTV9.yrOHZaAnJQHrmK7Cy-Z_LTxH36Xh_tsqFpgpkVFpL_E
 
 #EXTINF:-1 tvg-id="香港電台31" tvg-name="香港電台31" tvg-logo="" group-title="港澳台",香港電台31
 #KODIPROP:inputstreamaddon=inputstream.adaptive
