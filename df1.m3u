@@ -1191,38 +1191,6 @@ http://127.0.0.1:8081/shenzhen.php?id=szws4k
 #EXTINF:-1   tvg-id="山東衛視"   tvg-name="山東衛視"    tvg-logo=""    group-title="4K",山東衛視4K
 http://127.0.0.1:8081/shandong1.php?id=1
 
-#EXTINF:-1 tvg-id="USBA3400003IP" tvg-name="Love Nature 4K" tvg-logo="https://garyshare.sharewithyou.dpdns.org/logos/Love_Nature.png" group-title="4K",Love Nature 4K
-https://pb-ehs1glsha1juy.akamaized.net/v1/manifest/3722c60a815c199d9c0ef36c5b73da68a62b09d1/pb-ehs1glsha1juy/f2141f37-1f48-475b-ba54-b9efb62346db/0.m3u8
-
-# === 🇨🇦 CA ===
-
-#EXTINF:-1 tvg-id="Love.Nature.ca2" tvg-name="Love Nature 4K CA" tvg-logo="https://garyshare.sharewithyou.dpdns.org/logos/Love_Nature.png" group-title="4K",Love Nature 4K CA
-http://89.187.179.148:826/anto.j/c9
-
- #EXTINF:-1 tvg-id="INULTRA.pl" tvg-name="INULTRA 4K PL" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/czech-republic/inultra-cz.png?raw=true" group-title="4K",INULTRA 4K PL
-http://89.187.179.148:826/anto.j/c9yJDcXyPe/119321
-#EXTINF:-1   tvg-id="LOVE NATURE有線"   tvg-name="LOVE NATURE有線"    tvg-logo=""    group-title="4K",love nature 4K
-https://pb-ehs1glsha1juy.akamaized.net/Love_Nature_4K.m3u8
-
-#EXTINF:-1 tvg-id="Bloomberg.HD.us2" tvg-name="Bloomberg Television 4K" tvg-logo="http://schedulesdirect-api20141201-logos.s3.dualstack.us-east-1.amazonaws.com/stationLogos/s71799_dark_360w_270h.png" group-title="4K",Bloomberg Television 4K
-https://d8975dc3.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/U2Ftc3VuZy1nYl9CbG9vbWJlcmdUVlBsdXNfSExT/playlist.m3u8
-
-#EXTINF:-1 tvg-id="USBA3800005NI" tvg-name="Clarity 4K" tvg-logo="https://i.imgur.com/M87kbVk.png" group-title="4K",Clarity 4K
-https://iptv.707626.xyz/ch/6b524eba472d8b84fc243b6510737145/master.m3u8
-
-#EXTINF:-1 tvg-id="USBB1000002TK" tvg-name="Loupe 4K" tvg-logo="https://loupeart.com/cdn/shop/files/Wordmark_gradient_Thick_420x.png?v=1667930176" group-title="4K",Loupe 4K
-https://iptv.707626.xyz/ch/83e28d1966f4888308e6e97b804caf1e/master.m3u8
-
-#EXTINF:-1 tvg-id="Love.Nature.ca2" tvg-name="Love Nature 4K CA" tvg-logo="https://images.sr.roku.com/idType/roku-trc/context/trc/id/479fe0d11f3f5132a3f36b617547da3b/https%3A%2F%2Fimage.roku.com%2Fbh-uploads%2Fproduction%2FinfoHUDLogo%2F1738776545554_LoveNature_logos_HUB_Centered.png" group-title="4K",Love Nature 4K CA
-https://iptv.707626.xyz/ch/a859f84951d60ea32d52e414fe95bf4e/master.m3u8
-
-#EXTINF:-1 tvg-id="New.England.Sports.Network.HD.us2" tvg-name="NESN 4K" tvg-logo="https://i.postimg.cc/CxVDbJrS/nesn.png" group-title="4K",NESN 4K
-https://iptv.707626.xyz/ch/4213d7c43e94f427ba46fe8d513eeb87/master.m3u8
-
-#EXTINF:-1 tvg-id="SkySp.F1.HD.uk" tvg-name="Sky Sports F1 4K UK" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-kingdom/hd/sky-sports-f1-uhd-uk.png?raw=true" group-title="4K",Sky Sports F1 4K UK
-https://iptv.707626.xyz/ch/d66d2b3cb0bf682e1198a3d33f9d5ef4/master.m3u8
-
-
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -4760,25 +4728,19 @@ http://127.0.0.1:8081/t/mpd.php?id=464cd4f0-2ab2-49e7-a7c5-eb7e31b6395b
 #EXTINF:-1    tvg-id="Hami體育1台(免費)"   tvg-name="Hami體育1台(免費)"     group-title="hami",Hami體育1台(免費)
 http://127.0.0.1:8081/hami.php?id=1816
 #EXTINF:-1    tvg-id="Hami體育3台(免費)"   tvg-name="Hami體育3台(免費)"     group-title="hami",Hami體育3台(免費)
-#http://127.0.0.1:8081/hami.php?id=2117
+http://127.0.0.1:8081/hami.php?id=2117
 #EXTINF:-1    tvg-id="NHK新聞資訊台"   tvg-name="NHK新聞資訊台"     group-title="hami",NHK新聞資訊台(免費)
 http://127.0.0.1:8081/hami.php?id=1974
-#EXTINF:-1    tvg-id="DreamWorks(免費)"   tvg-name="DreamWorks(免費)"     group-title="hami",DreamWorks(免費)
-http://127.0.0.1:8081/hami.php?id=1773
-#EXTINF:-1    tvg-id="CARTOONITO(免費)"   tvg-name="CARTOONITO(免費)"     group-title="hami",CARTOONITO(免費)
+#EXTINF:-1    tvg-id="Global Trekker(免費)"   tvg-name="Global Trekker(免費)"     group-title="hami",Global Trekker(免費)
+http://127.0.0.1:8081/hami.php?id=2109
+#EXTINF:-1    tvg-id="INULTRA(免費)"   tvg-name="INULTRA(免費)"     group-title="hami",INULTRA(免費)
 http://127.0.0.1:8081/hami.php?id=2131
-#EXTINF:-1    tvg-id="罪案偵緝頻道(免費)"   tvg-name="罪案偵緝頻道(免費)"     group-title="hami",罪案偵緝頻道(免費)
+#EXTINF:-1    tvg-id="靖天中文台(免費)"   tvg-name="靖天中文台(免費)"     group-title="hami",靖天中文台(免費)
 http://127.0.0.1:8081/hami.php?id=2132
 
-#EXTINF:-1    tvg-id="八大精彩台"   tvg-name="八大精彩台"     group-title="hami",八大精彩台(免費)
-http://127.0.0.1:8081/hami.php?id=1969
-#EXTINF:-1    tvg-id="PET CLUB TV"   tvg-name="PET CLUB TV"     group-title="hami",PET CLUB TV(免費)
-#http://127.0.0.1:8081/hami.php?id=1905
-#EXTINF:-1    tvg-id="達文西頻道"   tvg-name="達文西頻道"   tvg-logo="https://cdn.jsdelivr.net/gh/wanglindl/TVlogo@main/img/FTV2.png"    group-title="hami",達文西頻道(免費)
-#http://127.0.0.1:8081/hami.php?id=1900
-#EXTINF:-1    tvg-id="Mezzo Live"   tvg-name="Mezzo Live"     group-title="hami",Mezzo Live(免費)
-http://127.0.0.1:8081/hami.php?id=2121
- 
+#EXTINF:-1    tvg-id="CNEX紀實頻道(免費)"   tvg-name="CNEX紀實頻道(免費)"     group-title="hami",CNEX紀實頻道(免費)
+http://127.0.0.1:8081/hami.php?id=1773
+
 
 
 
