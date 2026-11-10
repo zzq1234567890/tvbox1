@@ -2792,17 +2792,17 @@ http://202.69.67.66:443/webcast/bshdlive-pc/playlist.m3u8?wowzasessionid=64000
 https://p2hs.vzan.com/slowlive/821481626725612419/live.m3u8
 #EXTINF:-1   tvg-id="蓮花衛視"   tvg-name="蓮花衛視"    tvg-logo="https://zh.wikipedia.org/wiki/%E6%BE%B3%E9%96%80%E8%93%AE%E8%8A%B1%E8%A1%9B%E8%A6%96#/media/File:Lotus_Macau.png"    group-title="港澳台",蓮花衛視
 http://127.0.0.1:8081/lotustv1.php?id=lotustv
-#EXTINF:-1   tvg-id="澳視澳門"   tvg-name=""    tvg-logo=""    group-title="港澳台",澳視澳門
+#EXTINF:-1   tvg-id="澳視澳門 91台"   tvg-name="澳視澳門 91台"    tvg-logo=""    group-title="港澳台",澳視澳門
 https://live5.tdm.com.mo/ch1/ch1.live/playlist.m3u8
-#EXTINF:-1   tvg-id="澳門葡萄牙"   tvg-name=""    tvg-logo=""    group-title="港澳台",澳門葡萄牙
+#EXTINF:-1   tvg-id="澳視葡文 92台"   tvg-name="澳視葡文 92台"    tvg-logo=""    group-title="港澳台",澳門葡萄牙
 https://live5.tdm.com.mo/ch2/ch2.live/playlist.m3u8
-#EXTINF:-1   tvg-id="澳門資訊"   tvg-name=""    tvg-logo=""    group-title="港澳台",澳門資訊
+#EXTINF:-1   tvg-id="澳門資訊 94台"   tvg-name="澳門資訊 94台"    tvg-logo=""    group-title="港澳台",澳門資訊
 https://live5.tdm.com.mo/ch5/info_ch5.live/playlist.m3u8
-#EXTINF:-1   tvg-id="澳門體育"   tvg-name="澳門體育"    tvg-logo=""    group-title="港澳台",澳門體育
+#EXTINF:-1   tvg-id="澳門體育 93台"   tvg-name="澳門體育 93台"    tvg-logo=""    group-title="港澳台",澳門體育
 https://live5.tdm.com.mo/ch4/sport_ch4.live/playlist.m3u8
-#EXTINF:-1   tvg-id="100005"   tvg-name=""    tvg-logo=""    group-title="港澳台",澳門綜藝
+#EXTINF:-1   tvg-id="澳門綜藝 95台"   tvg-name="澳門綜藝 95台"    tvg-logo=""    group-title="港澳台",澳門綜藝
 https://live5.tdm.com.mo/ch6/hd_ch6.live/playlist.m3u8
-#EXTINF:-1   tvg-id="澳門衛星"   tvg-name="澳門衛星"    tvg-logo=""    group-title="港澳台",澳門衛星
+#EXTINF:-1   tvg-id="澳門-Macau 96台"   tvg-name="澳門-Macau 96台"    tvg-logo=""    group-title="港澳台",澳門衛星
 https://live5.tdm.com.mo/ch3/ch3.live/playlist.m3u8
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="港澳台",澳門CCTV1
 https://globallive.tdm.com.mo/cgtn/cgtn71/playlist.m3u8
