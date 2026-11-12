@@ -4721,12 +4721,13 @@ http://127.0.0.1:8081/t/mpd.php?id=464cd4f0-2ab2-49e7-a7c5-eb7e31b6395b
 
 
 
+
 #EXTINF:-1    tvg-id="HBLTV1台(免費)"   tvg-name="HBLTV1台(免費)"     group-title="hami",HBLTV1台(免費)
-#http://127.0.0.1:8081/hami.php?id=2062
+http://127.0.0.1:8081/hami.php?id=2062
 #EXTINF:-1    tvg-id="HBLTV2台(免費)"   tvg-name="HBLTV2台(免費)"     group-title="hami",HBLTV2台(免費)
-#http://127.0.0.1:8081/hami.php?id=2063
+http://127.0.0.1:8081/hami.php?id=2063
 #EXTINF:-1    tvg-id="Hami體育1台(免費)"   tvg-name="Hami體育1台(免費)"     group-title="hami",Hami體育1台(免費)
-http://127.0.0.1:8081/hami.php?id=1816
+http://127.0.0.1:8081/hami.php?id=2072
 #EXTINF:-1    tvg-id="Hami體育3台(免費)"   tvg-name="Hami體育3台(免費)"     group-title="hami",Hami體育3台(免費)
 http://127.0.0.1:8081/hami.php?id=2117
 #EXTINF:-1    tvg-id="NHK新聞資訊台"   tvg-name="NHK新聞資訊台"     group-title="hami",NHK新聞資訊台(免費)
@@ -4740,7 +4741,6 @@ http://127.0.0.1:8081/hami.php?id=2132
 
 #EXTINF:-1    tvg-id="CNEX紀實頻道(免費)"   tvg-name="CNEX紀實頻道(免費)"     group-title="hami",CNEX紀實頻道(免費)
 http://127.0.0.1:8081/hami.php?id=1773
-
 
 
 
