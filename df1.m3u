@@ -2673,6 +2673,41 @@ http://127.0.0.1:8081/mymysuper.php?id=C2
 #http://127.0.0.1:8081/mymysuper.php?id=OL07
 
 
+#EXTINF:-1 tvg-id="鳳凰中文" tvg-name="鳳凰中文" tvg-logo="https://epg.yang-1989.eu.org/logo/凤凰中文.png" group-title="港澳台",鳳凰衛視·中文
+http://zzqwe.giize.com:12229/fenghuangshow.php?id=fhzw
+#EXTINF:-1 tvg-id="鳳凰資訊" tvg-name="鳳凰資訊" tvg-logo="https://epg.yang-1989.eu.org/logo/凤凰资讯.png" group-title="港澳台",鳳凰衛視·資訊
+http://zzqwe.giize.com:12229/fenghuangshow.php?id=fhzx
+#EXTINF:-1 tvg-id="鳳凰香港" tvg-name="鳳凰香港" tvg-logo="https://epg.yang-1989.eu.org/logo/凤凰香港.png" group-title="港澳台",鳳凰衛視·香港
+http://zzqwe.giize.com:12229/fenghuangshow.php?id=fhhk
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=eed5dc36e586e15e51b82cdd7d1f5b9b:6245385b9c35b24a1bb439739faaa5f6
+#EXTINF:-1 tvg-id="翡翠台 (免費)" tvg-name="翡翠台 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="港澳台",翡翠台 (免費)
+https://ntk1-qa.edgeware.tvb.com/__cl/r1110/__c/ott_J8M_h264/__op/cenc_m/__f/index.mpd
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=eed5dc36e586e15e51b82cdd7d1f5b9b:50e8d28f9f5300f4cda6fe39c63ccf4f
+#EXTINF:-1 tvg-id="翡翠台 (免費)" tvg-name="翡翠台 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="港澳台",翡翠台 (免費)
+https://ntk1-qa.edgeware.tvb.com/__cl/r1110/__c/ott_J8M_h264/__op/cenc/__f/index.mpd
+
+
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=c86195098a0abcde1a3efe816e5b362b:427f36e7afd81c29118ec2510f77e774
+#EXTINF:-1 tvg-id="翡翠台 (免費)" tvg-name="翡翠台 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="港澳台",翡翠台 (免費)
+https://ntk1-qa.edgeware.tvb.com/__cl/r1110/__c/ott_J8M_hevc/__op/cenc_m/__f/index.mpd
+
+
+
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=c86195098a0abcde1a3efe816e5b362b:ef6803b3d41d803b936fed21d4784c73
+#EXTINF:-1 tvg-id="翡翠台 (免費)" tvg-name="翡翠台 (免費)" tvg-logo="https://assets.mytvsuper.com/channel/1651032626745665_C18.png" group-title="港澳台",翡翠台 (免費)
+https://ntk1-qa.edgeware.tvb.com/__cl/r1110/__c/ott_J8M_hevc/__op/cenc/__f/index.mpd
+
 
 
 
@@ -2687,15 +2722,10 @@ http://127.0.0.1:8081/nowtvweb.php?id=331
 #EXTINF:-1 tvg-id="now新聞" tvg-name="now新聞" tvg-logo="https://www.nowtv.now.com/media/logo/332-wbg-c.png" group-title="港澳台",now新聞
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=d935cd427bf63c86bd35e6db8c3f6a44:b3e9396760cf728cb2fd5883c84964aa
+#KODIPROP:inputstream.adaptive.license_key=16d63126f3ca3718a2edbb4a891e779b:61f618b600449b03225ac29306861ed0
 http://127.0.0.1:8081/nowtvweb.php?id=332
 
-#EXTINF:-1 tvg-id="now新聞" tvg-name="now新聞" tvg-logo="https://www.nowtv.now.com/media/logo/332-wbg-c.png" group-title="港澳台",now新聞
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=fbae8fa615f5395aac0466a1bbe69e57:b5b79a327c893c7b601f919c834c1759
 
-http://127.0.0.1:8081/nowtvweb.php?id=332
 
 #EXTINF:-1 tvg-id="now財經" tvg-name="now財經" tvg-logo="https://www.nowtv.now.com/media/logo/333-wbg-c.png" group-title="港澳台",now財經
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -2720,7 +2750,7 @@ http://127.0.0.1:8081/nowtvweb.php?id=331
 #EXTINF:-1 tvg-id="now新聞" tvg-name="now新聞" tvg-logo="https://www.nowtv.now.com/media/logo/332-wbg-c.png" group-title="港澳台",now新聞
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=8dfd5e04695f33e78f19b3a80326bcda:f44e2bfdbe450b7a8c4f226b35f16bc1         
+#KODIPROP:inputstream.adaptive.license_key=16d63126f3ca3718a2edbb4a891e779b:61f618b600449b03225ac29306861ed0         
 http://127.0.0.1:8081/nowtvweb.php?id=332
 
 #EXTINF:-1 tvg-id="now財經" tvg-name="now財經" tvg-logo="https://www.nowtv.now.com/media/logo/333-wbg-c.png" group-title="港澳台",now財經
