@@ -6784,6 +6784,53 @@ http://127.0.0.1:8081/fjqz.php?id=news
 #EXTINF:-1   tvg-id="100680"   tvg-name=""    tvg-logo=""    group-title="地方",泉州閩南語
 http://127.0.0.1:8081/fjqz.php?id=mny
 
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東珠江
+http://127.0.0.1:8081//guangdongtv1.php?id=gdzj
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東新聞
+http://127.0.0.1:8081//guangdongtv1.php?id=gdxw
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東民生
+http://127.0.0.1:8081//guangdongtv1.php?id=gdms
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東體育
+http://127.0.0.1:8081//guangdongtv1.php?id=gdty
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東大灣區衛視
+http://127.0.0.1:8081//guangdongtv1.php?id=nfws
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東大灣區衛視海外版
+http://127.0.0.1:8081//guangdongtv1.php?id=dwqws2
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東4K超高清
+http://127.0.0.1:8081//guangdongtv1.php?id=gdcgq
+
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東經濟科教
+http://127.0.0.1:8081/guangdongweb1.php?id=jjkj
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東影視
+http://127.0.0.1:8081/guangdongweb1.php?id=gdys
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東綜藝
+http://127.0.0.1:8081/guangdongweb1.php?id=gdzy
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東國際
+http://127.0.0.1:8081/guangdongweb1.php?id=gdgj
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東少兒
+http://127.0.0.1:8081/guangdongweb1.php?id=gdse
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東嘉佳卡通
+http://127.0.0.1:8081/guangdongweb1.php?id=jjkt
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",南方購物
+http://127.0.0.1:8081/guangdongweb1.php?id=nfgw
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東嶺南戲曲
+http://127.0.0.1:8081/guangdongweb1.php?id=lnxq
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東房產
+http://127.0.0.1:8081/guangdongweb1.php?id=gdfc
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",現代教育
+http://127.0.0.1:8081/guangdongweb1.php?id=xdjy
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東移動
+http://127.0.0.1:8081/guangdongweb1.php?id=gdyd
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",GRTN健康頻道
+http://127.0.0.1:8081/guangdongweb1.php?id=gdjk
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",GRTN文化頻道
+http://127.0.0.1:8081/guangdongweb1.php?id=gdwh
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",GRTN生活頻道
+http://127.0.0.1:8081/guangdongweb1.php?id=gdsh
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",荔枝台
+http://127.0.0.1:8081/guangdongweb1.php?id=gdlzt
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",GRTN紀錄片
+http://127.0.0.1:8081/guangdongweb1.php?id=gdjlp
 
 
 #EXTINF:-1   tvg-id="廣州綜合"   tvg-name="廣州綜合"    tvg-logo=""    group-title="地方",廣州綜合
