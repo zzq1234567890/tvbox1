@@ -6784,20 +6784,22 @@ http://127.0.0.1:8081/fjqz.php?id=news
 #EXTINF:-1   tvg-id="100680"   tvg-name=""    tvg-logo=""    group-title="地方",泉州閩南語
 http://127.0.0.1:8081/fjqz.php?id=mny
 
+#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東衛視
+http://127.0.0.1:8081/guangdongweb1.php?id=gdws
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東珠江
-http://127.0.0.1:8081//guangdongtv1.php?id=gdzj
+http://127.0.0.1:8081/guangdongweb1.php?id=gdzj
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東新聞
-http://127.0.0.1:8081//guangdongtv1.php?id=gdxw
+http://127.0.0.1:8081/guangdongweb1.php?id=gdxw
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東民生
-http://127.0.0.1:8081//guangdongtv1.php?id=gdms
+http://127.0.0.1:8081/guangdongweb1.php?id=gdms
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東體育
-http://127.0.0.1:8081//guangdongtv1.php?id=gdty
+http://127.0.0.1:8081/guangdongweb1.php?id=gdty
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東大灣區衛視
-http://127.0.0.1:8081//guangdongtv1.php?id=nfws
+http://127.0.0.1:8081/guangdongweb1.php?id=nfws
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東大灣區衛視海外版
-http://127.0.0.1:8081//guangdongtv1.php?id=dwqws2
+http://127.0.0.1:8081/guangdongweb1.php?id=dwqws2
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東4K超高清
-http://127.0.0.1:8081//guangdongtv1.php?id=gdcgq
+http://127.0.0.1:8081/guangdongweb1.php?id=gdcgq
 
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東經濟科教
 http://127.0.0.1:8081/guangdongweb1.php?id=jjkj
