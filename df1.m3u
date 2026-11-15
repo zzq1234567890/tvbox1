@@ -1208,6 +1208,12 @@ http://127.0.0.1:8081/zgst.php?id=sc4k
 #EXTINF:-1  tvg-id="深圳衛視" tvg-name="深圳衛視" tvg-logo="https://epg.v1.mk/logo/深圳衛視.png" group-title="4K",深圳衛視4K
 http://127.0.0.1:8081/zgst.php?id=sz4k
 
+#EXTINF:-1   tvg-id="LOVE NATURE有线"   tvg-name="LOVE NATURE有线"    tvg-logo=""    group-title="4K",love nature 4K
+https://pb-ehs1glsha1juy.akamaized.net/Love_Nature_4K.m3u8
+#EXTINF:-1   tvg-id="LOVE NATURE有线"   tvg-name="LOVE NATURE有线"    tvg-logo=""    group-title="4K",love nature 4K
+https://list.iptvcat.net/my_list/s/a70dfa92623b39ee2eb900a287654119.m3u8
+#EXTINF:-1   tvg-id="LOVE NATURE有线"   tvg-name="LOVE NATURE有线"    tvg-logo=""    group-title="4K",love nature 4K
+https://list.iptvcat.net/my_list/s/caba369ea423f7192268f7c0a427e388.m3u8
 
 
 #KODIPROP:inputstreamaddon=inputstream.adaptive
