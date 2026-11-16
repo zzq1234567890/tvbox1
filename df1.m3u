@@ -1,96 +1,19 @@
 #EXTM3U url-tvg="https://github.com/zzq1234567890/epg/raw/refs/heads/main/twepg.xml.gz"
-
-#EXTINF:-1 group-title="中文新聞",SKY LIVE EVENT 1 HD H265
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=5bd392c41950c683745625ead341fcb0:622ef4857cf11f77df432ae9aec37962
-https://zap-live4-ott.izzigo.tv/6/out/u/dash/SKY-LIVE-EVENT-1-HD-H265/default.mpd
-#EXTINF:-1 group-title="中文新聞",FOX Sports
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=5017e89955f44ff5b4ddf04e5f5151c6:55136a837a0c8bbcfc7ce65cbd9a547c
-https://ciades.providers.com.ar/FOXSPORTS/index.mpd?token=Sf72kl98hw16kx40vb32qu63ñz61th25
-
-#EXTINF:-1 group-title="中文新聞",FOX Sports 2
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=e0e38315c40c4176bab472b349c551ae:d2f1712fc296fee968c7ae0750b2c45b
-https://ciades.providers.com.ar/FOXSPORTS2/index.mpd?token=Sf72kl98hw16kx40vb32qu63ñz61th25
-
-#EXTINF:-1 group-title="中文新聞",FOX Sports 3
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=c72cc2fd2ce34ff78b71765fb85f990d:05fcda26315ffe49f178eca1423831f5
-https://ciades.providers.com.ar/FOXSPORTS3/index.mpd?token=Sf72kl98hw16kx40vb32qu63ñz61th25
-
-
 #EXTINF:-1 group-title="中文新聞",Eurosport 1
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=11223344556677889900112233445566:4b80724d0ef86bcb2c21f7999d67739d
 https://dash2.antik.sk/stream/nvidia_eurosport1/playlist_cenc.mpd
-
-
 #EXTINF:-1 group-title="中文新聞",Eurosport 2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=11223344556677889900112233445566:4b80724d0ef86bcb2c21f7999d67739d
 https://dash2.antik.sk/stream/nvidia_eurosport2/playlist_cenc.mpd
-
-
-
-
  #EXTINF:-1 group-title="中文新聞",Premier sport UK
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=1444f4235529f183f0a5a486befe9cdb:e5e3fec67a1bb3472a2089c8a0a2557f
 https://otte.bia-cf.live.pv-cdn.net/pdx-nitro/live/clients/dash/enc/vwq77hfgzw/out/v1/b858e0b845c64cec953887bd4269e4ea/cenc.mpd
-
-#EXTINF:-1 group-title="中文新聞",bein1
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=335DAD778109954503DCBB21DC92015F:24bfd75d436cbf73168a2a2dccd40281
-
-https://otte.cache.aiv-cdn.net/syd-nitro/live/clients/dash/enc/ghwcl6hv68/out/v1/83536910d8034e9b9895a20fbe1c1687/cenc.mpd
-#EXTINF:-1 group-title="中文新聞", F1 APPLE TV+ FEED
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=c0a9d1e7eaf683120499b4017314a518:990018b9907cf9b5ae4c3dd9eb948255
-https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/bloqv62cg8/out/v1/0f6b2626aef2496e97bce1b5998b49b5/cenc.mpd
-
-#EXTINF:-1 group-title="中文新聞", F1 SKY FEED
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=6dd170459b9d19e43bc554e783570a2b:1a86def14df85af755c5f26d7457fcea
-https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/1y6zgazim1/out/v1/489690bfe676484e8034f5db55b454fd/cenc.mpd
-
-#EXTINF:-1 group-title="中文新聞", TSN SPORTS
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=385ceb9714b75e0cef61254f80b31002:18dce92a2891fee68d21ede5173230f8
-https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/cscevwljkq/out/v1/972185041b244140860b7d56398e9aaf/cenc.mpd
-
-
-#EXTINF:-1 group-title="中文新聞", FANCODE ENGLISH
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=90672900d427457684f8e68ec14c90ef:8a4617cc8dcb8846d055d495f275f06d
-https://in-mc-flive.fancode.com/mumbai/139481_english_dash_83495_1drmta-di_h264/index.mpd
-
-
-#EXTINF:-1 group-title="中文新聞",Dsports
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=62f9e095e872d430b931b6ad35be2168:415eb477052aa42d010768d57cc9535a
-https://live-pv-ta.amazon.fastly-edge.com/gru-nitro/live/dash/enc/cardt9ai8g/out/v1/a85c58beee18435e82a57a0fb9d2f681/cenc.mpd
-
-
-
-#EXTINF:-1 group-title="中文新聞",CANAL+
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=b18ac06789510949f5fee55ee2274151:d7b9d6dba05741b1070d8c19743020f9
-https://api-proxad.oqee.net/playlist/v1/live/1555/1/live.mpd
 
 #EXTINF:-1 group-title="中文新聞",TNT Sports 1 UK
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
@@ -110,56 +33,26 @@ https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.live.fly.ww.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-
 #EXTINF:-1 group-title="中文新聞",TNT 4 uk
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.live.fly.ww.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-
-
-
-
-
 #EXTINF:-1 group-title="中文新聞",W9
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=e8ae44faa1e73658bfe725dec8204259:d90e4519b41352e2791370dfcc20406b
 https://sr-m6web.live.6cloud.fr/out/v1/6play/6play-w9/cmaf_cenc00/dash-short-hd.mpd
-
-#EXTINF:-1 group-title="中文新聞",Sundance TV
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=60da54dad6804a8895d80f79bd2ef324:528d95c9ca726d0602c28f9366a08069
-https://cdn.stmify.com/primevideo/stream/SUNDANCE_TV/cenc.mpd
-
-
-
-
-
-#EXTINF:-1 group-title="中文新聞",Deportes
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=d1a163914db8ffad2c3e94f979896a0d:9728800a3959aafdd5b0bcfbf3768811
-https://otte.live.fly.ww.aiv-cdn.net/gru-nitro/live/clients/dash/enc/vkpoljjpkj/out/v1/502bcf68b3514cd28a220e6f0a43816f/cenc.mpd
-
-
-
 #EXTINF:-1 group-title="中文新聞",FSBL
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=0ad4080cdff8c60b1233b22087f0b340:285f129c5eca01dd08a5d5a14ad801c8
 https://otte.live.fly.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/ssdefyhkkr/out/v1/cf01290cb7f64525bdf861580a016ca8/cenc.mpd
-
 #EXTINF:-1 group-title="中文新聞",Tnt sports 2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-
-
-
-
 #EXTINF:-1 group-title="中文新聞",Fox Mexico
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
 #KODIPROP:inputstream.adaptive.license_type=clearkey
