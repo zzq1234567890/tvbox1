@@ -1195,7 +1195,7 @@ http://127.0.0.1:8081/zgst.php?id=btv4k
 http://127.0.0.1:8081/zgst.php?id=sh4k
 #EXTINF:-1  tvg-id="山東衛視" tvg-name="山東衛視" tvg-logo="https://epg.v1.mk/logo/山東衛視.png" group-title="4K",江蘇衛視4K
 http://127.0.0.1:8081/zgst.php?id=js4k
-#EXTINF:-1  tvg-id="浙江衛視" tvg-name="浙江衛視" tvg-logo="https://epg.v1.mk/logo/浙江衛視.png" group-title="4K",  視浙江衛視4K
+#EXTINF:-1  tvg-id="浙江衛視" tvg-name="浙江衛視" tvg-logo="https://epg.v1.mk/logo/浙江衛視.png" group-title="4K", 浙江衛視4K
 http://127.0.0.1:8081/zgst.php?id=zj4k
 #EXTINF:-1  tvg-id="山東衛視" tvg-name="山東衛視" tvg-logo="https://epg.v1.mk/logo/山東衛視.png" group-title="4K",山東衛視4K
 http://127.0.0.1:8081/zgst.php?id=sd4k
