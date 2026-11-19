@@ -9,6 +9,10 @@
       "name":"艾文",
       "url":"./aiwen.json"
     },
+    {
+      "name":"test",
+    "http://47.100.29.86:8080/vod/config.json"
+    },
    {
     "name": "摸魚",
     "url":"http://我不是.小不点.com"
