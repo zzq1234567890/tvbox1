@@ -2613,7 +2613,6 @@ https://ntk1-qa.edgeware.tvb.com/__cl/r1110/__c/ott_J8M_h264/__op/cenc_m/__f/ind
 https://ntk1-qa.edgeware.tvb.com/__cl/r1110/__c/ott_J8M_h264/__op/cenc/__f/index.mpd
 
 
-
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=c86195098a0abcde1a3efe816e5b362b:427f36e7afd81c29118ec2510f77e774
