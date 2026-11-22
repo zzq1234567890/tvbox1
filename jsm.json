@@ -3068,9 +3068,15 @@
         "playerType": 2
     },
 	
-	
-		
-        
+	   {
+         "name": "judy",
+         "type": 3,
+         "url": "https://cdn.qd.je/live.m3u",
+         "epg":"https://material.1989.click/epg.xml.gz",
+          "ua": "okhttp/3.8.1",
+         "timeout": 10,
+        "playerType": 2
+    },
 		{
             "name": "F1",
             "ua": "okhttp/3.0",
