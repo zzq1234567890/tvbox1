@@ -43,6 +43,13 @@
       "quickSearch": 1,
       "filterable": 0
     },
+		{
+            "name": "TV-创享影视",
+            "api": "https://ys.cxkjg.cn/api/provide/vod",
+            "detail": "",
+            "bz": "1",
+            "paichu": ""
+        },
     {
       "key": "独播库.js",
       "name": "独播库.js",
