@@ -868,6 +868,7 @@ http://127.0.0.1:8081/yspios.php?id=cctvfengyunjuchang
 http://127.0.0.1:8081/yspios.php?id=cctvdiyijuchang
 #EXTINF:-1 tvg-name="cctv懷舊劇場" tvg-logo="https://cdn.jsdelivr.net/gh/sparkssssssssss/epg/logo/怀旧剧场.png" group-title="央視頻",cctv 怀旧剧场
 http://127.0.0.1:8081/yspios.php?id=cctvhuaijiujuchang
+
 #EXTINF:-1 tvg-name="北京衛視" tvg-logo="https://cdn.jsdelivr.net/gh/sparkssssssssss/epg/logo/北京卫视.png" group-title="央視頻",北京衛視
 http://127.0.0.1:8081/yspios.php?id=beijingws
 #EXTINF:-1 tvg-name="江蘇衛視" tvg-logo="https://cdn.jsdelivr.net/gh/sparkssssssssss/epg/logo/江蘇卫视.png" group-title="央視頻",江蘇衛視
@@ -1092,18 +1093,19 @@ http://127.0.0.1:8081/btimeweb.php?id=bjwsuhd
 http://127.0.0.1:8081/shenzhen.php?id=szws4k
 #EXTINF:-1   tvg-id="山東衛視"   tvg-name="山東衛視"    tvg-logo=""    group-title="4K",山東衛視4K
 http://127.0.0.1:8081/shandong1.php?id=1
+#EXTINF:-1  tvg-id="湖南衛視" tvg-name="湖南衛視" tvg-logo="https://epg.v1.mk/logo/湖南衛視.png" group-title="4K",湖南衛視4K
+http://127.0.0.1:8081/zgst.php?id=hn4k
 #EXTINF:-1  tvg-id="北京衛視" tvg-name="北京衛視" tvg-logo="https://epg.v1.mk/logo/北京衛視.png" group-title="4K",北京衛視4K
 http://127.0.0.1:8081/zgst.php?id=btv4k
 #EXTINF:-1  tvg-id="東方衛視" tvg-name="東方衛視" tvg-logo="https://epg.v1.mk/logo/東方衛視.png" group-title="4K",東方衛視4K
 http://127.0.0.1:8081/zgst.php?id=sh4k
-#EXTINF:-1  tvg-id="山東衛視" tvg-name="山東衛視" tvg-logo="https://epg.v1.mk/logo/山東衛視.png" group-title="4K",江蘇衛視4K
+#EXTINF:-1  tvg-id="江蘇衛視" tvg-name="江蘇衛視" tvg-logo="https://epg.v1.mk/logo/江蘇衛視.png" group-title="4K",江蘇衛視4K
 http://127.0.0.1:8081/zgst.php?id=js4k
-#EXTINF:-1  tvg-id="浙江衛視" tvg-name="浙江衛視" tvg-logo="https://epg.v1.mk/logo/浙江衛視.png" group-title="4K", 浙江衛視4K
+#EXTINF:-1  tvg-id="浙江衛視" tvg-name="浙江衛視" tvg-logo="https://epg.v1.mk/logo/浙江衛視.png" group-title="4K",浙江衛視4K
 http://127.0.0.1:8081/zgst.php?id=zj4k
 #EXTINF:-1  tvg-id="山東衛視" tvg-name="山東衛視" tvg-logo="https://epg.v1.mk/logo/山東衛視.png" group-title="4K",山東衛視4K
 http://127.0.0.1:8081/zgst.php?id=sd4k
-#EXTINF:-1  tvg-id="湖南衛視" tvg-name="湖南衛視" tvg-logo="https://epg.v1.mk/logo/湖南衛視.png" group-title="4K",湖南衛視4K
-http://127.0.0.1:8081/zgst.php?id=hn4k
+
 #EXTINF:-1  tvg-id="廣東衛視" tvg-name="廣東衛視" tvg-logo="https://epg.v1.mk/logo/廣東衛視.png" group-title="4K",廣東衛視4K
 http://127.0.0.1:8081/zgst.php?id=gd4k
 #EXTINF:-1  tvg-id="四川衛視" tvg-name="四川衛視" tvg-logo="https://epg.v1.mk/logo/四川衛視.png" group-title="4K",四川衛視4K
