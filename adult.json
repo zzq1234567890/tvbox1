@@ -34,13 +34,9 @@
             "filterable": 0,
             "ext": ""
         },
-	  	 {
-            "name": "AV-155资源",
-            "api": "https://155api.com/api.php/provide/vod",
-            "detail": "https://155api.com",
-            "bz": "0",
-            "paichu": ""
-        },
+	  	 
+
+            
  {
    
 	  "key": "py_51cg",
@@ -59,8 +55,9 @@
 	  "key": "py_ttt",
           "name": "汤头条",
 	 
-      "type": 3,
+      
      "api": "./py/汤头条.py",
+			"type": 3,
 	  "searchable": 1,
       "quickSearch": 1,
       "filterable": 0
@@ -70,56 +67,80 @@
                 {
             "name": "AV-91麻豆",
             "api": "https://91md.me/api.php/provide/vod",
-            "detail": "https://91md.me",
+          "type": 3,
+	  "searchable": 1,
+      "quickSearch": 1,
+					"detail": "https://91md.me",
             "bz": "0",
             "paichu": ""
         },
         {
             "name": "AV-AIvin",
             "api": "http://lbapiby.com/api.php/provide/vod",
-            "detail": "",
+           "type": 3,
+	  "searchable": 1,
+      "quickSearch": 1,
+			"detail": "",
             "bz": "0",
             "paichu": ""
         },
         {
             "name": "AV-JKUN资源",
             "api": "https://jkunzyapi.com/api.php/provide/vod",
-            "detail": "https://jkunzyapi.com",
+           "type": 3,
+	  "searchable": 1,
+      "quickSearch": 1,
+			"detail": "https://jkunzyapi.com",
             "bz": "0",
             "paichu": ""
         },
         {
             "name": "AV-souav资源",
             "api": "https://api.souavzy.vip/api.php/provide/vod",
-            "detail": "https://api.souavzy.vip",
+           "type": 3,
+	  "searchable": 1,
+      "quickSearch": 1,
+			"detail": "https://api.souavzy.vip",
             "bz": "0",
             "paichu": ""
         },
         {
             "name": "AV-乐播资源",
             "api": "https://lbapi9.com/api.php/provide/vod",
-            "detail": "",
+           "type": 3,
+	  "searchable": 1,
+      "quickSearch": 1,
+			"detail": "",
             "bz": "0",
             "paichu": ""
         },
         {
             "name": "AV-奥斯卡资源",
             "api": "https://aosikazy.com/api.php/provide/vod",
-            "detail": "https://aosikazy.com",
+            "type": 3,
+	  "searchable": 1,
+      "quickSearch": 1,
+			"detail": "https://aosikazy.com",
             "bz": "0",
             "paichu": ""
         },
         {
             "name": "AV-奶香香",
             "api": "https://Naixxzy.com/api.php/provide/vod",
-            "detail": "https://Naixxzy.com",
+            "type": 3,
+	  "searchable": 1,
+      "quickSearch": 1,
+			"detail": "https://Naixxzy.com",
             "bz": "0",
             "paichu": ""
         },
         {
             "name": "AV-森林资源",
             "api": "https://slapibf.com/api.php/provide/vod",
-            "detail": "https://slapibf.com",
+          "type": 3,
+	  "searchable": 1,
+      "quickSearch": 1,
+			"detail": "https://slapibf.com",
             "bz": "0",
             "paichu": ""
         },
