@@ -6428,9 +6428,9 @@ http://127.0.0.1:8081/shkk.php?id=dfws
 http://127.0.0.1:8081/shkk.php?id=shxwzh
 #EXTINF:-1   tvg-id="上海都市頻道"   tvg-name="上海都市頻道"    tvg-logo="https://assets.livednow.com/logo/上海都市.png"     group-title="地方",上海都市
 http://127.0.0.1:8081/shkk.php?id=shds
-#EXTINF:-1   tvg-id="第一財經"   tvg-name="第一財經"    tvg-logo="http://epg.51zmt.top:8000/tb1/qt/diyicaijing.png"    group-title="地方",第一財經
+#EXTINF:-1   tvg-id="上海第一財經"   tvg-name="上海第一財經"    tvg-logo="http://epg.51zmt.top:8000/tb1/qt/diyicaijing.png"    group-title="地方",第一財經
 http://127.0.0.1:8081/shkk.php?id=dycj
-#EXTINF:-1   tvg-id="哈哈炫動"   tvg-name="哈哈炫動"    tvg-logo="https://assets.livednow.com/logo/哈哈炫動.png"    group-title="地方",哈哈炫動
+#EXTINF:-1   tvg-id="上海哈哈炫動"   tvg-name="上海哈哈炫動"    tvg-logo="https://assets.livednow.com/logo/哈哈炫動.png"    group-title="地方",哈哈炫動
 http://127.0.0.1:8081/shkk.php?id=hhxd
 
 #EXTINF:-1   tvg-id="紀實人文"   tvg-name="紀實人文"    tvg-logo="https://epg.v1.mk/logo/紀實人文.png"    group-title="地方",上海新紀實
@@ -6721,55 +6721,56 @@ http://127.0.0.1:8081/fjqz.php?id=news
 #EXTINF:-1   tvg-id="100680"   tvg-name=""    tvg-logo=""    group-title="地方",泉州閩南語
 http://127.0.0.1:8081/fjqz.php?id=mny
 
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東衛視
+#EXTINF:-1   tvg-id="廣東衛視"   tvg-name="廣東衛視"    tvg-logo=""    group-title="地方",廣東衛視
 http://127.0.0.1:8081/guangdongweb1.php?id=gdws
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東珠江
+#EXTINF:-1   tvg-id="廣東珠江"   tvg-name="廣東珠江"    tvg-logo=""    group-title="地方",廣東珠江
 http://127.0.0.1:8081/guangdongweb1.php?id=gdzj
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東新聞
+#EXTINF:-1   tvg-id="廣東新聞"   tvg-name="廣東新聞"    tvg-logo=""    group-title="地方",廣東新聞
 http://127.0.0.1:8081/guangdongweb1.php?id=gdxw
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東民生
+#EXTINF:-1   tvg-id="廣東民生"   tvg-name="廣東民生"    tvg-logo=""    group-title="地方",廣東民生
 http://127.0.0.1:8081/guangdongweb1.php?id=gdms
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東體育
+#EXTINF:-1   tvg-id="廣東體育"   tvg-name="廣東體育"    tvg-logo=""    group-title="地方",廣東體育
 http://127.0.0.1:8081/guangdongweb1.php?id=gdty
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東大灣區衛視
+#EXTINF:-1   tvg-id="廣東大灣區衛視"   tvg-name="廣東大灣區衛視"    tvg-logo=""    group-title="地方",廣東大灣區衛視
 http://127.0.0.1:8081/guangdongweb1.php?id=nfws
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東大灣區衛視海外版
+#EXTINF:-1   tvg-id="廣東大灣區衛視海外版"   tvg-name="廣東大灣區衛視海外版"    tvg-logo=""    group-title="地方",廣東大灣區衛視海外版
 http://127.0.0.1:8081/guangdongweb1.php?id=dwqws2
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東4K超高清
+#EXTINF:-1   tvg-id="廣東4K超高畫質"   tvg-name="廣東4K超高畫質"    tvg-logo=""    group-title="地方",廣東4K超高清
 http://127.0.0.1:8081/guangdongweb1.php?id=gdcgq
 
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東經濟科教
-http://127.0.0.1:8081/guangdongweb1.php?id=jjkj
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東影視
+#http://127.0.0.1:8081/guangdongweb1.php?id=jjkj
+#EXTINF:-1   tvg-id="廣東影視"   tvg-name="廣東影視"    tvg-logo=""    group-title="地方",廣東影視
 http://127.0.0.1:8081/guangdongweb1.php?id=gdys
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東綜藝
-http://127.0.0.1:8081/guangdongweb1.php?id=gdzy
+#EXTINF:-1   tvg-id="廣東綜藝"   tvg-name="廣東綜藝"    tvg-logo=""    group-title="地方",廣東綜藝
+#http://127.0.0.1:8081/guangdongweb1.php?id=gdzy
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東國際
-http://127.0.0.1:8081/guangdongweb1.php?id=gdgj
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東少兒
+#http://127.0.0.1:8081/guangdongweb1.php?id=gdgj
+#EXTINF:-1   tvg-id="廣東少兒"   tvg-name="廣東少兒"    tvg-logo=""    group-title="地方",廣東少兒
 http://127.0.0.1:8081/guangdongweb1.php?id=gdse
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東嘉佳卡通
+#EXTINF:-1   tvg-id="廣東嘉佳卡通"   tvg-name="廣東嘉佳卡通"    tvg-logo=""    group-title="地方",廣東嘉佳卡通
 http://127.0.0.1:8081/guangdongweb1.php?id=jjkt
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",南方購物
 http://127.0.0.1:8081/guangdongweb1.php?id=nfgw
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東嶺南戲曲
+#EXTINF:-1   tvg-id="廣東嶺南戲曲"   tvg-name="廣東嶺南戲曲"    tvg-logo=""    group-title="地方",廣東嶺南戲曲
 http://127.0.0.1:8081/guangdongweb1.php?id=lnxq
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東房產
-http://127.0.0.1:8081/guangdongweb1.php?id=gdfc
+#http://127.0.0.1:8081/guangdongweb1.php?id=gdfc
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",現代教育
-http://127.0.0.1:8081/guangdongweb1.php?id=xdjy
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",廣東移動
+#http://127.0.0.1:8081/guangdongweb1.php?id=xdjy
+#EXTINF:-1   tvg-id="廣東移動"   tvg-name="廣東移動"    tvg-logo=""    group-title="地方",廣東移動
 http://127.0.0.1:8081/guangdongweb1.php?id=gdyd
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",GRTN健康頻道
 http://127.0.0.1:8081/guangdongweb1.php?id=gdjk
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",GRTN文化頻道
 http://127.0.0.1:8081/guangdongweb1.php?id=gdwh
-#EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",GRTN生活頻道
+#EXTINF:-1   tvg-id="GRTN生活頻道"   tvg-name="GRTN生活頻道"    tvg-logo=""    group-title="地方",GRTN生活頻道
 http://127.0.0.1:8081/guangdongweb1.php?id=gdsh
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",荔枝台
 http://127.0.0.1:8081/guangdongweb1.php?id=gdlzt
 #EXTINF:-1   tvg-id=""   tvg-name=""    tvg-logo=""    group-title="地方",GRTN紀錄片
 http://127.0.0.1:8081/guangdongweb1.php?id=gdjlp
+
 
 
 #EXTINF:-1   tvg-id="廣州綜合"   tvg-name="廣州綜合"    tvg-logo=""    group-title="地方",廣州綜合
@@ -6815,30 +6816,30 @@ http://127.0.0.1:8081/dongguan.php?id=5
 
 #EXTINF:-1   tvg-id="河南衛視"   tvg-name="河南衛視"    tvg-logo=""    group-title="地方",河南衛視
 http://127.0.0.1:8081/henan.php?id=1
-#EXTINF:-1   tvg-id="河南新聞頻道"   tvg-name="河南新聞頻道"    tvg-logo=""    group-title="地方",河南新聞
+#EXTINF:-1   tvg-id="河南新聞"   tvg-name="河南新聞"    tvg-logo=""    group-title="地方",河南新聞
 
 
 http://127.0.0.1:8081/henan.php?id=2
-#EXTINF:-1   tvg-id="河南都市頻道"   tvg-name="河南都市頻道"    tvg-logo=""    group-title="地方",河南都市
+#EXTINF:-1   tvg-id="河南都市"   tvg-name="河南都市"    tvg-logo=""    group-title="地方",河南都市
 http://127.0.0.1:8081/henan.php?id=3
-#EXTINF:-1   tvg-id="河南民生頻道"   tvg-name="河南民生頻道"    tvg-logo=""    group-title="地方",河南民生
+#EXTINF:-1   tvg-id="河南民生"   tvg-name="河南民生"    tvg-logo=""    group-title="地方",河南民生
 http://127.0.0.1:8081/henan.php?id=4
-#EXTINF:-1   tvg-id="河南法制頻道"   tvg-name="河南法制頻道"    tvg-logo=""    group-title="地方",河南法制
+#EXTINF:-1   tvg-id="河南法制"   tvg-name="河南法制"    tvg-logo=""    group-title="地方",河南法制
 http://127.0.0.1:8081/henan.php?id=5
-#EXTINF:-1   tvg-id="河南公共頻道"   tvg-name="河南公共頻道"    tvg-logo=""    group-title="地方",河南公共
+#EXTINF:-1   tvg-id="河南公共"   tvg-name="河南公共"    tvg-logo=""    group-title="地方",河南公共
 http://127.0.0.1:8081/henan.php?id=6
-#EXTINF:-1   tvg-id="河南鄉村頻道"   tvg-name="河南鄉村頻道"    tvg-logo=""    group-title="地方",河南鄉村
+#EXTINF:-1   tvg-id="河南鄉村"   tvg-name="河南鄉村"    tvg-logo=""    group-title="地方",河南鄉村
 
 http://127.0.0.1:8081/henan.php?id=7
 
-#EXTINF:-1   tvg-id="河南電視劇頻道"   tvg-name="河南電視劇頻道"    tvg-logo=""    group-title="地方",河南電視劇
+#EXTINF:-1   tvg-id="河南電視劇"   tvg-name="河南電視劇"    tvg-logo=""    group-title="地方",河南電視劇
 http://127.0.0.1:8081/henan.php?id=8
 
-#EXTINF:-1   tvg-id="河南梨園頻道"   tvg-name="河南梨園頻道"    tvg-logo=""    group-title="地方",河南梨園戲曲
+#EXTINF:-1   tvg-id="河南梨園"   tvg-name="河南梨園"    tvg-logo=""    group-title="地方",河南梨園戲曲
 http://127.0.0.1:8081/henan.php?id=9
 #EXTINF:-1   tvg-id="河南文物寶庫"   tvg-name="河南文物寶庫"    tvg-logo=""    group-title="地方",河南文物寶庫
 http://127.0.0.1:8081/henan.php?id=10
-#EXTINF:-1   tvg-id="河南武術頻道"   tvg-name="河南武術頻道"    tvg-logo=""    group-title="地方",河南武術
+#EXTINF:-1   tvg-id="河南武術"   tvg-name="河南武術"    tvg-logo=""    group-title="地方",河南武術
 http://127.0.0.1:8081/henan.php?id=11
 #EXTINF:-1   tvg-id="河南晴彩中原"   tvg-name="河南晴彩中原"    tvg-logo=""    group-title="地方",河南晴彩中原
 http://127.0.0.1:8081/henan.php?id=12
@@ -6847,7 +6848,7 @@ http://127.0.0.1:8081/henan.php?id=13
 #EXTINF:-1   tvg-id="河南象世界"   tvg-name="河南象世界"    tvg-logo=""    group-title="地方",河南象世界
 http://127.0.0.1:8081/henan.php?id=14
 
-#EXTINF:-1   tvg-id="河南國學頻道"   tvg-name="河南國學頻道"    tvg-logo=""    group-title="地方",國學時代
+#EXTINF:-1   tvg-id="河南國學"   tvg-name="河南國學"    tvg-logo=""    group-title="地方",國學時代
 http://127.0.0.1:8081/henan.php?id=15
 #EXTINF:-1   tvg-id="河南中華特產"   tvg-name="河南中華特產"    tvg-logo=""    group-title="地方",河南中華特產
 http://127.0.0.1:8081/henan.php?id=16
