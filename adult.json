@@ -315,63 +315,12 @@
             "name": "TV-鸭鸭资源",
             "api": "https://cj.yayazy.net/api.php/provide/vod",
             "detail": "",
-            "bz": "0",
-            "paichu": "1,2,3,4"
-        },
-        {
-			"key": "小红薯28",
-            "name": "TV-海洋资源",
-            "api": "http://www.seacms.org/api.php/provide/vod",
-            "detail": "",
-            "bz": "0",
-            "paichu": ""
-        },
-        {
-			"key": "小红薯29",
-            "name": "黄色资源啊啊",
-            "api": "https://hsckzy888.com/api.php/provide/vod",
-            "detail": "",
-            "bz": "0",
-            "paichu": ""
-        },
-        {
-			"key": "小红薯30",
-            "name": "小鸡资源",
-            "api": "https://api.xiaojizy.live/provide/vod",
-            "detail": "",
-            "bz": "0",
-            "paichu": ""
-        },
-        {
-			"key": "小红薯31",
-            "name": "TV-新浪资源阿",
-            "api": "https://api.xinlangapi.com/xinlangapi.php/provide/vod",
-            "detail": "",
-            "bz": "0",
-            "paichu": "1,2"
-        },
-        {
-			"key": "小红薯32",
-            "name": "辣椒资源黄黄",
-            "api": "https://apilj.com/api.php/provide",
-            "detail": "",
-            "bz": "0",
-            "paichu": ""
-        },
-        {
-			"key": "小红薯33",
-            "name": "细胞采集黄色",
-            "api": "https://www.xxibaozyw.com/api.php/provide/vod",
-            "detail": "",
-            "bz": "0",
-            "paichu": ""
-        },
 	  {
             "key": "采集全集",
             "name": "采集全集",
             "type": 4,
-			"api": "./cj.json",
-            ##"api": "http://zhangqun1818.serv00.net/cj/cjjh.php",
+			####"api": "./cj.json",
+            "api": "http://zhangqun1818.serv00.net/cj/cjjh.php",
             "style": {
                 "type": "rect",
                 "ratio": 1.33
