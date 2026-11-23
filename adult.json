@@ -35,15 +35,27 @@
             "ext": ""
         },
 	  	 
-
-            
- {
+{
    
 	  "key": "py_51cg",
           "name": "暗黑蜜桃",
 	 
       "type": 3,
      "api": "./py/暗黑蜜桃.py",
+	  "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+      
+      
+    },
+            
+ {
+   
+	  "key": "py_51hg",
+          "name": "黃果漫畫",
+	 
+      "type": 3,
+     "api": "./py/黄果漫剧.py",
 	  "searchable": 1,
       "quickSearch": 1,
       "filterable": 0
