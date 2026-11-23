@@ -65,6 +65,7 @@
       
     },
                 {
+					"key": "小红薯1",
             "name": "AV-91麻豆",
             "api": "https://91md.me/api.php/provide/vod",
           "type": 3,
@@ -75,6 +76,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯2",
             "name": "AV-AIvin",
             "api": "http://lbapiby.com/api.php/provide/vod",
            "type": 3,
@@ -85,6 +87,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯3",
             "name": "AV-JKUN资源",
             "api": "https://jkunzyapi.com/api.php/provide/vod",
            "type": 3,
@@ -95,6 +98,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯4",
             "name": "AV-souav资源",
             "api": "https://api.souavzy.vip/api.php/provide/vod",
            "type": 3,
@@ -105,6 +109,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯5",
             "name": "AV-乐播资源",
             "api": "https://lbapi9.com/api.php/provide/vod",
            "type": 3,
@@ -115,6 +120,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯6",
             "name": "AV-奥斯卡资源",
             "api": "https://aosikazy.com/api.php/provide/vod",
             "type": 3,
@@ -125,6 +131,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯7",
             "name": "AV-奶香香",
             "api": "https://Naixxzy.com/api.php/provide/vod",
             "type": 3,
@@ -135,6 +142,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯8",
             "name": "AV-森林资源",
             "api": "https://slapibf.com/api.php/provide/vod",
           "type": 3,
@@ -145,6 +153,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯9",
             "name": "AV-淫水机资源",
             "api": "https://www.xrbsp.com/api/json.php",
             "detail": "https://www.xrbsp.com",
@@ -152,6 +161,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯10",
             "name": "AV-玉兔资源",
             "api": "https://apiyutu.com/api.php/provide/vod",
             "detail": "https://apiyutu.com",
@@ -159,6 +169,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯11",
             "name": "AV-番号资源",
             "api": "http://fhapi9.com/api.php/provide/vod",
             "detail": "",
@@ -180,6 +191,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯12",
             "name": "AV-美少女资源",
             "api": "https://www.msnii.com/api/json.php",
             "detail": "https://www.msnii.com",
@@ -187,6 +199,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯13",
             "name": "AV-老色逼资源",
             "api": "https://apilsbzy1.com/api.php/provide/vod",
             "detail": "https://apilsbzy1.com",
@@ -194,6 +207,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯14",
             "name": "AV-色南国",
             "api": "https://api.sexnguon.com/api.php/provide/vod",
             "detail": "https://api.sexnguon.com",
@@ -201,6 +215,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯15",
             "name": "AV-色猫资源",
             "api": "https://api.maozyapi.com/inc/apijson_vod.php",
             "detail": "https://api.maozyapi.com",
@@ -208,6 +223,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯16",
             "name": "AV-辣椒资源",
             "api": "https://apilj.com/api.php/provide/vod",
             "detail": "https://apilj.com",
@@ -215,6 +231,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯17",
             "name": "AV-香奶儿资源",
             "api": "https://www.gdlsp.com/api/json.php",
             "detail": "https://www.gdlsp.com",
@@ -222,6 +239,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯18",
             "name": "AV-鲨鱼资源",
             "api": "https://shayuapi.com/api.php/provide/vod",
             "detail": "https://shayuapi.com",
@@ -229,6 +247,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯19",
             "name": "AV-黄AV资源",
             "api": "https://www.pgxdy.com/api/json.php",
             "detail": "https://www.pgxdy.com",
@@ -236,6 +255,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯20",
             "name": "TV-极速资源",
             "api": "https://jszyapi.com/api.php/provide/vod",
             "detail": "https://jszyapi.com",
@@ -243,6 +263,7 @@
             "paichu": "1,2,17,27"
         },
         {
+			"key": "小红薯21",
             "name": "TV-魔爪资源",
             "api": "https://mozhuazy.com/api.php/provide/vod",
             "detail": "",
@@ -250,6 +271,7 @@
             "paichu": "1,25,34,40"
         },
         {
+			"key": "小红薯22",
             "name": "TV-魔都资源",
             "api": "https://www.mdzyapi.com/api.php/provide/vod",
             "bz": "0",
@@ -257,6 +279,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯23",
             "name": "杏吧资源",
             "api": "https://xingba111.com/api.php/provide/vod",
             "detail": "",
@@ -264,6 +287,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯24",
             "name": "TV-量子资源",
             "api": "https://cj.lziapi.com/api.php/provide/vod",
             "detail": "",
@@ -271,6 +295,7 @@
             "paichu": "1,2,3,4"
         },
         {
+			"key": "小红薯25",
             "name": "森林资源",
             "api": "https://slapibf.com/api.php/provide/vod",
             "detail": "",
@@ -278,6 +303,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯26",
             "name": "TV-红牛资源",
             "api": "https://www.hongniuzy3.com/api.php/provide/vod",
             "detail": "",
@@ -285,6 +311,7 @@
             "paichu": "1,2"
         },
         {
+			"key": "小红薯27",
             "name": "TV-鸭鸭资源",
             "api": "https://cj.yayazy.net/api.php/provide/vod",
             "detail": "",
@@ -292,6 +319,7 @@
             "paichu": "1,2,3,4"
         },
         {
+			"key": "小红薯28",
             "name": "TV-海洋资源",
             "api": "http://www.seacms.org/api.php/provide/vod",
             "detail": "",
@@ -299,6 +327,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯29",
             "name": "黄色资源啊啊",
             "api": "https://hsckzy888.com/api.php/provide/vod",
             "detail": "",
@@ -306,6 +335,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯30",
             "name": "小鸡资源",
             "api": "https://api.xiaojizy.live/provide/vod",
             "detail": "",
@@ -313,6 +343,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯31",
             "name": "TV-新浪资源阿",
             "api": "https://api.xinlangapi.com/xinlangapi.php/provide/vod",
             "detail": "",
@@ -320,6 +351,7 @@
             "paichu": "1,2"
         },
         {
+			"key": "小红薯32",
             "name": "辣椒资源黄黄",
             "api": "https://apilj.com/api.php/provide",
             "detail": "",
@@ -327,6 +359,7 @@
             "paichu": ""
         },
         {
+			"key": "小红薯33",
             "name": "细胞采集黄色",
             "api": "https://www.xxibaozyw.com/api.php/provide/vod",
             "detail": "",
