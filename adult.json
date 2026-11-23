@@ -51,6 +51,19 @@
       
     },
 	    {
+   "key": "py_porn",
+   "name": "肉视频[py]",
+   "type": 3,
+   "api": "./py/肉视频.py",
+   "ext": {
+    "site": "https://rou.video",  // 主域名，裸域名自动补全协议
+    "hosts": "https://rouvb1.xyz,https://rouva8.xyz",  // 备用线路，逗号分隔，也支持数组
+    "ua": "Mozilla/5.0",  // 自定义请求标识，留空使用默认标识
+    "timeout": 20,  // 请求超时，范围 5-60，单位秒
+    "pub": "https://rdz3.xyz/dizhi"  // 发布页地址，用于自动补充线路
+   }
+  },
+	  {
    
 	  "key": "py_ttt",
           "name": "汤头条",
