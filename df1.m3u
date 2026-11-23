@@ -2709,6 +2709,47 @@ https://rthktv31-vos-live.akamaized.net/Content/DASH/Live/channel(rthk_ch31)/mas
 
 #EXTINF:-1 tvg-id="香港電台32" tvg-name="香港電台32" tvg-logo="" group-title="港澳台",香港電台32
 http://127.0.0.1:8081/hktv32test3_vlc.php?mode=redirect
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="港澳台",有線18
+http://127.0.0.1:8081/iptv365.php?id=yx18&action=url
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="港澳台",有線18備用
+http://127.0.0.1:8081/iptv365.php?id=yx18by&action=url
+#EXTINF:-1 tvg-id="now新聞" tvg-name="now新聞" tvg-logo="https://www.nowtv.now.com/media/logo/332-wbg-c.png" group-title="港澳台",now新聞
+http://127.0.0.1:8081/iptv365.php?id=now332&action=url
+#EXTINF:-1 tvg-id="now財經" tvg-name="now財經" tvg-logo="https://www.nowtv.now.com/media/logo/333-wbg-c.png" group-title="港澳台",now財經
+http://127.0.0.1:8081/iptv365.php?id=now333&action=url
+#EXTINF:-1 tvg-name="ViuTV" group-title="港澳台",ViuTV
+http://127.0.0.1:8081/iptv365.php?id=viutv&action=url
+#EXTINF:-1 tvg-name="viu6" group-title="港澳台",ViuTVsix
+http://127.0.0.1:8081/iptv365.php?id=viutv6&action=url
+#EXTINF:-1 tvg-name="HOY 76" group-title="港澳台",HOY國際財經台
+http://127.0.0.1:8081/iptv365.php?id=hoy76&action=url
+#EXTINF:-1 tvg-name="HOY 77" group-title="港澳台",HOY TV
+http://127.0.0.1:8081/iptv365.php?id=hoy77&action=url
+#EXTINF:-1 tvg-name="HOY 78" group-title="港澳台",HOY資訊台
+http://127.0.0.1:8081/iptv365.php?id=hoy78&action=url
+#EXTINF:-1 tvg-id="香港電台31" tvg-name="香港電台31" tvg-logo="" group-title="港澳台",香港電台31
+http://127.0.0.1:8081/iptv365.php?id=hkst31&action=url
+#EXTINF:-1 tvg-id="香港電台32" tvg-name="香港電台32" tvg-logo="" group-title="港澳台",香港電台32
+http://127.0.0.1:8081/iptv365.php?id=hkst32&action=url
+#EXTINF:-1 tvg-id="愛爾達體育1台" tvg-name="愛爾達體育1台" tvg-logo="" group-title="港澳台",愛爾達體育1
+http://127.0.0.1:8081/iptv365.php?id=eltasport1&action=url
+#EXTINF:-1 tvg-id="愛爾達體育1台" tvg-name="愛爾達體育2台" tvg-logo="" group-title="港澳台",愛爾達體育2
+http://127.0.0.1:8081/iptv365.php?id=eltasport2&action=url
+#EXTINF:-1 tvg-name="廣東體育" group-title="港澳台",廣東體育
+http://127.0.0.1:8081/iptv365.php?id=gdty&action=url
+#EXTINF:-1 tvg-name="廣東珠江" group-title="港澳台",廣東珠江
+http://127.0.0.1:8081/iptv365.php?id=gdzj&action=url
+#EXTINF:-1 tvg-id="鳳凰中文" tvg-name="鳳凰中文" tvg-logo="https://epg.yang-1989.eu.org/logo/凤凰中文.png" group-title="港澳台",鳳凰衛視·中文
+http://127.0.0.1:8081/iptv365.php?id=fhzw&action=url
+#EXTINF:-1 tvg-id="鳳凰資訊" tvg-name="鳳凰資訊" tvg-logo="https://epg.yang-1989.eu.org/logo/凤凰资讯.png" group-title="港澳台",鳳凰衛視·資訊
+http://127.0.0.1:8081/iptv365.php?id=fhzx&action=url
+#EXTINF:-1 tvg-name="TVB Plus (免費)" group-title="港澳台",TVB Plus(字幕)
+http://127.0.0.1:8081/iptv365.php?id=tvbplus&action=url
+#EXTINF:-1 tvg-name="翡翠台" group-title="港澳台",翡翠台4K(字幕)
+http://127.0.0.1:8081/iptv365.php?id=tvbfc&action=url
+#EXTINF:-1 tvg-name="HOY 78" group-title="港澳台",HOY資訊台
+http://127.0.0.1:8081/iptv365.php?id=yxxw&action=url
+
 
 #EXTINF:-1 tvg-id="香港電台31" tvg-name="香港電台31" tvg-logo="" group-title="港澳台",香港電台31
 https://rthktv31-live.akamaized.net/hls/live/2036818/RTHKTV31/stream5/streamPlaylist.m3u8
