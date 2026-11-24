@@ -34,6 +34,17 @@
         "source": "&playseek=${(b)yyyyMMddHHmmss}-${(e)yyyyMMddHHmmss}"
       }
 	},
+		 {
+            "key": "小红薯",
+            "name": "小红薯",
+            "type": 3,
+            "api": "csp_Xhs",
+            "jar": "./小红薯.jar",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 0,
+            "ext": ""
+        },
       {
       "key": "py_hg",
       "name": "红果短剧py",
