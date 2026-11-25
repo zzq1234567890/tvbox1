@@ -54,6 +54,15 @@
       "quickSearch": 1,
       "filterable": 0
     },
+		    {
+      "key": "py_hgtv",
+      "name": "红果短剧tv",
+      "type": 3,
+      "api": "./js/红果.js",
+	 "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+    },
 		{
             "name": "TV-创享影视",
             "api": "https://ys.cxkjg.cn/api/provide/vod",
