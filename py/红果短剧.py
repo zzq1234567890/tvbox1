@@ -864,28 +864,10 @@ def _list_page_result(page, items, page_data):
     }
 
 
-# 取流端点：官方会在 multi_video_model / video_model / player 子路径间切换，
-# 任一路径对旧画像会静默 200+0B。主路径用现行平铺 multi_video_model/v1，
-# 空响应时按矩阵回退（见 _video_model）。
 VIDEO_URL = "https://api5-normal-sinfonlineb.fqnovel.com/novel/player/multi_video_model/v1/"
-_VIDEO_URL_FALLBACKS = (
-    "https://api5-normal-sinfonlineb.fqnovel.com/novel/player/multi_video_model/v1/",
-    "https://api5-normal-sinfonlineb.fqnovel.com/novel/player/video_model/v1/",
-    "https://api5-normal-sinfonlineb.fqnovel.com/novel/player/multi_video_model/player/v1/",
-    "https://api5-normal-sinfonlinea.fqnovel.com/novel/player/multi_video_model/v1/",
-    "https://api5-normal-sinfonlinec.fqnovel.com/novel/player/multi_video_model/v1/",
-)
 UA = "Mozilla/5.0 (Linux; Android 12) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
-# 请求画像必须与官方现行客户端一致，否则播放接口静默 200+0B（2026-11 起强制校验）。
-# 对齐 hongguoTV 实测可用画像：74532 / 7.4.5.32 / channel=update_64 / 25053RT47C / os16。
-_HG_APP_VERSION_CODE = "74532"
-_HG_APP_VERSION_NAME = "7.4.5.32"
-APP_UA = (
-    "com.phoenix.read/%s (Linux; U; Android 16; zh_CN; 25053RT47C; "
-    "Build/BP2A.250605.031.A3; Cronet/TTNetVersion:04657795 2026-01-23 "
-    "QuicVersion:c67e9834 2025-09-08)" % _HG_APP_VERSION_CODE
-)
-MEDIA_UA = "com.phoenix.read/%s" % _HG_APP_VERSION_CODE
+APP_UA = "com.phoenix.read/71332 (Linux; U; Android 16; zh_CN; 25053RT47C; Build/BP2A.250605.031.A3; Cronet/TTNetVersion:04657795 2026-01-23 QuicVersion:c67e9834 2025-09-08)"
+MEDIA_UA = "com.phoenix.read/71332"
 
 _RANGE_FETCH_ATTEMPTS = 3
 
@@ -1312,6 +1294,10 @@ _STREAM_MAX_SESSIONS = 4
 _STREAM_INFLIGHT_WAIT = 60
 _STREAM_STATE: dict[str, Any] = {"port": 0, "server": None, "sessions": {}, "inflight": {}}
 _STREAM_LOCK = threading.RLock()
+# 播放取流开关：False=优先本机端口(默认，FongMi 秒开/切集稳)；True=强制壳代理。
+# 用于救 OK影视 等连不上 spider 自起本地端口、点播放直接黑屏的壳。
+# 可通过 init(extend) 里的 force_proxy=1，或环境变量 HG_FORCE_PROXY=1 覆盖。
+_FORCE_PROXY = False
 
 
 def _toplevel_boxes(buf: bytes) -> list[tuple[int, int, bytes]]:
@@ -1663,13 +1649,13 @@ def _register_device_pair() -> tuple[str, str] | None:
     try:
         import uuid as _uuid
         openudid = "".join(random.choice("0123456789abcdef") for _ in range(16))
-        header = {"display_name": "红果免费短剧", "aid": 8662, "app_version": _HG_APP_VERSION_NAME, "version_code": int(_HG_APP_VERSION_CODE), "manifest_version_code": int(_HG_APP_VERSION_CODE), "update_version_code": int(_HG_APP_VERSION_CODE), "channel": "update_64", "package": "com.phoenix.read", "app_language": "zh", "os": "Android", "os_version": "16", "os_api": 36, "device_model": "25053RT47C", "device_brand": "Redmi", "device_manufacturer": "Xiaomi", "cpu_abi": "arm64-v8a", "density_dpi": 520, "display_density": "xxhdpi", "resolution": "2772x1280", "language": "zh", "timezone": 8, "access": "wifi", "openudid": openudid, "clientudid": str(_uuid.uuid4()), "cdid": str(_uuid.uuid4()), "region": "CN", "tz_name": "Asia/Shanghai", "tz_offset": 28800, "sim_region": "cn", "device_platform": "android", "not_request_sender": 0, "is_system_app": 0, "sdk_flavor": "china", "rom": "OS2.0", "rom_version": "BP2A.250605.031.A3"}
+        header = {"display_name": "红果免费短剧", "aid": 8662, "app_version": "7.3.5.32", "version_code": 73532, "manifest_version_code": 73532, "update_version_code": 73532, "channel": "update_64", "package": "com.phoenix.read", "app_language": "zh", "os": "Android", "os_version": "16", "os_api": 36, "device_model": "25053RT47C", "device_brand": "Redmi", "device_manufacturer": "Xiaomi", "cpu_abi": "arm64-v8a", "density_dpi": 520, "display_density": "xxhdpi", "resolution": "2772x1280", "language": "zh", "timezone": 8, "access": "wifi", "openudid": openudid, "clientudid": str(_uuid.uuid4()), "cdid": str(_uuid.uuid4()), "region": "CN", "tz_name": "Asia/Shanghai", "tz_offset": 28800, "sim_region": "cn", "device_platform": "android", "not_request_sender": 0, "is_system_app": 0, "sdk_flavor": "china", "rom": "OS2.0", "rom_version": "BP2A.250605.031.A3"}
         body = json.dumps({"magic_tag": "ss_app_log", "header": header, "_gen_time": int(time.time() * 1000)}).encode("utf-8")
         qs = urlencode({"req_id": str(_uuid.uuid4()), "_rticket": int(time.time() * 1000)})
         resp = requests.post(
             "https://log.snssdk.com/service/2/device_register/?" + qs,
             data=body,
-            headers={"User-Agent": APP_UA, "Accept": "application/json", "Content-Type": "application/json; charset=utf-8"},
+            headers={"User-Agent": "com.phoenix.read/73532 (Linux; U; Android 16; zh_CN; 25053RT47C; Build/BP2A.250605.031.A3; Cronet/TTNetVersion:04657795 2026-01-23 QuicVersion:c67e9834 2025-09-08)", "Accept": "application/json", "Content-Type": "application/json; charset=utf-8"},
             timeout=20,
         )
         if resp.status_code != 200:
@@ -2161,12 +2147,23 @@ class _HgThreadingHTTPServer(ThreadingHTTPServer):
 
 
 def _probe_hg_stream(port: int) -> bool:
-    """端口被占时探一下是不是自己的 hg-stream(404 也带 Server 头，不会触发建会话)。"""
+    """端口探活：确认是本插件的 hg-stream 且确实在服务(404 也带 Server 头，不触发建会话)。
+    必须 trust_env=False 绕开系统代理：否则在有 http_proxy 的环境里，对 127.0.0.1 的请求
+    会被塞给代理而超时/失败，把"本来可用"的端口误判为不可用，白白丢掉本地端口这条快路。"""
+    sess = None
     try:
-        response = requests.get("http://127.0.0.1:%d/hg-probe" % port, timeout=1.5)
+        sess = requests.Session()
+        sess.trust_env = False
+        response = sess.get("http://127.0.0.1:%d/hg-probe" % port, timeout=2.0)
         return str(response.headers.get("Server") or "").startswith("hg-stream")
     except Exception:
         return False
+    finally:
+        if sess is not None:
+            try:
+                sess.close()
+            except Exception:
+                pass
 
 
 def _start_stream_server() -> int:
@@ -4145,7 +4142,7 @@ def _gen_medusa_proto(url: str, url_params: Mapping[str, Any], devices: Mapping[
     query_sm3 = SM3(query).digest()
     query_body_hash = SM3(query.encode() + body_md5_bytes + b"none").digest()
     device_id = str(devices.get("device_id", url_params.get("device_id", url_params.get("did", ""))))
-    version_name = str(devices.get("version_name", url_params.get("version_name", _HG_APP_VERSION_NAME)))
+    version_name = str(devices.get("version_name", url_params.get("version_name", "7.1.3.32")))
     device_model = str(devices.get("device_model", url_params.get("device_type", "")))
     brand = str(devices.get("device_brand", url_params.get("device_brand", "")))
     sec_device_token = str(devices.get("sec_device_token") or "")
@@ -4275,56 +4272,12 @@ def _device_config(config: Mapping[str, Any]) -> dict[str, str]:
     return {
         "device_id": device_id, "iid": install_id, "install_id": install_id,
         "device_brand": "Redmi", "device_model": "25053RT47C", "device_type": "25053RT47C",
-        "device_manufacturer": "Xiaomi", "os_version": "16",
-        "version_name": _HG_APP_VERSION_NAME,
+        "device_manufacturer": "Xiaomi", "os_version": "16", "version_name": "7.1.3.32",
         "x_tt_dt": _text(config.get("x_tt_dt")),
         "sec_device_token": _text(config.get("sec_device_token")),
         "device_sec_device_token": _text(config.get("device_sec_device_token")),
         "ua": APP_UA,
     }
-
-
-def _parse_video_model_payload(response_data: Mapping[str, Any], video_id: str) -> dict[str, Any]:
-    """从 multi_video_model / video_model 响应里抽出 video_model 字典。"""
-    data = response_data.get("data") or {}
-    if not isinstance(data, Mapping):
-        raise HongguoPluginError("video_model 数据为空")
-    entry: Any = data.get(video_id)
-    if entry is None:
-        vmd = data.get("video_model_data")
-        if isinstance(vmd, Mapping):
-            entry = vmd.get(video_id) or vmd.get(str(video_id))
-        if entry is None:
-            for value in data.values():
-                if isinstance(value, Mapping):
-                    if value.get("video_model") is not None or value.get("video_list") is not None:
-                        entry = value
-                        break
-                    nested = value.get(video_id) or value.get(str(video_id))
-                    if isinstance(nested, Mapping):
-                        entry = nested
-                        break
-                if isinstance(value, list) and value and isinstance(value[0], Mapping):
-                    entry = value[0]
-                    break
-    if not isinstance(entry, Mapping):
-        entry = data
-    raw_model = entry.get("video_model") if isinstance(entry, Mapping) else None
-    if raw_model is None:
-        raw_model = data.get("video_model")
-    if raw_model is None and isinstance(entry, Mapping) and (
-        entry.get("video_list") is not None or entry.get("dynamic_video_list") is not None
-    ):
-        raw_model = entry
-    if isinstance(raw_model, str):
-        try:
-            raw_model = json.loads(raw_model)
-        except ValueError as exc:
-            raise HongguoPluginError("video_model JSON 无效") from exc
-    if not isinstance(raw_model, Mapping):
-        raise HongguoPluginError("video_model 为空")
-    return dict(raw_model)
-
 
 def _video_model(video_id: str, config: Mapping[str, Any]) -> dict[str, Any]:
     devices = _device_config(config)
@@ -4335,8 +4288,8 @@ def _video_model(video_id: str, config: Mapping[str, Any]) -> dict[str, Any]:
         "channel": "update_64",
         "aid": "8662",
         "app_name": "novelread",
-        "version_code": _HG_APP_VERSION_CODE,
-        "version_name": _HG_APP_VERSION_NAME,
+        "version_code": "71332",
+        "version_name": "7.1.3.32",
         "device_platform": "android",
         "os": "android",
         "ssmix": "a",
@@ -4345,13 +4298,13 @@ def _video_model(video_id: str, config: Mapping[str, Any]) -> dict[str, Any]:
         "language": "zh",
         "os_api": "36",
         "os_version": "16",
-        "manifest_version_code": _HG_APP_VERSION_CODE,
+        "manifest_version_code": "71332",
         "resolution": "1280*2772",
         "dpi": "520",
-        "update_version_code": _HG_APP_VERSION_CODE,
+        "update_version_code": "71332",
         "host_abi": "arm64-v8a",
         "dragon_device_type": "phone",
-        "pv_player": _HG_APP_VERSION_CODE,
+        "pv_player": "71332",
         "compliance_status": "0",
         "need_personal_recommend": "1",
         "player_so_load": "1",
@@ -4383,44 +4336,46 @@ def _video_model(video_id: str, config: Mapping[str, Any]) -> dict[str, Any]:
     }
     if devices.get("cookie"):
         request_headers["Cookie"] = devices["cookie"]
-
+    signed_headers, signed_url = _core_sixgod(
+        VIDEO_URL,
+        params,
+        devices,
+        payload,
+        request_headers,
+    )
     body = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
-    last_err: Exception | None = None
-    # 多端点回退：平台在路径间切换时，旧路径会静默 200+0B；换路径即可恢复。
-    for endpoint in _VIDEO_URL_FALLBACKS:
+    response = requests.post(
+        signed_url,
+        headers=signed_headers,
+        data=body,
+        timeout=30,
+    )
+    response_data = _json_response(response)
+    data = response_data.get("data") or {}
+    if not isinstance(data, Mapping):
+        raise HongguoPluginError("video_model 数据为空")
+    entry: Any = data.get(video_id)
+    if entry is None:
+        for value in data.values():
+            if isinstance(value, Mapping):
+                entry = value
+                break
+            if isinstance(value, list) and value and isinstance(value[0], Mapping):
+                entry = value[0]
+                break
+    if not isinstance(entry, Mapping):
+        entry = data
+    raw_model = entry.get("video_model") if isinstance(entry, Mapping) else None
+    if raw_model is None:
+        raw_model = data.get("video_model")
+    if isinstance(raw_model, str):
         try:
-            signed_headers, signed_url = _core_sixgod(
-                endpoint,
-                params,
-                devices,
-                payload,
-                request_headers,
-            )
-            response = requests.post(
-                signed_url,
-                headers=signed_headers,
-                data=body,
-                timeout=30,
-            )
-            if not (response.content or b"").strip():
-                last_err = HongguoPluginError("video_model 空响应 endpoint=%s" % endpoint)
-                try:
-                    _hg_trace("video_model 空响应 %s" % endpoint.split("/novel/")[-1][:40])
-                except Exception:
-                    pass
-                continue
-            response_data = _json_response(response)
-            return _parse_video_model_payload(response_data, video_id)
-        except HongguoPluginError as err:
-            last_err = err
-            continue
-        except Exception as err:
-            last_err = err
-            continue
-    if last_err is not None:
-        raise last_err
-    raise HongguoPluginError("video_model 为空")
-
+            raw_model = json.loads(raw_model)
+        except ValueError as exc:
+            raise HongguoPluginError("video_model JSON 无效") from exc
+    if not isinstance(raw_model, Mapping):
+        raise HongguoPluginError("video_model 为空")
+    return dict(raw_model)
 
 def _video_list_from_model(model: Mapping[str, Any]) -> Any:
     for key in ("video_list", "dynamic_video_list"):
@@ -5039,8 +4994,40 @@ class Spider(_BaseSpider):
 
     def init(self, extend=""):
         # 每次源实例使用随机合法设备标识；不依赖用户私有配置。
+        global _FORCE_PROXY
         try:
             _hg_cache_cleanup(False)
+        except Exception:
+            pass
+        # 解析宿主传入的 extend：支持 dict / JSON 串 / "k=v&k=v" 三种形态。
+        # 命中 force_proxy(或 HG_FORCE_PROXY)=强制走壳代理，绕开 spider 自起的本地端口，
+        # 专治 OK影视 等"播放器连不上 127.0.0.1:1001x → 进详情点播放直接黑屏"。
+        try:
+            ext = extend
+            if isinstance(ext, (bytes, bytearray)):
+                ext = ext.decode("utf-8", "ignore")
+            if isinstance(ext, str):
+                s = ext.strip()
+                if s.startswith("{"):
+                    try:
+                        ext = json.loads(s)
+                    except Exception:
+                        ext = {}
+                else:
+                    pairs = {}
+                    for part in s.split("&"):
+                        if "=" in part:
+                            kk, vv = part.split("=", 1)
+                            pairs[kk.strip()] = vv.strip()
+                    ext = pairs
+            if isinstance(ext, Mapping):
+                raw = ext.get("force_proxy") or ext.get("HG_FORCE_PROXY")
+                if isinstance(raw, (list, tuple)):
+                    raw = raw[0] if raw else ""
+                val = str(raw or "").strip().lower()
+                if val:
+                    _FORCE_PROXY = val in ("1", "true", "yes", "on")
+                    _hg_trace("init extend 解析 force_proxy=%s" % _FORCE_PROXY)
         except Exception:
             pass
         return None
@@ -5305,10 +5292,23 @@ class Spider(_BaseSpider):
             threading.Thread(target=_warm_session, daemon=True).start()
         except Exception:
             pass
-        try:
-            port = _start_stream_server()
-        except Exception:
-            port = 0
+        # 取流方案选择（救"影视/OK下不能播放"）：
+        #   默认本机端口=秒开、切集稳；但 OK影视 等壳里播放器可能连不上 spider 自起的
+        #   127.0.0.1:1001x —— 而 _start_stream_server() 仍能绑上端口返回非 0，旧代码便
+        #   从不进入本可工作的壳代理回退，直接黑屏。这里两层兜底：
+        #   1) 端口起来后真实探活(_probe_hg_stream，绕系统代理)，连不通=判不可用→自动回退壳代理；
+        #   2) force_proxy 开关(extend 里 &force_proxy=1 或环境变量 HG_FORCE_PROXY=1)，
+        #      黑屏时手动强制走壳代理这条独立通路。
+        force_proxy = bool(_FORCE_PROXY) or str(os.environ.get("HG_FORCE_PROXY", "")).strip().lower() in ("1", "true", "yes", "on")
+        port = 0
+        if not force_proxy:
+            try:
+                port = _start_stream_server()
+            except Exception:
+                port = 0
+            if port and not _probe_hg_stream(port):
+                _hg_trace("本机端口探活失败→回退壳代理 port=%d" % port)
+                port = 0
         if port:
             query = urlencode(
                 {
