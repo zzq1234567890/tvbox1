@@ -4747,6 +4747,9 @@ http://127.0.0.1:8081/hami.php?id=2062
 http://127.0.0.1:8081/hami.php?id=2063
 #EXTINF:-1    tvg-id="Hami體育1台(免費)"   tvg-name="Hami體育1台(免費)"     group-title="hami",Hami體育1台(免費)
 http://127.0.0.1:8081/hami.php?id=2072
+#EXTINF:-1    tvg-id="Hami體育2台(免費)"   tvg-name="Hami體育2台(免費)"     group-title="hami",Hami體育2台(免費)
+http://127.0.0.1:8081/hami.php?id=1987
+
 #EXTINF:-1    tvg-id="Hami體育3台(免費)"   tvg-name="Hami體育3台(免費)"     group-title="hami",Hami體育3台(免費)
 http://127.0.0.1:8081/hami.php?id=2117
 #EXTINF:-1    tvg-id="NHK新聞資訊台"   tvg-name="NHK新聞資訊台"     group-title="hami",NHK新聞資訊台(免費)
@@ -4755,11 +4758,12 @@ http://127.0.0.1:8081/hami.php?id=1974
 http://127.0.0.1:8081/hami.php?id=2109
 #EXTINF:-1    tvg-id="INULTRA(免費)"   tvg-name="INULTRA(免費)"     group-title="hami",INULTRA(免費)
 http://127.0.0.1:8081/hami.php?id=2131
-#EXTINF:-1    tvg-id="靖天中文台(免費)"   tvg-name="靖天中文台(免費)"     group-title="hami",靖天中文台(免費)
-http://127.0.0.1:8081/hami.php?id=2132
+#EXTINF:-1    tvg-id="達文西頻道(免費)"   tvg-name="達文西頻道(免費)"     group-title="hami",達文西頻道(免費)
+http://127.0.0.1:8081/hami.php?id=1900
 
-#EXTINF:-1    tvg-id="CNEX紀實頻道(免費)"   tvg-name="CNEX紀實頻道(免費)"     group-title="hami",CNEX紀實頻道(免費)
-http://127.0.0.1:8081/hami.php?id=1773
+#EXTINF:-1    tvg-id="LiveABC互動英語頻道(免費)"   tvg-name="CNEX紀實頻道(免費)"     group-title="hami",CNEX紀實頻道(免費)
+http://127.0.0.1:8081/hami.php?id=1923
+
 
 
 
