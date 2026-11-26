@@ -4750,7 +4750,14 @@ http://127.0.0.1:8081/hami.php?id=2063
 #EXTINF:-1    tvg-id="Hami體育1台(免費)"   tvg-name="Hami體育1台(免費)"     group-title="hami",Hami體育1台(免費)
 http://127.0.0.1:8081/hami.php?id=2072
 #EXTINF:-1    tvg-id="Hami體育2台(免費)"   tvg-name="Hami體育2台(免費)"     group-title="hami",Hami體育2台(免費)
-http://127.0.0.1:8081/hami.php?id=1987
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
+#KODIPROP:inputstream.adaptive.license_key=http://127.0.0.1:8081/hamimpdkey.php?id=OTT_LIVE_0000001987|User-Agent=Mozilla/5.0|R
+#KODIPROP:inputstream.adaptive.stream_headers=User-Agent=Mozilla/5.0
+http://127.0.0.1:8081/hamimpd.php?id=OTT_LIVE_0000001987
+
+
+
 
 #EXTINF:-1    tvg-id="Hami體育3台(免費)"   tvg-name="Hami體育3台(免費)"     group-title="hami",Hami體育3台(免費)
 http://127.0.0.1:8081/hami.php?id=2117
@@ -4763,8 +4770,9 @@ http://127.0.0.1:8081/hami.php?id=2131
 #EXTINF:-1    tvg-id="達文西頻道(免費)"   tvg-name="達文西頻道(免費)"     group-title="hami",達文西頻道(免費)
 http://127.0.0.1:8081/hami.php?id=1900
 
-#EXTINF:-1    tvg-id="LiveABC互動英語頻道(免費)"   tvg-name="CNEX紀實頻道(免費)"     group-title="hami",CNEX紀實頻道(免費)
+#EXTINF:-1    tvg-id="LiveABC互動英語頻道(免費)"   tvg-name="LiveABC互動英語頻道(免費)"     group-title="hami",LiveABC互動英語頻道(免費)
 http://127.0.0.1:8081/hami.php?id=1923
+
 
 
 
