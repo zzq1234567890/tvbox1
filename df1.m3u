@@ -4766,7 +4766,7 @@ http://127.0.0.1:8081/hamimpd.php?id=OTT_LIVE_0000001987
 http://127.0.0.1:8081/hami.php?id=2117
 #EXTINF:-1    tvg-id="NHK新聞資訊台"   tvg-name="NHK新聞資訊台"     group-title="hami",NHK新聞資訊台(免費)
 http://127.0.0.1:8081/hami.php?id=1974
-#EXTINF:-1    tvg-id="Global Trekker(免費)"   tvg-name="Global Trekker(免費)"     group-title="hami",Global Trekker(免費)
+#EXTINF:-1    tvg-id="GlobalTrekker(免費)"   tvg-name="GlobalTrekker(免費)"     group-title="hami",Global Trekker(免費)
 http://127.0.0.1:8081/hami.php?id=2109
 #EXTINF:-1    tvg-id="INULTRA(免費)"   tvg-name="INULTRA(免費)"     group-title="hami",INULTRA(免費)
 http://127.0.0.1:8081/hami.php?id=2131
